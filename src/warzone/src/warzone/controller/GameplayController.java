@@ -1,5 +1,8 @@
 package warzone.controller;
 
+import warzone.view.*;
+import warzone.model.*;
+
 public class GameplayController {
 	
 	/**
@@ -10,10 +13,10 @@ public class GameplayController {
 	 * 
 	 * @return
 	 */
-	public boolean showMap() {
+	public GameContext showMap() {
 		
 		// TODO Auto-generated method stub
 		
-		return false;
+		return null;
 	}
 }
