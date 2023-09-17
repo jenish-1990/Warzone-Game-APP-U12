@@ -1,7 +1,7 @@
-package warzone.commands;
+package warzone.controller;
 
-public class GameplayCommands {
-
+public class GameplayController {
+	
 	/**
 	 * Performs the action for user command: showmap 
 	 * 

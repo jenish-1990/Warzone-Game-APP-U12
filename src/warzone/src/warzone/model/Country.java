@@ -1,4 +1,4 @@
-package warzone.game.objects;
+package warzone.model;
 
 public class Country {
 	

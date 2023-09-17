@@ -1,4 +1,7 @@
-package warzone.game.objects;
+package warzone.model;
+
+import java.util.List;
+
 
 /**
  *	An undirected graph data structure used to hold all the countries and their neighbors  
@@ -6,4 +9,5 @@ package warzone.game.objects;
 public class GameMap {
 
 	//https://www.geeksforgeeks.org/graph-and-its-representations/
+	public List<Continent> Continents;
 }

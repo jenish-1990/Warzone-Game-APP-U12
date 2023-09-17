@@ -1,4 +1,4 @@
-package warzone.orders;
+package warzone.model;
 
 public class DeployOrder implements Order {
 

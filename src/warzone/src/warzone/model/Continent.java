@@ -1,4 +1,4 @@
-package warzone.game.objects;
+package warzone.model;
 
 //Not sure if it makes sense to have a continent class or not. We will need to discuss
 public class Continent {

@@ -1,6 +1,7 @@
-package warzone.commands;
+package warzone.controller;
 
-public class StartupCommands {
+public class StartupController {
+
 
 	/**
 	 * Performs the action for user command: loadmap filename
@@ -56,4 +57,5 @@ public class StartupCommands {
 		
 		return false;
 	}
+	
 }
