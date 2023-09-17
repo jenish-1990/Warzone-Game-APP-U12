@@ -1,6 +1,6 @@
 package warzone.controller;
 /**
- * this is a test new for maven coucou
+ * this is a base controller
  * @author amy
  *
  */
