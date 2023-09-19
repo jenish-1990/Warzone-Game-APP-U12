@@ -22,7 +22,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10};
+var methods = {"i0":10,"i1":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -133,7 +133,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../warzone/service/MapService.html#MapService--">MapService</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../warzone/service/MapService.html#MapService-warzone.model.GameContext-">MapService</a></span>(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -151,6 +151,10 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/MapService.html#saveMap-java.lang.String-">saveMap</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/MapService.html#validateMap--">validateMap</a></span>()</code>&nbsp;</td>
 </tr>
@@ -176,13 +180,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="MapService--">
+<a name="MapService-warzone.model.GameContext-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MapService</h4>
-<pre>public&nbsp;MapService()</pre>
+<pre>public&nbsp;MapService(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</pre>
 </li>
 </ul>
 </li>
@@ -196,10 +200,24 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <a name="validateMap--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>validateMap</h4>
 <pre>public&nbsp;boolean&nbsp;validateMap()</pre>
+</li>
+</ul>
+<a name="saveMap-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>saveMap</h4>
+<pre>public&nbsp;boolean&nbsp;saveMap(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)
+                throws <a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code></dd>
+</dl>
 </li>
 </ul>
 </li>

@@ -25,7 +25,13 @@ public class GameEngine {
 		
 //		Router saveMapRouter = new Router(ControllerName.MAP, "saveMap","map-na");
 //		d_RouterService.route(saveMapRouter);
-	
+
+
+//		Router showMapRouter = new Router(ControllerName.MAP, "showMap");
+//		d_RouterService.route(showMapRouter);
+
+
+
 		//2 init the game
 		//3 standby
 		//System.in.read();

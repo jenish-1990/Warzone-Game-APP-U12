@@ -7,6 +7,8 @@ import java.io.IOException;
 import warzone.model.*;
 import warzone.service.*;
 
+import java.util.Map;
+
 public class MapController {
 
 	private MapService d_mapService;
@@ -16,17 +18,15 @@ public class MapController {
 		d_gameContext = p_gameContext;
 		d_mapService = new MapService(p_gameContext);
 	}
-	
+
 	/**
 	 * Performs the action for the user command: showmap
-	 * 
+	 *
 	 * Displays the map as text, showing all continents and countries and their respective neighbors.
 	 */
-	public GameContext showMap () {
-		
-		// TODO Auto-generated method stub
-		
-		return null;
+	public void showMap () {
+
+		MapView.printMap(d_gameContext.getContinents());
 	}
 	
 	/**

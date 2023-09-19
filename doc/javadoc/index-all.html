@@ -114,6 +114,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Continent.html#Continent-int-java.lang.String-">Continent(int, String)</a></span> - Constructor for class warzone.model.<a href="warzone/model/Continent.html" title="class in warzone.model">Continent</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/Continent.html#Continent-int-java.lang.String-java.lang.String-int-">Continent(int, String, String, int)</a></span> - Constructor for class warzone.model.<a href="warzone/model/Continent.html" title="class in warzone.model">Continent</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="warzone/controller/ContinentController.html" title="class in warzone.controller"><span class="typeNameLink">ContinentController</span></a> - Class in <a href="warzone/controller/package-summary.html">warzone.controller</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/controller/ContinentController.html#ContinentController-warzone.model.GameContext-">ContinentController(GameContext)</a></span> - Constructor for class warzone.controller.<a href="warzone/controller/ContinentController.html" title="class in warzone.controller">ContinentController</a></dt>
@@ -128,7 +130,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="warzone/model/Country.html" title="class in warzone.model"><span class="typeNameLink">Country</span></a> - Class in <a href="warzone/model/package-summary.html">warzone.model</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="warzone/model/Country.html#Country--">Country()</a></span> - Constructor for class warzone.model.<a href="warzone/model/Country.html" title="class in warzone.model">Country</a></dt>
+<dt><span class="memberNameLink"><a href="warzone/model/Country.html#Country-int-java.lang.String-int-int-">Country(int, String, int, int)</a></span> - Constructor for class warzone.model.<a href="warzone/model/Country.html" title="class in warzone.model">Country</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="warzone/controller/CountryController.html" title="class in warzone.controller"><span class="typeNameLink">CountryController</span></a> - Class in <a href="warzone/controller/package-summary.html">warzone.controller</a></dt>
 <dd>&nbsp;</dd>
@@ -186,6 +188,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Router.html#getActionParameters--">getActionParameters()</a></span> - Method in class warzone.model.<a href="warzone/model/Router.html" title="class in warzone.model">Router</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/Continent.html#getColor--">getColor()</a></span> - Method in class warzone.model.<a href="warzone/model/Continent.html" title="class in warzone.model">Continent</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/service/ControllerFactory.html#getCommonController--">getCommonController()</a></span> - Method in class warzone.service.<a href="warzone/service/ControllerFactory.html" title="class in warzone.service">ControllerFactory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Player.html#getConqueredCountries--">getConqueredCountries()</a></span> - Method in class warzone.model.<a href="warzone/model/Player.html" title="class in warzone.model">Player</a></dt>
@@ -214,6 +218,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/GameContext.html#getGameContext--">getGameContext()</a></span> - Static method in class warzone.model.<a href="warzone/model/GameContext.html" title="class in warzone.model">GameContext</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/service/ControllerFactory.html#getMapController--">getMapController()</a></span> - Method in class warzone.service.<a href="warzone/service/ControllerFactory.html" title="class in warzone.service">ControllerFactory</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Player.html#getName--">getName()</a></span> - Method in class warzone.model.<a href="warzone/model/Player.html" title="class in warzone.model">Player</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Country.html#getNeighbors--">getNeighbors()</a></span> - Method in class warzone.model.<a href="warzone/model/Country.html" title="class in warzone.model">Country</a></dt>
@@ -223,6 +229,8 @@
 <dt><span class="memberNameLink"><a href="warzone/model/Country.html#getOwnerID--">getOwnerID()</a></span> - Method in class warzone.model.<a href="warzone/model/Country.html" title="class in warzone.model">Country</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/GameContext.html#getPlayers--">getPlayers()</a></span> - Method in class warzone.model.<a href="warzone/model/GameContext.html" title="class in warzone.model">GameContext</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/Continent.html#getWeight--">getWeight()</a></span> - Method in class warzone.model.<a href="warzone/model/Continent.html" title="class in warzone.model">Continent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Country.html#getXPosition--">getXPosition()</a></span> - Method in class warzone.model.<a href="warzone/model/Country.html" title="class in warzone.model">Country</a></dt>
 <dd>&nbsp;</dd>
@@ -264,7 +272,11 @@
 <dd>&nbsp;</dd>
 <dt><a href="warzone/service/MapService.html" title="class in warzone.service"><span class="typeNameLink">MapService</span></a> - Class in <a href="warzone/service/package-summary.html">warzone.service</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="warzone/service/MapService.html#MapService--">MapService()</a></span> - Constructor for class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
+<dt><span class="memberNameLink"><a href="warzone/service/MapService.html#MapService-warzone.model.GameContext-">MapService(GameContext)</a></span> - Constructor for class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="warzone/view/MapView.html" title="class in warzone.view"><span class="typeNameLink">MapView</span></a> - Class in <a href="warzone/view/package-summary.html">warzone.view</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/view/MapView.html#MapView--">MapView()</a></span> - Constructor for class warzone.view.<a href="warzone/view/MapView.html" title="class in warzone.view">MapView</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a name="I:N">
@@ -302,9 +314,15 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Player.html#Player--">Player()</a></span> - Constructor for class warzone.model.<a href="warzone/model/Player.html" title="class in warzone.model">Player</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/view/GenericView.html#printError-java.lang.String-">printError(String)</a></span> - Static method in class warzone.view.<a href="warzone/view/GenericView.html" title="class in warzone.view">GenericView</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/view/GenericView.html#println-java.lang.String-">println(String)</a></span> - Static method in class warzone.view.<a href="warzone/view/GenericView.html" title="class in warzone.view">GenericView</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/view/GenericView.html#println-warzone.model.Render-">println(Render)</a></span> - Static method in class warzone.view.<a href="warzone/view/GenericView.html" title="class in warzone.view">GenericView</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/view/GenericView.html#printSuccess-java.lang.String-">printSuccess(String)</a></span> - Static method in class warzone.view.<a href="warzone/view/GenericView.html" title="class in warzone.view">GenericView</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/view/GenericView.html#printWarning-java.lang.String-">printWarning(String)</a></span> - Static method in class warzone.view.<a href="warzone/view/GenericView.html" title="class in warzone.view">GenericView</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a name="I:R">
@@ -356,6 +374,10 @@
  
  Save a map to a text file exactly as edited (using the "domination" game map format).</div>
 </dd>
+<dt><span class="memberNameLink"><a href="warzone/service/MapService.html#saveMap-java.lang.String-">saveMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/Continent.html#setColor-java.lang.String-">setColor(String)</a></span> - Method in class warzone.model.<a href="warzone/model/Continent.html" title="class in warzone.model">Continent</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Continent.html#setContinentID-int-">setContinentID(int)</a></span> - Method in class warzone.model.<a href="warzone/model/Continent.html" title="class in warzone.model">Continent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Continent.html#setContinentName-java.lang.String-">setContinentName(String)</a></span> - Method in class warzone.model.<a href="warzone/model/Continent.html" title="class in warzone.model">Continent</a></dt>
@@ -369,6 +391,8 @@
 <dt><span class="memberNameLink"><a href="warzone/model/Player.html#setName-java.lang.String-">setName(String)</a></span> - Method in class warzone.model.<a href="warzone/model/Player.html" title="class in warzone.model">Player</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Country.html#setOwnerID-int-">setOwnerID(int)</a></span> - Method in class warzone.model.<a href="warzone/model/Country.html" title="class in warzone.model">Country</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/Continent.html#setWeight-int-">setWeight(int)</a></span> - Method in class warzone.model.<a href="warzone/model/Continent.html" title="class in warzone.model">Continent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Country.html#setXPosition-int-">setXPosition(int)</a></span> - Method in class warzone.model.<a href="warzone/model/Country.html" title="class in warzone.model">Country</a></dt>
 <dd>&nbsp;</dd>

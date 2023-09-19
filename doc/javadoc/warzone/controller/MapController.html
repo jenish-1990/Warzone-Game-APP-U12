@@ -133,7 +133,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../warzone/controller/MapController.html#MapController-warzone.model.GameContext-">MapController</a></span>(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_GameContext)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../warzone/controller/MapController.html#MapController-warzone.model.GameContext-">MapController</a></span>(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -160,7 +160,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/MapController.html#saveMap-java.lang.String-">saveMap</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;fileName)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/MapController.html#saveMap-java.lang.String-">saveMap</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)</code>
 <div class="block">Performs the action for the user command: savemap filename
  
  Save a map to a text file exactly as edited (using the "domination" game map format).</div>
@@ -210,7 +210,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MapController</h4>
-<pre>public&nbsp;MapController(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_GameContext)</pre>
+<pre>public&nbsp;MapController(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</pre>
 </li>
 </ul>
 </li>
@@ -239,10 +239,15 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>saveMap</h4>
-<pre>public&nbsp;boolean&nbsp;saveMap(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;fileName)</pre>
+<pre>public&nbsp;boolean&nbsp;saveMap(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)
+                throws <a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
 <div class="block">Performs the action for the user command: savemap filename
  
  Save a map to a text file exactly as edited (using the "domination" game map format).</div>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code></dd>
+</dl>
 </li>
 </ul>
 <a name="editMap-java.lang.String-">
