@@ -6,6 +6,10 @@ import warzone.model.*;
 public class CommonController {
 	
 	private GameContext d_gameContext;
+	
+	public CommonController() {
+		
+	}
 
 	public CommonController(GameContext p_gameContext) {
 		d_gameContext = p_gameContext;

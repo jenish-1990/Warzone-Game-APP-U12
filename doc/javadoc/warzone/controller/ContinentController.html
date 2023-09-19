@@ -22,7 +22,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -152,9 +152,18 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#addContinent-java.lang.String-">addContinent</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#addContinent-int-java.lang.String-">addContinent</a></span>(int&nbsp;p_continentID,
+            <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_continentName)</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#addContinent-java.lang.String-">addContinent</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</code>&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#removeContinent-int-">removeContinent</a></span>(int&nbsp;p_continentID)</code>&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#removeContinent-java.lang.String-">removeContinent</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</code>
 <div class="block">Performs the action for the user command: editcontinent -remove continentID</div>
@@ -208,14 +217,33 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <pre>public&nbsp;boolean&nbsp;addContinent(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</pre>
 </li>
 </ul>
+<a name="addContinent-int-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addContinent</h4>
+<pre>public&nbsp;boolean&nbsp;addContinent(int&nbsp;p_continentID,
+                            <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_continentName)</pre>
+</li>
+</ul>
 <a name="removeContinent-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeContinent</h4>
+<pre>public&nbsp;boolean&nbsp;removeContinent(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</pre>
+<div class="block">Performs the action for the user command: editcontinent -remove continentID</div>
+</li>
+</ul>
+<a name="removeContinent-int-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>removeContinent</h4>
-<pre>public&nbsp;boolean&nbsp;removeContinent(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</pre>
-<div class="block">Performs the action for the user command: editcontinent -remove continentID</div>
+<pre>public&nbsp;boolean&nbsp;removeContinent(int&nbsp;p_continentID)</pre>
 </li>
 </ul>
 </li>

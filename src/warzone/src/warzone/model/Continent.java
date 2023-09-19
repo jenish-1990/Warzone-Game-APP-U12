@@ -7,8 +7,8 @@ public class Continent {
 	
 	private int d_continentID;
 	private String d_continentName;
-	private String d_color;
-	private int d_weight;
+	private int d_bonusReinforcements;
+	private Color d_color;
 	private Map<Integer, Country> d_countries;
 	
 	public Continent(int p_continentID, String p_continentName) {
@@ -18,11 +18,11 @@ public class Continent {
 		d_countries = new HashMap<Integer, Country>();
 	}
 	
-	public Continent(int p_continentID, String p_continentName, String p_color, int p_weight) {
+	public Continent(int p_continentID, String p_continentName, int p_bonusReinforcements, Color p_color) {
 		
 		d_continentID = p_continentID;
 		d_continentName = p_continentName;
-		d_weight = p_weight;
+		d_bonusReinforcements = p_bonusReinforcements;
 		d_color = p_color;
 		d_countries = new HashMap<Integer, Country>();
 	}
@@ -43,22 +43,22 @@ public class Continent {
 		this.d_continentName = p_continentName;
 	}	
 	
-	public String getColor() {
+	public int getBonusReinforcements() {
+		return d_bonusReinforcements;
+	}
+
+	public void setBonusReinforcements(int p_bonusReinforcements) {
+		this.d_bonusReinforcements = p_bonusReinforcements;
+	}
+
+	public Color getColor() {
 		return d_color;
 	}
-	
-	public void setColor(String p_color) {
+
+	public void setColor(Color p_color) {
 		this.d_color = p_color;
-	}	
-	
-	public int getWeight() {
-		return d_weight;
 	}
-	
-	public void setWeight(int p_weight) {
-		this.d_weight = p_weight;
-	}	
-	
+
 	public Map<Integer, Country> getCountries() {
 		return d_countries;
 	}

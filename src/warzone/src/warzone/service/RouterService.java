@@ -50,6 +50,30 @@ public class RouterService {
 						break;
 				}
 				break;
+			case COUNTRY:
+				CountryController l_countryController= l_controllerFactory.getCountryController();
+
+				switch(p_router.getActionName()) {
+					case "add":
+						l_countryController.addCountry(p_router.getActionParameters());
+						break;
+					case "remove":
+						l_countryController.removeCountry(p_router.getActionParameters());
+						break;
+				}
+				break;
+			case NEIGHBOR:
+				NeighborController l_neighborController= l_controllerFactory.getNeighborController();
+
+				switch(p_router.getActionName()) {
+					case "add":
+						l_neighborController.addNeighbor(p_router.getActionParameters());
+						break;
+					case "remove":
+						l_neighborController.removeNeighbor(p_router.getActionParameters());
+						break;
+				}
+				break;
 			
 		}	
 		
