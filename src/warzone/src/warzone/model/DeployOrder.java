@@ -1,6 +1,6 @@
 package warzone.model;
 
-public class DeployOrder implements IOrder {
+public class DeployOrder implements Order {
 
 	private int countryID;
 	private int quantity;

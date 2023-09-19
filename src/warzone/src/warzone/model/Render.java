@@ -1,5 +1,5 @@
 package warzone.model;
 
-public interface IRender {
+public interface Render {
 	void render();
 }

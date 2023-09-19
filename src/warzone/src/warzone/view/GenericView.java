@@ -1,6 +1,6 @@
 package warzone.view;
 
-import warzone.model.IRender;
+import warzone.model.Render;
 
 /*
  * for specific ui, should create dedicated view class.
@@ -11,7 +11,7 @@ public class GenericView {
 		System.out.println(p_text);
 	}
 	
-	public static void println(IRender p_content) {
+	public static void println(Render p_content) {
 		p_content.render();
 	}
 }

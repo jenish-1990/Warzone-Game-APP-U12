@@ -14,7 +14,7 @@ public class StartupController {
 	 * @param fileName
 	 * @return
 	 */
-	public GameMap loadMap(String fileName) {
+	public GameContext loadMap(String fileName) {
 		
 		// TODO Auto-generated method stub
 		

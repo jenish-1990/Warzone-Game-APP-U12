@@ -16,7 +16,7 @@ public class MapController {
 	 * 
 	 * Displays the map as text, showing all continents and countries and their respective neighbors.
 	 */
-	public GameMap showMap () {
+	public GameContext showMap () {
 		
 		// TODO Auto-generated method stub
 		
