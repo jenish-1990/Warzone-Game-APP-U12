@@ -151,10 +151,9 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../warzone/model/Router.html" title="class in warzone.model">Router</a></code></td>
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../warzone/model/Router.html" title="class in warzone.model">Router</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/RouterService.html#parseCommand-java.lang.String-">parseCommand</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_command)</code>
-<div class="block">This class will parse console commands entered by the user and call the corresponding Java method(s)
- passing any command line arguments as parameters</div>
+<div class="block">e.g.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -215,9 +214,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockListLast">
 <li class="blockList">
 <h4>parseCommand</h4>
-<pre>public&nbsp;<a href="../../warzone/model/Router.html" title="class in warzone.model">Router</a>&nbsp;parseCommand(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_command)</pre>
-<div class="block">This class will parse console commands entered by the user and call the corresponding Java method(s)
- passing any command line arguments as parameters</div>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html?is-external=true" title="class or interface in java.util">ArrayList</a>&lt;<a href="../../warzone/model/Router.html" title="class in warzone.model">Router</a>&gt;&nbsp;parseCommand(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_command)</pre>
+<div class="block">e.g.
+ editcountry -add countryID continentID -remove countryID
+   new Router(ControllerName.COUNTRY, "add", "countryID continentID");
+   new Router(ControllerName.COUNTRY, "remove", "countryID");</div>
 </li>
 </ul>
 </li>

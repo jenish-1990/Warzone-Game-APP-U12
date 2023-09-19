@@ -6,9 +6,9 @@ name: Java CI with Maven
 on:
   workflow_dispatch:
   push:
-    branches: [008-check-all-class]
+    branches: [develop]
   pull_request:
-    branches: [008-check-all-class]
+    branches: [develop]
 
 jobs:
   build:
@@ -26,29 +26,35 @@ jobs:
     - name: Test
       run: mvn test
     - name: Generate JavaDoc
+      if: github.ref == 'refs/heads/develop'
       run: mvn javadoc:javadoc
-    - name: Copy Document to Location
+    - name: move doc file
+      if: github.ref == 'refs/heads/develop'
       run: |
         rm -rf doc/javadoc
         cp -rf target/site/apidocs/. doc/javadoc
     - name: Tidy up the Javadocs
+      if: github.ref == 'refs/heads/develop'
       id: tidy
       uses: cicirello/javadoc-cleanup@v1.2.0
       with:
-        path-to-root: doc/javadoc
+       path-to-root: doc/javadoc
     - name: Log javadoc-cleanup output
+      if: github.ref == 'refs/heads/develop'
       run: |
-        echo "modified-count = ${{ steps.tidy.outputs.modified-count }}"
+       echo "modified-count = ${{ steps.tidy.outputs.modified-count }}"
     - name: Commit Documentation Changes
+      if: github.ref == 'refs/heads/develop'
       run: |
         if [ $(git status | grep -c "**/*.html") == "0" ]; then
           git checkout .
-        else
+         else
           git config --global user.name 'amyhcy'
           git config --global user.email 'amy.chuanyanhu@gmail.com'
           git add -A
           git commit -m "Javadoc updates."
         fi
-    - name: push test
+    - name: push
+      if: github.ref == 'refs/heads/develop'
       run: |
-        git push origin 008-check-all-class
+          git push origin develop
