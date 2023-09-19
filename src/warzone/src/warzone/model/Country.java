@@ -1,5 +1,6 @@
 package warzone.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Country {
@@ -11,6 +12,15 @@ public class Country {
 	private int d_xPosition;
 	private int d_yPosition;
 	private Map<Integer, Country> d_neighbors;
+	
+	public Country(int p_countryID, String p_countryName, int p_xPosition, int p_yPosition ) {
+		this.d_countryID = p_countryID;
+		this.d_countryName = p_countryName;
+		this.d_xPosition = p_xPosition;
+		this.d_yPosition = p_yPosition;	
+		
+		d_neighbors = new HashMap<Integer, Country>();
+	}
 	
 	public int getCountryID() {
 		return d_countryID;

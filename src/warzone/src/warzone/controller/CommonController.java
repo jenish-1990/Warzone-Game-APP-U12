@@ -12,7 +12,7 @@ public class CommonController {
 	}
 	
 	public String welcome(String p_actionParameters) {
-		String body = "Hello world";
+		String body = "Welcome to Warzone";
 		GenericView.println(body);
 		return body;
 	}

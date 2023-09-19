@@ -1,5 +1,7 @@
 package warzone.service;
 
+import java.io.IOException;
+
 import warzone.model.*;
 
 /**
@@ -12,14 +14,17 @@ public class GameEngine {
 	
 	public GameEngine()	{}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		RouterService d_RouterService;
 		d_RouterService = new RouterService();
 		
 		//1 welcome
-		Router welcome = new Router(ControllerName.COMMON, "welcome");
-		d_RouterService.route(welcome);
+		Router welcomeRouter = new Router(ControllerName.COMMON, "welcome");
+		d_RouterService.route(welcomeRouter);
+		
+//		Router saveMapRouter = new Router(ControllerName.MAP, "saveMap","map-na");
+//		d_RouterService.route(saveMapRouter);
 	
 		//2 init the game
 		//3 standby

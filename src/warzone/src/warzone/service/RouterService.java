@@ -1,5 +1,6 @@
 package warzone.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import warzone.controller.*;
@@ -7,20 +8,20 @@ import warzone.model.*;
 
 public class RouterService {
 	
-	public void route(Router p_router){
+	public void route(Router p_router) throws IOException{
 		 
 		ControllerFactory l_controllerFactory = ControllerFactory.getControllerFactory();
 		switch(p_router.getControllerName()) {
 			case COMMON:
 				switch(p_router.getActionName()) {
 					case "welcome":
-						CommonController l_controller = l_controllerFactory.getCommonController();
-						l_controller.welcome(p_router.getActionParameters());
+						CommonController l_commonController = l_controllerFactory.getCommonController();
+						l_commonController.welcome(p_router.getActionParameters());
 						break;
 				}
 				break;
 			case CONTINENT:
-				ContinentController l_continentController = l_controllerFactory.getContinentController();
+				ContinentController l_continentController= l_controllerFactory.getContinentController();
 
 				switch(p_router.getActionName()) {
 					case "add":
@@ -28,6 +29,24 @@ public class RouterService {
 						break;
 					case "remove":
 						l_continentController.removeContinent(p_router.getActionParameters());
+						break;
+				}
+				break;
+			case MAP:
+				MapController l_mapController= l_controllerFactory.getMapController();
+
+				switch(p_router.getActionName()) {
+					case "saveMap":
+						l_mapController.saveMap(p_router.getActionParameters());
+						break;
+					case "editMap":
+						l_mapController.editMap(p_router.getActionParameters());
+						break;
+					case "showMap":
+						l_mapController.showMap();
+						break;
+					case "validateMap":
+						l_mapController.validateMap();
 						break;
 				}
 				break;
