@@ -13,12 +13,13 @@ public class ControllerFactory {
 	private MapController d_mapController;
 	private CountryController d_countryController;
 	private NeighborController d_neighborController;
+	private StartupController d_startupController;
+	private ErrorController d_errorController;
 	private GameplayController d_gameplayController;
 	
 	private ControllerFactory()	{	
 		d_gameContext = GameContext.getGameContext();
 	}
-	
 	
 	public static ControllerFactory getControllerFactory() {
 		if( CONTROLLER_FACTORY == null)
@@ -57,11 +58,23 @@ public class ControllerFactory {
 		return d_neighborController;
 	};
 	
+	public StartupController getStartupController() {
+		if(d_startupController == null)
+			d_startupController = new StartupController(d_gameContext);
+		return d_startupController;
+	};
+	
 	public GameplayController getGameplayController() {
 		if(d_gameplayController == null)
 			d_gameplayController = new GameplayController(d_gameContext);
 		return d_gameplayController;
 	};
 	
+	
+	public ErrorController getErrorController() {
+		if(d_errorController == null)
+			d_errorController = new ErrorController();
+		return d_errorController;
+	};
 	
 }

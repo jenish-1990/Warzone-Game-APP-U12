@@ -4,8 +4,7 @@ import warzone.view.*;
 import warzone.model.*;
 import warzone.service.*;
 
-public class GameplayController {
-	
+public class GameplayController {	
 	
 	private GameEngine d_gameEngine;
 	private GameContext d_gameContext;

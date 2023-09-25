@@ -17,7 +17,7 @@ public class NeighborController {
 	}
 
 	public boolean addNeighbor (String p_parameters) {
-		//0. parse [p_parameters]
+		//parse [p_parameters]
 		if(p_parameters == null){			
 			GenericView.printError("Missing valid parameters.");
 			return false;
@@ -33,8 +33,7 @@ public class NeighborController {
 			GenericView.printError("Missing valid parameters.");
 			return false;
 		}
-		else
-			return addNeighbor(l_countryID, l_neighborCountryID);
+		return addNeighbor(l_countryID, l_neighborCountryID);
 	}
 	/**
 	 * Performs the action for the user command: editneighbor -add countryID neighborCountryID
@@ -54,7 +53,7 @@ public class NeighborController {
 	}
 	
 	public boolean removeNeighbor (String p_parameters) {
-		//0. parse [p_parameters]
+		//parse [p_parameters]
 		if(p_parameters == null){			
 			GenericView.printError("Missing valid parameters.");
 			return false;
@@ -70,8 +69,7 @@ public class NeighborController {
 			GenericView.printError("Missing valid parameters.");
 			return false;
 		}
-		else
-			return removeNeighbor(l_countryID, l_neighborCountryID);
+		return removeNeighbor(l_countryID, l_neighborCountryID);
 	}
 	
 	/**
