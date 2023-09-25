@@ -26,8 +26,8 @@ public class GameEngine {
 		Router welcomeRouter = new Router(ControllerName.COMMON, "welcome");
 		d_RouterService.route(welcomeRouter);
 		
-//		Router tempRouter = new Router(ControllerName.GAMEPLAY, "play");
-//		d_RouterService.route(tempRouter);
+		Router tempRouter = new Router(ControllerName.GAMEPLAY, "play");
+		d_RouterService.route(tempRouter);
 		
 //		Router saveMapRouter = new Router(ControllerName.MAP, "saveMap","map-na");
 //		d_RouterService.route(saveMapRouter);
@@ -52,8 +52,18 @@ public class GameEngine {
 //		}
 	}
 	
+	public boolean isReadyToStart() {
+		if(this.d_gameContext == null || this.d_gameContext.getContinents().size() <1 
+				|| this.d_gameContext.getCountries().size() < 1 || this.d_gameContext.getPlayers().size() < 1 )
+			return false;
+		else
+			return true;
+	}
 	
 	public boolean play() {
+		if(! isReadyToStart())
+			return false;
+		
 		int l_loopNumber = 1;		
 		while( !isGameEnded() && l_loopNumber <= 100) {
 			startTurn();
@@ -73,14 +83,14 @@ public class GameEngine {
 	private boolean isGameEnded() {
 		//check and update PlayerStatus		
 		//set p_isLoser = true, when the player does not have any country
-		int l_survivedPlayerNumber = 0;
+		int l_alivePlayers = 0;
 		for(Player l_player :d_gameContext.getPlayers().values() ){
 			if(l_player.getConqueredCountries().size() == 0) {
-				l_player.setIsSurvived(false);
-				l_survivedPlayerNumber ++;
+				l_player.setIsAlive(false);
+				l_alivePlayers ++;
 			}
 		}		
-		return l_survivedPlayerNumber <= 1;
+		return l_alivePlayers <= 1;
 	}
 	
 
@@ -89,7 +99,7 @@ public class GameEngine {
 	 */
 	private void assignReinforcements() {
 		d_gameContext.getPlayers().forEach((k, player) -> {
-			if(player.getIsSurvived())
+			if(player.getIsAlive())
 				player.assignReinforcements();
 		});
 	}
@@ -101,14 +111,12 @@ public class GameEngine {
 	 * have placed all their reinforcement armies on the map.
 	 */
 	private void issueOrders() {
-		int l_number= 0;		
-		while(l_number < d_gameContext.getOrderNumberPerRound() ){
-			d_gameContext.getPlayers().forEach((k, player) -> {
-				if(player.getIsSurvived())
-					player.issue_order();
-			});
-			l_number ++;			
-		}	
+
+		d_gameContext.getPlayers().forEach((k, player) -> {
+			if(player.getIsAlive())
+				player.issue_order();
+		});
+			
 	}
 	
 	
@@ -117,19 +125,28 @@ public class GameEngine {
 	 * which will enact the order. 
 	 */
 	private void executeOrders() {
-		// run excute() for each order,  5 rounds
-		int l_number = 0;		
-		while(l_number < d_gameContext.getOrderNumberPerRound() ){
+
+		//1. get the max number of the orders in a player.		
+		int l_maxOrderNumber = 0;	
+		for(Player l_player :d_gameContext.getPlayers().values() ){
+			if(l_player.getIsAlive()) {
+				if( l_player.getOrders().size() > l_maxOrderNumber)
+					l_maxOrderNumber = l_player.getOrders().size();				
+			}		
+		}			
+
+		//2. excute the orders
+		int l_roundIndex = 1;
+		while(l_roundIndex <= l_maxOrderNumber ){
 			d_gameContext.getPlayers().forEach((k, player) -> {
-				if(player.getIsSurvived()) {
+				if(player.getIsAlive()) {
 					Order l_order = player.next_order();
 					if(l_order != null)
 						l_order.execute();
 				}				
 			});
-			l_number ++;			
-		}		
-	}
-	
-	 
+			l_roundIndex ++;			
+		}	
+		
+	}	 
 }

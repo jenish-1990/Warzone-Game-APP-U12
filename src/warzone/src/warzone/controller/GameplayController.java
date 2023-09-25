@@ -16,6 +16,11 @@ public class GameplayController {
 	}
 	
 	public boolean play() {
+		if( !d_gameEngine.isReadyToStart()) {
+			GenericView.printWarning("Game is not ready to start, please check the map and players.");
+			return false;
+		}
+			
 		boolean l_finished = d_gameEngine.play();
 		if(l_finished) {
 			GenericView.printSuccess( String.format("Game was finished successfully."));

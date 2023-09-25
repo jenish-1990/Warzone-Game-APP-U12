@@ -9,6 +9,7 @@ public class GameContext {
 	GamePhase d_gamePhase = GamePhase.MAPEDITING;
 	private int d_orderNumberPerRound = 5;
 	
+	private boolean d_isDemoMode = true;
 
 	private Map<String, Player> d_players;
 	private Map<Integer, Country> d_countries;
@@ -101,8 +102,19 @@ public class GameContext {
 	public void setGamePhase(GamePhase p_gamePhase) {
 		this.d_gamePhase = p_gamePhase;
 	}	
+	
+	public boolean getIsDemoMode() {
+		return d_isDemoMode;
+	}
+
+	public void setIsDemoMode(boolean p_isDemoMode) {
+		this.d_isDemoMode = p_isDemoMode;
+	}		
+	
 	public int getOrderNumberPerRound() {
 		return d_orderNumberPerRound;
 	}	
+	
+	
 	
 }
