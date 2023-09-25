@@ -7,5 +7,7 @@ public enum ControllerName {
 	CONTINENT,
 	COUNTRY,
 	MAP,
-	NEIGHBOR
+	NEIGHBOR,
+	STARTUP,
+	GAMEPLAY
 }

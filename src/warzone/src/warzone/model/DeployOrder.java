@@ -2,8 +2,8 @@ package warzone.model;
 
 public class DeployOrder implements Order {
 
-	private int countryID;
-	private int quantity;
+	private int d_countryID;
+	private int d_quantity;
 	
 	@Override
 	public boolean execute() {
