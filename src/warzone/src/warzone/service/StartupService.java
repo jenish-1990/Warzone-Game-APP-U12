@@ -2,6 +2,10 @@ package warzone.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 import warzone.controller.MapController;
@@ -9,6 +13,7 @@ import warzone.model.Color;
 import warzone.model.Continent;
 import warzone.model.Country;
 import warzone.model.GameContext;
+import warzone.model.Player;
 import warzone.view.GenericView;
 
 public class StartupService {
@@ -209,6 +214,66 @@ public class StartupService {
 		      
 			GenericView.printError("An error occured reading the map file: " + p_fileName);
 			return false;
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Performs the action for user command: assigncountries
+	 * 
+	 * After user creates all the players, all countries are randomly assigned to players. 
+	 * 
+	 * @return
+	 */
+	public boolean assignCountries() {
+
+		//Make sure there are enough countries to distribute between all the players
+		if(d_gameContext.getPlayers().size() > d_gameContext.getCountries().size()) {
+			
+			return false;
+		}
+		
+		//Each player will be assigned the same number of countries. Leftover countries will be unassigned (neutral)
+		int countriesToAssign = d_gameContext.getCountries().size() - (d_gameContext.getCountries().size() % d_gameContext.getPlayers().size());
+		
+		//Create a list of playerIDs from the game context and shuffle their order
+		List<String> playerNames = new ArrayList<String>(d_gameContext.getPlayers().keySet());
+		Collections.shuffle(playerNames);
+		
+		//Create a list of countryIDs from the game context and shuffle their order
+		List<Integer> countryIDs = new ArrayList<Integer>(d_gameContext.getCountries().keySet());
+		Collections.shuffle(countryIDs);
+				
+		//Looping variables
+		Country country;
+		Player player;
+		int ctr = 0;
+		int playerIndex = 0;
+		
+		//Loop through each country to assign to a random player
+		for(Integer countryID : countryIDs) {		
+			
+			//Stop assigning countries once the remaining countries is less than the number of players
+			if (ctr >= countriesToAssign) {
+				
+				return true;
+			}
+			
+			//Reset the index once each player has been assigned a country
+			if(playerIndex >= playerNames.size()) {
+				playerIndex = 0;
+			}
+			
+			country = d_gameContext.getCountries().get(countryID);
+			player = d_gameContext.getPlayers().get(playerNames.get(playerIndex));
+			
+			country.setOwner(player);
+			player.getConqueredCountries().put(country.getCountryID(), country);
+			
+			//Update the looping variables
+			playerIndex++;
+			ctr++;
 		}
 		
 		return true;

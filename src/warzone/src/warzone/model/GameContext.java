@@ -2,10 +2,11 @@ package warzone.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class GameContext {
 
-	private Map<Integer, Player> d_players;
+	private Map<String, Player> d_players;
 	private Map<Integer, Country> d_countries;
 	private Map<Integer, Continent> d_continents;
 	
@@ -26,7 +27,7 @@ public class GameContext {
 
 	private GameContext() {
 		
-		d_players = new HashMap<Integer, Player>() ;
+		d_players = new HashMap<String, Player>() ;
 		d_countries = new HashMap<Integer, Country>();
 		d_continents = new HashMap<Integer, Continent>();
 //
@@ -87,9 +88,9 @@ public class GameContext {
 		return GAME_CONTEXT;
 	}
 	
-	public Map<Integer, Player> getPlayers() {
+	public Map<String, Player> getPlayers() {
 		if(d_players == null) {
-			d_players = new HashMap<Integer, Player>();
+			d_players = new HashMap<String, Player>();
 		}
 		return d_players;
 	}
