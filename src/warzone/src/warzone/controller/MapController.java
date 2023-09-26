@@ -29,7 +29,7 @@ public class MapController {
 	 */
 	public void showMap () {
 
-		MapView.printMap(d_gameContext.getContinents());
+		MapView.printMap(d_gameContext);
 	}
 	
 	/**
@@ -82,7 +82,14 @@ public class MapController {
 	 * triggered any time during map editing. 
 	 */
 	public boolean validateMap () {		
-		return d_mapService.validateMap(d_gameContext);
+		if(! d_mapService.validateMap(d_gameContext) ) {
+			GenericView.printError("It is not a connected map.");
+			return false;
+		}
+		else {
+			GenericView.printSuccess("Yeah! You got a connected map!");
+			return true;
+		}
 	}
 	
 }
