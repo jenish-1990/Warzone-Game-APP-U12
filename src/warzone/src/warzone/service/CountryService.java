@@ -18,8 +18,13 @@ public class CountryService {
 			Country l_country = d_gameContext.getCountries().get(p_countryID);
 			Continent l_continent = d_gameContext.getContinents().get(p_ContinentID);
 			
-			if(l_country != null && l_continent != null){
-				l_country.setContinent(l_continent);
+			if(l_country == null) {
+				l_country = new Country(p_countryID, "COUNTRY-"+p_countryID );
+				d_gameContext.getCountries().put(p_countryID, l_country);
+			}
+			
+			if(l_continent != null){
+				l_continent.addCountry(l_country);
 				return true;
 			}
 		}
@@ -44,5 +49,8 @@ public class CountryService {
 		}
 		
 		return false;		
+	}
+	public boolean isExisted(int p_countryID) {
+		return d_gameContext.getCountries().containsKey(p_countryID);
 	}
 }

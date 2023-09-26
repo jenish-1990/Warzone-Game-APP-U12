@@ -81,11 +81,8 @@ public class MapController {
 	 * and before saving (at least 3 types of incorrect maps). The validatemap command can be 
 	 * triggered any time during map editing. 
 	 */
-	public boolean validateMap () {
-		
-		// TODO Auto-generated method stub
-		
-		return false;
+	public boolean validateMap () {		
+		return d_mapService.validateMap(d_gameContext);
 	}
-
+	
 }

@@ -1,0 +1,71 @@
+package warzone.view;
+
+import java.util.Map;
+
+import warzone.model.*;
+
+public class HelpView {
+
+    public static void printWelcome() {
+    	System.out.println("");
+    	System.out.println("        #    #   ##   #####  ######  ####  #    # ######"); 
+    	System.out.println("        #    #  #  #  #    #     #  #    # ##   # #      ");
+    	System.out.println("        #    # #    # #    #    #   #    # # #  # #####  ");
+    	System.out.println("        # ## # ###### #####    #    #    # #  # # #      ");
+    	System.out.println("        ##  ## #    # #   #   #     #    # #   ## #      ");
+    	System.out.println("        #    # #    # #    # ######  ####  #    # ######  By 6441 Group #22");
+    	System.out.println("");
+    }
+
+    
+    
+    public static void printStatus(GameContext p_gameContext) {
+    	System.out.print(String.format("[Status] Game Phase:%s | Demo Mode:%s | Debug Mode:%s | ", 
+    			p_gameContext.getGamePhase(), p_gameContext.getIsDemoMode(), p_gameContext.getIsDebug()));
+    	System.out.println(String.format("Player:%s | Continent:%s | Country:%s | Map:",
+    			p_gameContext.getPlayers().size(), p_gameContext.getContinents().size(), p_gameContext.getCountries().size(), p_gameContext.getMapFileName()));
+    }
+    
+    public static void printHelp(GamePhase p_gamePhase ) {
+    	System.out.println("Commands available for current game phase:");
+    	switch(p_gamePhase) {
+	    	case MAPEDITING:
+	    		System.out.println(""
+	    				+ " -  loadmap filename\n"
+	    				+ " -  editmap filename\n"
+	    				+ " -  savemap filename\n"
+	    				+ " -  showmap\n"
+	    				+ " -  validatemap\n"	    				
+	    				+ " -  editcontinent -add continentID continentvalue -remove continentID\n"
+	    				+ " -  editcountry -add countryID continentID -remove countryID\n"
+	    				+ " -  editneighbor -add countryID neighborcountryID -remove countryID neighborcountryID\n"
+	    				+ " -  startup \n"
+	    				+ " -  reboot \n"
+	    				+ " \n"
+	    				);
+
+	    		break;
+	    	case STARTUP:
+	    		System.out.println(""
+	    				+ " -  loadmap filename\n"
+	    				+ " -  showmap\n"
+	    				+ " -  validatemap\n"	    				
+	    				+ " -  gameplayer -add playername -remove playername\n"
+	    				+ " -  assigncountries\n"
+	    				+ " -  play                      [will start the game engine and go to next phase.]\n"
+	    				+ " -  reboot \n"
+	    				+ " "
+	    				);
+	    		break;
+	    	case PLAYING:
+	    		break;
+	    	case FINISHED:
+	    		System.out.println(""
+	    		+ " -  map \n"
+				+ " -  startup \n"
+				+ " -  reboot \n"
+				+ " ");
+	    		break;
+    	}
+    }
+}
