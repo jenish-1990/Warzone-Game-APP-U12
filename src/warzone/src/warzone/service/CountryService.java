@@ -18,7 +18,12 @@ public class CountryService {
 			Country l_country = d_gameContext.getCountries().get(p_countryID);
 			Continent l_continent = d_gameContext.getContinents().get(p_ContinentID);
 			
-			if(l_country != null && l_continent != null){
+			if(l_country == null) {
+				l_country = new Country(p_countryID, "COUNTRY-"+p_countryID );
+				d_gameContext.getCountries().put(p_countryID, l_country);
+			}
+			
+			if(l_continent != null){
 				l_country.setContinent(l_continent);
 				return true;
 			}

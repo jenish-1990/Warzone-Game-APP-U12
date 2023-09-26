@@ -10,6 +10,7 @@ public class GameContext {
 	private int d_orderNumberPerRound = 5;
 	
 	private boolean d_isDemoMode = true;
+	private boolean d_isDebug = true;
 
 	private Map<String, Player> d_players;
 	private Map<Integer, Country> d_countries;
@@ -111,6 +112,14 @@ public class GameContext {
 	public void setIsDemoMode(boolean p_isDemoMode) {
 		this.d_isDemoMode = p_isDemoMode;
 	}		
+	public boolean getIsDebug() {
+		return d_isDebug;
+	}
+
+	public void setIsDebug(boolean p_isDebug) {
+		this.d_isDebug = p_isDebug;
+	}			
+	
 	
 	public int getOrderNumberPerRound() {
 		return d_orderNumberPerRound;
