@@ -30,9 +30,6 @@ public class Router {
 	public String getActionParameters(){
 		return d_actionParameters;
 	}
-	public String toString() {
-		return String.format("%s | %s | %s" ,d_controllerName.toString() ,d_actionName, getActionParameters());
-	}
 }
 
 

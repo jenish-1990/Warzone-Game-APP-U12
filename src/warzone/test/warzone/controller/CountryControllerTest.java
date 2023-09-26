@@ -36,24 +36,24 @@ public class CountryControllerTest {
 		
 		
 	}
-//	
-//	@Test
-//	public void addCountryNegativeTest() {
-//		l_parameters = "2 1";
-//		assertFalse(d_countryController.addCountry(l_parameters));
-//		
-//		l_parameters = "1 2";
-//		assertFalse(d_countryController.addCountry(l_parameters));
-//		
-//		l_parameters = "a b";
-//		assertFalse(d_countryController.addCountry(l_parameters));
-//		
-//		l_parameters = "1 b";
-//		assertFalse(d_countryController.addCountry(l_parameters));
-//		
-//		l_parameters = "1 1 1";
-//		assertFalse(d_countryController.addCountry(l_parameters));
-//	}
+	
+	@Test
+	public void addCountryNegativeTest() {
+		l_parameters = "2 1";
+		assertFalse(d_countryController.addCountry(l_parameters));
+		
+		l_parameters = "1 2";
+		assertFalse(d_countryController.addCountry(l_parameters));
+		
+		l_parameters = "a b";
+		assertFalse(d_countryController.addCountry(l_parameters));
+		
+		l_parameters = "1 b";
+		assertFalse(d_countryController.addCountry(l_parameters));
+		
+		l_parameters = "1 1 1";
+		assertFalse(d_countryController.addCountry(l_parameters));
+	}
 
 	
 }

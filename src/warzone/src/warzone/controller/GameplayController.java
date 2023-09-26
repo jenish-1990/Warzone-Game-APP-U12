@@ -11,7 +11,7 @@ public class GameplayController {
 	
 	public GameplayController(GameContext p_gameContext) {
 		d_gameContext = p_gameContext;
-		d_gameEngine = GameEngine.getGameEngine(p_gameContext);
+		d_gameEngine = new GameEngine(p_gameContext);
 	}
 	
 	public boolean play() {

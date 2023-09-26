@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 import warzone.model.*;
-import warzone.view.GenericView;
 
 /**
  * Main game loop.
@@ -16,47 +14,58 @@ import warzone.view.GenericView;
  * 
  */
 public class GameEngine {
-	private GameContext d_gameContext;	
-	private static GameEngine GAME_ENGINE;
+	private GameContext d_gameContext;
 	
-	private GameEngine(GameContext p_gameContext) {
+	public GameEngine(GameContext p_gameContext) {
 		d_gameContext = p_gameContext;
 	}
-	
-	public static GameEngine getGameEngine(GameContext p_gameContext) {
-		if( GAME_ENGINE == null)
-			GAME_ENGINE = new GameEngine(p_gameContext);
-		return GAME_ENGINE;
-	}	
 
 	public static void main(String[] args) throws IOException {
 
-		GameContext l_gameContext = GameContext.getGameContext();
-		RouterService l_routerService =  RouterService.getRouterService();
-		CommandService l_commandService =  CommandService.getCommandService(l_gameContext);
-		
+		RouterService d_RouterService;
+		d_RouterService = new RouterService();
 		
 		//1 welcome
 		Router l_welcomeRouter = new Router(ControllerName.COMMON, "welcome");
-		l_routerService.route(l_welcomeRouter);
+		d_RouterService.route(l_welcomeRouter);
 		
-		l_commandService.commandScanner(l_routerService);
-//		
-//		List<Router> l_routers = l_routerService.parseCommand("showmap");
-//		l_routerService.route(l_routers);
-//		
-//		l_routers = l_routerService.parseCommand("savemap eu");
-//		l_routerService.route(l_routers);
-//		
-//		l_routers = l_routerService.parseCommand("editcontinent -add 5 testsdfsdf -add 6 6666666666name -remove 3");
-//		l_routerService.route(l_routers);
-//		
-//		l_routers = l_routerService.parseCommand("showmap");
-//		l_routerService.route(l_routers);
-//		
-//		Router tempRouter = new Router(ControllerName.GAMEPLAY, "play");
-//		l_routerService.route(tempRouter);
-	}	
+		List<Router> l_routers = d_RouterService.parseCommand("showmap");
+		d_RouterService.route(l_routers);
+		
+		l_routers = d_RouterService.parseCommand("savemap eu");
+		d_RouterService.route(l_routers);
+		
+		l_routers = d_RouterService.parseCommand("editcontinent -add 5 testsdfsdf -add 6 6666666666name -remove 3");
+		d_RouterService.route(l_routers);
+		
+		l_routers = d_RouterService.parseCommand("showmap");
+		d_RouterService.route(l_routers);
+		
+		Router tempRouter = new Router(ControllerName.GAMEPLAY, "play");
+		d_RouterService.route(tempRouter);
+		
+//		Router saveMapRouter = new Router(ControllerName.MAP, "saveMap","map-na");
+//		d_RouterService.route(saveMapRouter);
+
+
+//		Router showMapRouter = new Router(ControllerName.MAP, "showMap");
+//		d_RouterService.route(showMapRouter);
+		
+//		Router addContinentRouter = new Router(ControllerName.CONTINENT, "add", "1 veu");
+//		d_RouterService.route(addContinentRouter);
+
+
+
+		//2 init the game
+		//3 standby
+		//System.in.read();
+//		while(System.IO.Readline()) {
+//			//parse the command to a router
+//			//route the router
+////			Router welcome = new Router(ControllerName.COMMON, "welcome");
+////			d_RouterService.route(welcome);
+//		}
+	}
 	
 	public boolean isReadyToStart() {
 		if(this.d_gameContext == null || this.d_gameContext.getContinents().size() <1 
@@ -121,7 +130,8 @@ public class GameEngine {
 		d_gameContext.getPlayers().forEach((k, player) -> {
 			if(player.getIsAlive())
 				player.issue_order();
-		});			
+		});
+			
 	}
 	
 	
