@@ -46,10 +46,7 @@ public class CountryController {
 			return true;
 		}			
 		else {
-			if(d_countryService.isExisted(p_countryID))
-				GenericView.printWarning( String.format("Country [%s] was added, but failed to add Country ID [%s] to Continent [%s].", p_countryID , p_countryID , p_continentID) );	
-			else
-				GenericView.printWarning( String.format("Failed to add Country ID [%s] to Continent [%s].", p_countryID , p_continentID) );
+			GenericView.printWarning( String.format("Failed to add Country ID [%s] to Continent [%s].", p_countryID , p_continentID) );
 			return false;
 		}	
 	}

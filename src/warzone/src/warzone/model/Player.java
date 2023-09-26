@@ -107,17 +107,17 @@ public class Player {
 		int l_armyHasIssued = 0;
 		GameContext l_gameContext = GameContext.getGameContext();
 		do {
-			GenericView.println(String.format("Please input the deploy command for player, there is %s army available for %s.", l_armyToIssue , this.getName() ));
+			GenericView.println("Please input the deploy command for player " + this.getName());
 			DeployOrder l_deployOrder;
 
 			if(!l_gameContext.getIsDemoMode()) {
 				//1. issue order from interaction
-				l_command = d_keyboard.nextLine();				
+				l_command = d_keyboard.next();
 				//convent the commend to deploy order.
 				l_deployOrder = conventDeployOrder(l_command);
 				if(l_deployOrder != null && this.getConqueredCountries().containsKey(l_deployOrder.getCountry().getCountryID()) 
-					&&  l_deployOrder.getArmyNumber() <= l_armyToIssue	) {					
-					l_deployOrder.setPlayer(this);
+					&&  l_deployOrder.getArmyNumber() <= l_armyToIssue	) {
+					l_deployOrder.setPlayer(this);				
 				}		
 			}
 			else {

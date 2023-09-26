@@ -9,18 +9,6 @@ import warzone.model.*;
 import warzone.view.GenericView;
 
 public class RouterService {
-		
-	private static RouterService ROUTER_SERVICE;
-	
-	private RouterService()	{	
-	}
-	
-	public static RouterService getRouterService() {
-		if( ROUTER_SERVICE == null)
-			ROUTER_SERVICE = new RouterService();
-		return ROUTER_SERVICE;
-	}
-	
 	
 	/**
 	 * This method will parse a single console commands entered by the user and call the corresponding controller by controller name
@@ -31,13 +19,10 @@ public class RouterService {
 		ControllerFactory l_controllerFactory = ControllerFactory.getControllerFactory();
 		switch(p_router.getControllerName()) {
 			case COMMON:
-				CommonController l_commonController = l_controllerFactory.getCommonController();
 				switch(p_router.getActionName()) {
-					case "welcome":						
+					case "welcome":
+						CommonController l_commonController = l_controllerFactory.getCommonController();
 						l_commonController.welcome(p_router.getActionParameters());
-						break;
-					case "help":
-						l_commonController.help();
 						break;
 				}
 				break;
@@ -118,9 +103,6 @@ public class RouterService {
 					case "remove":
 						l_startupController.removeRawPlayer(p_router.getActionParameters());
 						break;
-					case "loadmap":
-						l_startupController.loadMap(p_router.getActionParameters());
-						break;
 				}
 				break;
 			case ERROR:
@@ -138,7 +120,6 @@ public class RouterService {
 		if(p_routers != null) {
 			p_routers.forEach((router) ->{
 				try {
-					GenericView.printDebug("Excuting router: " + router.toString() );
 					route(router);
 				}
 				catch(Exception ex){					
@@ -177,7 +158,7 @@ public class RouterService {
 		String l_firstWord = l_commandArray[0];
 		// TODO move these commands into the properties file
 		String l_complexCommand = "editcontinent,editcountry,editneighbor,gameplayer";
-		String l_simpleCommand = "loadmap,editmap,savemap,assigncountries,validatemap,showmap,help";
+		String l_simpleCommand = "loadmap,editmap,savemap,assigncountries,validatemap,showmap";
 		if(l_complexCommand.indexOf(l_firstWord) > -1) {
 			//complex command with multiple routers
 			GenericView.printDebug("parseCommand: start to work on complex command: " + p_command);
@@ -211,8 +192,7 @@ public class RouterService {
 			GenericView.printDebug("parseComplexCommand: Empty Action" );
 			return l_routers;
 		}
-		
-		ControllerName l_controllerName = ControllerName.COMMON;		
+		ControllerName l_controllerName = ControllerName.COMMON;
 		switch (p_commandArray[0]) {
 			case "editcontinent":
 				l_controllerName = ControllerName.CONTINENT;
@@ -227,19 +207,17 @@ public class RouterService {
 				l_controllerName = ControllerName.GAMEPLAY;				
 				break;
 		}
-		GenericView.printDebug("ControllerName is :" + l_controllerName.toString() );
+		
 		// if the action is not equal to 'add' or 'remove', we return an error router
 		for(Action l_action: l_actions) {
 			//TODO add it in the property file
 			String l_actionArray = "-add,-remove";
 			if(l_actionArray.indexOf(l_action.getAction()) > -1) { 
 				l_routers.add(new Router(l_controllerName, l_action.getAction(), l_action.getParameters()));
-				GenericView.printDebug("Add an action to a router");
 			}
 			else {
 				l_routers = new LinkedList<Router>();
 				l_routers.add(createErrorRouter(ErrorType.BAD_OPTION.toString()));
-				GenericView.printDebug("Meet an error when adding an action to a router");
 				return l_routers;
 			}
 		}		
@@ -257,9 +235,6 @@ public class RouterService {
 		Router l_router = null;
 		// the first element of commandArray is command
 		switch (p_commandArray[0]) {
-			case  "help":
-				l_router = new Router(ControllerName.COMMON, "help");
-				break;		
 			case  "showmap":
 				l_router = new Router(ControllerName.MAP, "showmap");
 				break;
@@ -328,12 +303,12 @@ public class RouterService {
 				}
 				for (int j = i + 1; j < p_commandArray.length; j++) {
 					if (p_commandArray[j].charAt(0) == '-') {
-						Action l_action = new Action(p_commandArray[i].replace("-", ""), CommonTool.convertArray2String(p_commandArray, " ", i + 1, j - 1));
+						Action l_action = new Action(p_commandArray[i], CommonTool.convertArray2String(p_commandArray, " ", i + 1, j - 1));
 						l_actions.add(l_action);
 						i = j;
 					}
 					if (j == p_commandArray.length - 1) {
-						Action l_action = new Action(p_commandArray[i].replace("-", ""), CommonTool.convertArray2String(p_commandArray, " ", i + 1, j));
+						Action l_action = new Action(p_commandArray[i], CommonTool.convertArray2String(p_commandArray, " ", i + 1, j));
 						l_actions.add(l_action);
 						i = j;
 					}

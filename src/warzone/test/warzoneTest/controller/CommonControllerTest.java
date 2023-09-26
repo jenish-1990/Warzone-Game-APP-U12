@@ -1,8 +1,7 @@
-package warzone.controller;
-
-import org.junit.Test;
+package warzoneTest.controller;
 
 import warzone.controller.CommonController;
+import org.junit.Test;
 
 public class CommonControllerTest {
 	@Test
