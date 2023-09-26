@@ -15,13 +15,15 @@ public class CommonController {
 		d_gameContext = p_gameContext;
 	}
 	
-	public String welcome(String p_actionParameters) {
-		String body = "Welcome to Warzone";
-		GenericView.println(body);
-		return body;
+	public boolean welcome(String p_actionParameters) {
+		HelpView.printWelcome();
+		return true;
 	}
 	
 
 	
-	public void standby() {}
+	public boolean help() {
+		HelpView.printHelp(d_gameContext.getGamePhase());
+		return true;
+	}
 }

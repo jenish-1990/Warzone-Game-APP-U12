@@ -98,8 +98,7 @@ public class Country {
 	public boolean setContinent(Continent p_continent) {
 
 		if(p_continent != null) {
-			d_continent = p_continent;
-			p_continent.getCountries().put(this.d_countryID, this);
+			d_continent = p_continent;			
 			return true;
 		}
 		else

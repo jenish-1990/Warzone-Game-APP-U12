@@ -9,8 +9,4 @@ public class CommonControllerTest {
 	public void welcomeTest() {
 		(new CommonController()).welcome("test");
 	}
-	@Test
-	public void standbyTest() {
-		(new CommonController()).standby();
-	}
 }
