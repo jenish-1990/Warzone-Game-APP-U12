@@ -48,8 +48,8 @@ public class GameContext {
 	 * clear the game context 
 	 * @return a new game context
 	 */
-	public static GameContext clear(){
-		return GAME_CONTEXT = new GameContext();
+	public static void clear(){
+		GAME_CONTEXT = new GameContext();		
 	}
 	
 	public Map<String, Player> getPlayers() {
