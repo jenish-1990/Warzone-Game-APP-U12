@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * This class can print the map in the command line
+ *
+ */
 public class MapView {
 
     /**

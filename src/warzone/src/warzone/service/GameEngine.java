@@ -29,6 +29,12 @@ public class GameEngine {
 		return GAME_ENGINE;
 	}	
 
+	/**
+	 * This method is the entrance of the game. It will initiate the game context and use
+	 * command scanner to get the command of the player.
+	 * @param args the parameters for Java Virtual Machine
+	 * @throws IOException the exception of creating or deleting files
+	 */
 	public static void main(String[] args) throws IOException {
 
 		GameContext l_gameContext = GameContext.getGameContext();
@@ -58,6 +64,10 @@ public class GameEngine {
 //		l_routerService.route(tempRouter);
 	}	
 	
+	/**
+	 * This method will show whether the game can start.
+	 * @return true if the game can start
+	 */
 	public boolean isReadyToStart() {
 		if(this.d_gameContext == null || this.d_gameContext.getContinents().size() <1 
 				|| this.d_gameContext.getCountries().size() < 1 || this.d_gameContext.getPlayers().size() < 1 )
@@ -66,6 +76,10 @@ public class GameEngine {
 			return true;
 	}
 	
+	/**
+	 * If the game turn is greater than 100, the game will end.
+	 * @return true if the game can end.
+	 */
 	public boolean play() {
 		if(! isReadyToStart())
 			return false;
@@ -80,12 +94,21 @@ public class GameEngine {
 	}
 	
 	
+	/**
+	 * This method represent one turn for each player. It contains three steps: 
+	 * 1. assigning reinforcements 2. issuing orders 3.executing orders
+	 */
 	private void startTurn() {		
 		assignReinforcements();
 		issueOrders();
 		executeOrders();		
 	}
 	
+	/**
+	 * This method will determine if the game whether can end.
+	 * @return true if the current state satisfy the end condition: 
+	 * 1. there is just one player left 2. the number of game turn is greater than 100.
+	 */
 	private boolean isGameEnded() {
 		//check and update PlayerStatus		
 		//set p_isLoser = true, when the player does not have any country
@@ -101,7 +124,8 @@ public class GameEngine {
 	
 
 	/**
-	 * Assign each player the correct number of reinforcement armies according to the Warzone rules.
+	 * This method will assign each player the correct number of reinforcement armies 
+	 * according to the Warzone rules.
 	 */
 	private void assignReinforcements() {
 		d_gameContext.getPlayers().forEach((k, player) -> {
