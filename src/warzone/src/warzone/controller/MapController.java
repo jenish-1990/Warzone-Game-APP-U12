@@ -1,67 +1,39 @@
 package warzone.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import warzone.model.*;
-import warzone.view.GenericView;
+package warzone.controller;
 import warzone.view.*;
-import java.io.IOException;
 import warzone.model.*;
-import warzone.service.*;
-import java.util.Map;
 
 public class MapController {
 
-	private MapService d_mapService;
-	private GameContext d_gameContext;
+	private GameMap d_GameContext;
 
-	public MapController(GameContext p_gameContext) {
-		
-		d_gameContext = p_gameContext;
-		d_mapService = new MapService(p_gameContext);
+	public MapController(GameContext p_GameContext) {
+		d_GameContext = p_GameContext;
 	}
-
+	
 	/**
 	 * Performs the action for the user command: showmap
-	 *
+	 * 
 	 * Displays the map as text, showing all continents and countries and their respective neighbors.
 	 */
-	public void showMap () {
-
-		MapView.printMap(d_gameContext);
+	public GameMap showMap () {
+		
+		// TODO Auto-generated method stub
+		
+		return false;
 	}
 	
 	/**
 	 * Performs the action for the user command: savemap filename
 	 * 
 	 * Save a map to a text file exactly as edited (using the "domination" game map format).
-	 * @throws IOException 
 	 */
-	public boolean saveMap (String p_fileName) throws IOException {
+	public boolean saveMap (String fileName) {
 		
-		// validate if the filename is legal
-		if(p_fileName == null || p_fileName.trim().isEmpty() || p_fileName.trim().length() > 20 ) {
-			GenericView.printError("InValid File Name, please type a valid file name, with length less than 20.");
-			return false;
-		}
+		// TODO Auto-generated method stub
 		
-		// call mapService to save the map and return the path
-		p_fileName = p_fileName.trim();
-		try{
-			if(d_mapService.saveMap(p_fileName)) {
-				GenericView.printSuccess("Map was saved in :" + p_fileName + ".map" );
-				return true;
-			}
-			else {
-				GenericView.printError("Exception occured when saving the map, please valid the file name or contact the Administrator.");
-				return false;	
-			}		
-		}
-		catch(Exception ex) {
-			GenericView.printError("Exception occured when saving the map. " + ex.toString());
-			return false;
-		}
+		return false;
 	}
 	
 	/**
@@ -69,9 +41,11 @@ public class MapController {
 	 * 
 	 * Load a map from an existing "domination" map file, or create a new map from scratch if the file does not exist
 	 */
-	public boolean editMap (String p_fileName) {
+	public boolean editMap (String fileName) {
 		
-		return d_mapService.editMap(p_fileName);
+		// TODO Auto-generated method stub
+		
+		return false;
 	}
 	
 	/**
@@ -81,15 +55,11 @@ public class MapController {
 	 * and before saving (at least 3 types of incorrect maps). The validatemap command can be 
 	 * triggered any time during map editing. 
 	 */
-	public boolean validateMap () {		
-		if(! d_mapService.validateMap(d_gameContext) ) {
-			GenericView.printError("It is not a connected map.");
-			return false;
-		}
-		else {
-			GenericView.printSuccess("Yeah! You got a connected map!");
-			return true;
-		}
+	public boolean validateMap () {
+		
+		// TODO Auto-generated method stub
+		
+		return false;
 	}
-	
+
 }

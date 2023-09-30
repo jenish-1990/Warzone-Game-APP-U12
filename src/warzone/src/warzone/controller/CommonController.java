@@ -5,25 +5,13 @@ import warzone.model.*;
 
 public class CommonController {
 	
-	private GameContext d_gameContext;
-	
-	public CommonController() {
-		
-	}
-
-	public CommonController(GameContext p_gameContext) {
-		d_gameContext = p_gameContext;
-	}
-	
-	public boolean welcome(String p_actionParameters) {
-		HelpView.printWelcome();
-		return true;
+	public String welcome(String p_actionParameters) {
+		String body = "Hello world";
+		Console.println(body);
+		return body;
 	}
 	
 
 	
-	public boolean help() {
-		HelpView.printHelp(d_gameContext.getGamePhase());
-		return true;
-	}
+	public void standby() {}
 }
