@@ -1,5 +1,8 @@
 package warzone.model;
 
+/**
+ * Color is the enum used in map
+ */
 public enum Color {
 	RED,
 	MAGENTA,

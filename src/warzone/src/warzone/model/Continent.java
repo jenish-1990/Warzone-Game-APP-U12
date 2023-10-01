@@ -1,28 +1,129 @@
 package warzone.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * This class represents the continent in the game
+ */
 public class Continent {
 	
-	private int continentID;
-	private String continentName;
-	private String color;
-	private List<Country> countries;
-	
+	private int d_continentID;
+	private String d_continentName;
+	private int d_bonusReinforcements;
+	private Color d_color;
+	private Map<Integer, Country> d_countries;
+
+	/**
+	 * constructor with setting continent id and name
+	 * @param p_continentID continent id
+	 * @param p_continentName continent name
+	 */
+	public Continent(int p_continentID, String p_continentName) {
+		
+		d_continentID = p_continentID;
+		d_continentName = p_continentName;
+		d_countries = new HashMap<Integer, Country>();
+	}
+
+	/**
+	 * constructor with setting continent id, name, bonusReinforcements and color
+	 * @param p_continentID the continent id
+	 * @param p_continentName the continent name
+	 * @param p_bonusReinforcements the bonus reinforcement of the continnet
+	 * @param p_color the color of the continent
+	 */
+	public Continent(int p_continentID, String p_continentName, int p_bonusReinforcements, Color p_color) {
+		
+		d_continentID = p_continentID;
+		d_continentName = p_continentName;
+		d_bonusReinforcements = p_bonusReinforcements;
+		d_color = p_color;
+		d_countries = new HashMap<Integer, Country>();
+	}
+
+	/**
+	 * get continent id
+	 * @return the id of the continent
+	 */
 	public int getContinentID() {
-		return continentID;
+		return d_continentID;
 	}
-	
-	public void setContinentID(int continentID) {
-		this.continentID = continentID;
+
+	/**
+	 * set continent id
+	 * @param p_continentID the continent id
+	 */
+	public void setContinentID(int p_continentID) {
+		this.d_continentID = p_continentID;
 	}
-	
+
+	/**
+	 * get continent name
+	 * @return the name of continent
+	 */
 	public String getContinentName() {
-		return continentName;
+		return d_continentName;
 	}
-	
-	public void setContinentName(String continentName) {
-		this.continentName = continentName;
-	}	
+
+	/**
+	 * set continent name
+	 * @param p_continentName the continent name
+	 */
+	public void setContinentName(String p_continentName) {
+		this.d_continentName = p_continentName;
+	}
+
+	/**
+	 * get the bonus reinforcement of the continent
+	 * @return the bonus reinforcement of the continent
+	 */
+	public int getBonusReinforcements() {
+		return d_bonusReinforcements;
+	}
+
+	/**
+	 * set the bonus reinforcement of the continent
+	 * @param p_bonusReinforcements the bonus reinforcement of the continent
+	 */
+	public void setBonusReinforcements(int p_bonusReinforcements) {
+		this.d_bonusReinforcements = p_bonusReinforcements;
+	}
+
+	/**
+	 * get the color of the continent
+	 * @return the color
+	 */
+	public Color getColor() {
+		return d_color;
+	}
+
+	/**
+	 * get the color
+	 * @param p_color the color of the continent
+	 */
+	public void setColor(Color p_color) {
+		this.d_color = p_color;
+	}
+
+	/**
+	 * get the map of the countries in the continent
+	 * @return the countries in the continent
+	 */
+	public Map<Integer, Country> getCountries() {
+		return d_countries;
+	}
+
+	/**
+	 * add a country to the continent
+	 * @param p_country the country
+	 * @return true if successfully add to the continent, otherwise return false
+	 */
+	public boolean addCountry(Country p_country) {
+		if( p_country != null ) {
+			d_countries.put(p_country.getCountryID(), p_country);
+			return p_country.setContinent(this);
+		}
+		return false;
+	}
 }
