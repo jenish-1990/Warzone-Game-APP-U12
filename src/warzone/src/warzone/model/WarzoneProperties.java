@@ -15,11 +15,6 @@ public class WarzoneProperties {
 	private static WarzoneProperties WARZONE_PROPERTIES;
 	private Properties d_properties;
 	
-	//Properties
-	private String d_gameMapDirectory;
-	private boolean d_isDemoMode;
-	private boolean d_isDebug;
-	
 	//Create singelton
 	/**
 	 * This method use Singleton pattern to ensure the singleton of the class.
@@ -57,25 +52,42 @@ public class WarzoneProperties {
 	 */
 	private void loadProperties() {
 		
-		d_gameMapDirectory = d_properties.getProperty("gameMapDirectory");
+		//Run Configurations
 		d_isDemoMode = Boolean.parseBoolean(d_properties.getProperty("isDemoMode"));
 		d_isDebug = Boolean.parseBoolean(d_properties.getProperty("isDebug"));
+		
+		//Gameplay Settings
+		d_gameMapDirectory = d_properties.getProperty("gameMapDirectory");
+		d_minimumReinforcementsEachRound = Integer.parseInt(d_properties.getProperty("minimumReinforcementsEachRound"));
+		d_minimumCountriesPerReinforcementBonus = Integer.parseInt(d_properties.getProperty("minimumCountriesPerReinforcementBonus"));
 	}
 	
-	//Properties getters
-	/**
-	 * This method will provide all properties in the property file
-	 * @return all properties in the property file
-	 */
-	public String getGameMapDirectory() { return d_gameMapDirectory; }
+	//Run Configurations
+	private boolean d_isDemoMode; 
 	/**
 	 * This method will show whether the current mode is demo mode
 	 * @return true if the current mode is demo
 	 */
 	public boolean getIsDemoMode() { return d_isDemoMode; }
+	
+	private boolean d_isDebug;
 	/**
 	 * This method will show whether the current mode is debug mode
 	 * @return true if the current mode is debug mode
 	 */
 	public boolean getIsDebug() { return d_isDebug; }
+		
+	//Gameplay Settings
+	private String d_gameMapDirectory;
+	/**
+	 * This method will provide all properties in the property file
+	 * @return all properties in the property file
+	 */
+	public String getGameMapDirectory() { return d_gameMapDirectory; }
+		
+	private int d_minimumReinforcementsEachRound;
+	public int getMinimumReinforcementsEachRound() { return d_minimumReinforcementsEachRound; }
+	
+	private int d_minimumCountriesPerReinforcementBonus;
+	public int getMinimumCountriesPerReinforcementBonus() { return d_minimumCountriesPerReinforcementBonus; }
 }

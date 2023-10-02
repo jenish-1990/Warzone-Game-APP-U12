@@ -1,6 +1,7 @@
 package warzone.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 public class GameContext {
 	private static GameContext GAME_CONTEXT;
-	GamePhase d_gamePhase = GamePhase.MAPEDITING;
+	GamePhase d_gamePhase = GamePhase.MAPEDITOR;
 	private int d_orderNumberPerRound = 5;
 	
 	private boolean d_isDemoMode = true;
@@ -199,6 +200,17 @@ public class GameContext {
 	public int getOrderNumberPerRound() {
 		return d_orderNumberPerRound;
 	}	
+	/**
+	 * check if current game phase is in the given phase list
+	 * @param p_gamePhases given phase list
+	 * @return true if include, otherwise false
+	 */
+	public boolean getIsContainCurrentPhase(List<GamePhase> p_gamePhases) {
+		if(p_gamePhases != null) {
+			return p_gamePhases.contains(this.d_gamePhase);
+		}
+		return false;
+	}
 	
 	
 	

@@ -68,6 +68,12 @@ public class Player {
 	public Queue<Order> getOrders() {
 		return d_orders;
 	}
+	/**
+	 * clear the countries list for current player
+	 */
+	public void cleanConqueredCountries() {
+		d_conqueredCountries.clear();
+	}
 	
 	/**
 	 * This method will provide the number of armies owned by the current player.
@@ -207,10 +213,62 @@ public class Player {
 	}
 	
 	/**
-	 * This method can assign reinforcements to players in the beginning of his turn.
+	 * Assign reinforcements to a player based on the continents they have conquered. Each continent has a bonus number of reinforcements
+	 * per round if a player owns all the countries within it. This method loops through all the conquered countries, tracking counters of
+	 * the number of countries owned in each continent. If the number of countries owned in a continent matches the number of countries in that
+	 * continent, the player gets the bonus reinforcements added (for each applicable continent).
+	 * 
+	 * @param p_gameContext
 	 */
-	public void assignReinforcements() {		
+	public void assignReinforcements(GameContext p_gameContext) {		
+		
+		//Set the armiesToDeploy to the minimum value
+		this.setArmiesToDeploy(WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound()); 
+		
+		//Set armiesToDeploy based on the number of owned countries (if that number is greater than the minimum)
+		int l_conqueredCountriesBonus = (int)(Math.floor(this.getConqueredCountries().size() / WarzoneProperties.getWarzoneProperties().getMinimumCountriesPerReinforcementBonus()));
+		
+		if(l_conqueredCountriesBonus > this.getArmiesToDeploy()) {
+			
+			this.setArmiesToDeploy(l_conqueredCountriesBonus);
+		}
+		
+		//Key: continentID, Value: Number of countries player owns in this continent
+		Map<Integer, Integer> armiesPerContinent = new HashMap<Integer, Integer>(p_gameContext.getContinents().size());
 
+		//Create a list of playerIDs from the game context and shuffle their order
+		List<Integer> conqueredCountryIDs = new ArrayList<Integer>(this.getConqueredCountries().keySet());
+				
+		//Looping variables
+		int l_continentID;
+		Integer l_deployedArmies;
+		
+		//Loop through each conquered country, incrementing each counter of the conquered country's continent
+		for(Integer countryID : conqueredCountryIDs) {
+						
+			l_continentID = p_gameContext.getCountries().get(countryID).getContinent().getContinentID();
+			l_deployedArmies = armiesPerContinent.get(l_continentID); 
+			
+			if(l_deployedArmies == null) {
+				
+				armiesPerContinent.put(l_continentID, 1);
+			}
+			else {
+				
+				armiesPerContinent.put(l_continentID, l_deployedArmies + 1);
+			}
+		}
+		
+		//Loop through the continent counters and update the players' armiesToDeploy if they own all the countries in a continent
+		armiesPerContinent.forEach(
+				
+			(apcContinentID, apcDeployedArmies) -> {
+				
+				if(apcDeployedArmies == p_gameContext.getContinents().get(apcContinentID).getCountries().size()) {
+					
+					this.setArmiesToDeploy(this.getArmiesToDeploy() + p_gameContext.getContinents().get(apcContinentID).getBonusReinforcements());
+				}
+			}
+		);
 	}	
-	
 }
