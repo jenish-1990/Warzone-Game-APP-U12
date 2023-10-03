@@ -5,6 +5,7 @@ import java.util.Map;
 import warzone.model.Continent;
 import warzone.model.Country;
 import warzone.model.GameContext;
+import warzone.view.GenericView;
 
 /**
  * This class will provide controllers with some service related to 'country' module.
@@ -35,10 +36,15 @@ public class CountryService {
 				l_country = new Country(p_countryID, "COUNTRY-"+p_countryID );
 				d_gameContext.getCountries().put(p_countryID, l_country);
 			}
-			
-			if(l_continent != null){
-				l_continent.addCountry(l_country);
-				return true;
+			if(l_country.getContinent() != null)
+				GenericView.printError("Country ID " + l_country.getCountryID() + " is already belongs to Continent ID " + l_country.getContinent().getContinentID());
+			else {
+				if (l_continent != null) {
+					l_continent.addCountry(l_country);
+					return true;
+				}
+				else
+					GenericView.printError(" The continent " + p_ContinentID + " does not exist.");
 			}
 		}
 		return false;

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import warzone.model.Country;
 import warzone.model.GameContext;
+import warzone.view.GenericView;
 
 /**
  * This class can provide service to controllers.
@@ -52,7 +53,12 @@ public class NeighborService {
 		}
 		
 		Country l_country = l_countries.get(p_countryID);
-		l_country.getNeighbors().remove(p_neighborCountryID);		
+		if(!l_country.getNeighbors().containsKey(p_neighborCountryID)) {
+			GenericView.printError("Country ID " + p_neighborCountryID + " is not the neighbor of Country ID " + p_countryID);
+			return false;
+		}
+		else
+			l_country.getNeighbors().remove(p_neighborCountryID);
 		return true;
 	}
 }

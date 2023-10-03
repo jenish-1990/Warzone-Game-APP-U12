@@ -285,7 +285,7 @@ public class MapService {
 	Map<Integer, Integer> d_mapContinentIdToIndex = new HashMap<>();
 
 	LinkedList<Object>[] l_continentAdjList; // list to store the relationship between continents
-	int l_continentIndex = 0; // initiate the record of continent tree
+	int l_continentIndex; // the record of continent tree
 
 	/**
 	 * initiate the list of neighbours
@@ -314,7 +314,8 @@ public class MapService {
 	 * @param p_gameContext game context
 	 * @return if map is valid
 	 */
-	public boolean validateMap(GameContext p_gameContext) {
+	public boolean
+	validateMap(GameContext p_gameContext) {
 
 		d_mapIndexToContinentId.clear();
 		d_mapContinentIdToIndex.clear();
@@ -349,7 +350,7 @@ public class MapService {
 		// l_continentAdjList is the list store the relationship between continents
 		l_continentAdjList = new LinkedList[l_continent.size()];
 		l_continentAdjList = listInit(l_continent.size(), l_continentAdjList);
-
+		l_continentIndex = 0;
 		for( Continent _continent : l_continent.values()) {
 			// add the from continent as the head of the list l_continentAdjList
 			// also, check if the continent is recored in the map, if not, add to the map
