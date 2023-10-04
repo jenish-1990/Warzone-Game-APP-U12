@@ -1,0 +1,61 @@
+loadmap europe.map
+editcountry -add 25 4
+showmap
+editcountry -add 26 4 -remove 25
+showmap
+editcountry -add 32 4
+showmap
+editcontinent -add 7 contient-7
+showmap
+editcontinent -add 6 MARS -remove 7
+editcountry -add 41 6
+editcountry -add 42 6  -add 44 6
+editcountry -add 43 6
+showmap
+editneighbor -add 41 42
+editneighbor -add 42 43
+editneighbor -add 42 43
+editneighbor -add 44 41 -remove 42 43
+
+
+gameplayer -add PL1 -remove PL2
+gameplayer -add PL1 -add PL2  -add PL3   -add PL3    -add PL4    -add PL5
+gameplayer -remove PL3
+gameplayer -remove PL4  -remove PL5
+
+
+assigncountries
+
+
+gameplayer -add playername -remove playername
+
+-------- test game play
+startup
+loadmap europe.map
+validatemap
+gameplayer -add PL1 -add PL2  -add PL3   -add PL3    -add PL4    -add PL5
+assigncountries
+showmap
+play
+reinforcements
+issue_order
+
+
+
+-------- test simple game play
+startup
+loadmap simple.map
+validatemap
+gameplayer -add Player1 -add Player2  
+assigncountries
+showmap
+play
+reinforcements
+issue_order
+
+
+
+---------- test map
+loadmap simple.map
+editmap simple.map
+savemap simple-1.map
