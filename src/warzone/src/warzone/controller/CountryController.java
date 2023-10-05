@@ -1,9 +1,10 @@
 package warzone.controller;
 
-import warzone.model.GameContext;
+import warzone.view.*;
+import warzone.model.*;
 import warzone.service.CommonTool;
+import warzone.service.ContinentService;
 import warzone.service.CountryService;
-import warzone.view.GenericView;
 
 /**
  * Country controller is for manipulate the countries in the map

@@ -71,15 +71,6 @@ public class MapServiceTest {
         Country canada = new Country(1,"Canada", 343,435, d_gameContext.getContinents().get(1) );
         _countryCtrl.addCountry(1,1);
 
-        Country us = new Country(2,"US", 343,435, d_gameContext.getContinents().get(1) );
-        _countryCtrl.addCountry(2,1);
-
-        Country mexco = new Country(3,"mexco", 343,435, d_gameContext.getContinents().get(1) );
-        _countryCtrl.addCountry(3,1);
-
-        Country cuba = new Country(4,"cuba", 343,435, d_gameContext.getContinents().get(2) );
-        _countryCtrl.addCountry(4,2);
-
         Country brazil = new Country(5,"brazil", 343,435, d_gameContext.getContinents().get(2) );
         _countryCtrl.addCountry(5,2);
 
@@ -173,7 +164,7 @@ public class MapServiceTest {
         Country us = new Country(2,"US", 343,435, d_gameContext.getContinents().get(1) );
         _countryCtrl.addCountry(2,1);
 
-        Country mexco = new Country(3,"mexco", 343,435, d_gameContext.getContinents().get(1) );
+        Country mexico = new Country(3,"mexico", 343,435, d_gameContext.getContinents().get(1) );
         _countryCtrl.addCountry(3,1);
 
         Country cuba = new Country(4,"cuba", 343,435, d_gameContext.getContinents().get(2) );
@@ -225,7 +216,7 @@ public class MapServiceTest {
         Country us = new Country(2,"US", 343,435, d_gameContext.getContinents().get(1) );
         _countryCtrl.addCountry(2,1);
 
-        Country mexco = new Country(3,"mexco", 343,435, d_gameContext.getContinents().get(1) );
+        Country mexico = new Country(3,"mexico", 343,435, d_gameContext.getContinents().get(1) );
         _countryCtrl.addCountry(3,1);
 
         NeighborController _nbCtrl = new NeighborController(d_gameContext);
@@ -254,7 +245,7 @@ public class MapServiceTest {
         Country us = new Country(2,"US", 343,435, d_gameContext.getContinents().get(1) );
         _countryCtrl.addCountry(2,1);
 
-        Country mexco = new Country(3,"mexco", 343,435, d_gameContext.getContinents().get(1) );
+        Country mexico = new Country(3,"mexico", 343,435, d_gameContext.getContinents().get(1) );
         _countryCtrl.addCountry(3,1);
 
         NeighborController _nbCtrl = new NeighborController(d_gameContext);

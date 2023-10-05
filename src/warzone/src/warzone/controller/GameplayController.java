@@ -1,10 +1,8 @@
 package warzone.controller;
 
-import warzone.model.GameContext;
+import warzone.view.*;
+import warzone.model.*;
 import warzone.service.*;
-import warzone.view.GenericView;
-import warzone.view.HelpView;
-import warzone.view.MapView;
 
 /**
  * Gameplay Controller is to manipulate the actions in game play

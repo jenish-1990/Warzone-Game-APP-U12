@@ -1,9 +1,8 @@
 package warzone.controller;
 
-import warzone.model.Continent;
-import warzone.model.GameContext;
+import warzone.view.*;
+import warzone.model.*;
 import warzone.service.*;
-import warzone.view.GenericView;
 
 /**
  * Continent controller is for manipulate the continents in the map

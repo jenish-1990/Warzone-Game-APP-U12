@@ -159,10 +159,10 @@ public class GameEngine {
 	/**
 	 * The GameEngine calls the next_order() method of the Player. Then the Order object�s execute() method is called 
 	 * which will enact the order. 
-	 * <ol>
-	 * <li>get the max number of the orders own by a single player</li>
-	 * <li>excute the orders from player's order list in round-robin fashion</li>
-	 * </ol>
+	 * 
+	 * get the max number of the orders own by a single player
+	 * excute the orders from player's order list in round-robin fashion
+	 * 
 	 */
 	private void executeOrders() {		
 		//1. get the max number of the orders in a player.		

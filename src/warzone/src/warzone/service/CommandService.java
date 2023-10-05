@@ -1,12 +1,10 @@
 package warzone.service;
 
-import warzone.model.GameContext;
-import warzone.model.Router;
-import warzone.view.GenericView;
-import warzone.view.HelpView;
-
 import java.util.List;
 import java.util.Scanner;
+
+import warzone.model.*;
+import warzone.view.*;
 
 /**
  * This class is responsible to deal with players' input

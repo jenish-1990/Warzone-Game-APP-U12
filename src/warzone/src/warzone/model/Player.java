@@ -1,9 +1,15 @@
 package warzone.model;
+import java.util.Scanner;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 import warzone.service.CommonTool;
 import warzone.view.GenericView;
-
-import java.util.*;
 
 /**
  * This class represents the player in the game.

@@ -53,97 +53,7 @@ public class StartupServiceTest {
 		assertTrue(d_gameContext.getContinents().size() == 4);
 		assertTrue(d_gameContext.getCountries().size() == 24);
 	}
-	
-//	@Test
-//	public void testAssignCountries() {
-//		
-//		System.out.println("=====================================");
-//		System.out.println("testAssignCountries()");
-//		System.out.println("=====================================");
-//		
-//		d_gameContext.getPlayers().put("player1", new Player("player1"));
-//		d_gameContext.getPlayers().put("player2", new Player("player2"));
-//		d_gameContext.getPlayers().put("player3", new Player("player3"));
-//		d_gameContext.getPlayers().put("player4", new Player("player4"));
-//		
-//		d_gameContext.getCountries().put(1, new Country(1, "country01", 5, 5, null));
-//		d_gameContext.getCountries().put(2, new Country(2, "country02", 5, 5, null));
-//		d_gameContext.getCountries().put(3, new Country(3, "country03", 5, 5, null));
-//		d_gameContext.getCountries().put(4, new Country(4, "country04", 5, 5, null));
-//		d_gameContext.getCountries().put(5, new Country(5, "country05", 5, 5, null));
-//		d_gameContext.getCountries().put(6, new Country(6, "country06", 5, 5, null));
-//		d_gameContext.getCountries().put(7, new Country(7, "country07", 5, 5, null));
-//		d_gameContext.getCountries().put(8, new Country(8, "country08", 5, 5, null));
-//		d_gameContext.getCountries().put(9, new Country(9, "country09", 5, 5, null));
-//		d_gameContext.getCountries().put(10, new Country(10, "country10", 5, 5, null));
-//		
-//		d_startupController = new StartupController(d_gameContext);
-//		d_startupController.assignCountries();
-//		
-//		//Create a list of playerIDs from the game context and shuffle their order
-//		List<String> playerNames = new ArrayList<String>(d_gameContext.getPlayers().keySet());
-//		List<Integer> neighborIDs;
-//		Player player;
-//		
-//		for(String playerID : playerNames) {	
-//			
-//			player = d_gameContext.getPlayers().get(playerID);
-//			System.out.print(player.getName() + " neighbors: ");
-//			
-//			neighborIDs = new ArrayList<Integer>(player.getConqueredCountries().keySet());
-//			
-//			for(Integer neighborID : neighborIDs) {
-//				
-//				System.out.print(d_gameContext.getCountries().get(neighborID).getCountryName() + " ");
-//			}
-//			
-//			System.out.println();
-//			
-//			assertTrue(player.getConqueredCountries().size() == 2);
-//		}
-//		
-//		//Create a list of playerIDs from the game context and shuffle their order
-//		List<Integer> countryIDs = new ArrayList<Integer>(d_gameContext.getCountries().keySet());
-//		int player1CountryCtr = 0, player2CountryCtr = 0, player3CountryCtr = 0, player4CountryCtr = 0, neutralCountryCtr = 0;
-//		Country country;
-//		
-//		for(Integer countryID : countryIDs) {
-//			
-//			country = d_gameContext.getCountries().get(countryID);
-//			
-//			if(country.getOwner() == null || country.getOwner().getName() == null) {
-//				
-//				neutralCountryCtr++;
-//			}
-//			else if(country.getOwner().getName().equals("player1")) {
-//				
-//				player1CountryCtr++;
-//			}
-//			else if(country.getOwner().getName().equals("player2")) {
-//				
-//				player2CountryCtr++;
-//			}
-//			else if(country.getOwner().getName().equals("player3")) {
-//				
-//				player3CountryCtr++;
-//			}
-//			else if(country.getOwner().getName().equals("player4")) {
-//				
-//				player4CountryCtr++;
-//			}
-//		}
-//		
-//		System.out.println("player1CountryCtr: " + player1CountryCtr);
-//		System.out.println("player2CountryCtr: " + player2CountryCtr);
-//		System.out.println("player3CountryCtr: " + player3CountryCtr);
-//		System.out.println("player4CountryCtr: " + player4CountryCtr);
-//		System.out.println("neutralCountryCtr: " + neutralCountryCtr);
-//		
-//		assertTrue(player1CountryCtr == 2 && player2CountryCtr == 2 && player3CountryCtr == 2 && player4CountryCtr == 2);
-//		assertTrue(neutralCountryCtr == 2);
-//		
-//		System.out.println();
-//	}
+
 	
 	@Test
 	public void testAssignReinforcementsNoOwnedContinentsNoOwnedCountries() {
@@ -221,13 +131,7 @@ public class StartupServiceTest {
 		
 		assertTrue(player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound());
 		
-		/* Bonus: 4 armies
-		 * 8 Denmark 2 275 76
-		 * 9 Germany 2 261 149
-		 * 10 Poland 2 346 141
-		 * 11 Czech_Rep 2 308 173
-		 * 12 Slovakia 2 356 190
-		 */
+		
 		
 		//Assign the player all the countries from continentID:2
 		d_gameContext.getContinents().get(l_continentID).getCountries().forEach(
