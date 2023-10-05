@@ -1,9 +1,9 @@
 package warzone.controller;
 
-import warzone.model.GameContext;
+import warzone.view.*;
+import warzone.model.*;
 import warzone.service.CommonTool;
 import warzone.service.NeighborService;
-import warzone.view.GenericView;
 
 /**
  * Neighbor Controller is for manipulate the neighbor relationships in map

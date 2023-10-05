@@ -5,7 +5,7 @@ import warzone.model.GameContext;
 
 /**
  * This class is responsible to create corresponding controllers.
- * @author Zexin
+ * @author Ayush
  *
  */
 public class ControllerFactory {	

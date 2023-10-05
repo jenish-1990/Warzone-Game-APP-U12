@@ -1,10 +1,8 @@
 package warzone.service;
 
-import warzone.model.Continent;
-import warzone.model.Country;
-import warzone.model.GameContext;
-
 import java.util.Map;
+
+import warzone.model.*;
 
 /**
  * This class can offer some services to controllers, including adding and removing continents.
