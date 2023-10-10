@@ -26,10 +26,17 @@ public class GameplayController {
 	 * @return true is ready to play, otherwise return false
 	 */
 	public boolean play() {
+		
+		this.d_gameContext.setGamePhase(GamePhase.PLAY);
+		GenericView.printSuccess("Warzone is in the phase :" + d_gameContext.getGamePhase());
+		HelpView.printHelp(d_gameContext.getGamePhase() );
+		
 		if( !d_gameEngine.isReadyToStart()) {
 			GenericView.printWarning("Game is not ready to start, please check the map and players.");
 			return false;
 		}
+		else
+			GenericView.println("The game start to play........");
 			
 		boolean l_finished = d_gameEngine.play();
 		if(l_finished) {

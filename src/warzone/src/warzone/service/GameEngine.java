@@ -81,19 +81,16 @@ public class GameEngine {
 	
 	/**
 	 * If the game turn is greater than 100, the game will end.
+	 * 
 	 * @return true if the game can end.
 	 */
 	public boolean play() {
+		
 		if(! isReadyToStart())
 			return false;
 		
-		int l_loopNumber = 1;		
-		while( !isGameEnded() && l_loopNumber <= 100) {
-			startTurn();
-			l_loopNumber ++;
-		}
-		
-		return isGameEnded();
+		startTurn();
+		return true;		
 	}
 	
 	
@@ -101,9 +98,12 @@ public class GameEngine {
 	 * This method represent one turn for each player. It contains three steps: 
 	 * 1. assigning reinforcements 2. issuing orders 3.executing orders
 	 */
-	private void startTurn() {		
+	private void startTurn() {	
+		GenericView.println("Start to assign reinforcements........");
 		assignReinforcements();
+		GenericView.println("Start to issue orders........");
 		issueOrders();
+		GenericView.println("Start to execute orders........");
 		executeOrders();		
 	}
 	
@@ -117,8 +117,8 @@ public class GameEngine {
 		//set p_isLoser = true, when the player does not have any country
 		int l_alivePlayers = 0;
 		for(Player l_player :d_gameContext.getPlayers().values() ){
-			if(l_player.getConqueredCountries().size() == 0) {
-				l_player.setIsAlive(false);
+			if(l_player.getConqueredCountries().size() > 0) {
+				l_player.setIsAlive(true);
 				l_alivePlayers ++;
 			}
 		}		
@@ -132,8 +132,10 @@ public class GameEngine {
 	 */
 	private void assignReinforcements() {
 		d_gameContext.getPlayers().forEach((k, player) -> {
-			if(player.getIsAlive())
+			if(player.getIsAlive()) {
+				GenericView.println("Start to assign reinforcements for player ["+ player.getName() +"]");
 				player.assignReinforcements(d_gameContext);
+			}
 		});
 	}
 	
@@ -146,8 +148,10 @@ public class GameEngine {
 	private void issueOrders() {
 
 		d_gameContext.getPlayers().forEach((k, player) -> {
-			if(player.getIsAlive())
+			if(player.getIsAlive()) {
+				GenericView.println("Start to issue orders for player ["+ player.getName() +"]");
 				player.issue_order();
+			}
 		});			
 	}
 	
@@ -160,8 +164,7 @@ public class GameEngine {
 	 * <li>excute the orders from player's order list in round-robin fashion</li>
 	 * </ol>
 	 */
-	private void executeOrders() {
-
+	private void executeOrders() {		
 		//1. get the max number of the orders in a player.		
 		int l_maxOrderNumber = 0;	
 		for(Player l_player :d_gameContext.getPlayers().values() ){
@@ -172,8 +175,10 @@ public class GameEngine {
 		}
 
 		//2. excute the orders
+		GenericView.println("Start to execute orders.");
 		int l_roundIndex = 1;
 		while(l_roundIndex <= l_maxOrderNumber ){
+			GenericView.println("Start to execute round [" + l_roundIndex + "] of orders");
 			d_gameContext.getPlayers().forEach((k, player) -> {
 				if(player.getIsAlive()) {
 					Order l_order = player.next_order();

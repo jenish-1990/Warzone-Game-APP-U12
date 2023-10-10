@@ -164,8 +164,14 @@ public class Player {
 		int l_armyToIssue = this.getArmiesToDeploy();
 		int l_armyHasIssued = 0;
 		GameContext l_gameContext = GameContext.getGameContext();
+		
+		GenericView.println(String.format("You have [%s] Countries and [%s] armies", this.getConqueredCountries().size(), l_armyToIssue ));
+		for(Country l_countryTemp : this.getConqueredCountries().values()) {
+			GenericView.println(String.format("Country ID : [%s] , Name : [%s]", l_countryTemp.getCountryID(), l_countryTemp.getCountryName() ));	
+		}		
+		
 		do {
-			GenericView.println(String.format("Please input the deploy command for player, there is %s army available for %s.", l_armyToIssue , this.getName() ));
+			GenericView.println(String.format("Please input deploy command for player [%s] , there is %s army available", this.getName(), l_armyToIssue ));
 			DeployOrder l_deployOrder;
 
 			if(!l_gameContext.getIsDemoMode()) {
@@ -176,18 +182,20 @@ public class Player {
 				if(l_deployOrder != null && this.getConqueredCountries().containsKey(l_deployOrder.getCountry().getCountryID()) 
 					&&  l_deployOrder.getArmyNumber() <= l_armyToIssue	) {					
 					l_deployOrder.setPlayer(this);
+					GenericView.printSuccess(String.format("Deploy order generated. Deploy %s army to Country [%s-%s]", l_deployOrder.getArmyNumber() , l_deployOrder.getCountry().getCountryID(), l_deployOrder.getCountry().getCountryName() ));
 				}		
 			}
 			else {
 				//2. generate the command automatically.
 				List<Integer> l_countryKeys = new ArrayList(d_conqueredCountries.keySet());
-				Integer l_countryKey = l_countryKeys.get( CommonTool.getRandomNumber(0, (l_countryKeys.size() -1 )) );			
+				Integer l_countryKey = l_countryKeys.get( CommonTool.getRandomNumber(0, (l_countryKeys.size() )) );			
 				Country l_country = d_conqueredCountries.get(l_countryKey);
-				int l_armyNumber =  CommonTool.getRandomNumber(0, l_armyToIssue);
+				int l_armyNumber =  CommonTool.getRandomNumber(1, l_armyToIssue);
 				l_deployOrder = new DeployOrder(this, l_country, l_armyNumber );
+				GenericView.printSuccess(String.format("Deploy order generated automatically. Deploy %s army to Country [%s]", l_armyNumber , l_country.getCountryName() ));
 			}
 			
-			if(l_deployOrder != null)
+			if(l_deployOrder != null && l_deployOrder.getArmyNumber() > 0 && l_deployOrder.getArmyNumber() <= l_armyToIssue )
 			{				
 				this.d_orders.add(l_deployOrder);
 				
@@ -195,7 +203,7 @@ public class Player {
 				l_armyHasIssued = l_armyHasIssued + l_deployOrder.getArmyNumber();
 			}
 			else {
-				GenericView.printWarning("Incorrect command, please check the countryID and the number of army");
+				GenericView.printWarning("Incorrect command or army number, please check the countryID and the number of army");
 			}			
 		} while (l_armyToIssue > 0 );		
 	}
@@ -218,7 +226,7 @@ public class Player {
 	 * the number of countries owned in each continent. If the number of countries owned in a continent matches the number of countries in that
 	 * continent, the player gets the bonus reinforcements added (for each applicable continent).
 	 * 
-	 * @param p_gameContext
+	 * @param p_gameContext game context
 	 */
 	public void assignReinforcements(GameContext p_gameContext) {		
 		

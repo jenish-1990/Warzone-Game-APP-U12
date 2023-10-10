@@ -43,4 +43,23 @@ public class CommonController {
 		HelpView.printHelp(d_gameContext.getGamePhase());
 		return true;
 	}
+	
+	/**
+	 * Change the game phase, and then other commands will be available.
+	 * @param p_actionParameters the new game phase.
+	 * @return true if succeed to change the game phase.
+	 */
+	public boolean changePhase(String p_actionParameters) {
+		if(p_actionParameters.equals("reboot") || p_actionParameters.equals("mapeditor") ) {
+			d_gameContext.setGamePhase(GamePhase.MAPEDITOR);	
+		}
+		else if(p_actionParameters.equals("startup")) {
+			d_gameContext.setGamePhase(GamePhase.STARTUP);	
+		}
+		
+		GenericView.printSuccess("Warzone is in the phase :" + d_gameContext.getGamePhase());
+		HelpView.printHelp(d_gameContext.getGamePhase() );
+		return true;
+	}	
+	
 }

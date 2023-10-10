@@ -31,7 +31,7 @@ public class RouterService {
 	/**
 	 * This method will return a routerService instance and create it if the instance
 	 * is null.
-	 * @p_gameContext the game context instance
+	 * @param p_gameContext the game context instance
 	 * @return the RouterService instance
 	 */
 	public static RouterService getRouterService(GameContext p_gameContext) {
@@ -62,7 +62,7 @@ public class RouterService {
 		ControllerFactory l_controllerFactory = ControllerFactory.getControllerFactory();
 		switch(p_router.getControllerName()) {
 			case COMMON:
-				if(!getIsContainCurrentPhase( Arrays.asList(GamePhase.MAPEDITOR, GamePhase.STARTUP) ))
+				if(!getIsContainCurrentPhase( Arrays.asList(GamePhase.MAPEDITOR,GamePhase.PLAY, GamePhase.STARTUP) ))
 					break;
 				CommonController l_commonController = l_controllerFactory.getCommonController();
 				switch(p_router.getActionName()) {
@@ -72,6 +72,9 @@ public class RouterService {
 					case "help":
 						l_commonController.help();
 						break;
+					case "changephase":
+						l_commonController.changePhase(p_router.getActionParameters());
+						break;						
 				}
 				break;
 			case CONTINENT:
@@ -225,7 +228,7 @@ public class RouterService {
 		String l_firstWord = l_commandArray[0];
 		// TODO move these commands into the properties file
 		String l_complexCommand = "editcontinent,editcountry,editneighbor,gameplayer";
-		String l_simpleCommand = "loadmap,editmap,savemap,assigncountries,validatemap,showmap,help,play";
+		String l_simpleCommand = "loadmap,editmap,savemap,assigncountries,validatemap,showmap,help,play,reboot,startup,mapeditor";
 		 if(l_simpleCommand.indexOf(l_firstWord) > -1) {
 				//simple command with only one router
 				GenericView.printDebug("parseCommand: start to work on simple command: " + p_command);
@@ -305,6 +308,11 @@ public class RouterService {
 		Router l_router = null;
 		// the first element of commandArray is command
 		switch (p_commandArray[0]) {
+			case "reboot":
+			case "startup":
+			case "mapeditor":
+				l_router = new Router(ControllerName.COMMON, "changephase",p_commandArray[0]);
+				break;
 			case  "help":
 				l_router = new Router(ControllerName.COMMON, "help");
 				break;		
@@ -312,7 +320,7 @@ public class RouterService {
 				if(this.d_gameContext.getGamePhase().equals(GamePhase.MAPEDITOR))
 					l_router = new Router(ControllerName.MAP, "showmap");
 				else
-					l_router = new Router(ControllerName.STARTUP, "showmap");
+					l_router = new Router(ControllerName.GAMEPLAY, "showmap");
 				break;
 			case  "validatemap":
 				l_router =  new Router(ControllerName.MAP, "validatemap");

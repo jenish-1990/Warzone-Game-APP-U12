@@ -15,8 +15,6 @@ public class GameContext {
 	GamePhase d_gamePhase = GamePhase.MAPEDITOR;
 	private int d_orderNumberPerRound = 5;
 	
-	private boolean d_isDemoMode = true;
-	private boolean d_isDebug = false;
 
 	private Map<String, Player> d_players;
 	private Map<Integer, Country> d_countries;
@@ -27,6 +25,8 @@ public class GameContext {
 	private String d_mapFilePic;
 	private String d_mapFileMap;
 	private String d_mapFileCards;
+	
+	private WarzoneProperties d_warzoneProperties;
 	
 	/**
 	 * get map file cards
@@ -51,7 +51,8 @@ public class GameContext {
 		
 		d_players = new HashMap<String, Player>() ;
 		d_countries = new HashMap<Integer, Country>();
-		d_continents = new HashMap<Integer, Continent>();		
+		d_continents = new HashMap<Integer, Continent>();
+		d_warzoneProperties = WarzoneProperties.getWarzoneProperties();
 	}		
 	
 	/**
@@ -166,32 +167,25 @@ public class GameContext {
 	 * @return true if the current mode is demo
 	 */
 	public boolean getIsDemoMode() {
-		return d_isDemoMode;
+		return d_warzoneProperties.getIsDemoMode();
 	}
 
-	/**
-	 * This method can set current mode to demo mode
-	 * @param p_isDemoMode true if we want to set current mode as demo
-	 */
-	public void setIsDemoMode(boolean p_isDemoMode) {
-		this.d_isDemoMode = p_isDemoMode;
-	}		
 	
 	/**
 	 * This method will show current mode whether is debug mode.
 	 * @return true if the current mode is debug mode
 	 */
 	public boolean getIsDebug() {
-		return d_isDebug;
+		return d_warzoneProperties.getIsDebug();
 	}
-
+	
 	/**
-	 * This method can set current mode to debug mode
-	 * @param p_isDebug true if we want to set current mode as debug mode
+	 * This method will return Map folder.
+	 * @return  Map folder path
 	 */
-	public void setIsDebug(boolean p_isDebug) {
-		this.d_isDebug = p_isDebug;
-	}			
+	public String getMapfolder() {
+		return d_warzoneProperties.getGameMapDirectory();
+	}	
 	
 	/**
 	 * This method can provide the number of order in every round of the game.

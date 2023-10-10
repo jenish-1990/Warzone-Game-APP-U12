@@ -58,7 +58,7 @@ public class MapController {
 		p_fileName = p_fileName.trim();
 		try{
 			if(d_mapService.saveMap(p_fileName)) {
-				GenericView.printSuccess("Map was saved in :" + p_fileName + ".map" );
+				GenericView.printSuccess("Map was saved in :" + this.d_gameContext.getMapfolder() + p_fileName );
 				return true;
 			}
 			else {

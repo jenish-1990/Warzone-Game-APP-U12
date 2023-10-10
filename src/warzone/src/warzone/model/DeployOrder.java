@@ -1,5 +1,7 @@
 package warzone.model;
 
+import warzone.view.GenericView;
+
 /**
  * This class represents one deploy order of the gameplay
  */
@@ -81,7 +83,7 @@ public class DeployOrder implements Order {
 
 
 	/**
-	 * overide of the execution of the order
+	 * override of the execution of the order
 	 * @return true if successfully executed, otherwise return false
 	 */
 	@Override
@@ -94,7 +96,7 @@ public class DeployOrder implements Order {
 		if( this.d_player.getArmiesToDeploy() <  this.d_armyNumber) {
 			this.d_armyNumber = this.d_player.getArmiesToDeploy();
 		}
-				
+		GenericView.printSuccess(String.format("Succeed to deploy %s army to [%s] for player [%s]", this.getArmyNumber(), this.getCountry().getCountryName(), this.getPlayer().getName() ));
 		//move army
 		this.d_country.setArmyNumber( this.d_country.getArmyNumber() +  this.d_armyNumber );
 		this.d_player.setArmiesToDeploy(this.d_player.getArmiesToDeploy() - this.d_armyNumber);
