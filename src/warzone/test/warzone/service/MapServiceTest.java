@@ -35,13 +35,16 @@ public class MapServiceTest {
         GameContext.clear();
     }
 
+    /**
+     * test if successfully load map to edit
+     */
 	@Test
 	public void testEditMap() {
 		
 		GameContext gameContext = GameContext.getGameContext();
 		MapController mapController = new MapController(gameContext);
 		
-		mapController.editMap("europe.map");
+		assertTrue(mapController.editMap("europe.map"));
 		
 		System.out.println("Map File Name: " + gameContext.getMapFileName());
 		System.out.println("Map File Pic: " + gameContext.getMapFilePic());
