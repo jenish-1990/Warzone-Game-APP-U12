@@ -32,7 +32,7 @@ public class GameplayController {
 		HelpView.printHelp(d_gameContext.getGamePhase() );
 		
 		if( !d_gameEngine.isReadyToStart()) {
-			GenericView.printWarning("Game is not ready to start, please check the map and players.");
+			GenericView.printWarning("Game is not ready to start, please check the map， countries and players.");
 			return false;
 		}
 		else

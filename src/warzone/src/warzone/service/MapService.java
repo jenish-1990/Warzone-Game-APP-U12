@@ -116,7 +116,7 @@ public class MapService {
 		try {
 			
 			//Clear gameContext
-			d_gameContext.clear();
+			GameContext.clear();
 			
 			File mapFile = new File(mapDirectory + p_fileName);
 			

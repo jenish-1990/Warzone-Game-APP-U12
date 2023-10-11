@@ -171,7 +171,7 @@ public class Player {
 		}		
 		
 		do {
-			GenericView.println(String.format("Please input deploy command for player [%s] , there is %s army available", this.getName(), l_armyToIssue ));
+			GenericView.println(String.format("Please input deploy command for player [%s] , there is [%s] army available", this.getName(), l_armyToIssue ));
 			DeployOrder l_deployOrder;
 
 			if(!l_gameContext.getIsDemoMode()) {
@@ -182,7 +182,7 @@ public class Player {
 				if(l_deployOrder != null && this.getConqueredCountries().containsKey(l_deployOrder.getCountry().getCountryID()) 
 					&&  l_deployOrder.getArmyNumber() <= l_armyToIssue	) {					
 					l_deployOrder.setPlayer(this);
-					GenericView.printSuccess(String.format("Deploy order generated. Deploy %s army to Country [%s-%s]", l_deployOrder.getArmyNumber() , l_deployOrder.getCountry().getCountryID(), l_deployOrder.getCountry().getCountryName() ));
+					GenericView.printSuccess(String.format("Issue order of Deploying [%s] army to Country [%s-%s]", l_deployOrder.getArmyNumber() , l_deployOrder.getCountry().getCountryID(), l_deployOrder.getCountry().getCountryName() ));
 				}		
 			}
 			else {
@@ -192,7 +192,7 @@ public class Player {
 				Country l_country = d_conqueredCountries.get(l_countryKey);
 				int l_armyNumber =  CommonTool.getRandomNumber(1, l_armyToIssue);
 				l_deployOrder = new DeployOrder(this, l_country, l_armyNumber );
-				GenericView.printSuccess(String.format("Deploy order generated automatically. Deploy %s army to Country [%s]", l_armyNumber , l_country.getCountryName() ));
+				GenericView.printSuccess(String.format("Issue order of Deploying [%s] army to Country [%s]", l_armyNumber , l_country.getCountryName() ));
 			}
 			
 			if(l_deployOrder != null && l_deployOrder.getArmyNumber() > 0 && l_deployOrder.getArmyNumber() <= l_armyToIssue )

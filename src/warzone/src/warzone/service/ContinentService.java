@@ -28,11 +28,26 @@ public class ContinentService {
 	public boolean add(Continent p_continent) {
 		//0. add the item to
 		if(p_continent != null) {
-			Map<Integer,Continent> l_continents=d_gameContext.getContinents();			
-			l_continents.put(p_continent.getContinentID(), p_continent);
+			if(d_gameContext.getContinents().containsKey(p_continent.getContinentID())) {
+				Continent l_continent = d_gameContext.getContinents().get(p_continent.getContinentID());
+				l_continent.setBonusReinforcements(p_continent.getBonusReinforcements());				
+			}
+			else {				
+				Map<Integer,Continent> l_continents=d_gameContext.getContinents();			
+				l_continents.put(p_continent.getContinentID(), p_continent);
+			}
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Check if a continent id is existed
+	 * @param p_continentID given continent id
+	 * @return true if existed otherwise false
+	 */
+	public boolean isExist(int p_continentID) {
+		return d_gameContext.getContinents().containsKey(p_continentID);		
 	}
 	
 	/**

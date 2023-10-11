@@ -32,7 +32,7 @@ public class HelpView {
     public static void printStatus(GameContext p_gameContext) {
     	System.out.print(String.format("[Status] Game Phase:%s | Demo Mode:%s | Debug Mode:%s | ", 
     			p_gameContext.getGamePhase(), p_gameContext.getIsDemoMode(), p_gameContext.getIsDebug()));
-    	System.out.println(String.format("Player:%s | Continent:%s | Country:%s | Map:",
+    	System.out.println(String.format("Player:%s | Continent:%s | Country:%s",
     			p_gameContext.getPlayers().size(), p_gameContext.getContinents().size(), p_gameContext.getCountries().size(), p_gameContext.getMapFileName()));
     }
     
@@ -42,7 +42,7 @@ public class HelpView {
      * @param p_gamePhase the current phase of the game.
      */
     public static void printHelp(GamePhase p_gamePhase ) {
-    	System.out.println(String.format("***********************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
+    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
     	System.out.println("Commands available for current game phase: " + p_gamePhase);
     	switch(p_gamePhase) {
 	    	case MAPEDITOR:
@@ -74,10 +74,12 @@ public class HelpView {
 	    				+ " You are in game PLAYING phase, you can deploy armies. \n"
 	    				+ " -  deploy countryID num\n"
 	    				+ " \n"
+	    				+ " -  showmap \n"
 	    				+ " -  mapeditor \n"
+	    				+ " -  play \n"
 	    				+ " -  startup \n"	    				);
 	    		break;
     	}
-    	System.out.println(String.format("***********************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
+    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
     }
 }

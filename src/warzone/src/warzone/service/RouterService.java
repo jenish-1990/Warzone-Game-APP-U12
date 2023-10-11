@@ -141,7 +141,7 @@ public class RouterService {
 				}
 				break;
 			case GAMEPLAY:
-				if(!getIsContainCurrentPhase( Arrays.asList(GamePhase.STARTUP) ))
+				if(!getIsContainCurrentPhase( Arrays.asList(GamePhase.PLAY,GamePhase.STARTUP) ))
 					break;
 				GameplayController l_gameplayController = l_controllerFactory.getGameplayController();
 
@@ -225,10 +225,10 @@ public class RouterService {
 		// split command with any number of whitespace
 		String[] l_commandArray = p_command.split("\\s+");
 		
-		String l_firstWord = l_commandArray[0];
+		String l_firstWord = "," + l_commandArray[0] + ",";
 		// TODO move these commands into the properties file
-		String l_complexCommand = "editcontinent,editcountry,editneighbor,gameplayer";
-		String l_simpleCommand = "loadmap,editmap,savemap,assigncountries,validatemap,showmap,help,play,reboot,startup,mapeditor";
+		String l_complexCommand = ",editcontinent,editcountry,editneighbor,gameplayer,";
+		String l_simpleCommand = ",loadmap,editmap,savemap,assigncountries,validatemap,showmap,help,play,reboot,startup,mapeditor,";
 		 if(l_simpleCommand.indexOf(l_firstWord) > -1) {
 				//simple command with only one router
 				GenericView.printDebug("parseCommand: start to work on simple command: " + p_command);

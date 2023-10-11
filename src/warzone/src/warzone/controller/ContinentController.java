@@ -58,6 +58,7 @@ public class ContinentController {
 	 * @return true if successfully add the continent, otherwise return false
 	 */
 	public boolean addContinent(int p_continentID, int p_bonusReinforcements) {
+				
 		//1. create a new contient instance
 		Continent l_Continent = new Continent(p_continentID, "CONTINENT-"+p_continentID);
 		l_Continent.setBonusReinforcements(p_bonusReinforcements);
