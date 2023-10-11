@@ -88,8 +88,12 @@ public class GameEngine {
 		
 		if(! isReadyToStart())
 			return false;
-		
-		startTurn();
+		if(this.d_gameContext.getIsDemoMode())
+			startTurn();
+		else {
+			while(!isGameEnded())
+				startTurn();
+		}
 		return true;		
 	}
 	
