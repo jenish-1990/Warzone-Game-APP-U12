@@ -24,6 +24,7 @@ public class Continent {
 		d_continentID = p_continentID;
 		d_continentName = p_continentName;
 		d_countries = new HashMap<Integer, Country>();
+		d_bonusReinforcements = 0;
 	}
 
 	/**

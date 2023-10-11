@@ -93,8 +93,8 @@ public class StartupService {
 		try {
 			
 			//Clear gameContext
-			d_gameContext.getContinents().clear();
-			d_gameContext.getCountries().clear();
+			d_gameContext.clear();
+
 		
 			File mapFile = new File(mapDirectory + p_fileName);
 			
@@ -156,8 +156,12 @@ public class StartupService {
 					processingContinents = false;
 					processingCountries = false;
 					processingBorders = true;
-					
-					line = scanner.nextLine();
+
+					if(!scanner.hasNextLine())
+						processingBorders = false;
+					else{
+						line = scanner.nextLine();
+					}
 				}
 				
 				if(processingFiles) {
@@ -271,8 +275,9 @@ public class StartupService {
 	 */
 	public boolean assignCountries() {
 
-		//Make sure there are enough countries to distribute between all the players
-		if(d_gameContext.getPlayers().size() > d_gameContext.getCountries().size()) {			
+		//Make sure there are more than 1 player
+		//and there are enough countries to distribute between all the players
+		if( d_gameContext.getPlayers().size() < 2 || d_gameContext.getPlayers().size() > d_gameContext.getCountries().size() ) {
 			return false;
 		}
 		//reset the countries list and for each player.
