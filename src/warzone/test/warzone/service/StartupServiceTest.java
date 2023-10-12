@@ -1,12 +1,17 @@
 package warzone.service;
 
 import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
+import warzone.controller.MapController;
 import warzone.controller.StartupController;
+import warzone.model.Continent;
+import warzone.model.Country;
 import warzone.model.GameContext;
 import warzone.model.Player;
 import warzone.model.WarzoneProperties;
@@ -170,11 +175,11 @@ public class StartupServiceTest {
 		d_startupController = new StartupController(d_gameContext);
 		d_startupController.loadMap("europe.map");
 		
-		Player l_player1 = new Player("player1");
-		l_player1.assignReinforcements(d_gameContext);
-		GenericView.printDebug("Total reinforcements assigned: " + l_player1.getArmiesToDeploy());
+		Player player1 = new Player("player1");
+		player1.assignReinforcements(d_gameContext);
+		GenericView.printDebug("Total reinforcements assigned: " + player1.getArmiesToDeploy());
 		
-		assertTrue(l_player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound());
+		assertTrue(player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound());
 	}
 	
 	/**
@@ -235,11 +240,11 @@ public class StartupServiceTest {
 		d_startupController = new StartupController(d_gameContext);
 		d_startupController.loadMap("europe.map");
 		
-		Player l_player1 = new Player("player1");
-		l_player1.assignReinforcements(d_gameContext);
-		GenericView.printDebug("Initial reinforcements assigned: " + l_player1.getArmiesToDeploy());
+		Player player1 = new Player("player1");
+		player1.assignReinforcements(d_gameContext);
+		GenericView.printDebug("Initial reinforcements assigned: " + player1.getArmiesToDeploy());
 		
-		assertTrue(l_player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound());
+		assertTrue(player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound());
 		
 		/* Bonus: 4 armies
 		 * 8 Denmark 2 275 76
@@ -252,16 +257,16 @@ public class StartupServiceTest {
 		//Assign the player all the countries from continentID:2
 		d_gameContext.getContinents().get(l_continentID).getCountries().forEach(
 				
-			(l_countryID, l_country) -> {
+			(countryID, country) -> {
 				
-				l_player1.getConqueredCountries().put(l_countryID, l_country);
+				player1.getConqueredCountries().put(countryID, country);
 			}
 		);
 		
-		l_player1.assignReinforcements(d_gameContext);
+		player1.assignReinforcements(d_gameContext);
 		
-		GenericView.printDebug("Total reinforcements assigned: " + l_player1.getArmiesToDeploy());
+		GenericView.printDebug("Total reinforcements assigned: " + player1.getArmiesToDeploy());
 		
-		assertTrue(l_player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound() + d_gameContext.getContinents().get(l_continentID).getBonusReinforcements());
+		assertTrue(player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound() + d_gameContext.getContinents().get(l_continentID).getBonusReinforcements());
 	}
 }

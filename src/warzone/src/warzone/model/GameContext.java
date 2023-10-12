@@ -71,7 +71,21 @@ public class GameContext {
 	 * clear the game context
 	 */
 	public static void clear(){
-		GAME_CONTEXT = new GameContext();		
+		getGameContext().reset();
+	}
+	
+	/**
+	 * clear the game context
+	 */
+	public void reset(){
+		d_players = new HashMap<String, Player>() ;
+		d_countries = new HashMap<Integer, Country>();
+		d_continents = new HashMap<Integer, Continent>();
+		d_warzoneProperties = WarzoneProperties.getWarzoneProperties();
+		d_mapFileName = "";
+		d_mapFilePic = "";
+		d_mapFileMap = "";
+		d_mapFileCards = "";
 	}
 	
 	/**
