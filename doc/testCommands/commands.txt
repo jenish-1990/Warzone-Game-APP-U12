@@ -1,3 +1,37 @@
+editmap hello.map
+editcontinent -add 1 5 
+editcontinent -add 2 7 
+editcontinent -add 3 6 
+editcontinent -remove 3
+showmap
+editcountry -add 1 2 -add 2 2 -add 3 2 -add 4 3 -add 5 3 -add 6 3 
+editcountry -remove 6
+showmap
+editneighbor -add 1 2 -add 2 1 -add 3 1 -add 4 2 -add 5 2 -add 6 2 -add 5 2 -add 5 3 -add 3 5
+editneighbor -remove 5 2
+editneighbor -add 1 3 -add 4 5 -add 5 4 -add 2 5 
+
+showmap
+ 
+ gameplayer -add Mike -add Rik -add jack
+  gameplayer -remove jack
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 loadmap europe.map
 editcountry -add 25 4
 showmap

@@ -21,10 +21,10 @@ import org.junit.Test;
 public class PlayerTest {
     
     /**
-     * make sure that player cannot deploy more armies that there is in their reinforcement pool
+     * make sure that player cannot deploy more armies that exceed their reinforcement pool
      */
     @Test
-    public void excuteOrderTest1() {
+    public void willNotDeployArmyExceedPool() {
     	//arrange
     	Player l_player = new Player("P1");
     	l_player.setArmiesToDeploy(10);
@@ -46,7 +46,7 @@ public class PlayerTest {
      * make sure that player deploy the same amount of army in the deploy order
      */
     @Test
-    public void excuteOrderTest2() {
+    public void willDeploySameArmyAsPool() {
     	//arrange
     	Player l_player = new Player("P1");
     	l_player.setArmiesToDeploy(5);
@@ -68,7 +68,7 @@ public class PlayerTest {
      * make sure that player can not deploy the army to a country which the player does not own.
      */
     @Test
-    public void excuteOrderTest3() {
+    public void willNotDeployToOtherCountry() {
     	//arrange
     	Player l_player = new Player("P1");
     	l_player.setArmiesToDeploy(5);
@@ -88,7 +88,7 @@ public class PlayerTest {
      * check if player can deploy a negative number of army to a country
      */
     @Test
-    public void excuteOrderTest4() {
+    public void willNotDeployNegativeArmy() {
     	//arrange
     	Player l_player = new Player("P1");
     	l_player.setArmiesToDeploy(5);
