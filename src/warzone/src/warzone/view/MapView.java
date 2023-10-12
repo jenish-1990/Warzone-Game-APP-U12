@@ -40,8 +40,8 @@ public class MapView {
                 for (Country l_country : l_continent.getCountries().values()) {
                 	l_countryKeys.remove(l_country.getCountryID());
                     System.out.println(String.format("%22s", l_country.getCountryID()) + " " + l_country.getCountryName());
-                    for (Country _nCountry : l_country.getNeighbors().values())
-                        System.out.println(String.format("%35s", _nCountry.getCountryID()) + " " +_nCountry.getCountryName());
+                    for (Country l_nCountry : l_country.getNeighbors().values())
+                        System.out.println(String.format("%35s", l_nCountry.getCountryID()) + " " +l_nCountry.getCountryName());
                 }
         }
         //printout Orphans Country
@@ -50,8 +50,8 @@ public class MapView {
         	for( int l_countryKey : l_countryKeys) {
         		Country l_country = p_gameContext.getCountries().get(l_countryKey);
         		 System.out.println(String.format("%22s", l_country.getCountryID()) + " " + l_country.getCountryName());
-                 for (Country _nCountry : l_country.getNeighbors().values())
-                     System.out.println(String.format("%35s", _nCountry.getCountryID()) + " " +_nCountry.getCountryName());
+                 for (Country l_nCountry : l_country.getNeighbors().values())
+                     System.out.println(String.format("%35s", l_nCountry.getCountryID()) + " " +l_nCountry.getCountryName());
         	}        	
         }        
     }
@@ -69,14 +69,15 @@ public class MapView {
         if( p_continents.isEmpty())
             GenericView.println("No continent exist.");
 
-        for (Continent _continent : p_continents.values()) {
-            System.out.println(String.format("%-2s", _continent.getContinentID()) + _continent.getContinentName() + "[" + _continent.getBonusReinforcements() + "]");
+        for (Continent l_continent : p_continents.values()) {
+            System.out.println(String.format("%-2s", l_continent.getContinentID()) + l_continent.getContinentName() + "[" + l_continent.getBonusReinforcements() + "]");
 
-            for (Country _country : _continent.getCountries().values()) {
-                System.out.println(String.format("%22s", _country.getCountryID()) + " "
-                        + String.format("%-20s", _country.getCountryName()) + " "
-                        + String.format("%-12s", (_country.getOwner()==null ? "": _country.getOwner().getName()))
-                        + _country.getArmyNumber());
+            for (Country l_country : l_continent.getCountries().values()) {
+                System.out.println(String.format("%22s", l_country.getCountryID()) + " "
+                        + String.format("%-20s", l_country.getCountryName()) + " "
+                        + String.format("%-12s", (l_country.getOwner()==null ? "": l_country.getOwner().getName()))
+                        + l_country.getArmyNumber());
+
             }
         }
     }

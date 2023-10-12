@@ -1,10 +1,6 @@
 package warzone.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
 
 import warzone.model.*;
 import warzone.view.GenericView;
@@ -116,7 +112,7 @@ public class GameEngine {
 		GenericView.println("Start to issue orders........");
 		issueOrders();
 		GenericView.println("Start to execute orders........");
-		executeOrders();		
+		executeOrders();
 	}
 	
 	/**
@@ -143,10 +139,10 @@ public class GameEngine {
 	 * according to the Warzone rules.
 	 */
 	private void assignReinforcements() {
-		d_gameContext.getPlayers().forEach((k, player) -> {
-			if(player.getIsAlive()) {
-				GenericView.println("Start to assign reinforcements for player ["+ player.getName() +"]");
-				player.assignReinforcements(d_gameContext);
+		d_gameContext.getPlayers().forEach((l_k, l_player) -> {
+			if(l_player.getIsAlive()) {
+				GenericView.println("Start to assign reinforcements for player ["+ l_player.getName() +"]");
+				l_player.assignReinforcements(d_gameContext);
 			}
 		});
 	}
@@ -158,11 +154,10 @@ public class GameEngine {
 	 * have placed all their reinforcement armies on the map.
 	 */
 	private void issueOrders() {
-
-		d_gameContext.getPlayers().forEach((k, player) -> {
-			if(player.getIsAlive()) {
-				GenericView.println("Start to issue orders for player ["+ player.getName() +"]");
-				player.issue_order();
+		d_gameContext.getPlayers().forEach((l_k, l_player) -> {
+			if(l_player.getIsAlive()) {
+				GenericView.println("Start to issue orders for player ["+ l_player.getName() +"]");
+				l_player.issue_order();
 			}
 		});			
 	}
@@ -191,17 +186,16 @@ public class GameEngine {
 		int l_roundIndex = 1;
 		while(l_roundIndex <= l_maxOrderNumber ){
 			GenericView.println("Start to execute round [" + l_roundIndex + "] of orders");
-			d_gameContext.getPlayers().forEach((k, player) -> {
-				if(player.getIsAlive()) {
-					Order l_order = player.next_order();
-					if(l_order != null) {
+			d_gameContext.getPlayers().forEach((l_k, l_player) -> {
+				if(l_player.getIsAlive()) {
+					Order l_order = l_player.next_order();
+					if(l_order != null){
 						l_order.execute();
 						MapView.printMapWithArmies(d_gameContext.getContinents());
 					}
 				}				
 			});
 			l_roundIndex ++;			
-		}	
-		
+		}
 	}	 
 }
