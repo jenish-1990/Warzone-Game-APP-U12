@@ -1,9 +1,14 @@
 package warzone.service;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import warzone.model.*;
+import warzone.state.Startup;
+import warzone.state.MapEditor;
+import warzone.state.Phase;
 import warzone.view.GenericView;
+import warzone.view.HelpView;
 import warzone.view.MapView;
 
 /**
@@ -13,6 +18,21 @@ import warzone.view.MapView;
  * 
  */
 public class GameEngine {
+	
+	/**
+	 * This method is the entrance of the game. It will initiate the game context and use
+	 * command scanner to get the command of the player.
+	 * @param args the parameters for Java Virtual Machine
+	 * @throws IOException the exception of creating or deleting files
+	 */
+	public static void main(String args[]) {
+		GameContext l_gameContext = GameContext.getGameContext();
+		GameEngine l_gameEngine = getGameEngine(l_gameContext);
+		l_gameEngine.setPhase(new MapEditor(l_gameEngine));
+		l_gameEngine.start();
+	}
+	
+	
 	private GameContext d_gameContext;	
 	private static GameEngine GAME_ENGINE;
 
@@ -36,25 +56,55 @@ public class GameEngine {
 			GAME_ENGINE = new GameEngine(p_gameContext);
 		return GAME_ENGINE;
 	}	
+	
 
 	/**
-	 * This method is the entrance of the game. It will initiate the game context and use
-	 * command scanner to get the command of the player.
-	 * @param args the parameters for Java Virtual Machine
-	 * @throws IOException the exception of creating or deleting files
+	 * State object of the GameEngine 
 	 */
-	public static void main(String[] args) throws IOException {
-
-		GameContext l_gameContext = GameContext.getGameContext();
-		RouterService l_routerService =  RouterService.getRouterService(l_gameContext);
-		CommandService l_commandService =  CommandService.getCommandService(l_gameContext);
-		
+	private Phase d_gamePhase ;
+	
+	/**
+	 * get  State of the Game 
+	 * @return State of the Game 
+	 */
+	public Phase getPhase() {
+		return d_gamePhase;
+	}
+	
+	/**
+	 * get  State of the Game Context
+	 * @return State of the Game  Context
+	 */
+	public GameContext getGameContext() {
+		return d_gameContext;
+	}	
+	
+	/**
+	 * Method that allows the GameEngine object to change its state.  
+	 * @param p_phase new state to be set for the GameEngine object.
+	 */
+	public void setPhase(Phase p_phase) {
+		d_gamePhase = p_phase;
+		System.out.println("new phase: " + p_phase.getClass().getSimpleName());
+	}
+	
+	/**
+	 * This method will ask the user: 
+	 * 1. What part of the game they want to start with (edit map or play game). 
+	 *      Depending on the choice, the state will be set to a different object, 
+	 *      which will set different behavior. 
+	 * 2. What command they want to execute from the game. 
+	 *      Depending on the state of the GameEngine, each command will potentially 
+	 *      have a different behavior. 
+	 */
+	public void start() {
+		RouterService l_routerService =  RouterService.getRouterService(this);
+		CommandService l_commandService =  CommandService.getCommandService(this );		
 		
 		//1 welcome
-		Router l_welcomeRouter = new Router(ControllerName.COMMON, "welcome");
-		l_routerService.route(l_welcomeRouter);
+		HelpView.printWelcome();
 		
-		l_commandService.commandScanner(l_routerService);
+		l_commandService.commandScanner(l_routerService);		
 	}	
 	
 	/**	
@@ -74,13 +124,6 @@ public class GameEngine {
 			
 		}
 		return true;
-	}
-	/**
-	 * change the current game phase
-	 * @param p_gamePhase the given game phase
-	 */
-	public void setGamePhase(GamePhase p_gamePhase) {
-		d_gameContext.setGamePhase(p_gamePhase);		
 	}
 	
 	/**

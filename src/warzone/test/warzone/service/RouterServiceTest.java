@@ -41,7 +41,7 @@ public class RouterServiceTest {
 	@Before
 	public void beforeEachClass() {
 		GameContext.clear();
-		d_routerService = RouterService.getRouterService( GameContext.getGameContext() );
+		d_routerService = RouterService.getRouterService( GameEngine.getGameEngine( GameContext.getGameContext() ));
 		d_routerList = new LinkedList<Router>();
 	}
 

@@ -27,9 +27,9 @@ public class GameplayController {
 	 */
 	public boolean play() {
 		
-		this.d_gameContext.setGamePhase(GamePhase.PLAY);
-		GenericView.printSuccess("Warzone is in the phase :" + d_gameContext.getGamePhase());
-		HelpView.printHelp(d_gameContext.getGamePhase() );
+		//this.d_gameContext.setGamePhase(GamePhase.PLAY);
+		GenericView.printSuccess("Warzone is in the phase :" + d_gameEngine.getPhase());
+		HelpView.printHelp(d_gameEngine.getPhase() );
 		//check if gameengine is ready to start
 		if( !d_gameEngine.isReadyToStart()) {
 			GenericView.printWarning("Game is not ready to start, please check the map， countries and players.");

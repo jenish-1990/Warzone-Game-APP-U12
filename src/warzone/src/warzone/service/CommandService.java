@@ -15,13 +15,14 @@ public class CommandService {
 	private static CommandService COMMAND_SERVICE;
 	
 	private GameContext d_gameContext;
+	private GameEngine d_gameEngine;	
 
 	/**
 	 * The constructor of the class.
-	 * @param p_gameContext initiating the game context of the current object
+	 * @param p_gameEngine initiating the GameEngine of the current object
 	 */
-	private CommandService(GameContext p_gameContext) {
-		d_gameContext = p_gameContext;
+	private CommandService(GameEngine p_gameEngine) {
+		d_gameEngine = p_gameEngine;
 	}	
 	
 	/**
@@ -29,9 +30,9 @@ public class CommandService {
 	 * @param p_gameContext the needed game context
 	 * @return CommandService object
 	 */
-	public static CommandService getCommandService(GameContext p_gameContext) {
+	public static CommandService getCommandService(GameEngine p_gameEngine) {
 		if( COMMAND_SERVICE == null)
-			COMMAND_SERVICE = new CommandService(p_gameContext);
+			COMMAND_SERVICE = new CommandService(p_gameEngine);
 		return COMMAND_SERVICE;
 	}
 
@@ -48,7 +49,7 @@ public class CommandService {
 		List<Router> l_routers;
 		do {
 			GenericView.println("");
-			HelpView.printStatus(d_gameContext);
+			HelpView.printStatus(d_gameEngine);
 			//render the help
 			GenericView.println("Please input the command, type [help] for help, type [quit] to quit the game.");
 			
