@@ -1,17 +1,21 @@
-## Warzone
-SOEN 6441 Group Project
+# Coding conventions
 
-Group members : Qinhui, Sijie, Derek, Zexin, Amy
+## Naming conventions
 
-type of project : command line application
+* class names in CamelCase that starts with a capital letter
+* data members start with d_
+* method parameters start with p_
+* local variables start with l_
+* global variables in capital letters
+* static members start with a capital letter, non-static members start with a lower case letter
+Code layout
+* consistent layout throughout code (use an IDE auto-formatter)
+## Commenting convention
 
-default meeting schedule : Tuesday 8:30 p.m. est
-
-IDE : eclipse
-
-environment : JDK8
-
-
-### useful link: 
-
-map files: http://domination.sourceforge.net/getmaps.shtml
+* javadoc comments for every class and method
+* long methods (more than 10 lines) are documented with comments for procedural steps
+* no commented-out code
+## Project structure
+* one folder for every module in the high-level design
+* tests are in a separate folder that has the exact same structure as the code folder
+* 1-1 relationship between tested classes and test classes
