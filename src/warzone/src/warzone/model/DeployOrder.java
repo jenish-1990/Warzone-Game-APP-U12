@@ -87,39 +87,23 @@ public class DeployOrder implements Order {
 
 	/**
 	 * override of the execution of the order
+	 * @return true if successfully executed, otherwise return false
 	 */
 	@Override
-	public void execute() {
-		if(!valid()) return;
-		this.d_armyNumber = this.d_player.getArmiesToDeploy();
-		//print success information
-		GenericView.printSuccess("Success to deploy army.");
-		printOrder();
+	public boolean execute() {
+		//check
+		if(this.d_country.getOwner()== null || !this.d_country.getOwner().equals(this.d_player) || this.d_armyNumber <0 ) {
+			return false;
+		} 
+		// if the remaining army is less than deploy number:
+		if( this.d_player.getArmiesToDeploy() <  this.d_armyNumber) {
+			this.d_armyNumber = this.d_player.getArmiesToDeploy();
+		}
+		GenericView.printSuccess(String.format("Succeed to deploy [%s] army to [%s] for player [%s]", this.getArmyNumber(), this.getCountry().getCountryName(), this.getPlayer().getName() ));
 		//move army
 		this.d_country.setArmyNumber( this.d_country.getArmyNumber() +  this.d_armyNumber );
 		this.d_player.setArmiesToDeploy(this.d_player.getArmiesToDeploy() - this.d_armyNumber);
-	}
-
-	/**
-	 * override of the valid of the order
-	 * @return true if valid
-	 */
-	@Override
-	public boolean valid(){
-		if(this.d_country.getOwner()== null || !this.d_country.getOwner().equals(this.d_player) || this.d_armyNumber <0 )
-			return false;
-		if (this.d_player.getArmiesToDeploy() >  this.d_armyNumber)
-			return false;
-
+		
 		return true;
-	}
-
-	/**
-	 * override of print the order
-	 */
-	@Override
-	public void printOrder(){
-		GenericView.println("Deploy order issued by player " + this.d_player.getName());
-		GenericView.println("Deploy " + this.d_armyNumber + " to " + this.d_country.getCountryName());
 	}
 }
