@@ -78,7 +78,7 @@ public class PlayerTest {
     	Order l_order = new DeployOrder(l_player, l_country , 5); 
     	
     	//act
-    	assertEquals(l_order.execute(), false);
+    	assertEquals(l_order.valid(), false);
     	
     	//assert
     	assertEquals(l_country.getArmyNumber(),0 );
@@ -100,11 +100,34 @@ public class PlayerTest {
     	Order l_order = new DeployOrder(l_player, l_country , -5); 
     	
     	//act
-    	assertEquals(l_order.execute(), false);
+    	assertEquals(l_order.valid(), false);
     	
     	//assert
     	assertEquals(l_country.getArmyNumber(),0 );
     }
-    
+
+	/**
+	 * check if conventOrder can generate the deploy order correctly
+	 */
+	@Test
+	public void willGenerateDeployOrder() {
+    	//arrange
+		Player l_player = new Player("P1");
+		l_player.setArmiesToDeploy(5);
+
+		Country l_country = new Country(1,"C1",0,0,null);
+		l_country.setOwner(l_player);
+		l_player.getConqueredCountries().put(l_country.getCountryID(), l_country);
+		l_player.l_armyToIssue = 5;
+		l_player.l_armyHasIssued = 0;
+
+		//act
+		Order l_order = l_player.conventOrder("Deploy 1 2");
+		((DeployOrder)l_order).printOrder();
+
+		//assert
+		assertEquals(((DeployOrder)l_order).getArmyNumber(), 2);
+		assertEquals(((DeployOrder)l_order).getCountry(), l_country);
+	}
     
 }
