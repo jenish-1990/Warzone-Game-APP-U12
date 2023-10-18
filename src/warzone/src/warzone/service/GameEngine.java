@@ -1,7 +1,9 @@
 package warzone.service;
 
+import java.awt.*;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
+import java.util.List;
 
 import warzone.model.*;
 import warzone.state.Startup;
@@ -197,12 +199,24 @@ public class GameEngine {
 	 * have placed all their reinforcement armies on the map.
 	 */
 	private void issueOrders() {
+		//local list of player
+		List<Player> l_playersList = new ArrayList<>();
 		d_gameContext.getPlayers().forEach((l_k, l_player) -> {
-			if(l_player.getIsAlive()) {
-				GenericView.println("Start to issue orders for player ["+ l_player.getName() +"]");
-				l_player.issue_order();
+			l_player.setHasFinisedIssueOrder(false);
+			l_playersList.add(l_player);
+		});
+
+		while(l_playersList.size() > 0){
+			for(Player l_player : l_playersList){
+				if(l_player.getIsAlive()) {
+					GenericView.println("Start to issue orders for player ["+ l_player.getName() +"]");
+					l_player.issue_order();
+				}
+				//if player finished, remove from the list
+				if(l_player.getHasFinisedIssueOrder())
+					l_playersList.remove(l_player);
 			}
-		});			
+		}
 	}
 	
 	
