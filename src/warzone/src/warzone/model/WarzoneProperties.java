@@ -55,11 +55,9 @@ public class WarzoneProperties {
 		//Run Configurations
 		d_isDemoMode = Boolean.parseBoolean(d_properties.getProperty("isDemoMode"));
 		d_isDebug = Boolean.parseBoolean(d_properties.getProperty("isDebug"));
-		d_isLog = Boolean.parseBoolean(d_properties.getProperty("isLog"));
 		
 		//Gameplay Settings
 		d_gameMapDirectory = d_properties.getProperty("gameMapDirectory");
-		d_logDirectory = d_properties.getProperty("logDirectory");
 		d_minimumReinforcementsEachRound = Integer.parseInt(d_properties.getProperty("minimumReinforcementsEachRound"));
 		d_minimumCountriesPerReinforcementBonus = Integer.parseInt(d_properties.getProperty("minimumCountriesPerReinforcementBonus"));
 	}
@@ -78,13 +76,6 @@ public class WarzoneProperties {
 	 * @return true if the current mode is debug mode
 	 */
 	public boolean getIsDebug() { return d_isDebug; }
-	
-	private boolean d_isLog;
-	/**
-	 * This method will show whether needs logs
-	 * @return true if current game needs logs
-	 */
-	public boolean getIsLog() { return d_isLog; }
 		
 	//Gameplay Settings
 	private String d_gameMapDirectory;
@@ -93,13 +84,6 @@ public class WarzoneProperties {
 	 * @return all properties in the property file
 	 */
 	public String getGameMapDirectory() { return d_gameMapDirectory; }
-	
-	private String d_logDirectory;
-	/**
-	 * This method will return the log directory.
-	 * @return the log directory
-	 */
-	public String getLogDirectory() { return d_logDirectory; }
 		
 	private int d_minimumReinforcementsEachRound;
 	public int getMinimumReinforcementsEachRound() { return d_minimumReinforcementsEachRound; }

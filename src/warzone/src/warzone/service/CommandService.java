@@ -27,7 +27,7 @@ public class CommandService {
 	
 	/**
 	 * This method will return command service object from game context.
-	 * @param p_gameContext the needed game context
+	 * @param p_gameEngine the game engine
 	 * @return CommandService object
 	 */
 	public static CommandService getCommandService(GameEngine p_gameEngine) {

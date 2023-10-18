@@ -1,9 +1,10 @@
 package warzone.state;
 import warzone.service.*;
-import warzone.model.*;
-import warzone.view.*;
 
 import java.io.IOException;
+
+import warzone.model.*;
+import warzone.view.*;
 
 
 /**
@@ -29,7 +30,9 @@ public abstract class Phase {
 	 */
 	GameEngine d_gameEngine;
 	
-	protected GameContext d_gameContext;
+	protected GamePhase d_gamePhase;
+	
+	protected GameContext d_gameContext;	
 
 	/**
 	 * Constructor for Phase
@@ -76,9 +79,11 @@ public abstract class Phase {
 	abstract public void loadMap(String p_fileName);	
 	abstract public void populatecountries();
 	
-	abstract public void reinforcement(); 
-	abstract public void issueOrder();
-	abstract public void executeOrder();
+//	abstract public void reinforcement(); 
+//	abstract public void issueOrder();
+//	abstract public void executeOrder();
+	
+
 	
 	
 
@@ -91,4 +96,20 @@ public abstract class Phase {
 	public void printInvalidCommandMessage() {
 		System.out.println("Invalid command in state " + this.getClass().getSimpleName() );
 	}
+	
+	/**
+	 * show help for each phase
+	 */
+	public void help() {
+		HelpView.printHelp(this.d_gamePhase);
+	}
+	
+	/**
+	 * get current gamephase
+	 * @return current gamephase
+	 */
+	public GamePhase getGamePhase() {
+		return this.d_gamePhase;
+	}
+
 }

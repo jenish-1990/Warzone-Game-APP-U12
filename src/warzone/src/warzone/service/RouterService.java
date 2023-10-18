@@ -110,14 +110,17 @@ public class RouterService {
 			case "populatecountries":
 				d_gamePhase.populatecountries();
 				break;
-			case "reinforcement":
-				d_gamePhase.reinforcement();
-				break;
-			case "issueOrder":
-				d_gamePhase.issueOrder();
-				break;
-			case "executeOrder":
-				d_gamePhase.executeOrder();
+//			case "reinforcement":
+//				d_gamePhase.reinforcement();
+//				break;
+//			case "issueOrder":
+//				d_gamePhase.issueOrder();
+//				break;
+//			case "executeOrder":
+//				d_gamePhase.executeOrder();
+//				break;
+			case "help":
+				d_gamePhase.help();
 				break;
 		}		
 	}
