@@ -158,6 +158,8 @@ public class GameEngine {
 		issueOrders();
 		GenericView.println("Start to execute orders........");
 		executeOrders();
+		GenericView.println("Start to assign cards randomly........");
+		assignCards();
 	}
 	
 	/**
@@ -271,5 +273,43 @@ public class GameEngine {
 			});
 			l_roundIndex ++;			
 		}
-	}	 
+	}	
+	
+	/**
+	 * This method will assign a random card to each player that conquered a country this turn
+	 */
+	private void assignCards() {
+
+		d_gameContext.getPlayers().forEach((l_playerID, l_player) -> {
+
+			if(l_player.getConqueredACountryThisTurn()) {
+
+				Random l_randomNumberGenerator = new Random();
+				int l_randomNumber = l_randomNumberGenerator.nextInt(4);
+
+				if(l_randomNumber == 0) {
+
+					l_player.getCards().add(Card.BOMB);
+					GenericView.println(l_player.getName() + " was assigned a BOMB card.");
+				}
+				else if(l_randomNumber == 1) {
+
+					l_player.getCards().add(Card.BLOCKADE);
+					GenericView.println(l_player.getName() + " was assigned a BLOCKADE card.");
+				} 
+				else if(l_randomNumber == 2) {
+
+					l_player.getCards().add(Card.AIRLIFT);
+					GenericView.println(l_player.getName() + " was assigned an AIRLIFT card.");
+				}
+				else if(l_randomNumber == 3) {
+
+					l_player.getCards().add(Card.NEGOTIATE);
+					GenericView.println(l_player.getName() + " was assigned a NEGOTIATE card.");
+				}
+
+				l_player.setConqueredACountryThisTurn(false);
+			}
+		});
+	}
 }
