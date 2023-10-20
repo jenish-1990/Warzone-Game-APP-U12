@@ -23,21 +23,22 @@ public class LogService implements Observer{
 	@Override
 	public void update(Observable p_observable) {
 		// TODO Auto-generated method stub
-		StringBuilder l_sb = new StringBuilder();
-		l_sb.append("[ ");
-		l_sb.append(((LogEntryBuffer) p_observable).getResult());
-		l_sb.append(" ] ");
-		l_sb.append(((LogEntryBuffer) p_observable).getTime());
-		l_sb.append(", phase: ");
-		l_sb.append(((LogEntryBuffer) p_observable).getPhase());
-		l_sb.append(", order: ");
-		l_sb.append(((LogEntryBuffer) p_observable).getOrder());
-		l_sb.append(", message: ");
-		l_sb.append(((LogEntryBuffer) p_observable).getMessage());
-		System.out.println(l_sb.toString());
+//		StringBuilder l_sb = new StringBuilder();
+//		l_sb.append("[ ");
+//		l_sb.append(((LogEntryBuffer) p_observable).getResult());
+//		l_sb.append(" ] ");
+//		l_sb.append(((LogEntryBuffer) p_observable).getTime());
+//		l_sb.append(", phase: ");
+//		l_sb.append(((LogEntryBuffer) p_observable).getPhase());
+//		l_sb.append(", order: ");
+//		l_sb.append(((LogEntryBuffer) p_observable).getOrder());
+//		l_sb.append(", message: ");
+//		l_sb.append(((LogEntryBuffer) p_observable).getMessage());
+		String l_log = p_observable.toString();
+		System.out.println(l_log);
 		
 		if (GameContext.getGameContext().getIsLog()) {
-			write2LogFile(l_sb.toString());
+			write2LogFile(l_log);
 		}
 	}
 	

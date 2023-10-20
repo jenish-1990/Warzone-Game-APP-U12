@@ -11,21 +11,25 @@ public class Router {
 	 * @param p_controllerName the name of controller
 	 * @param p_actionName the action of the controller, such as 'add' and 'remove'
 	 * @param p_actionParameters the parameters of action parsed by the command parser
+	 * @param p_command the command for this action
 	 */
-	public Router(ControllerName p_controllerName, String p_actionName, String p_actionParameters) {
+	public Router(ControllerName p_controllerName, String p_actionName, String p_actionParameters, String p_command) {
 		this.d_controllerName = p_controllerName;
 		this.d_actionName = p_actionName;
 		this.d_actionParameters = p_actionParameters;
+		this.d_command = p_command;
 	}
 	
 	/**
 	 * This constructor can initiate the Router without parameters
 	 * @param p_controllerName the name of controller
 	 * @param p_actionName the action of the controller
+	 * @param p_command the command for this action
 	 */
-	public Router(ControllerName p_controllerName, String p_actionName) {
+	public Router(ControllerName p_controllerName, String p_actionName, String p_command) {
 		this.d_controllerName = p_controllerName;
 		this.d_actionName = p_actionName;
+		this.d_command = p_command;
 	}
 	
 	
@@ -34,6 +38,17 @@ public class Router {
 	private String d_actionName;
 	
 	private String d_actionParameters;	
+	
+	private String d_command;
+	
+	
+	/**
+	 * This method will show the command
+	 * @return the command
+	 */
+	public String getCommand(){
+		return d_command;
+	}
 	
 	/**
 	 * This method will show the name of the controller
