@@ -78,7 +78,7 @@ public class PlayerTest {
     	Order l_order = new DeployOrder(l_player, l_country , 5); 
     	
     	//act
-    	assertEquals(l_order.valid(), false);
+    	assertFalse(l_order.valid());
     	
     	//assert
     	assertEquals(l_country.getArmyNumber(),0 );
@@ -100,7 +100,7 @@ public class PlayerTest {
     	Order l_order = new DeployOrder(l_player, l_country , -5); 
     	
     	//act
-    	assertEquals(l_order.valid(), false);
+		assertFalse(l_order.valid());
     	
     	//assert
     	assertEquals(l_country.getArmyNumber(),0 );
@@ -123,11 +123,186 @@ public class PlayerTest {
 
 		//act
 		Order l_order = l_player.conventOrder("Deploy 1 2");
-		((DeployOrder)l_order).printOrder();
 
 		//assert
 		assertEquals(((DeployOrder)l_order).getArmyNumber(), 2);
 		assertEquals(((DeployOrder)l_order).getCountry(), l_country);
 	}
-    
+
+	/**
+	 * check if failed if the source country does not belongs to the owner
+	 */
+	@Test
+	public void WillNotAirliftOrderWithoutAirliftCard() {
+		//arrange
+		Player l_player = new Player("P1");
+		Country l_country1 = new Country(1,"C1",0,0,null);
+		Country l_country2 = new Country(2,"C2",0,0,null);
+		l_country1.setArmyNumber(5);
+		l_country2.setArmyNumber(3);
+		l_country1.setOwner(l_player);
+		l_country2.setOwner(l_player);
+		l_player.getConqueredCountries().put(l_country1.getCountryID(), l_country1);
+		l_player.getConqueredCountries().put(l_country2.getCountryID(), l_country2);
+		l_player.getCards().add(Card.BLOCKADE);
+
+		//act
+		AirliftOrder l_order = new AirliftOrder(1, 2, 2);
+		l_order.setPlayer(l_player);
+
+		//assert
+		assertFalse(l_order.valid());
+	}
+
+	/**
+	 * check if failed if the source country does not belongs to the owner
+	 */
+	@Test
+	public void WillNotAirliftOrderSourceCountryNotValid() {
+		//arrange
+		Player l_player = new Player("P1");
+		Country l_country1 = new Country(1,"C1",0,0,null);
+		Country l_country2 = new Country(2,"C2",0,0,null);
+		l_country1.setArmyNumber(5);
+		l_country2.setArmyNumber(3);
+		l_country1.setOwner(l_player);
+		l_country2.setOwner(l_player);
+		l_player.getConqueredCountries().put(l_country1.getCountryID(), l_country1);
+		l_player.getConqueredCountries().put(l_country2.getCountryID(), l_country2);
+		l_player.getCards().add(Card.AIRLIFT);
+
+		//act
+		AirliftOrder l_order = new AirliftOrder(3, 1, 2);
+		l_order.setPlayer(l_player);
+
+		//assert
+		assertFalse(l_order.valid());
+	}
+
+	/**
+	 * check if failed if the target country does not belongs to the owner
+	 */
+	@Test
+	public void WillNotAirliftOrderTargetCountryNotValid() {
+		//arrange
+		Player l_player = new Player("P1");
+		Country l_country1 = new Country(1,"C1",0,0,null);
+		Country l_country2 = new Country(2,"C2",0,0,null);
+		l_country1.setArmyNumber(5);
+		l_country2.setArmyNumber(3);
+		l_country1.setOwner(l_player);
+		l_country2.setOwner(l_player);
+		l_player.getConqueredCountries().put(l_country1.getCountryID(), l_country1);
+		l_player.getConqueredCountries().put(l_country2.getCountryID(), l_country2);
+		l_player.getCards().add(Card.AIRLIFT);
+
+		//act
+		AirliftOrder l_order = new AirliftOrder(1, 3, 2);
+		l_order.setPlayer(l_player);
+
+		//assert
+		assertFalse(l_order.valid());
+	}
+
+	/**
+	 * check if failed when the airlift army is zero
+	 */
+	@Test
+	public void WillNotAirliftOrderWithZeroArmy() {
+		//arrange
+		Player l_player = new Player("P1");
+		Country l_country1 = new Country(1,"C1",0,0,null);
+		Country l_country2 = new Country(2,"C2",0,0,null);
+		l_country1.setArmyNumber(5);
+		l_country2.setArmyNumber(3);
+		l_country1.setOwner(l_player);
+		l_country2.setOwner(l_player);
+		l_player.getConqueredCountries().put(l_country1.getCountryID(), l_country1);
+		l_player.getConqueredCountries().put(l_country2.getCountryID(), l_country2);
+		l_player.getCards().add(Card.AIRLIFT);
+
+		//act
+		AirliftOrder l_order = new AirliftOrder(1, 2, 0);
+		l_order.setPlayer(l_player);
+
+		//assert
+		assertFalse(l_order.valid());
+	}
+
+	/**
+	 * check if failed when airlift army is below zero
+	 */
+	@Test
+	public void WillNotAirliftOrderWithArmyBelowZero() {
+		//arrange
+		Player l_player = new Player("P1");
+		Country l_country1 = new Country(1,"C1",0,0,null);
+		Country l_country2 = new Country(2,"C2",0,0,null);
+		l_country1.setArmyNumber(5);
+		l_country2.setArmyNumber(3);
+		l_country1.setOwner(l_player);
+		l_country2.setOwner(l_player);
+		l_player.getConqueredCountries().put(l_country1.getCountryID(), l_country1);
+		l_player.getConqueredCountries().put(l_country2.getCountryID(), l_country2);
+		l_player.getCards().add(Card.AIRLIFT);
+
+		//act
+		AirliftOrder l_order = new AirliftOrder(1, 2, -2);
+		l_order.setPlayer(l_player);
+
+		//assert
+		assertFalse(l_order.valid());
+	}
+
+	/**
+	 * check if failed when army is more than the player owns.
+	 */
+	@Test
+	public void WillNotAirliftOrderWithArmyMoreThanInCountry() {
+		//arrange
+		Player l_player = new Player("P1");
+		Country l_country1 = new Country(1,"C1",0,0,null);
+		Country l_country2 = new Country(2,"C2",0,0,null);
+		l_country1.setArmyNumber(5);
+		l_country2.setArmyNumber(3);
+		l_country1.setOwner(l_player);
+		l_country2.setOwner(l_player);
+		l_player.getConqueredCountries().put(l_country1.getCountryID(), l_country1);
+		l_player.getConqueredCountries().put(l_country2.getCountryID(), l_country2);
+		l_player.getCards().add(Card.AIRLIFT);
+
+		//act
+		AirliftOrder l_order = new AirliftOrder(1, 2, 7);
+		l_order.setPlayer(l_player);
+
+		//assert
+		assertFalse(l_order.valid());
+	}
+
+	/**
+	 * test cast for successfully execute airlift order
+	 */
+	@Test
+	public void WillAirliftOrder() {
+		//arrange
+		Player l_player = new Player("P1");
+		Country l_country1 = new Country(1,"C1",0,0,null);
+		Country l_country2 = new Country(2,"C2",0,0,null);
+		l_country1.setArmyNumber(5);
+		l_country2.setArmyNumber(3);
+		l_country1.setOwner(l_player);
+		l_country2.setOwner(l_player);
+		l_player.getConqueredCountries().put(l_country1.getCountryID(), l_country1);
+		l_player.getConqueredCountries().put(l_country2.getCountryID(), l_country2);
+		l_player.getCards().add(Card.AIRLIFT);
+
+		//act
+		AirliftOrder l_order = new AirliftOrder(1, 2, 3);
+		l_order.setPlayer(l_player);
+		l_order.execute();
+
+		//assert
+		assertEquals(l_country1.getArmyNumber(), 2);
+		assertEquals(l_country2.getArmyNumber(), 6);
+	}
 }
