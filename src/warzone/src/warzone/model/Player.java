@@ -190,7 +190,7 @@ public class Player {
 		}
 		return null;			
 	}
-
+	
 	/**
 	 * convert command into order
 	 * @param p_command command line
@@ -210,7 +210,7 @@ public class Player {
 			case "deploy":
 				return createDeployOrder(l_commandInfos);
 			case "advance":
-				break;
+				return createAdvanceOrder(l_commandInfos);
 			case "bomb":
 				break;
 			case "blockade":
@@ -252,7 +252,65 @@ public class Player {
 
 		return l_deployOrder;
 	}
+	
+	/**
+	 * create the advance order by command
+	 * @param p_commandInfos command infor
+	 * @return the deploy order if success, otherwise return null
+	 */
+	public AdvanceOrder createAdvanceOrder(String[] p_commandInfos){
 
+		if(p_commandInfos.length != 4) {
+			
+			GenericView.printError("Incorrect number of parameters. The command should be as follows: advance countryfromname countrytoname numarmies");
+			return null;
+		}
+
+		//read the information of command
+		Country l_fromCountry = findCountryByName(p_commandInfos[1]);
+		Country l_toCountry = findCountryByName(p_commandInfos[2]);
+		int l_numArmies = Integer.parseInt(p_commandInfos[3]);
+		boolean l_isValidCommand = true;
+
+		//check if the command is valid
+		if (l_fromCountry == null) {
+			
+			GenericView.printError("Country " + p_commandInfos[1] + " was not found. Please check your spelling.");
+			l_isValidCommand = false;
+		}
+		if (l_toCountry == null) {
+			
+			GenericView.printError("Country " + p_commandInfos[2] + " was not found. Please check your spelling.");
+			l_isValidCommand = false;
+		}
+		
+		if(l_isValidCommand) {
+			
+			//create the deploy order
+			return new AdvanceOrder(this, l_fromCountry, l_toCountry, l_numArmies);
+		}
+
+		
+
+		return null;
+	}
+	
+	private Country findCountryByName(String p_countryName) {
+		
+		Map<Integer, Country> l_countries = GameContext.getGameContext().getCountries();
+		List<Integer> l_countryIDs = new ArrayList<Integer>(l_countries.keySet());
+		
+		for(Integer l_countryID : l_countryIDs) {
+			
+			if(l_countries.get(l_countryID).getCountryName().equalsIgnoreCase(p_countryName.trim())) {
+				
+				return l_countries.get(l_countryID);
+			}
+		}
+		
+		return null;
+	}
+	
 	/**
 	 * create the airlift order by command
 	 * @param p_commandInfos command info
