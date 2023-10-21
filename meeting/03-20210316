@@ -1,0 +1,21 @@
+Meeting 03
+Date
+20210316
+
+Participants
+(5/5): qinhui, Sijie, zexin,Amy,derek
+
+Topics
+1.Review the team’s performance in last week
+2,Analyze the requirements of the object creation order
+3.exeryone explain what has been done after last meeting
+4.deviding tasks to each member
+Todo
+901-Advance order command and unit test by Derek
+902-create cards and unit test by Derek
+903-Bomb order command and unit test by zexin
+904-Blockade order command and unit test by sijie
+904-Airlift order command and unit test by Amy
+905-Diplomacy order command and unit test by qinhui
+906-add a command 'done' to send a signal to finish the current turn of issuing orderby Amy
+write the meeting record by Sijie
