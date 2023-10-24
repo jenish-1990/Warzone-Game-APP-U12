@@ -1,5 +1,8 @@
 package warzone.model;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,7 +10,9 @@ import org.junit.Test;
  * Tests for BlockadeOrder class
  */
 public class BlockadeOrderTest {
-	/** player */
+	/** 
+	 * player 
+	 */
 	Player d_player;
 	/** country */
 	Country d_country;
@@ -19,9 +24,7 @@ public class BlockadeOrderTest {
 	 */
 	@Before
 	public void setup() {
-		d_player=new Player("player1");
-		d_country=new Country(0,"country1");
-		d_order=new BlockadeOrder(d_player, 0);
+		
 	}
 	
 	/**
@@ -29,8 +32,66 @@ public class BlockadeOrderTest {
 	 */
 	@Test
 	public void testValid() {
-		assert(d_order.valid()==false);
-		d_player.getConqueredCountries().put(d_country.getCountryID(), d_country);
-		assert(d_order.valid()==true);
+		d_player=new Player("player1");
+		d_country=new Country(1,"country1");
+		
+		//act
+		d_order=new BlockadeOrder(d_player, d_country);
+		
+		//assert
+		assertTrue(d_order.valid());
 	}
+	
+	/**
+	 * This method tests the valid method of BlockadeOrder class
+	 */
+	@Test
+	public void willFailedWhenNullCountry() {
+		d_player=new Player("player1");
+		
+		//act
+		d_order=new BlockadeOrder(d_player, null);
+		
+		//assert
+		assertFalse(d_order.valid());
+	}
+	
+	/**
+	 * This method tests the valid method of BlockadeOrder class
+	 */
+	@Test
+	public void willTrueWhenTargetCountryIsTheSameOwner() {
+		d_player=new Player("player1");
+		d_country=new Country(1,"country1");
+		d_country.setOwner(d_player);
+		
+		//act
+		d_order=new BlockadeOrder(d_player, d_country);
+		
+		//assert
+		assertTrue(d_order.valid());
+	}
+	
+	/**
+	 * This method tests the valid method of BlockadeOrder class
+	 */
+	@Test
+	public void willFailWhenTargetCountryIsDiplomacyInCurrentTurn() {
+		d_player=new Player("player1");
+		Player d_player2=new Player("player2");
+		d_country=new Country(1,"country2");
+		d_country.setOwner(d_player2);
+		
+		GameContext l_gameContext = GameContext.getGameContext();
+		NegotiateOrder l_negotiateOrder = new NegotiateOrder(d_player, d_player2 );
+		l_gameContext.addDiplomacyOrderToList(l_negotiateOrder);
+		
+		
+		//act
+		d_order=new BlockadeOrder(d_player, d_country);
+		
+		//assert
+		assertFalse(d_order.valid());
+	}
+	
 }

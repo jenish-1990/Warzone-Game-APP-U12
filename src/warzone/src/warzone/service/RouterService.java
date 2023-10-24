@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
-import warzone.controller.*;
 import warzone.model.*;
 import warzone.state.Phase;
 import warzone.view.GenericView;
@@ -28,8 +26,7 @@ public class RouterService {
 	 */
 	private RouterService(GameEngine p_gameEngine) {
 		d_gameContext = p_gameEngine.getGameContext();
-		d_gameEngine = p_gameEngine;
-		d_gamePhase = p_gameEngine.getPhase();
+		d_gameEngine = p_gameEngine;		
 	}	
 	
 	/**
@@ -63,65 +60,99 @@ public class RouterService {
 	 * @throws IOException exception from reading the commands
 	 */
 	public void route(Router p_router) throws IOException{
-		//todo: need to consider the controller name in the future
-		switch(p_router.getActionName().toLowerCase()) {
-			case "next":
-				d_gamePhase.next();
-				break;
-			case "addcontinent":
-				d_gamePhase.addContinent(p_router.getActionParameters());
-				break;
-			case "removecontinent":
-				d_gamePhase.removeContinent(p_router.getActionParameters());
-				break;
-			case "addcountry":
-				d_gamePhase.addCountry(p_router.getActionParameters());
-				break;
-			case "removecountry":
-				d_gamePhase.removeCountry(p_router.getActionParameters());
-				break;
-			case "showmap":
-				d_gamePhase.showMap();
-				break;
-			case "savemap":
-				d_gamePhase.saveMap(p_router.getActionParameters());
-				break;
-			case "editmap":
-				d_gamePhase.editMap(p_router.getActionParameters());
-				break;
-			case "validatemap":
-				d_gamePhase.validateMap();
-				break;
-			case "addneighbor":
-				d_gamePhase.addNeighbor(p_router.getActionParameters());
-				break;
-			case "removeneighbor":
-				d_gamePhase.removeNeighbor(p_router.getActionParameters());
-				break;
-			case "addplayer":
-				d_gamePhase.addPlayer(p_router.getActionParameters());
-				break;
-			case "removeplayer":
-				d_gamePhase.removePlayer(p_router.getActionParameters());
-				break;
-			case "loadmap":
-				d_gamePhase.loadMap(p_router.getActionParameters());
-				break;
-			case "populatecountries":
-				d_gamePhase.populatecountries();
-				break;
-//			case "reinforcement":
-//				d_gamePhase.reinforcement();
-//				break;
-//			case "issueOrder":
-//				d_gamePhase.issueOrder();
-//				break;
-//			case "executeOrder":
-//				d_gamePhase.executeOrder();
-//				break;
-			case "help":
-				d_gamePhase.help();
-				break;
+		d_gamePhase = d_gameEngine.getPhase();
+		switch(p_router.getControllerName()) {
+		case COMMON:
+			switch(p_router.getActionName()) {
+				case "help":
+					d_gamePhase.help();
+					break;	
+				case "qamode":
+					d_gameEngine.qaMode(p_router.getActionParameters());
+					break;	
+				case "reboot":
+					d_gameEngine.reboot();
+					break;						
+				case "next":
+					d_gamePhase.next();
+					break;
+			}
+			break;
+		case CONTINENT:
+			switch(p_router.getActionName()) {
+				case "add":
+					d_gamePhase.addContinent(p_router.getActionParameters());
+					break;
+				case "remove":
+					d_gamePhase.removeContinent(p_router.getActionParameters());
+					break;
+			}
+			break;
+		case MAP:
+			switch(p_router.getActionName().toLowerCase()) {
+				case "savemap":
+					d_gamePhase.saveMap(p_router.getActionParameters());
+					break;
+				case "editmap":
+					d_gamePhase.editMap(p_router.getActionParameters());
+					break;
+				case "showmap":
+					d_gamePhase.showMap();
+					break;
+				case "validatemap":
+					d_gamePhase.validateMap();					
+					break;
+			}
+			break;
+		case COUNTRY:
+			switch(p_router.getActionName()) {
+				case "add":
+					d_gamePhase.addCountry(p_router.getActionParameters());			
+					break;
+				case "remove":
+					d_gamePhase.removeCountry(p_router.getActionParameters());
+					break;
+			}
+			break;
+		case NEIGHBOR:
+			switch(p_router.getActionName()) {
+				case "add":
+					d_gamePhase.addNeighbor(p_router.getActionParameters());
+					break;
+				case "remove":
+					d_gamePhase.removeNeighbor(p_router.getActionParameters());
+					break;
+			}
+			break;
+		case GAMEPLAY:
+			switch(p_router.getActionName()) {
+				case "showmap":
+					d_gamePhase.showMap();
+					break;
+				case "play":
+					d_gamePhase.play();
+					break;
+			}
+			break;
+		case STARTUP:
+			switch(p_router.getActionName()) {
+				case "add":
+					d_gamePhase.addPlayer(p_router.getActionParameters());
+					break;
+				case "remove":
+					d_gamePhase.removePlayer(p_router.getActionParameters());
+					break;
+				case "loadmap":
+					d_gamePhase.loadMap(p_router.getActionParameters());
+					break;
+				case "assigncountries":
+					d_gamePhase.assigncountries();
+					break;						
+			}
+			break;
+		case ERROR:
+			d_gamePhase.error();
+			break;
 		}		
 	}
 	
@@ -174,7 +205,7 @@ public class RouterService {
 		String l_firstWord = "," + l_commandArray[0] + ",";
 		// TODO move these commands into the properties file
 		String l_complexCommand = ",editcontinent,editcountry,editneighbor,gameplayer,";
-		String l_simpleCommand = ",loadmap,editmap,savemap,assigncountries,validatemap,showmap,help,play,reboot,startup,mapeditor,";
+		String l_simpleCommand = ",loadmap,editmap,savemap,assigncountries,validatemap,showmap,help,qamode,play,next,reboot,startup,mapeditor,";
 		 if(l_simpleCommand.indexOf(l_firstWord) > -1) {
 				//simple command with only one router
 				GenericView.printDebug("parseCommand: start to work on simple command: " + p_command);
@@ -267,13 +298,21 @@ public class RouterService {
 //					(p_commandArray.length > 2)? p_commandArray[2]:"" );
 		switch (p_commandArray[0]) {
 			case "reboot":
+				l_router = new Router(ControllerName.COMMON, "reboot", l_command);
+				break;	
 			case "startup":
 			case "mapeditor":
 				l_router = new Router(ControllerName.COMMON, "changephase",p_commandArray[0],l_command);
 				break;
 			case  "help":
 				l_router = new Router(ControllerName.COMMON, "help", l_command);
-				break;		
+				break;	
+			case  "qamode":
+				l_router = new Router(ControllerName.COMMON, "qamode", l_command);
+				break;	
+			case  "next":
+				l_router = new Router(ControllerName.COMMON, "next", l_command);
+				break;	
 			case  "showmap":
 					l_router = new Router(ControllerName.MAP, "showmap", l_command);
 				break;

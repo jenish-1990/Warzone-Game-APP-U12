@@ -3,8 +3,6 @@ import warzone.service.*;
 
 import java.io.File;
 import java.util.Scanner;
-
-import warzone.controller.MapController;
 import warzone.model.*;
 import warzone.view.*;
 
@@ -327,7 +325,7 @@ public class MapEditor extends Phase {
 			return false;
 		}
 
-		if(! d_mapService.validateMap(d_gameContext) ) {
+		if(! d_mapService.validateMap() ) {
 			GenericView.printError("InValid map, please check the map.");
 			return false;
 		}
@@ -371,7 +369,7 @@ public class MapEditor extends Phase {
 	 * @return true if it is a valid map, otherwise return false
 	 */
 	public boolean validateMap() {
-		if(! d_mapService.validateMap(d_gameContext) ) {
+		if(! d_mapService.validateMap() ) {
 			GenericView.printError("It is not a connected map.");
 			return false;
 		}
@@ -380,20 +378,20 @@ public class MapEditor extends Phase {
 			return true;
 		}
 	}
-
-	 public void addPlayer(String p_playerName) {
+	public void play(){
+		printInvalidCommandMessage();
+	}
+	public void addPlayer(String p_playerName) { printInvalidCommandMessage(); }
+	public void removePlayer(String p_playerName){
 		 printInvalidCommandMessage();
 	 }	
-	 public void removePlayer(String p_playerName){
-		 printInvalidCommandMessage();
-	 }	
-	 public void loadMap(String p_fileName){
+	public void loadMap(String p_fileName){
 		 printInvalidCommandMessage();
 	 }		
-	 public void populatecountries(){
+	public void assigncountries(){
 		 printInvalidCommandMessage();
 	 }		
-	 public void reinforcement(){
+	public void reinforcement(){
 		 printInvalidCommandMessage();
 	 }	
  

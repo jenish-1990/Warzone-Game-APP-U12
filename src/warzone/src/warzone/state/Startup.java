@@ -8,8 +8,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
-
-import warzone.controller.MapController;
 import warzone.model.*;
 import warzone.view.*;
 
@@ -22,6 +20,10 @@ public class Startup extends GamePlay {
 	
 	private StartupService d_startupService;
 
+	/**
+	 *  constructor of the startup class
+	 * @param p_ge gameengine instance to initial the class
+	 */
 	public Startup(GameEngine p_ge) {
 		super(p_ge);
 		d_startupService=new StartupService(d_gameContext);
@@ -93,7 +95,7 @@ public class Startup extends GamePlay {
 	 * 
 	 * After user creates all the players, all countries are randomly assigned to players. 
 	 */
-	public void populatecountries(){
+	public void assigncountries(){
 		boolean result = d_startupService.assignCountries();
 		if(result == false) {
 			GenericView.printError("Must have more than 2 players, and map have at least the same number of countries as players ");
@@ -102,7 +104,8 @@ public class Startup extends GamePlay {
 			GenericView.printSuccess("Succeed to assign all the countries to players");
 		}
 	}
-  
+
+	public void play(){ printInvalidCommandMessage();}
 	public void reinforcement(){
 		printInvalidCommandMessage();
 	}

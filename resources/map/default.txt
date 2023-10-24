@@ -1,0 +1,7 @@
+next
+loadmap 22.map
+showmap
+ gameplayer -add Mike -add Rik
+ assigncountries
+ next
+ next

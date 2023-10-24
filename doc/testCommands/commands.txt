@@ -16,8 +16,8 @@ showmap
  gameplayer -add Mike -add Rik -add jack
   gameplayer -remove jack
  
-
-
+validatemap
+assigncountries
 
 
 

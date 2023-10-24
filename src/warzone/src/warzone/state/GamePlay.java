@@ -25,7 +25,6 @@ public abstract class GamePlay extends Phase {
 	 * and connectivity in a way that enables efficient game play
 	 */
 	 public void showMap() {
-		 MapView.printMap(d_gameContext);
 		 MapView.printMapWithArmies(d_gameContext.getContinents());
 	 }	
 	
@@ -47,7 +46,9 @@ public abstract class GamePlay extends Phase {
 	 public void removeNeighbor (String p_parameters) {
 		 printInvalidCommandMessage();
 	 }
-
+	public void play(){
+		printInvalidCommandMessage();
+	}
 	/**
 	 * print invalid message and return false
 	 * @param p_fileName the filename

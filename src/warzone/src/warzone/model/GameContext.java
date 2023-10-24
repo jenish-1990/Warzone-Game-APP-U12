@@ -47,7 +47,7 @@ public class GameContext {
 			return false;
 		for(NegotiateOrder l_orderTemp : d_negotiateOrdersInCurrentTurn) {
 			if((l_orderTemp.getPlayer() == p_playerA ||  l_orderTemp.getTargetPlayer() == p_playerB  )
-					&& (l_orderTemp.getPlayer() == p_playerB ||  l_orderTemp.getTargetPlayer() == p_playerA  ) )
+					|| (l_orderTemp.getPlayer() == p_playerB ||  l_orderTemp.getTargetPlayer() == p_playerA  ) )
 				return true;
 		}
 
@@ -159,6 +159,7 @@ public class GameContext {
 		d_continents = new HashMap<Integer, Continent>();
 		d_warzoneProperties = WarzoneProperties.getWarzoneProperties();
 		d_negotiateOrdersInCurrentTurn = new ArrayList<NegotiateOrder>();
+		d_logService = new LogService();
 		d_mapFileName = "";
 		d_mapFilePic = "";
 		d_mapFileMap = "";

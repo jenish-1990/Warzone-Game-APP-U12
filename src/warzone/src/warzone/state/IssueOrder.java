@@ -14,7 +14,7 @@ public class IssueOrder extends GamePlay {
 		super(p_ge);
 
 		this.d_gamePhase = GamePhase.IssueOrder;
-		d_gameEngine.issueOrders();
+		//d_gameEngine.issueOrders();
 	}
 
 	/**
@@ -26,9 +26,11 @@ public class IssueOrder extends GamePlay {
 		
 	 public void loadMap(String p_fileName){
 		 printInvalidCommandMessage();
-	 }	
+	 }
 
-
+	public void play(){
+		d_gameEngine.issueOrders();
+	}
 	 public void addPlayer(String p_playerName) {
 		 printInvalidCommandMessage();
 	 }	
@@ -36,7 +38,7 @@ public class IssueOrder extends GamePlay {
 		 printInvalidCommandMessage();
 	 }	
 	
-	 public void populatecountries(){
+	 public void assigncountries(){
 		 printInvalidCommandMessage();
 	 }	
 	 

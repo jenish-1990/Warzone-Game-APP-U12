@@ -25,29 +25,32 @@ public class OrderExecution extends GamePlay {
 		else
 			d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
 	}
-	
 
-	 public void loadMap(String p_fileName){
-		 printInvalidCommandMessage();
-	 }	
+	public void loadMap(String p_fileName){
+		printInvalidCommandMessage();
+	}
 
+	public void play(){
+		d_gameEngine.executeOrders();
+		d_gameEngine.assignCards();
+	}
 
-	 public void addPlayer(String p_playerName) {
-		 printInvalidCommandMessage();
-	 }	
-	 public void removePlayer(String p_playerName){
-		 printInvalidCommandMessage();
-	 }	
-	
-	 public void populatecountries(){
-		 printInvalidCommandMessage();
-	 }	
-	 
-	 public void reinforcement(){
-		 printInvalidCommandMessage();
-	 }	
- 
+	public void addPlayer(String p_playerName) {
+		printInvalidCommandMessage();
+	}
+	public void removePlayer(String p_playerName){
+		printInvalidCommandMessage();
+	}
+
+	public void assigncountries(){
+		printInvalidCommandMessage();
+	}
+
+	public void reinforcement(){
+		printInvalidCommandMessage();
+	}
+
 	public void issueOrder(){
-		 printInvalidCommandMessage();
-	 }	
+		printInvalidCommandMessage();
+	}
 }

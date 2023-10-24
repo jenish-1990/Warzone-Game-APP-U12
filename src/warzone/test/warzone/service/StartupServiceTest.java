@@ -8,8 +8,6 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
-
-import warzone.controller.StartupController;
 import warzone.model.Country;
 import warzone.model.GameContext;
 import warzone.model.Player;
@@ -23,7 +21,7 @@ import warzone.view.GenericView;
 public class StartupServiceTest {
 
 	GameContext d_gameContext;
-	StartupController d_startupController;
+	StartupService d_startupService;
 	
 	/**
 	 * This method can set up game context before test cases begin.
@@ -57,8 +55,8 @@ public class StartupServiceTest {
 		System.out.println("testAssignCountries()");
 		System.out.println("=====================================");
 		
-		d_startupController = new StartupController(d_gameContext);
-		d_startupController.loadMap("europe.map");
+		d_startupService = new StartupService(d_gameContext);
+		d_startupService.loadMap("europe.map");
 		
 		System.out.println("Map File Name: " + d_gameContext.getMapFileName());
 		System.out.println("Map File Pic: " + d_gameContext.getMapFilePic());
@@ -98,8 +96,8 @@ public class StartupServiceTest {
 		d_gameContext.getCountries().put(9, new Country(9, "country09", 5, 5, null));
 		d_gameContext.getCountries().put(10, new Country(10, "country10", 5, 5, null));
 		
-		d_startupController = new StartupController(d_gameContext);
-		d_startupController.assignCountries();
+		d_startupService = new StartupService(d_gameContext);
+		d_startupService.assignCountries();
 		
 		//Create a list of playerIDs from the game context and shuffle their order
 		List<String> playerNames = new ArrayList<String>(d_gameContext.getPlayers().keySet());
@@ -171,8 +169,8 @@ public class StartupServiceTest {
 		GenericView.printDebug("=====================================");
 		
 		//Load map file
-		d_startupController = new StartupController(d_gameContext);
-		d_startupController.loadMap("europe.map");
+		d_startupService = new StartupService(d_gameContext);
+		d_startupService.loadMap("europe.map");
 		
 		Player l_player1 = new Player("player1");
 		l_player1.assignReinforcements();
@@ -192,8 +190,8 @@ public class StartupServiceTest {
 		GenericView.printDebug("=====================================");
 		
 		//Load map file
-		d_startupController = new StartupController(d_gameContext);
-		d_startupController.loadMap("europe.map");
+		d_startupService = new StartupService(d_gameContext);
+		d_startupService.loadMap("europe.map");
 		
 		Player l_player1 = new Player("player1");
 		
@@ -236,8 +234,8 @@ public class StartupServiceTest {
 		GenericView.printDebug("=====================================");
 		
 		//Load map file
-		d_startupController = new StartupController(d_gameContext);
-		d_startupController.loadMap("europe.map");
+		d_startupService = new StartupService(d_gameContext);
+		d_startupService.loadMap("europe.map");
 		
 		Player l_player1 = new Player("player1");
 		l_player1.assignReinforcements();

@@ -4,10 +4,10 @@ import warzone.view.GenericView;
 
 public class AirliftOrder extends Order{
 
-    private int d_sourceCountryId;
-    private int d_targetCountryId;
-    private Country d_sourceCountry;
-    private Country d_targetCountry;
+//    private int d_sourceCountryId;
+//    private int d_targetCountryId;
+    private Country d_fromCountry;
+    private Country d_toCountry;
     private int d_armyNumber;
     private Player d_player;
 
@@ -17,21 +17,22 @@ public class AirliftOrder extends Order{
      * @param p_tragetCountryId target country
      * @param p_armyNumber army number
      */
-    public AirliftOrder(int p_sourceCountryId, int p_tragetCountryId, int p_armyNumber){
-        d_sourceCountryId = p_sourceCountryId;
-        d_targetCountryId = p_tragetCountryId;
+    public AirliftOrder(Player p_player, Country p_fromCountry, Country p_toCountry, int p_armyNumber){
+    	d_player = p_player;
+		d_fromCountry = p_fromCountry;
+		d_toCountry = p_toCountry;
         d_armyNumber = p_armyNumber;
 		this.d_orderType = OrderType.AIRLIFT;
 		this.d_gameContext = GameContext.getGameContext();  
     }
 
-    /**
-     * set the player of the order
-     * @param p_player the player
-     */
-    public void setPlayer(Player p_player){
-        d_player = p_player;
-    }
+//    /**
+//     * set the player of the order
+//     * @param p_player the player
+//     */
+//    public void setPlayer(Player p_player){
+//        d_player = p_player;
+//    }
 
     /**
      * get the player of the order
@@ -46,13 +47,17 @@ public class AirliftOrder extends Order{
      */
     @Override
     public void execute(){
-        if(!valid()) return;
-        int l_armyInTarget = d_targetCountry.getArmyNumber() + d_armyNumber;
-        int l_armyInSource = d_sourceCountry.getArmyNumber() - d_armyNumber;
-        d_targetCountry.setArmyNumber(l_armyInTarget);
-        d_sourceCountry.setArmyNumber(l_armyInSource);
-        GenericView.printSuccess("Success to airlift army.");
-        printOrder();
+        if(!valid()) {
+        	GenericView.printWarning("Fail to execute order:" + toString());
+        	return;
+        }
+        int l_armyInTarget = d_toCountry.getArmyNumber() + d_armyNumber;
+        int l_armyInSource = d_fromCountry.getArmyNumber() - d_armyNumber;
+        d_toCountry.setArmyNumber(l_armyInTarget);
+        d_fromCountry.setArmyNumber(l_armyInSource);
+        
+		//print success information
+		GenericView.printSuccess("Success to execute order:" + toString());
     }
 
     /**
@@ -61,38 +66,44 @@ public class AirliftOrder extends Order{
      */
     @Override
     public boolean valid(){
-        //check if the player has a airlift card
-        if(!d_player.getCards().contains(Card.AIRLIFT)){
-            GenericView.printError("Player " + d_player.getName() + " does not have a airlift card");
-            return false;
-        }
         //check if countries belongs to the player
-        if(!d_player.getConqueredCountries().containsKey(d_sourceCountryId) || !d_player.getConqueredCountries().containsKey(d_targetCountryId)){
-            GenericView.printError("Source country or target country does not belongs to the player.");
+        if(!d_player.getConqueredCountries().containsValue(d_fromCountry) ){
+            GenericView.printError("Source country does not belongs to the player.");
             return false;
         }
-        //get the countries
-        d_sourceCountry = d_player.getConqueredCountries().get(d_sourceCountryId);
-        d_targetCountry = d_player.getConqueredCountries().get(d_targetCountryId);
+        Player l_targetPlayer = d_toCountry.getOwner();
+        if( l_targetPlayer != null && l_targetPlayer != d_player && d_toCountry.getArmyNumber() > 0 ){
+            GenericView.printError("Target country does not belongs to the player.");
+            return false;
+        }        
+ 
+		if (this.d_fromCountry.getArmyNumber() <  this.d_armyNumber) {
+			d_armyNumber = this.d_player.getArmiesToDeploy();
+			GenericView.printWarning("The country does not have enough army to airlift, then the airlift army number is adjusted to " + d_armyNumber);
+		}	
+		
         //check if army number is more than 0
         if(d_armyNumber <= 0){
             GenericView.printError("The number of airlift army shoud more than 0.");
             return false;
-        }
-        //check if army number is more that they own
-        if(d_sourceCountry.getArmyNumber() < d_armyNumber) {
-            GenericView.printError("Player does not have enough army in country "+ d_sourceCountry.getCountryName());
-            return false;
-        }
+        }		
+		
         return true;
     }
-
-    /**
-     * print the order
-     */
-    @Override
-    public void printOrder(){
-        GenericView.println("Airlift order issued by player " + this.d_player.getName());
-        GenericView.println("Airlift " + this.d_armyNumber + " from country " + d_sourceCountry.getCountryName() + " to " + this.d_targetCountry.getCountryName());
-    }
+    
+	/**
+	 * override of print the order
+	 */
+	@Override
+	public void printOrder(){
+		GenericView.println(this.toString());		
+	}
+	
+	/**
+	 * override of print the order
+	 */
+	@Override
+	public String toString(){
+		return String.format("Airlift Order, issued by player [%s], airlifting [%s] armies from  [%s] to [%s]",  this.d_player.getName(), d_armyNumber, d_fromCountry.getCountryName(),  d_toCountry.getCountryName() );		
+	}
 }

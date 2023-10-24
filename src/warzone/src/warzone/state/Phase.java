@@ -28,7 +28,7 @@ public abstract class Phase {
 	 *  so that the state object can change the state of 
 	 *  the GameEngine to transition between states. 
 	 */
-	GameEngine d_gameEngine;
+	protected GameEngine d_gameEngine;
 	
 	protected GamePhase d_gamePhase;
 	
@@ -77,7 +77,7 @@ public abstract class Phase {
 	abstract public void addPlayer(String p_playerName);	
 	abstract public void removePlayer(String p_playerName);	
 	abstract public void loadMap(String p_fileName);	
-	abstract public void populatecountries();
+	abstract public void assigncountries();
 	
 //	abstract public void reinforcement(); 
 //	abstract public void issueOrder();
@@ -89,7 +89,8 @@ public abstract class Phase {
 
 	// go to next phase
 	abstract public void next();
-	
+
+	abstract public void play();
 	/**
 	 *  Common method to all States. 
 	 */
@@ -102,6 +103,29 @@ public abstract class Phase {
 	 */
 	public void help() {
 		HelpView.printHelp(this.d_gamePhase);
+	}
+
+//	/**
+//	 * get phase of the current engine
+//	 * @return phase of the current engine
+//	 */
+//	public Phase getPhase() {
+//		return this.d_gameEngine.getPhase();
+//	}
+	
+//	/**
+//	 * show help for each phase
+//	 */
+//	public void reboot() {
+//		this.
+//		GenericView.printSuccess("The Game has been reoot.");
+//	}
+	
+	/**
+	 * print out the error
+	 */
+	public void error() {
+		GenericView.printError("Incorrect command. ");
 	}
 	
 	/**
