@@ -43,6 +43,10 @@ public class BlockadeOrder extends Order {
      */
 	@Override
 	public boolean valid() {
+		if(!d_player.getIsAlive()) {
+			GenericView.printError("Player "+d_player.getName()+" is dead!");
+			return false;
+		}
 		d_targetCountry=d_player.getConqueredCountries().get(d_targetCountryId);
 		if(d_targetCountry!=null) {
 			return true;

@@ -216,7 +216,7 @@ public class Player {
 			case "bomb":
 				return createBombOrder(l_commandInfos);
 			case "blockade":
-				break;
+				return createBlockadeOrder(l_commandInfos);
 			case "airlift":
 				return createAirliftOrder(l_commandInfos);
 			case "diplomacy":
@@ -386,6 +386,33 @@ public class Player {
 		l_airliftOrder.setPlayer(this);
 
 		return l_airliftOrder;
+	}
+	
+	/**
+	 * create the blockade order by command
+	 * @param p_commandInfos command info
+	 * @return the blockade order
+	 */
+	public BlockadeOrder createBlockadeOrder(String[] p_commandInfos) {
+		if(p_commandInfos.length != 2) return null;
+		int l_targetCountryId=CommonTool.parseInt(p_commandInfos[1]);
+		
+		//check if the player has a blockade card
+		if(!this.getCards().contains(Card.BLOCKADE)){
+			GenericView.printError("Player " + this.getName() + " does not have a blockade card");
+			return null;
+		}
+		//check if country exist
+		if(!GameContext.getGameContext().getCountries().containsKey(l_targetCountryId)){
+			GenericView.printError("Does not exist the target country");
+			return null;
+		}
+		//check if the player conquered the target country
+		if(!this.d_conqueredCountries.containsKey(l_targetCountryId)) {
+			GenericView.printError("Target country not belong to current player!");
+			return null;
+		}
+		return new BlockadeOrder(this, l_targetCountryId);
 	}
 	
 	/**
