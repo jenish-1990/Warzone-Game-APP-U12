@@ -8,7 +8,7 @@ import warzone.view.MapView;
 /**
  * This class represents one deploy order of the gameplay
  */
-public class DeployOrder implements Order {
+public class DeployOrder extends Order {
 
 	private Country d_country;
 	private Player d_player;	
@@ -24,6 +24,8 @@ public class DeployOrder implements Order {
 		d_country = p_country;
 		d_armyNumber = p_armyNumber;
 		d_player = p_player;
+		this.d_orderType = OrderType.DEPLOY;
+		this.d_gameContext = GameContext.getGameContext(); 
 	}
 
 	/**

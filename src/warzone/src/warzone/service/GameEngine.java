@@ -193,7 +193,7 @@ public class GameEngine {
 		d_gameContext.getPlayers().forEach((l_k, l_player) -> {
 			if(l_player.getIsAlive()) {
 				GenericView.println("Start to assign reinforcements for player ["+ l_player.getName() +"]");
-				l_player.assignReinforcements(d_gameContext);
+				l_player.assignReinforcements();
 			}
 		});
 		
@@ -255,6 +255,8 @@ public class GameEngine {
 
 		//2. excute the orders
 		GenericView.println("Start to execute orders.");
+		
+		d_gameContext.resetDiplomacyOrderList();
 		int l_roundIndex = 1;
 		while(l_roundIndex <= l_maxOrderNumber ){
 			if( isGameEnded()) {

@@ -1,5 +1,6 @@
 package warzone.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +30,45 @@ public class GameContext {
 	private String d_mapFilePic;
 	private String d_mapFileMap;
 	private String d_mapFileCards;
+	private List<NegotiateOrder> d_negotiateOrdersInCurrentTurn;
 	
 	private WarzoneProperties d_warzoneProperties;
+	
+	
+
+	/**
+	 * check if there is a Diplomacy existed between 2 given players
+	 * @param p_playerA first given player 
+	 * @param p_playerB second  given player
+	 * @return True if there is a Diplomacy existed, otherwise false
+	 */
+	public boolean isDiplomacyInCurrentTurn(Player p_playerA,Player p_playerB) {
+		if(p_playerA == null || p_playerB == null)
+			return false;
+		for(NegotiateOrder l_orderTemp : d_negotiateOrdersInCurrentTurn) {
+			if((l_orderTemp.getPlayer() == p_playerA ||  l_orderTemp.getTargetPlayer() == p_playerB  )
+					&& (l_orderTemp.getPlayer() == p_playerB ||  l_orderTemp.getTargetPlayer() == p_playerA  ) )
+				return true;
+		}
+
+		return false;
+	}
+	
+	/**
+	 * rest Diplomacy Order List when a new turn is started
+	 */
+	public void resetDiplomacyOrderList() {
+		d_negotiateOrdersInCurrentTurn = new ArrayList<NegotiateOrder>();
+	}
+	
+	/**
+	 *  add Diplomacy Order To List for current turn
+	 * @param p_diplomacyOrder given Diplomacy Order
+	 */
+	public void addDiplomacyOrderToList(NegotiateOrder p_diplomacyOrder) {
+		d_negotiateOrdersInCurrentTurn.add(p_diplomacyOrder);
+	}
+	
 	
 	/**
 	 * get current running router
@@ -77,6 +115,7 @@ public class GameContext {
 		d_continents = new HashMap<Integer, Continent>();
 		d_warzoneProperties = WarzoneProperties.getWarzoneProperties();
 		d_logService = new LogService();
+		d_negotiateOrdersInCurrentTurn = new ArrayList<NegotiateOrder>();
 	}		
 	
 	/**
@@ -119,6 +158,7 @@ public class GameContext {
 		d_countries = new HashMap<Integer, Country>();
 		d_continents = new HashMap<Integer, Continent>();
 		d_warzoneProperties = WarzoneProperties.getWarzoneProperties();
+		d_negotiateOrdersInCurrentTurn = new ArrayList<NegotiateOrder>();
 		d_mapFileName = "";
 		d_mapFilePic = "";
 		d_mapFileMap = "";

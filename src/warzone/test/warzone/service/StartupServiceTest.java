@@ -175,7 +175,7 @@ public class StartupServiceTest {
 		d_startupController.loadMap("europe.map");
 		
 		Player l_player1 = new Player("player1");
-		l_player1.assignReinforcements(d_gameContext);
+		l_player1.assignReinforcements();
 		GenericView.printDebug("Total reinforcements assigned: " + l_player1.getArmiesToDeploy());
 		
 		assertTrue(l_player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound());
@@ -217,7 +217,7 @@ public class StartupServiceTest {
 		l_player1.getConqueredCountries().put(15, d_gameContext.getCountries().get(15));
 		l_player1.getConqueredCountries().put(16, d_gameContext.getCountries().get(16));
 		
-		l_player1.assignReinforcements(d_gameContext);
+		l_player1.assignReinforcements();
 		GenericView.printDebug("Total reinforcements assigned: " + l_player1.getArmiesToDeploy());
 		
 		assertTrue(l_player1.getArmiesToDeploy() == 4);
@@ -240,7 +240,7 @@ public class StartupServiceTest {
 		d_startupController.loadMap("europe.map");
 		
 		Player l_player1 = new Player("player1");
-		l_player1.assignReinforcements(d_gameContext);
+		l_player1.assignReinforcements();
 		GenericView.printDebug("Initial reinforcements assigned: " + l_player1.getArmiesToDeploy());
 		
 		assertTrue(l_player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound());
@@ -262,7 +262,7 @@ public class StartupServiceTest {
 			}
 		);
 		
-		l_player1.assignReinforcements(d_gameContext);
+		l_player1.assignReinforcements();
 		
 		GenericView.printDebug("Total reinforcements assigned: " + l_player1.getArmiesToDeploy());
 		

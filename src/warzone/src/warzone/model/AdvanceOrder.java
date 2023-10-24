@@ -6,7 +6,7 @@ import warzone.view.GenericView;
 /**
  * This class represents one advance order of the gameplay
  */
-public class AdvanceOrder implements Order {
+public class AdvanceOrder extends Order{
 
 	private Country d_fromCountry;
 	private Country d_toCountry;
@@ -26,6 +26,8 @@ public class AdvanceOrder implements Order {
 		d_fromCountry = p_fromCountry;
 		d_toCountry = p_toCountry;
 		d_numberOfArmies = p_numberOfArmies;
+    this.d_orderType = OrderType.ADVANCE;
+		this.d_gameContext = GameContext.getGameContext();  
 	}
 	
 	/**
@@ -199,22 +201,31 @@ public class AdvanceOrder implements Order {
      * @return true if valid
      */
     @Override
-    public boolean valid(){
-        
+    public boolean valid(){        
     	boolean l_isValid = true;
+      Player l_targetPlayer = d_fromCountry.getOwner();
+      if(l_targetPlayer == null || !l_targetPlayer.getIsAlive()){
+        GenericView.printWarning(String.format(" The player of target country is not alive or is Null." ));
+        l_isValid = false;
+      }
     	
     	//Check if fromCountry is owned by the current player
-		if(!d_fromCountry.getOwner().equals(d_player)) {
-			
+		if(!d_fromCountry.getOwner().equals(d_player)) {			
 			GenericView.printWarning("Could not perform the advance order moving " + d_numberOfArmies + " armies from " + 
 					d_fromCountry.getCountryName() + " to " + d_toCountry.getCountryName() + " because " + d_player.getName() + " does not own " + d_fromCountry + ".");
 			
 			l_isValid =  false;
 		}
+      
+    //check if DIPLOMACY 
+		if(this.d_gameContext.isDiplomacyInCurrentTurn(d_player, d_toCountry.getOwner())){
+      			GenericView.printWarning("Could not perform the advance order moving " + d_numberOfArmies + " armies from " + 
+					d_fromCountry.getCountryName() + " to " + d_toCountry.getCountryName() + " because they are Diplomacy in current turn.");
+				l_isValid =  false;
+		}
 		
 		//Check if fromCountry and toCountry are neighbors
-		if(d_fromCountry.getNeighbors().get(d_toCountry.getCountryID()) == null) {
-			
+		if(d_fromCountry.getNeighbors().get(d_toCountry.getCountryID()) == null) {			
 			GenericView.printWarning("Could not perform the advance order moving " + d_numberOfArmies + " armies from " + 
 					d_fromCountry.getCountryName() + " to " + d_toCountry.getCountryName() + " because they are not neighbors.");
 			
