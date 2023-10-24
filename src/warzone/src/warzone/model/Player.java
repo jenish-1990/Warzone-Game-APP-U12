@@ -265,12 +265,41 @@ public class Player {
 
 		//read the information of command
 		int l_targetCountryId = CommonTool.parseInt(p_commandInfos[1]);
-
+		
+        //check if the player has a bomb card
+        if(!this.getCards().contains(Card.BOMB)){
+            GenericView.printError("Player " + this.getName() + " does not have a bomb card");
+            return null;
+        }
+		//check if country exist
+		if(!GameContext.getGameContext().getCountries().containsKey(l_targetCountryId)){
+			GenericView.printError("The target country does not exist");
+			return null;
+		}
+        //check whether the target country belongs to the player
+        if(this.getConqueredCountries().containsKey(l_targetCountryId)){
+            GenericView.printError("The player cannot destroy armies in his own country.");
+            return null;
+        }
+        //check whether the target country is adjacent to one of the countries that belong to the player
+        boolean l_isAdjacent = false;
+        for (Integer l_conqueredCountryId : this.getConqueredCountries().keySet()) {
+        	if (this.getConqueredCountries().get(l_conqueredCountryId).getNeighbors().containsKey(l_targetCountryId)) {
+        		l_isAdjacent = true;
+        		break;
+        	}
+        }
+        if (!l_isAdjacent) {
+        	GenericView.printError("The target country is not adjacent to one of the countries that belong to the player.");
+        	return null;
+        }
+        
 		BombOrder l_bombOrder = new BombOrder(l_targetCountryId);
 		l_bombOrder.setPlayer(this);
 
 		return l_bombOrder;
 	}
+
 	/*
 	 * create the advance order by command
 	 * @param p_commandInfos command infor
