@@ -67,7 +67,7 @@ public class PlayerTest {
 
 		//act
 		BombOrder l_bombOrder = l_player1.createBombOrder(new String[] {"bomb", "2"});
-		l_bombOrder.setPlayer(l_player1);
+//		l_bombOrder.setPlayer(l_player1);
 
 		//assert
 		l_bombOrder.execute();
