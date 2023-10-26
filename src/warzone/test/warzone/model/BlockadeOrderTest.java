@@ -39,7 +39,7 @@ public class BlockadeOrderTest {
 		d_order=new BlockadeOrder(d_player, d_country);
 		
 		//assert
-		assertTrue(d_order.valid());
+		assertFalse(d_order.valid());
 	}
 	
 	/**
