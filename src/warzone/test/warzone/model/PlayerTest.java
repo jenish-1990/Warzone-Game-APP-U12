@@ -424,10 +424,10 @@ public class PlayerTest {
 	}
 
 	/**
-	 * check if failed when army is more than the player owns.
+	 * check the army number when army is more than the player owns.
 	 */
 	@Test
-	public void WillNotAirliftOrderWithArmyMoreThanInCountry() {
+	public void WillAdjestAirliftOrderWithArmyMoreThanInCountry() {
 		//arrange
 		Player l_player = new Player("P1");
 		Country l_country1 = new Country(1,"C1",0,0,null);
@@ -441,11 +441,12 @@ public class PlayerTest {
 		l_player.getCards().add(Card.AIRLIFT);
 
 		//act
-
 		AirliftOrder l_order = new AirliftOrder(l_player,l_country1, l_country2, 7);
+		l_order.execute();
 
 		//assert
-		assertFalse(l_order.valid());
+		assertEquals(l_country1.getArmyNumber(), 0);
+		assertEquals(l_country2.getArmyNumber(), 8);
 	}
 
 	/**
