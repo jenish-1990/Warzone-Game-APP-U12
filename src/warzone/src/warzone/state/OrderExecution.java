@@ -32,8 +32,7 @@ public class OrderExecution extends GamePlay {
 
 	public void play(){
 		d_gameEngine.executeOrders();
-		if(!d_gameEngine.isGameEnded())
-			d_gameEngine.assignCards();
+		d_gameEngine.assignCards();
 	}
 
 	public void addPlayer(String p_playerName) {

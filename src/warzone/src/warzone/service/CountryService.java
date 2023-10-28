@@ -63,8 +63,7 @@ public class CountryService {
 	        }
 	        
 	        //remove from Continent
-			if(l_country.getContinent() != null)
-				d_gameContext.getContinents().get( l_country.getContinent().getContinentID() ).getCountries().remove(p_countryID);
+	        d_gameContext.getContinents().get( l_country.getContinent().getContinentID() ).getCountries().remove(p_countryID);
 
 	        //remove from players.
 			if(l_country.getOwner() != null && l_country.getOwner().getConqueredCountries() != null)

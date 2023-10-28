@@ -172,22 +172,15 @@ public class GameEngine {
 		//check and update PlayerStatus		
 		//set p_isLoser = true, when the player does not have any country
 		int l_alivePlayers = 0;
-		Player l_protentialWinner = null;
 		for(Player l_player :d_gameContext.getPlayers().values() ){
 			if(l_player.getConqueredCountries().size() > 0) {
 				l_player.setIsAlive(true);
-				l_protentialWinner = l_player;
 				l_alivePlayers ++;
 			}
-		}
-		if(l_alivePlayers <= 1){
-			GenericView.println("-------------------- Game End");
-			GenericView.printSuccess("player " + l_protentialWinner.getName() + " wins the game.");
-			return true;
-		}
-		else
-			return false;
+		}		
+		return l_alivePlayers <= 1;
 	}
+	
 
 	/**
 	 * This method will assign each player the correct number of reinforcement armies 
