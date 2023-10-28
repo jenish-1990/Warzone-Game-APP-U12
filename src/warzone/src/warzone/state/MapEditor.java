@@ -1,16 +1,10 @@
 package warzone.state;
 import warzone.service.*;
 
-import java.io.File;
-import java.util.Scanner;
 import warzone.model.*;
 import warzone.view.*;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *	ConcreteState of the State pattern. In this example, defines behavior 
@@ -304,8 +298,7 @@ public class MapEditor extends Phase {
 	 * Displays the map as text, showing all continents and countries and their respective neighbors.
 	 */
 	public void showMap () {
-//		d_logEntryBuffer.setOrder("showmap").setPhase(d_gameEngine.getPhase()).setResult("SUCCESS").setMessage("print map successfully.").notify(d_logEntryBuffer);;
-		d_logEntryBuffer.logAction("Succeed", "");
+		d_logEntryBuffer.logAction("SUCCESS", "");
 		MapView.printMap(d_gameContext);
 	}
 
@@ -321,12 +314,12 @@ public class MapEditor extends Phase {
 
 		// validate if the filename is legal
 		if(p_fileName == null || p_fileName.trim().isEmpty() || p_fileName.trim().length() > 20 ) {
-			GenericView.printError("InValid File Name, please type a valid file name, with length less than 20.");
+			d_logEntryBuffer.logAction("ERROR", "InValid File Name, please type a valid file name, with length less than 20.");
 			return false;
 		}
-
+		
 		if(! d_mapService.validateMap() ) {
-			GenericView.printError("InValid map, please check the map.");
+			d_logEntryBuffer.logAction("ERROR", "InValid map, please check the map.");
 			return false;
 		}
 
@@ -334,16 +327,16 @@ public class MapEditor extends Phase {
 		p_fileName = p_fileName.trim();
 		try{
 			if(d_mapService.saveMap(p_fileName)) {
-				GenericView.printSuccess("Map was saved in :" + this.d_gameContext.getMapfolder() + p_fileName );
+				d_logEntryBuffer.logAction("SUCCESS", "Map was saved in :" + this.d_gameContext.getMapfolder() + p_fileName );
 				return true;
 			}
 			else {
-				GenericView.printError("Exception occured when saving the map, please valid the file name or contact the Administrator.");
+				d_logEntryBuffer.logAction("ERROR", "Exception occured when saving the map, please valid the file name or contact the Administrator." );
 				return false;
 			}
 		}
 		catch(Exception ex) {
-			GenericView.printError("Exception occured when saving the map. " + ex.toString());
+			d_logEntryBuffer.logAction("ERROR", "Exception occured when saving the map. " + ex.toString());
 			return false;
 		}
 	}
@@ -370,11 +363,11 @@ public class MapEditor extends Phase {
 	 */
 	public boolean validateMap() {
 		if(! d_mapService.validateMap() ) {
-			GenericView.printError("It is not a connected map.");
+			d_logEntryBuffer.logAction("ERROR", "It is not a connected map.");
 			return false;
 		}
 		else {
-			GenericView.printSuccess("Yeah! You got a connected map!");
+			d_logEntryBuffer.logAction("SUCCESS", "Yeah! You got a connected map!");
 			return true;
 		}
 	}

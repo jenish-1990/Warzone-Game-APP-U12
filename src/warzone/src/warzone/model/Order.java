@@ -14,7 +14,7 @@ public abstract class Order {
 	 * command which create this order
 	 */
 	protected String d_command;
-	
+
 	/**
 	 * Current Game Context
 	 */
@@ -44,19 +44,19 @@ public abstract class Order {
 	 * print the order
 	 */
 	public abstract void printOrder() ;
-	
+
 	/**
 	 * set command which create this order
 	 * @param p_command given command
 	 */
-	public void setCommand(String p_command) {	
+	public void setCommand(String p_command) {
 		d_command = p_command;
 	}
-	
+
 	/**
 	 * get command which create this order
 	 */
-	public String getCommand() {	
+	public String getCommand() {
 		return d_command;
 	}
 	
@@ -65,7 +65,7 @@ public abstract class Order {
 	 * @param p_result given result
 	 * @param p_message given message
 	 */
-	protected void logExecution(String p_result, String p_message) {	
+	protected void logExecution(String p_result, String p_message) {
 		d_gameContext.getLogEntryBuffer().logExecuteOrder(p_result, p_message, this);
-	}	
+	}
 }

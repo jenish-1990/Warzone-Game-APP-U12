@@ -174,8 +174,8 @@ public class AdvanceOrder extends Order{
 	 */
 	private void changeCountryOwnership(Country p_toCountry, Country p_fromCountry, int p_numberOfArmies) {
 
-		//change the owner of the country
-		p_toCountry.setOwner(this.getPlayer());
+		//change the country state
+		p_toCountry.setCountryState(CountryState.Occupied, this.getPlayer());
 		//Update army counts
 		p_fromCountry.setArmyNumber(p_fromCountry.getArmyNumber() - p_numberOfArmies);
 		p_toCountry.setArmyNumber(p_toCountry.getArmyNumber() + p_numberOfArmies);

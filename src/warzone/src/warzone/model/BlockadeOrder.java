@@ -30,7 +30,7 @@ public class BlockadeOrder extends Order {
     	d_targetCountry = p_targetCountry;
         d_player=p_player;
 		this.d_orderType = OrderType.BLOCKADE;
-		this.d_gameContext = GameContext.getGameContext();  
+		this.d_gameContext = GameContext.getGameContext();
     }
 
     /**
@@ -46,10 +46,10 @@ public class BlockadeOrder extends Order {
         
 		//triple the number of armies on one of the current player's territories
 		d_targetCountry.setArmyNumber(d_targetCountry.getArmyNumber()*3);
-		//remove target country from conquered countries
-		d_targetCountry.getOwner().getConqueredCountries().remove(d_targetCountry);
+		//set country state to neutral
+		d_targetCountry.setCountryState(CountryState.Neutral, null);
 		//set owner to null
-		d_targetCountry.setOwner(null);
+		//d_targetCountry.setOwner(null);
 		
 		//print success information
 		GenericView.printSuccess("Success to execute order:" + toString());

@@ -6,6 +6,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import warzone.model.*;
+import warzone.state.MapEditor;
+import warzone.state.Startup;
 
 /**
  * test cases for map service
@@ -21,6 +23,8 @@ public class MapServiceTest {
     public void beforeEachTetCase(){
         GameContext.clear();
         d_gameContext = GameContext.getGameContext();
+		GameEngine.getGameEngine(d_gameContext).setPhase(new MapEditor(GameEngine.getGameEngine(d_gameContext)));
+		d_gameContext.setCurrentRouter(new Router(null, null, null, "testCommand"));
     }
 
     /**
