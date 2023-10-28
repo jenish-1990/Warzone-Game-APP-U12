@@ -4,17 +4,16 @@ import warzone.view.GenericView;
 
 public class AirliftOrder extends Order{
 
-//    private int d_sourceCountryId;
-//    private int d_targetCountryId;
     private Country d_fromCountry;
     private Country d_toCountry;
     private int d_armyNumber;
     private Player d_player;
 
     /**
-     * constructor of airlift order
-     * @param p_sourceCountryId source country
-     * @param p_tragetCountryId target country
+     * constructor
+     * @param p_player player of the order
+     * @param p_fromCountry airlift from country
+     * @param p_toCountry airlift to country
      * @param p_armyNumber army number
      */
     public AirliftOrder(Player p_player, Country p_fromCountry, Country p_toCountry, int p_armyNumber){
@@ -25,14 +24,6 @@ public class AirliftOrder extends Order{
 		this.d_orderType = OrderType.AIRLIFT;
 		this.d_gameContext = GameContext.getGameContext();  
     }
-
-//    /**
-//     * set the player of the order
-//     * @param p_player the player
-//     */
-//    public void setPlayer(Player p_player){
-//        d_player = p_player;
-//    }
 
     /**
      * get the player of the order
@@ -49,6 +40,7 @@ public class AirliftOrder extends Order{
     public void execute(){
         if(!valid()) {
         	GenericView.printWarning("Fail to execute order:" + toString());
+        	this.logExecution("Fail","The context does not satisfy the order" );
         	return;
         }
         int l_armyInTarget = d_toCountry.getArmyNumber() + d_armyNumber;
@@ -58,6 +50,7 @@ public class AirliftOrder extends Order{
         
 		//print success information
 		GenericView.printSuccess("Success to execute order:" + toString());
+		this.logExecution("Success", this.toString() );
     }
 
     /**
@@ -72,21 +65,21 @@ public class AirliftOrder extends Order{
             return false;
         }
         Player l_targetPlayer = d_toCountry.getOwner();
-        if( l_targetPlayer != null && l_targetPlayer != d_player && d_toCountry.getArmyNumber() > 0 ){
+        //check if players exist
+        if( l_targetPlayer != null && l_targetPlayer != d_player){
             GenericView.printError("Target country does not belongs to the player.");
             return false;
-        }        
- 
-		if (this.d_fromCountry.getArmyNumber() <  this.d_armyNumber) {
-			d_armyNumber = this.d_player.getArmiesToDeploy();
-			GenericView.printWarning("The country does not have enough army to airlift, then the airlift army number is adjusted to " + d_armyNumber);
-		}	
-		
+        }
         //check if army number is more than 0
         if(d_armyNumber <= 0){
             GenericView.printError("The number of airlift army shoud more than 0.");
             return false;
-        }		
+        }
+        //if does not have enough army, adjust the army number
+		if (this.d_fromCountry.getArmyNumber() <  this.d_armyNumber) {
+			d_armyNumber = this.d_fromCountry.getArmyNumber();
+			GenericView.printWarning("The country does not have enough army to airlift, then the airlift army number is adjusted to " + this.d_fromCountry.getArmyNumber());
+		}
 		
         return true;
     }

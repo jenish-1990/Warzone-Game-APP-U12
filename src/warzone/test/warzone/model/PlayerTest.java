@@ -441,11 +441,10 @@ public class PlayerTest {
 		l_player.getCards().add(Card.AIRLIFT);
 
 		//act
-
 		AirliftOrder l_order = new AirliftOrder(l_player,l_country1, l_country2, 7);
-
+		
 		//assert
-		assertFalse(l_order.valid());
+		assertTrue(l_order.valid());
 	}
 
 	/**

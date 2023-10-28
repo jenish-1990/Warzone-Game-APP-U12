@@ -112,6 +112,7 @@ public class AdvanceOrder extends Order{
 		
 		if(!valid()){
 			GenericView.printWarning("Fail to execute order:" + toString());
+			this.logExecution("Fail","The context does not satisfy the order" );
 			return;
 		}
 	
@@ -122,7 +123,7 @@ public class AdvanceOrder extends Order{
 		}
 		
 		//If toCountry is owned by current player -> advance armies
-		if(d_toCountry.getOwner().equals(d_player)) {
+		if(d_toCountry.getOwner() != null && d_toCountry.getOwner().equals(d_player)) {
 		
 			//Move the armies
 			d_fromCountry.setArmyNumber(d_fromCountry.getArmyNumber() - d_numberOfArmies);
@@ -130,44 +131,40 @@ public class AdvanceOrder extends Order{
 		}
 		//Else toCountry is owned by opponent -> attack
 		else {
-
-			Random l_randomNumberGenerator = new Random();
-			
-			for(int i = 0; i < d_numberOfArmies; i++) {
-				
-				if(d_toCountry.getArmyNumber() == 0) {
-					
+			do {
+				// check if successfully conquer a country
+				if(d_toCountry.getArmyNumber() == 0 && d_numberOfArmies >0) {
 					changeCountryOwnership(d_toCountry, d_fromCountry, d_numberOfArmies);
-					return;
+					break;
 				}
-				
-				//Attacking army has a 60% chance of killing a defending army
-				if((l_randomNumberGenerator.nextInt(10) + 1) <= 6) { //random int between 1 and 10 (inclusive)
-					
-					//Kill defending army
-					d_toCountry.setArmyNumber(d_toCountry.getArmyNumber() - 1);
-				}
-				
-				//Defending army has a 70% chance of killing a defending army
-				if((l_randomNumberGenerator.nextInt(10) + 1) <= 7) { //random int between 1 and 10 (inclusive)
-					
-					//Kill attacking army
-					d_fromCountry.setArmyNumber(d_fromCountry.getArmyNumber() - 1);
-					d_numberOfArmies--;
-					i--;
-				}
-			}
-			
-			if(d_toCountry.getArmyNumber() == 0 && d_numberOfArmies > 0) {
-				
-				changeCountryOwnership(d_toCountry, d_fromCountry, d_numberOfArmies);
-			}
+				//a single attack between two army units
+				singleAttack();
+			}while( d_numberOfArmies > 0);
 		}
-		
 		//print success information
 		GenericView.printSuccess("Success to execute order:" + toString());
+		this.logExecution("Success", this.toString() );
 	}
-	
+
+	/**
+	 * a single attack between two army units
+	 */
+	private void singleAttack(){
+
+		//Attacking army has a 60% chance of killing a defending army
+		if(Math.random() * 10 <= 6) {
+			//Kill defending army
+			d_toCountry.setArmyNumber(d_toCountry.getArmyNumber() - 1);
+		}
+
+		//Defending army has a 70% chance of killing a attacking army
+		if(Math.random() * 10 <= 7) {
+			//Kill attacking army
+			d_fromCountry.setArmyNumber(d_fromCountry.getArmyNumber() - 1);
+			d_numberOfArmies--;
+		}
+	}
+
 	/**
 	 * When an attacker conquers a defender's country, this method performs the exchange of the countries and armies. 
 	 * 
@@ -176,32 +173,15 @@ public class AdvanceOrder extends Order{
 	 * @param p_numberOfArmies
 	 */
 	private void changeCountryOwnership(Country p_toCountry, Country p_fromCountry, int p_numberOfArmies) {
-		
-		//Loop through each player to find who owns p_toCountry
-		GameContext.getGameContext().getPlayers().forEach(
-				
-			(l_playerName, l_player) -> {
-				
-				//Try removing the conquered country from the defender's list
-				if(l_player.getConqueredCountries().remove(p_toCountry.getCountryID()) != null) {
 
-					//change the owner of the country
-					p_toCountry.setOwner(this.getPlayer());
-
-					//Add conquered country to attacker's list
-					this.getPlayer().getConqueredCountries().put(p_toCountry.getCountryID(), p_toCountry);
-
-					//Update army counts
-					p_fromCountry.setArmyNumber(p_fromCountry.getArmyNumber() - p_numberOfArmies);
-					p_toCountry.setArmyNumber(p_numberOfArmies);
-					
-					//Set this variable to true to allow the player to collect a card at the end of the turn
-					this.getPlayer().setConqueredACountryThisTurn(true);
-					
-					return;
-				}
-			}
-		);		
+		//change the owner of the country
+		p_toCountry.setOwner(this.getPlayer());
+		//Update army counts
+		p_fromCountry.setArmyNumber(p_fromCountry.getArmyNumber() - p_numberOfArmies);
+		p_toCountry.setArmyNumber(p_toCountry.getArmyNumber() + p_numberOfArmies);
+		//Set this variable to true to allow the player to collect a card at the end of the turn
+		this.getPlayer().setConqueredACountryThisTurn(true);
+		return;
 	}
 	
 	/**

@@ -190,7 +190,7 @@ public class Player {
 			Country l_country = this.getConqueredCountries().get(l_countryId);
 			
 			if(l_country != null && l_armyNumber > 0 ) {
-				return new DeployOrder(l_country, l_armyNumber );
+				return new DeployOrder(this, l_country, l_armyNumber );
 			}
 		}
 		return null;			
@@ -205,7 +205,7 @@ public class Player {
 		if(p_command == null)
 			return null;
 
-		p_command = p_command.trim().toLowerCase();
+		p_command = p_command.trim();
 
 		String [] l_commandInfos = CommonTool.conventToArray(p_command);
 		String l_orderName = "";
@@ -222,8 +222,8 @@ public class Player {
 				return createBlockadeOrder(l_commandInfos);
 			case "airlift":
 				return createAirliftOrder(l_commandInfos);
-			case "diplomacy":
-				return createDiplomacyOrder(l_commandInfos);
+			case "negotiate":
+				return createNegotiateOrder(l_commandInfos);
 		}
 		return null;
 	}
@@ -250,8 +250,8 @@ public class Player {
 			return null;
 
 		//create the deploy order
-		DeployOrder l_deployOrder = new DeployOrder(l_country, l_armyNumber);
-		l_deployOrder.setPlayer(this);
+		DeployOrder l_deployOrder = new DeployOrder(this, l_country, l_armyNumber);
+//		l_deployOrder.setPlayer(this);
 
 		return l_deployOrder;
 	}
@@ -458,7 +458,7 @@ public class Player {
 	 * @param p_commandInfos given command array
 	 * @return Diplomacy Order if the command is valid
 	 */
-	public NegotiateOrder createDiplomacyOrder(String[] p_commandInfos){
+	public NegotiateOrder createNegotiateOrder(String[] p_commandInfos){
 		if(p_commandInfos.length != 2 || p_commandInfos[1]==null || p_commandInfos[1].toString() =="" ) 
 			return null;
 		
@@ -512,31 +512,32 @@ public class Player {
 			//render current issued order 
 			renderIssuedOrders();
 			
-			GenericView.println(String.format("Please input command for player [%s] , there is [%s] army available for deployment", this.getName(), l_armyToIssue ));
+			GenericView.println(String.format("*****  Please input command for player [%s] , there is [%s] army available for deployment", this.getName(), l_armyToIssue ));
 
 			if(!d_gameContext.getIsDemoMode()) {
 				//1. issue order from interaction
-				l_command = d_keyboard.nextLine().trim().toLowerCase();				
+				l_command = d_keyboard.nextLine().trim();				
 
-				if(l_command.equals("help")) {
+				if(l_command.equalsIgnoreCase("help")) {
 					l_gameEngine.getPhase().help();
 					continue;
 				}
-				else if( l_command.equals("showmap") ) {
+				else if( l_command.equalsIgnoreCase("showmap") ) {
 					l_gameEngine.getPhase().showMap();
 					continue;
 				}
 				//check if the issue order has finished
-				else if(l_command.equals("done")){
+				else if(l_command.equalsIgnoreCase("done")){
 					d_hasFinishIssueOrder = true;
 					GenericView.println(String.format("---------- Finish issuing order for player [%s] in this turn.", this.getName()));
 					return;
 				}
 
 				String [] l_commandInfos = CommonTool.conventToArray(l_command);
-				//convent the commend to deploy order.
+				//convent the commend to order.
 				l_order = conventOrder(l_command);
 				if (l_order != null) {
+					l_order.setCommand(l_command);
 					l_hasOrderGenerated = true;
 					this.d_orders.add(l_order);
 					l_order.printOrder();
@@ -545,9 +546,11 @@ public class Player {
 					if (l_order instanceof DeployOrder) {
 						d_armyHasIssued = d_armyHasIssued + ((DeployOrder)l_order).getArmyNumber();
 					}
+					d_gameContext.getLogEntryBuffer().logIssueOrder("Succeed", "Issued an order", l_command);
 				} else {
 					GenericView.printWarning("Incorrect command, please retry.");
-					l_hasOrderGenerated = false;
+					d_gameContext.getLogEntryBuffer().logIssueOrder("Error", "failed to issued an order", l_command);
+					l_hasOrderGenerated = false;					
 				}
 			}
 			else {
