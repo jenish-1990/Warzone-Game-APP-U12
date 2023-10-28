@@ -39,8 +39,8 @@ public class AdvanceOrderTest {
 		//Add countries to players conquered countries maps
 		d_attacker.getConqueredCountries().put(1, d_attackingCountry);
 		d_defender.getConqueredCountries().put(2, d_defendingCountry);
-		d_attackingCountry.setOwner(d_attacker);
-		d_defendingCountry.setOwner(d_defender);
+		d_attackingCountry.setCountryState(CountryState.Occupied, d_attacker);
+		d_defendingCountry.setCountryState(CountryState.Occupied,d_defender);
 		
 		//Add countries to gameContext
 		d_gameContext.getCountries().put(1, d_attackingCountry);

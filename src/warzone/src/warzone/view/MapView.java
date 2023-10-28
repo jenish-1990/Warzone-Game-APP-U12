@@ -62,9 +62,9 @@ public class MapView {
      * @param p_continents map of continent
      */
     public static void printMapWithArmies(Map<Integer, Continent> p_continents) {
-        System.out.println("************************************************************************");
-        System.out.println("** Continent[Bonus Army]  -  Country  -  neighbors -  Player  -  Armies       **");
-        System.out.println("************************************************************************");
+        System.out.println("***************************************************************************************");
+        System.out.println("** Continent[Bonus Army]  -  Country  -  neighbors -  State[Player]  -  Armies       **");
+        System.out.println("***************************************************************************************");
 
         if( p_continents.isEmpty())
             GenericView.println("No continent exist.");
@@ -75,7 +75,7 @@ public class MapView {
             for (Country l_country : l_continent.getCountries().values()) {
                 System.out.println(String.format("%27s", l_country.getCountryID()) + " "
                         + String.format("%-25s", l_country.getCountryName()) + " "
-                        + String.format("%-12s", (l_country.getOwner()==null ? "": l_country.getOwner().getName()))
+                        + String.format("%-25s", l_country.getCountryState().toString() + " [" + (l_country.getOwner()==null ? "": l_country.getOwner().getName()) + "]")
                         + l_country.getArmyNumber());
                 for (Country l_nCountry : l_country.getNeighbors().values())
                     System.out.println(String.format("%40s", l_nCountry.getCountryID()) + " " +l_nCountry.getCountryName());
