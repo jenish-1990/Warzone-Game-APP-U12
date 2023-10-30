@@ -1,0 +1,26 @@
+; map: europe.map
+; map made with the map maker
+; yura.net Risk 1.0.9.3
+
+[files]
+pic europe_pic.jpg
+map europe_map.gif
+crd europe.cards
+
+[continents]
+North_Europe 5 red
+South_Europe 1 blue
+
+[countries]
+1 England 1 164 126
+2 Scotland 1 158 44
+3 N_Ireland 1 125 70
+4 Rep_Ireland 1 106 90
+5 Wales 2 141 109
+
+[borders]
+1 2
+2 3 
+3 4 
+4 5 
+5 4
