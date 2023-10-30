@@ -98,12 +98,6 @@ public class Startup extends GamePlay {
 	 * After user creates all the players, all countries are randomly assigned to players. 
 	 */
 	public void assigncountries(){
-		//check if current map is valid.
-		if(!(new MapService(d_gameContext).validateMap())) {
-			d_logEntryBuffer.logAction("ERROR","The map is invalid,please fix it before assigning countries");
-			return ;
-		}
-		
 		boolean result = d_startupService.assignCountries();
 		if(result == false) {
 			d_logEntryBuffer.logAction("ERROR",  "Must have more than 2 players, and map have at least the same number of countries as players ");
