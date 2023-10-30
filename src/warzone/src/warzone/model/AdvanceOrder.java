@@ -12,7 +12,8 @@ public class AdvanceOrder extends Order{
 	private Country d_toCountry;
 	private int d_numberOfArmies;
 	private Player d_player;
-	
+	int l_numberOfArmies;// a local value of d_numberOfArmies used in local methods
+
 	/**
 	 * AdvanceOrder constructor
 	 * 
@@ -121,25 +122,26 @@ public class AdvanceOrder extends Order{
 			
 			d_numberOfArmies = d_fromCountry.getArmyNumber();
 		}
-		
+
+		l_numberOfArmies = d_numberOfArmies;
 		//If toCountry is owned by current player -> advance armies
 		if(d_toCountry.getOwner() != null && d_toCountry.getOwner().equals(d_player)) {
 		
 			//Move the armies
-			d_fromCountry.setArmyNumber(d_fromCountry.getArmyNumber() - d_numberOfArmies);
-			d_toCountry.setArmyNumber(d_toCountry.getArmyNumber() + d_numberOfArmies);
+			d_fromCountry.setArmyNumber(d_fromCountry.getArmyNumber() - l_numberOfArmies);
+			d_toCountry.setArmyNumber(d_toCountry.getArmyNumber() + l_numberOfArmies);
 		}
 		//Else toCountry is owned by opponent -> attack
 		else {
 			do {
 				// check if successfully conquer a country
-				if(d_toCountry.getArmyNumber() == 0 && d_numberOfArmies >0) {
-					changeCountryOwnership(d_toCountry, d_fromCountry, d_numberOfArmies);
+				if(d_toCountry.getArmyNumber() == 0 && l_numberOfArmies >0) {
+					changeCountryOwnership(d_toCountry, d_fromCountry, l_numberOfArmies);
 					break;
 				}
 				//a single attack between two army units
 				singleAttack();
-			}while( d_numberOfArmies > 0);
+			}while( l_numberOfArmies > 0);
 		}
 		//print success information
 		GenericView.printSuccess("Success to execute order:" + toString());
@@ -161,16 +163,16 @@ public class AdvanceOrder extends Order{
 		if(Math.random() * 10 <= 7) {
 			//Kill attacking army
 			d_fromCountry.setArmyNumber(d_fromCountry.getArmyNumber() - 1);
-			d_numberOfArmies--;
+			l_numberOfArmies--;
 		}
 	}
 
 	/**
 	 * When an attacker conquers a defender's country, this method performs the exchange of the countries and armies. 
 	 * 
-	 * @param p_toCountry
-	 * @param p_fromCountry
-	 * @param p_numberOfArmies
+	 * @param p_toCountry to country
+	 * @param p_fromCountry from country
+	 * @param p_numberOfArmies number of armies set to the new country
 	 */
 	private void changeCountryOwnership(Country p_toCountry, Country p_fromCountry, int p_numberOfArmies) {
 
@@ -192,15 +194,19 @@ public class AdvanceOrder extends Order{
     public boolean valid(){        
     	boolean l_isValid = true;
     	Player l_player = d_fromCountry.getOwner();
-	  if(l_player == null || !l_player.getIsAlive()){
-	    GenericView.printWarning(String.format(" The player of target country is not alive or is Null." ));
-	    return false;
-	  }
-    	
+    	if(l_player == null || !l_player.getIsAlive()) {
+			GenericView.printWarning(String.format(" The player of target country is not alive or is Null."));
+			return false;
+		}
+    	// check if army number above zero
+    	if(d_numberOfArmies <= 0){
+			GenericView.printWarning("Could not perform the advance order with below 0 armies.");
+			return false;
+		}
     	//Check if fromCountry is owned by the current player
 		if(d_fromCountry.getOwner() == null || !d_fromCountry.getOwner().equals(d_player)) {			
 			GenericView.printWarning("Could not perform the advance order moving " + d_numberOfArmies + " armies from " + 
-					d_fromCountry.getCountryName() + ", because " + d_player.getName() + " does not own " + d_fromCountry + ".");
+					d_fromCountry.getCountryName() + ", because " + d_player.getName() + " does not own [" + d_fromCountry.getCountryName() + "].");
 			
 		    return false;
 		}
@@ -219,7 +225,11 @@ public class AdvanceOrder extends Order{
 			
 		    return false;
 		}
-		
+		if(d_fromCountry.getArmyNumber() < d_numberOfArmies && d_fromCountry.getArmyNumber() == 0) {
+			GenericView.printWarning("Could not perform the advance order moving with 0 army in "+ d_fromCountry.getCountryName());
+
+			return false;
+		}
     	return true;
     }
 
