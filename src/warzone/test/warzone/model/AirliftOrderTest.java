@@ -182,7 +182,7 @@ public class AirliftOrderTest {
      * check if failed to generate the airlift order if the country does not exist
      */
     @Test
-    public void WillNotCreqteAirliftOrderWithErrorCountryID() {
+    public void WillNotCreateAirliftOrderWithErrorCountryID() {
         //arrange
         Player l_player = new Player("P1");
         Country l_country1 = new Country(1,"C1",0,0,null);

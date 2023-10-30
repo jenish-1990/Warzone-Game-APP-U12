@@ -158,7 +158,7 @@ public class Player {
 
 	/**
 	 * set if the player has conquered a country or not this turn 
-	 * @param p_conqueredACountryThisTurn
+	 * @param p_conqueredACountryThisTurn if conquered a country this turn
 	 */
 	public void setConqueredACountryThisTurn(boolean p_conqueredACountryThisTurn) {
 		this.d_conqueredACountryThisTurn = p_conqueredACountryThisTurn;

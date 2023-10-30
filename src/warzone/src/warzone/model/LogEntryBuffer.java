@@ -37,7 +37,7 @@ public class LogEntryBuffer extends Observable{
 	
 	/**
 	 *  log Issue Order
-	 * @param p_order result of logging Issue Order
+	 * @param p_result result of logging Issue Order
 	 * @param p_message  msg of logging Issue Order
 	 * @param p_command  command which create the order
 	 */
@@ -53,9 +53,9 @@ public class LogEntryBuffer extends Observable{
 		
 	/**
 	 *  log executing Order
-	 * @param p_order result of executing Order
+	 * @param p_result result of executing Order
 	 * @param p_message  msg of executing Order
-	 * @param p_command  command which create the order
+	 * @param p_order  the order
 	 */
 	public void logExecuteOrder(String p_result, String p_message, Order p_order) {
 		this.d_message = p_message;
@@ -69,6 +69,7 @@ public class LogEntryBuffer extends Observable{
 	
 	/**
 	 * This is the constructor of the class.
+	 * @param p_gameContext the game context
 	 */
 	public LogEntryBuffer(GameContext p_gameContext) {
 		d_gameContext = p_gameContext;
