@@ -46,8 +46,8 @@ public class GameContext {
 		if(p_playerA == null || p_playerB == null)
 			return false;
 		for(NegotiateOrder l_orderTemp : d_negotiateOrdersInCurrentTurn) {
-			if((l_orderTemp.getPlayer() == p_playerA ||  l_orderTemp.getTargetPlayer() == p_playerB  )
-					|| (l_orderTemp.getPlayer() == p_playerB ||  l_orderTemp.getTargetPlayer() == p_playerA  ) )
+			if((l_orderTemp.getPlayer() == p_playerA &&  l_orderTemp.getTargetPlayer() == p_playerB  )
+					|| (l_orderTemp.getPlayer() == p_playerB &&  l_orderTemp.getTargetPlayer() == p_playerA  ) )
 				return true;
 		}
 

@@ -77,6 +77,9 @@ public class StartupServiceTest {
 		assertTrue(d_gameContext.getCountries().size() == 24);
 	}
 	
+	/**
+	 * test assign countries, in different cases
+	 */
 	@Test
 	public void testAssignCountries() {
 		
@@ -158,8 +161,6 @@ public class StartupServiceTest {
 		System.out.println("player4CountryCtr: " + player4CountryCtr);
 		
 		assertTrue(player1CountryCtr >= 2 && player2CountryCtr >= 2 && player3CountryCtr >= 2 && player4CountryCtr >= 2);
-		
-		System.out.println();
 	}
 	
 	/**
