@@ -1,17 +1,23 @@
 package warzone.model;
 
-import java.util.Map;
-
 import warzone.view.GenericView;
-import warzone.view.MapView;
 
 /**
  * This class represents one deploy order of the gameplay
  */
 public class DeployOrder extends Order {
 
+	/**
+	 * country to deploy army
+	 */
 	private Country d_country;
-	private Player d_player;	
+	/**
+	 * owner of the order
+	 */
+	private Player d_player;
+	/**
+	 * army number
+	 */
 	private int d_armyNumber;
 
 	/**

@@ -1,10 +1,8 @@
 package warzone.view;
 
-import java.util.Map;
-
-import warzone.model.*;
+import warzone.model.GameContext;
+import warzone.model.GamePhase;
 import warzone.service.GameEngine;
-import warzone.state.Phase;
 
 /**
  * This class can print some help hints to players.

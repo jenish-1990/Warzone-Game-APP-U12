@@ -23,8 +23,8 @@ public class MapEditor extends Phase {
 	 * Constructor for MapEditor
 	 * @param p_ge Game Engine
 	 */
-	public MapEditor(GameEngine p_ge) {
-		super(p_ge);
+	public MapEditor(GameEngine p_gameEngine) {
+		super(p_gameEngine);
 		d_mapService = new MapService(d_gameContext);
 		d_continentService = new ContinentService(d_gameContext);
 		d_countryService  = new CountryService(d_gameContext);
@@ -63,9 +63,6 @@ public class MapEditor extends Phase {
 		}
 		// if continent id or name is not correct, return error info
 		if(l_continentID == -1 || l_bonusReinforcements < 0){
-//			GenericView.printError("Missing valid parameters.");
-//			d_logEntryBuffer.setResult("ERROR").setMessage(d_logEntryBuffer.getMessage() +  " Missing valid parameters.").notify(d_logEntryBuffer);
-//			d_logEntryBuffer.clearMessage();
 			d_logEntryBuffer.logAction("ERROR", "Missing valid parameters.");
 			return;
 		}
@@ -86,8 +83,6 @@ public class MapEditor extends Phase {
 		d_continentService.add(l_Continent);
 
 		//3. render to view
-//		d_logEntryBuffer.setResult("SUCCESS").setMessage(d_logEntryBuffer.getMessage() +  String.format("Continent [%s] was added successfully.", l_Continent.getContinentName())).notify(d_logEntryBuffer);
-//		d_logEntryBuffer.clearMessage();
 		d_logEntryBuffer.logAction("SUCCESS", String.format("Continent [%s] was added successfully.", l_Continent.getContinentName()));
 	}
 
@@ -371,26 +366,68 @@ public class MapEditor extends Phase {
 			return true;
 		}
 	}
+	
+	/**
+	 * execute issue_order or execute_order
+	 */
 	public void play(){
 		printInvalidCommandMessage();
 	}
+	
+	/**
+	 * Performs the action for user command: gameplayer -add playerName
+	 *
+	 * @param p_playerName player's name
+	 */
 	public void addPlayer(String p_playerName) { printInvalidCommandMessage(); }
+	
+	/**
+	 * Performs the action for user command: gameplayer -remove playerName
+	 *
+	 * @param p_playerName player's name
+	 */
 	public void removePlayer(String p_playerName){
 		 printInvalidCommandMessage();
 	 }	
+	
+	/**
+	 * Performs the action for user command: loadmap filename
+	 *
+	 * Game starts by user selection of a user-saved map file,
+	 * the map should be a connected graph
+	 *
+	 * @param p_fileName the file to load
+	 */
 	public void loadMap(String p_fileName){
 		 printInvalidCommandMessage();
 	 }		
+	
+	/**
+	 * Performs the action for user command: assigncountries
+	 *
+	 * After user creates all the players, all countries are randomly assigned to players.
+	 */
 	public void assigncountries(){
 		 printInvalidCommandMessage();
-	 }		
+	 }	
+	
+	/**
+	 * Performs the action for user command: reinforcement
+	 */
 	public void reinforcement(){
 		 printInvalidCommandMessage();
 	 }	
  
+	/**
+	 * Performs the action of issuing order
+	 */
 	public void issueOrder(){
 		 printInvalidCommandMessage();
 	 }	
+	
+	/**
+	 * Performs the action of order execution
+	 */
 	public void executeOrder(){
 		 printInvalidCommandMessage();
 	 }	

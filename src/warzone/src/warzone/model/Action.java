@@ -4,7 +4,13 @@ package warzone.model;
  * Action is the model of command
  */
 public class Action {
+	/**
+	 * action
+	 */
 	private String d_action;
+	/**
+	 * parameters of the action
+	 */
 	private String d_parameters;
 
 	/**

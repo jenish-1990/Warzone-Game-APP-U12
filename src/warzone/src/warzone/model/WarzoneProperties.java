@@ -11,8 +11,13 @@ import warzone.view.GenericView;
  */
 public class WarzoneProperties {
 
-	//Class variables
+	/**
+	 * static member of Warzone Properties
+	 */
 	private static WarzoneProperties WARZONE_PROPERTIES;
+	/**
+	 * a private Properties
+	 */
 	private Properties d_properties;
 	
 	//Create singelton
@@ -62,6 +67,8 @@ public class WarzoneProperties {
 		d_logDirectory = d_properties.getProperty("logDirectory");
 		d_minimumReinforcementsEachRound = Integer.parseInt(d_properties.getProperty("minimumReinforcementsEachRound"));
 		d_minimumCountriesPerReinforcementBonus = Integer.parseInt(d_properties.getProperty("minimumCountriesPerReinforcementBonus"));
+		d_simpleCommand = d_properties.getProperty("simpleCommand");
+		d_complexCommand = d_properties.getProperty("complexCommand");
 	}
 	
 	//Run Configurations
@@ -100,6 +107,24 @@ public class WarzoneProperties {
 	 * @return the log directory
 	 */
 	public String getLogDirectory() { return d_logDirectory; }
+	
+	private String d_simpleCommand;
+	/**
+	 * This method will return simple command in the configuration file
+	 * @return simple command
+	 */
+	public String getSimpleCommand() {
+		return d_simpleCommand;
+	}
+	
+	private String d_complexCommand;
+	/**
+	 * This method will return complex command in the configuration file
+	 * @return complex command
+	 */
+	public String getComplexCommand() {
+		return d_complexCommand;
+	}
 		
 	private int d_minimumReinforcementsEachRound;
 	public int getMinimumReinforcementsEachRound() { return d_minimumReinforcementsEachRound; }

@@ -14,7 +14,14 @@ import java.util.*;
  */
 public class MapService {
 
+	/**
+	 * game context
+	 */
 	private GameContext d_gameContext;
+
+	/**
+	 * log entry buffer
+	 */
 	private LogEntryBuffer d_logEntryBuffer;
 
 	/**
@@ -412,7 +419,10 @@ public class MapService {
 		return true;
 	}
 
-	private int l_seq = 0; // the sequence it is read in tree
+	/**
+	 * the sequence it is read in tree
+	 */
+	private int l_seq = 0;
 
 
 	/**

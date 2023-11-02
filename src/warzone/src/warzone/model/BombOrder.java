@@ -30,14 +30,6 @@ public class BombOrder extends Order{
 		this.d_orderType = OrderType.BOMB;
         d_gameContext = GameContext.getGameContext();  
 	}
-	
-//    /**
-//     * set the player of the order
-//     * @param p_player the player
-//     */
-//    public void setPlayer(Player p_player){
-//        d_player = p_player;
-//    }
 
     /**
      * get the player of the order
@@ -89,7 +81,6 @@ public class BombOrder extends Order{
         boolean l_isAdjacent = false;
         for (Integer l_conqueredCountryId : d_player.getConqueredCountries().keySet()) {
         	if (d_player.getConqueredCountries().get(l_conqueredCountryId).getNeighbors().containsValue(d_targetCountry)) {
-        		//d_targetCountry = d_player.getConqueredCountries().get(l_conqueredCountryId).getNeighbors().get(d_targetCountry);
         		l_isAdjacent = true;
         		break;
         	}

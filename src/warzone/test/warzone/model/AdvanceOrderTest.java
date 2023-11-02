@@ -5,8 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import warzone.service.StartupService;
 
+/**
+ * test class of advanceorder
+ */
 public class AdvanceOrderTest {
 
 	private GameContext d_gameContext;
@@ -14,7 +16,10 @@ public class AdvanceOrderTest {
 	private Player d_defender;
 	private Country d_attackingCountry;
 	private Country d_defendingCountry;
-	
+
+	/**
+	 * setup before each method
+	 */
 	@Before
 	public void setup() {
 		
@@ -46,7 +51,10 @@ public class AdvanceOrderTest {
 		d_gameContext.getCountries().put(1, d_attackingCountry);
 		d_gameContext.getCountries().put(2, d_defendingCountry);
 	}
-	
+
+	/**
+	 * test attacker conquers but no army in the territory
+	 */
 	@Test
 	public void testAttackerConquersDefender() {
 		
@@ -66,7 +74,33 @@ public class AdvanceOrderTest {
 		assertTrue(d_attackingCountry.getArmyNumber() == 0); //Attacker moves all armies to defender's country 
 		assertTrue(d_defendingCountry.getArmyNumber() < 1000); //The attacker moves all remaining armies (some should be lost due to fights)
 	}
-	
+
+	/**
+	 * test attacker conquers a defender
+	 */
+	@Test
+	public void testAttackerConquersDefenderHasNoArmy() {
+		
+		//Add armies to both countries
+		d_attackingCountry.setArmyNumber(1000);
+		d_defendingCountry.setArmyNumber(0);
+		
+		
+		//Execute AdvanceOrder
+		new AdvanceOrder(d_attacker, d_attackingCountry, d_defendingCountry, 1000).execute();
+		
+		//Make sure attacker conquered country
+		assertTrue(d_attacker.getConqueredCountries().size() == 2);
+		assertTrue(d_defender.getConqueredCountries().size() == 0);
+		
+		//Make sure the attacking and defending countries lost armies
+		assertTrue(d_attackingCountry.getArmyNumber() == 0); //Attacker moves all armies to defender's country 
+		assertTrue(d_defendingCountry.getArmyNumber() == 1000); //The attacker moves all remaining armies (some should be lost due to fights)
+	}
+
+	/**
+	 * test when attacker conquer, some armis are kept
+	 */
 	@Test
 	public void testAttackerConquersDefenderButKeepsSomeArmies() {
 		
@@ -86,7 +120,10 @@ public class AdvanceOrderTest {
 		assertTrue(d_attackingCountry.getArmyNumber() == 500); //Attacker move 500 armies to defender's country, but keeps 500 in attacking country
 		assertTrue(d_defendingCountry.getArmyNumber() < 500); //The attacker moves all remaining armies (some should be lost due to fights)
 	}
-	
+
+	/**
+	 * test when attacker does not conquer a defender
+	 */
 	@Test
 	public void testAttackerDoesNotConquerDefender() {
 		
@@ -107,4 +144,49 @@ public class AdvanceOrderTest {
 		assertTrue(d_defendingCountry.getArmyNumber() < 1000); //Some should be lost due to fights
 	}
 
+	/**
+	 * test Attacker With Zero Army
+	 */
+	@Test
+	public void testAttackerWithZeroArmy() {
+
+		//Add armies to both countries
+		d_attackingCountry.setArmyNumber(3);
+		d_defendingCountry.setArmyNumber(2);
+
+
+		//Execute AdvanceOrder
+		new AdvanceOrder(d_attacker, d_attackingCountry, d_defendingCountry, 0).execute();
+
+		//Make sure attacker did not conquer country
+		assertTrue(d_attacker.getConqueredCountries().size() == 1);
+		assertTrue(d_defender.getConqueredCountries().size() == 1);
+
+		//Make sure the attacking and defending countries lost armies
+		assertEquals(d_attackingCountry.getArmyNumber(), 3); //Attacker does not lose some armies
+		assertEquals(d_defendingCountry.getArmyNumber(),  2); //Some should be lost due to fights
+	}
+
+	/**
+	 * test case for test Attacker With Territory Have Zero Army
+	 */
+	@Test
+	public void testAttackerWithTerritoryHaveZeroArmy() {
+
+		//Add armies to both countries
+		d_attackingCountry.setArmyNumber(0);
+		d_defendingCountry.setArmyNumber(2);
+
+
+		//Execute AdvanceOrder
+		new AdvanceOrder(d_attacker, d_attackingCountry, d_defendingCountry, 20).execute();
+
+		//Make sure attacker did not conquer country
+		assertTrue(d_attacker.getConqueredCountries().size() == 1);
+		assertTrue(d_defender.getConqueredCountries().size() == 1);
+
+		//Make sure the attacking and defending countries lost armies
+		assertEquals(d_attackingCountry.getArmyNumber(), 0); //Attacker does not lose some armies
+		assertEquals(d_defendingCountry.getArmyNumber(),  2); //Some should be lost due to fights
+	}
 }

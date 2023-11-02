@@ -17,7 +17,14 @@ import warzone.model.*;
  */
 public class StartupService {
 
+	/**
+	 * game context
+	 */
 	private GameContext d_gameContext;
+
+	/**
+	 * log entry buffer
+	 */
 	private LogEntryBuffer d_logEntryBuffer;
 
 	/**
@@ -76,7 +83,6 @@ public class StartupService {
 		String l_mapDirectory = null;
 		
 		try {
-			
 			//Get the map directory from the properties file
 			Properties l_properties = new Properties();
 			l_properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
@@ -277,10 +283,10 @@ public class StartupService {
 	 * @return true if successfully assign the countries, otherwise return false
 	 */
 	public boolean assignCountries() {
-
 		//Make sure there are more than 1 player
 		//and there are enough countries to distribute between all the players
 		if( d_gameContext.getPlayers().size() < 2 || d_gameContext.getPlayers().size() > d_gameContext.getCountries().size() ) {
+			d_logEntryBuffer.logAction("ERROR", "The game should have 2 players at least, and countriese number is greater than players number.");
 			return false;
 		}
 		//reset the countries list and for each player.
