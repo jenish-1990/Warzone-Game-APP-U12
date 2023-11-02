@@ -32,13 +32,21 @@ public class Router {
 		this.d_command = p_command;
 	}
 	
-	
+	/**
+	 * Controller Name
+	 */
 	private ControllerName d_controllerName;
-	
+	/**
+	 *  action Name
+	 */
 	private String d_actionName;
-	
+	/**
+	 *  action Parameters
+	 */
 	private String d_actionParameters;	
-	
+	/**
+	 *  command
+	 */
 	private String d_command;
 	
 	

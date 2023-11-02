@@ -1,0 +1,27 @@
+editmap hello.map
+showmap
+editmap 22.map
+showmap
+savem sdf
+savemap 22-1.map
+editcontinent -add 1 5 
+editcontinent -add 2 7 
+showmap
+editcontinent -add 3 7 -add 4 5 -remove 3 
+showmap
+editcountry -add 1 4
+editcountry -add 5 4
+editcountry -add 6 4
+showmap
+editcountry -add 7 4 -remove 5
+editcountry -add 7 4sdfdsf -remove 7
+showmap
+editneighbor -add 4 6 -add 6 4 -add 2 6 -add 6 2 -remove 6 4 
+showmap
+validatemap
+editneighbor -remove 6 2
+showmap
+validatemap
+editneighbor -add 6 2
+validatemap
+savemap 22-3-good.map

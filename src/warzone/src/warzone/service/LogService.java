@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import warzone.model.GameContext;
 import warzone.model.Observable;
 import warzone.model.Observer;
@@ -16,6 +19,20 @@ import warzone.model.Observer;
  *
  */
 public class LogService implements Observer{
+	
+	/**
+	 * Log file Name
+	 */
+	private String d_fileName ;
+	
+	
+	/**
+	 * construstor of the log service
+	 */
+	public LogService() {
+		d_fileName = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()) + ".log";
+	}
+	
 	/**
 	 * This method will print log message into console.
 	 */
@@ -42,7 +59,7 @@ public class LogService implements Observer{
 			if (!l_dir.isDirectory()) {
 				l_dir.mkdir();
 			}
-			File l_f = new File(l_dir, "log");
+			File l_f = new File(l_dir, d_fileName);
 			if (!l_f.isFile()) {
 				l_f.createNewFile();
 			}

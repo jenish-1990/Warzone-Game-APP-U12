@@ -263,17 +263,34 @@ public class MapService {
 		return true;
 	}
 
-	/*
-	 * 	Map validation
+	/**
+	 * map Index To CountryId
 	 */
-	// record the relationship between index of linkedlist and country/continent id
 	Map<Integer, Integer> d_mapIndexToCountryId = new HashMap<>();
+
+	/**
+	 * map CountryId To Index
+	 */
 	Map<Integer, Integer> d_mapCountryIdToIndex = new HashMap<>();
+
+	/**
+	 * map Index To ContinentId
+	 */
 	Map<Integer, Integer> d_mapIndexToContinentId = new HashMap<>();
+
+	/**
+	 * map ContinentId To Index
+	 */
 	Map<Integer, Integer> d_mapContinentIdToIndex = new HashMap<>();
 
-	LinkedList<Object>[] l_continentAdjList; // list to store the relationship between continents
-	int l_continentIndex; // the record of continent tree
+	/**
+	 * list to store the relationship between continents
+	 */
+	LinkedList<Object>[] l_continentAdjList;
+	/**
+	 * the record of continent tree
+	 */
+	int l_continentIndex;
 
 	/**
 	 * initiate the list of neighbours

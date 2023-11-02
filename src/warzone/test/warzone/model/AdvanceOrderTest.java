@@ -11,11 +11,29 @@ import org.junit.Test;
  */
 public class AdvanceOrderTest {
 
+	/**
+	 * Game Context
+	 */
 	private GameContext d_gameContext;
+	/**
+	 * attacker player
+	 */
 	private Player d_attacker;
+	/**
+	 * d_defender player
+	 */
 	private Player d_defender;
+	/**
+	 *  attacking Country
+	 */
 	private Country d_attackingCountry;
+	/**
+	 * Defending Country
+	 */
 	private Country d_defendingCountry;
+	/**
+	 * Game Context
+	 */
 
 	/**
 	 * setup before each method

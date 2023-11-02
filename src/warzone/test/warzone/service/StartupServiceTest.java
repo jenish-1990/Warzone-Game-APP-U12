@@ -22,7 +22,13 @@ import warzone.view.GenericView;
  */
 public class StartupServiceTest {
 
+	/**
+	 * Game Context
+	 */
 	GameContext d_gameContext;
+	/**
+	 * Startup Service
+	 */
 	StartupService d_startupService;
 	
 	/**

@@ -13,6 +13,9 @@ import warzone.state.MapEditor;
  */
 public class MapServiceTest {
 	
+	/**
+	 * gamecontext before each test
+	 */
     GameContext d_gameContext;
 
     /**

@@ -11,7 +11,7 @@ public class IssueOrder extends GamePlay {
 
 	/**
 	 * The constructor of the class
-	 * @param p_ge the game engine
+	 * @param p_gameEngine the game engine
 	 */
 	public IssueOrder(GameEngine p_gameEngine) {
 		super(p_gameEngine);
@@ -24,6 +24,7 @@ public class IssueOrder extends GamePlay {
 	 */
 	public void next() {
 		d_gameEngine.setPhase(new OrderExecution(d_gameEngine));
+		super.next();
 	}
 
 	/**

@@ -303,7 +303,8 @@ public class RouterService {
 				l_router = new Router(ControllerName.COMMON, "help", l_command);
 				break;	
 			case  "qamode":
-				l_router = new Router(ControllerName.COMMON, "qamode", l_command);
+				String l_para =  p_commandArray.length > 1 ? p_commandArray[1] : "" ;
+				l_router = new Router(ControllerName.COMMON, "qamode", l_para ,l_command);
 				break;	
 			case  "next":
 				l_router = new Router(ControllerName.COMMON, "next", l_command);

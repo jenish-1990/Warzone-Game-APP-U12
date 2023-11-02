@@ -14,7 +14,7 @@ public class Reinforcement extends GamePlay {
 	/**
 	 * This is the constructor of the class.
 	 * 
-	 * @param p_ge the game engine
+	 * @param p_gameEngine the game engine
 	 */
 	public Reinforcement(GameEngine p_gameEngine) {
 		super(p_gameEngine);
@@ -28,6 +28,7 @@ public class Reinforcement extends GamePlay {
 	 */
 	public void next() {
 		d_gameEngine.setPhase(new IssueOrder(d_gameEngine));
+		super.next();
 	}
 
 	/**

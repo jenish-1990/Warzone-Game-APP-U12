@@ -71,21 +71,31 @@ public class WarzoneProperties {
 		d_complexCommand = d_properties.getProperty("complexCommand");
 	}
 	
-	//Run Configurations
+	/**
+	 *  is running in Demo Mode
+	 */
 	private boolean d_isDemoMode; 
+	
 	/**
 	 * This method will show whether the current mode is demo mode
 	 * @return true if the current mode is demo
 	 */
 	public boolean getIsDemoMode() { return d_isDemoMode; }
 	
+	/**
+	 * is running in debug mode
+	 */
 	private boolean d_isDebug;
+	
 	/**
 	 * This method will show whether the current mode is debug mode
 	 * @return true if the current mode is debug mode
 	 */
 	public boolean getIsDebug() { return d_isDebug; }
 	
+	/**
+	 * true if log is enabled
+	 */
 	private boolean d_isLog;
 	/**
 	 * This method will show whether needs logs
@@ -93,7 +103,9 @@ public class WarzoneProperties {
 	 */
 	public boolean getIsLog() { return d_isLog; }
 		
-	//Gameplay Settings
+	/**
+	 *  game Map Directory
+	 */
 	private String d_gameMapDirectory;
 	/**
 	 * This method will provide all properties in the property file
@@ -101,13 +113,18 @@ public class WarzoneProperties {
 	 */
 	public String getGameMapDirectory() { return d_gameMapDirectory; }
 	
+	/**
+	 * log Directory
+	 */
 	private String d_logDirectory;
 	/**
 	 * This method will return the log directory.
 	 * @return the log directory
 	 */
 	public String getLogDirectory() { return d_logDirectory; }
-	
+	/**
+	 *  simple Command
+	 */
 	private String d_simpleCommand;
 	/**
 	 * This method will return simple command in the configuration file
@@ -117,6 +134,9 @@ public class WarzoneProperties {
 		return d_simpleCommand;
 	}
 	
+	/**
+	 *  complex Command
+	 */
 	private String d_complexCommand;
 	/**
 	 * This method will return complex command in the configuration file
@@ -126,9 +146,28 @@ public class WarzoneProperties {
 		return d_complexCommand;
 	}
 		
+	/**
+	 *  minimum Reinforcements in Each Round
+	 */
 	private int d_minimumReinforcementsEachRound;
-	public int getMinimumReinforcementsEachRound() { return d_minimumReinforcementsEachRound; }
 	
+	/**
+	 * get minimum Reinforcements in Each Round
+	 * @return minimum Reinforcements in Each Round
+	 */
+	public int getMinimumReinforcementsEachRound() { 
+		return d_minimumReinforcementsEachRound; 
+	}
+	
+	/**
+	 *  minimum Countries PerReinforcement Bonus
+	 */
 	private int d_minimumCountriesPerReinforcementBonus;
-	public int getMinimumCountriesPerReinforcementBonus() { return d_minimumCountriesPerReinforcementBonus; }
+	/**
+	 * get minimum Countries PerReinforcement Bonus
+	 * @return minimum Countries PerReinforcement Bonus
+	 */
+	public int getMinimumCountriesPerReinforcementBonus() { 
+		return d_minimumCountriesPerReinforcementBonus; 
+	}
 }

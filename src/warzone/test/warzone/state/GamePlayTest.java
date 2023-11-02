@@ -17,7 +17,13 @@ import warzone.service.GameEngine;
  */
 public class GamePlayTest {
 
+	/**
+	 * Game Context
+	 */
 	private GameContext d_gameContext;
+	/**
+	 * Game Engine
+	 */
 	private GameEngine d_gameEngine;
 	
 	/**

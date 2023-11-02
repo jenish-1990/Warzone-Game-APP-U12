@@ -122,13 +122,17 @@ public class GameEngine {
 	 */
 	public boolean isReadyToStart() {
 		if(this.d_gameContext == null || this.d_gameContext.getContinents().size() <1 
-				|| this.d_gameContext.getCountries().size() < 1 || this.d_gameContext.getPlayers().size() < 1
-				|| (this.d_gameContext.getCountries().size() < this.d_gameContext.getPlayers().size()) )
+				|| this.d_gameContext.getCountries().size() < 2 || this.d_gameContext.getPlayers().size() < 2
+				|| (this.d_gameContext.getCountries().size() < this.d_gameContext.getPlayers().size()) ) {
+			GenericView.printWarning("The number of Country, player and continent is not satisfy the requirement, game can't start.");
 			return false;
+		}
 		else {
 			for(Player p_player : this.d_gameContext.getPlayers().values() ) {
-				if(p_player.getConqueredCountries().size() == 0)
+				if(p_player.getConqueredCountries().size() == 0) {
+					GenericView.printWarning("One of the player does not have a country, game can't start.");
 					return false;
+				}
 			}
 			
 		}
@@ -189,7 +193,10 @@ public class GameEngine {
 		}
 		if(l_alivePlayers <= 1){
 			GenericView.println("-------------------- Game End");
-			GenericView.printSuccess("player " + l_protentialWinner.getName() + " wins the game.");
+			if(l_alivePlayers == 1)
+				GenericView.printSuccess("player " + l_protentialWinner.getName() + " wins the game.");
+			else
+				GenericView.printSuccess("All the player died.");
 			GenericView.println("-------------------- Reboot the game");
 			this.reboot();
 			return true;
@@ -204,7 +211,8 @@ public class GameEngine {
 	 */
 	public void assignReinforcements() {
 		if( isGameEnded()) {
-			//todo: call game over and change state
+			GenericView.println("Game is ended.");
+			return ;
 		}
 		GenericView.println("-------------------- Start to assign reinforcements");
 		d_gameContext.getPlayers().forEach((l_k, l_player) -> {
@@ -397,6 +405,7 @@ public class GameEngine {
 
 			l_routers = l_routerService.parseCommand(l_command);						
 			//excute the command
+			GenericView.println(l_command);
 			l_routerService.route(l_routers);				
 		}
 		
