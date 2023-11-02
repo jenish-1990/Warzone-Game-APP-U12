@@ -413,8 +413,16 @@ public class Player {
 			GenericView.printError("Country " + p_commandInfos[2] + " was not found. Please check your spelling.");
 			l_isValidCommand = false;
 		}
-		if(l_numArmies <=0) {
-			GenericView.printError("Army number should above zero.");
+
+		if (l_numArmies <= 0 ) {			
+			GenericView.printError("The army number should greater than 0.");
+			l_isValidCommand = false;
+		}		
+		//Check if fromCountry and toCountry are neighbors
+		if(l_fromCountry.getNeighbors().get(l_toCountry.getCountryID()) == null) {			
+			GenericView.printError("Could not perform the advance order moving " + l_numArmies + " armies from " + 
+					l_fromCountry.getCountryName() + " to " + l_toCountry.getCountryName() + " because they are not neighbors.");
+			
 			l_isValidCommand = false;
 		}
 		
