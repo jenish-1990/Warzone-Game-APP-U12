@@ -6,10 +6,10 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	warzone.model.TestSuite.class,
-	warzone.service.TestSuite.class,
-//	warzone.state.TestSuite.class,
-//	warzone.view.TestSuite.class
+	warzone.model.ModelTestSuite.class,
+	warzone.service.ServiceTestSuite.class,
+	warzone.state.StateTestSuite.class,
+	warzone.view.ViewTestSuite.class
 	})
 public class TestSuite {
 
