@@ -31,4 +31,4 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
 
     - name: Tests
-      run: java test ./src/warzone/test/warzone/controller/ContinentControllerTest.java
+      run: java test ./src/warzone/test/warzone/controller/CommonControllerTest.java
