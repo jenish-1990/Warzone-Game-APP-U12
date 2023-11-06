@@ -73,7 +73,7 @@ public class BombOrder extends Order{
 		//check if DIPLOMACY 
 		if( d_targetCountry.getOwner()!= null && this.d_player != null 
 				&& this.d_gameContext.isDiplomacyInCurrentTurn(d_player, d_targetCountry.getOwner())){
-      			GenericView.printWarning(String.format("The player [%s] and [%s] are in Diplomacy in current turn.", this.d_player.getName(), d_targetCountry.getOwner() ));
+      			GenericView.printWarning(String.format("The player [%s] and [%s] are in Diplomacy in current turn.", this.d_player.getName(), d_targetCountry.getOwner().getName() ));
       		    return false;
 		}		
 		

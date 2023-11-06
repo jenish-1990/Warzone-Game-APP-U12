@@ -402,35 +402,30 @@ public class Player {
 		Country l_fromCountry = findCountryByName(p_commandInfos[1]);
 		Country l_toCountry = findCountryByName(p_commandInfos[2]);
 		int l_numArmies = Integer.parseInt(p_commandInfos[3]);
-		boolean l_isValidCommand = true;
 
 		//check if the command is valid
 		if (l_fromCountry == null) {			
 			GenericView.printError("Country " + p_commandInfos[1] + " was not found. Please check your spelling.");
-			l_isValidCommand = false;
+			return null;
 		}
 		if (l_toCountry == null) {			
 			GenericView.printError("Country " + p_commandInfos[2] + " was not found. Please check your spelling.");
-			l_isValidCommand = false;
+			return null;
 		}
 
 		if (l_numArmies <= 0 ) {			
 			GenericView.printError("The army number should greater than 0.");
-			l_isValidCommand = false;
+			return null;
 		}		
 		//Check if fromCountry and toCountry are neighbors
 		if(l_fromCountry.getNeighbors().get(l_toCountry.getCountryID()) == null) {			
 			GenericView.printError("Could not perform the advance order moving " + l_numArmies + " armies from " + 
 					l_fromCountry.getCountryName() + " to " + l_toCountry.getCountryName() + " because they are not neighbors.");
-			
-			l_isValidCommand = false;
-		}
+			return null;
+		}		
 		
-		if(l_isValidCommand) {			
-			//create the deploy order
-			return new AdvanceOrder(this, l_fromCountry, l_toCountry, l_numArmies);
-		}
-		return null;
+		//create the deploy order
+		return new AdvanceOrder(this, l_fromCountry, l_toCountry, l_numArmies);
 	}
 	
 	/**

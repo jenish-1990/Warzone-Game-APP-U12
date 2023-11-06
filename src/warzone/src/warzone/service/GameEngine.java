@@ -180,6 +180,9 @@ public class GameEngine {
 	 * 1. there is just one player left 2. the number of game turn is greater than 100.
 	 */
 	public boolean isGameEnded() {
+		if(this.d_gamePhase.getGamePhase() == GamePhase.MAPEDITOR)
+			return false;
+		
 		//check and update PlayerStatus		
 		//set p_isLoser = true, when the player does not have any country
 		int l_alivePlayers = 0;
@@ -279,8 +282,10 @@ public class GameEngine {
 	 * </ol>
 	 */
 	public void executeOrders() {	
+
 		if( isGameEnded()) {
 			//todo: call game over and change state
+			return;
 		}	
 		
 		//1. get the max number of the orders in a player.		
@@ -299,7 +304,7 @@ public class GameEngine {
 		int l_roundIndex = 1;
 		while(l_roundIndex <= l_maxOrderNumber ){
 			if( isGameEnded()) {
-				//todo: call game over and change state
+				break;
 			}	
 			
 			GenericView.println("---------- Start to execute round [" + l_roundIndex + "] of orders");
