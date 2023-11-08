@@ -204,8 +204,8 @@ public class RouterService {
 		
 		String l_firstWord = "," + l_commandArray[0] + ",";
 		// TODO move these commands into the properties file
-		String l_complexCommand = ",editcontinent,editcountry,editneighbor,gameplayer,";
-		String l_simpleCommand = ",loadmap,editmap,savemap,assigncountries,validatemap,showmap,help,qamode,play,next,reboot,startup,mapeditor,";
+		String l_complexCommand = d_gameContext.getComplexCommand();
+		String l_simpleCommand = d_gameContext.getSimpleCommand();
 		 if(l_simpleCommand.indexOf(l_firstWord) > -1) {
 				//simple command with only one router
 				GenericView.printDebug("parseCommand: start to work on simple command: " + p_command);

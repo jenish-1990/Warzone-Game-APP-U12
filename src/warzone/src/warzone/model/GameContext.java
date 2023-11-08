@@ -278,7 +278,23 @@ public class GameContext {
 	 */
 	public String getLogfolder() {
 		return d_warzoneProperties.getLogDirectory();
-	}	
+	}
+	
+	/**
+	 * This method will return simple commands.
+	 * @return  simple command
+	 */
+	public String getSimpleCommand() {
+		return d_warzoneProperties.getSimpleCommand();
+	}
+	
+	/**
+	 * This method will return complex commands.
+	 * @return  complex command
+	 */
+	public String getComplexCommand() {
+		return d_warzoneProperties.getComplexCommand();
+	}
 	
 	/**
 	 * This method can provide the number of order in every round of the game.
