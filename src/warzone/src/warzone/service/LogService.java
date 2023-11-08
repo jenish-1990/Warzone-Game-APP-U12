@@ -15,7 +15,7 @@ import warzone.model.Observer;
 /**
  * This class is responsible to create print log messages
  * using information in LogEntryBuffer
- * @author 10413
+ * @author alay
  *
  */
 public class LogService implements Observer{
