@@ -19,7 +19,7 @@ public class MapView {
     /**
      * generate the table of continent information
      * continentId, Name, countryId, Name, neighbours
-     * @param p_continents map of continent
+     * @param p_gameContext the game context
      */
     public static void printMap(GameContext p_gameContext) {
 

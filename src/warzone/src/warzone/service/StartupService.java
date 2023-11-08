@@ -266,7 +266,7 @@ public class StartupService {
 	 * 
 	 * After user creates all the players, all countries are randomly assigned to players. 
 	 * 
-	 * @return
+	 * @return true if successfully assign the countries, otherwise return false
 	 */
 	public boolean assignCountries() {
 
