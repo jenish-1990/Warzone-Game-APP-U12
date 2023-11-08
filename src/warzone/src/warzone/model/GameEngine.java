@@ -1,4 +1,4 @@
-package warzone.gameplay;
+package warzone.model;
 
 /**
  * Main game loop.

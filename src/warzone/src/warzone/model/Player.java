@@ -1,9 +1,8 @@
-package warzone.game.objects;
+package warzone.model;
 
 import java.util.Map;
 import java.util.Queue;
 
-import warzone.orders.Order;
 
 public class Player {
 
