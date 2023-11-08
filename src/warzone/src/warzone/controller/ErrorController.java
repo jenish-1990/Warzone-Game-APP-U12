@@ -11,6 +11,6 @@ public class ErrorController {
 	 * @param p_error the error information
 	 */
 	public void error(String p_error) {
-		GenericView.printError("Incorrect command: " +  p_error);
+		GenericView.printError("Incorrect command. ");
 	}
 }

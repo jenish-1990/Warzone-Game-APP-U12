@@ -92,12 +92,13 @@ public class StartupController {
 		
 		boolean result = d_startupService.assignCountries();
 		
-		if(result == false) {
-			
+		if(result == false) {			
 			GenericView.printError("There must be at least the same number of countries as players");
 		}
+		else
+			GenericView.printSuccess("Succeed to assign all the countries to players");			
 		
-		return false;
+		return result;
 	}
 	
 }

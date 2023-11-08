@@ -25,3 +25,37 @@ gameplayer -remove PL4  -remove PL5
 
 
 assigncountries
+
+
+gameplayer -add playername -remove playername
+
+-------- test game play
+startup
+loadmap europe.map
+validatemap
+gameplayer -add PL1 -add PL2  -add PL3   -add PL3    -add PL4    -add PL5
+assigncountries
+showmap
+play
+reinforcements
+issue_order
+
+
+
+-------- test simple game play
+startup
+loadmap simple.map
+validatemap
+gameplayer -add Player1 -add Player2  
+assigncountries
+showmap
+play
+reinforcements
+issue_order
+
+
+
+---------- test map
+loadmap simple.map
+editmap simple.map
+savemap simple-1.map

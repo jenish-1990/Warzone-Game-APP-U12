@@ -29,25 +29,30 @@ public class MapService {
 
 	/**
 	 * save map to file
-	 * @param p_fileName file name
+	 * @param p_fullFileName file name
 	 * @return if success
 	 * @throws IOException if any io exception
 	 */
-	public boolean saveMap(String p_fileName) throws IOException {
+	public boolean saveMap(String p_fullFileName) throws IOException {
 		try{
-			String l_fullFileName = p_fileName + ".map";
+			String l_fileName ;
+			if(p_fullFileName.indexOf(".") > -1)
+				l_fileName = p_fullFileName.substring(0,p_fullFileName.indexOf("."));
+			else
+				l_fileName = p_fullFileName;
+			String l_path = this.d_gameContext.getMapfolder();
 			
 			//build the content using StringBuilder
 			StringBuilder l_map = new StringBuilder();
-			l_map.append("; map: " + p_fileName);
+			l_map.append("; map: " + l_fileName);
 			l_map.append("\n; map made with the 6441 Super Team");
 			l_map.append("\n; 6441.net  1.0.0.1 ");
 			l_map.append("\n");
 			
 			l_map.append("\n[files]");
-			l_map.append("\npic "+ p_fileName +"_pic.jpg");
-			l_map.append("\nmap "+ p_fileName +"_map.gif");
-			l_map.append("\ncrd "+ p_fileName + "europe.cards");
+			l_map.append("\npic "+ l_fileName +"_pic.jpg");
+			l_map.append("\nmap "+ l_fileName +"_map.gif");
+			l_map.append("\ncrd "+ l_fileName + "europe.cards");
 			l_map.append("\n");
 			
 			l_map.append("\n[continents]");
@@ -74,11 +79,7 @@ public class MapService {
 			l_map.append("\n");
 			
 			//write the content into the map
-//			Path l_fileFullPath = Path.of(l_fullFileName);	        
-//	        Files.write(l_fileFullPath, l_map.toString().getBytes());
-//	        
-	        
-	        BufferedWriter writer = new BufferedWriter(new FileWriter(l_fullFileName));
+	        BufferedWriter writer = new BufferedWriter(new FileWriter(l_path + p_fullFileName));
 	        writer.write(l_map.toString());
 	        
 	        writer.close();
@@ -314,9 +315,7 @@ public class MapService {
 	 * @param p_gameContext game context
 	 * @return if map is valid
 	 */
-	public boolean
-	validateMap(GameContext p_gameContext) {
-
+	public boolean validateMap(GameContext p_gameContext) {
 		d_mapIndexToContinentId.clear();
 		d_mapContinentIdToIndex.clear();
 

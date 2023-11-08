@@ -74,7 +74,7 @@ public class MapView {
             for (Country _country : _continent.getCountries().values()) {
                 System.out.println(String.format("%22s", _country.getCountryID()) + " "
                         + String.format("%-10s", _country.getCountryName()) + " "
-                        + String.format("%-12s", _country.getOwner().getName())
+                        + String.format("%-12s", (_country.getOwner()==null?"": _country.getOwner().getName()))
                         + _country.getArmyNumber());
             }
         }

@@ -42,6 +42,7 @@ public class HelpView {
      * @param p_gamePhase the current phase of the game.
      */
     public static void printHelp(GamePhase p_gamePhase ) {
+    	System.out.println(String.format("***********************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
     	System.out.println("Commands available for current game phase: " + p_gamePhase);
     	switch(p_gamePhase) {
 	    	case MAPEDITOR:
@@ -71,9 +72,13 @@ public class HelpView {
 	    		break;
 	    	case PLAY:
 	    		System.out.println(""
-	    				+ " You are in game PLAYING phase, you can only deploy armies. \n"
-	    				+ " -  deploy countryID num\n");
+	    				+ " You are in game PLAYING phase, you can deploy armies. \n"
+	    				+ " -  deploy countryID num\n"
+	    				+ " \n"
+	    				+ " -  mapeditor \n"
+	    				+ " -  startup \n"	    				);
 	    		break;
     	}
+    	System.out.println(String.format("***********************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
     }
 }

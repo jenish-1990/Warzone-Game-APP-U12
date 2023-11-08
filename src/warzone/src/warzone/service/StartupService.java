@@ -265,14 +265,15 @@ public class StartupService {
 	 * Performs the action for user command: assigncountries
 	 * 
 	 * After user creates all the players, all countries are randomly assigned to players. 
+	 * 1-reset the countries
+	 * 2-assign countries
 	 * 
 	 * @return true if successfully assign the countries, otherwise return false
 	 */
 	public boolean assignCountries() {
 
 		//Make sure there are enough countries to distribute between all the players
-		if(d_gameContext.getPlayers().size() > d_gameContext.getCountries().size()) {
-			
+		if(d_gameContext.getPlayers().size() > d_gameContext.getCountries().size()) {			
 			return false;
 		}
 		//reset the countries list and for each player.
@@ -285,8 +286,6 @@ public class StartupService {
 		}		
 		
 		//Each player will be assigned the same number of countries. Leftover countries will be unassigned (neutral)
-		int l_countriesToAssign = d_gameContext.getCountries().size() - (d_gameContext.getCountries().size() % d_gameContext.getPlayers().size());
-		
 		//Create a list of playerIDs from the game context and shuffle their order
 		List<String> l_playerNames = new ArrayList<String>(d_gameContext.getPlayers().keySet());
 		Collections.shuffle(l_playerNames);
@@ -302,14 +301,7 @@ public class StartupService {
 		int l_playerIndex = 0;
 		
 		//Loop through each country to assign to a random player
-		for(Integer l_countryID : l_countryIDs) {		
-			
-			//Stop assigning countries once the remaining countries is less than the number of players
-			if (l_ctr >= l_countriesToAssign) {
-				
-				return true;
-			}
-			
+		for(Integer l_countryID : l_countryIDs) {			
 			//Reset the index once each player has been assigned a country
 			if(l_playerIndex >= l_playerNames.size()) {
 				l_playerIndex = 0;
