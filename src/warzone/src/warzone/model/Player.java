@@ -378,6 +378,10 @@ public class Player {
 			GenericView.printError("Country " + p_commandInfos[2] + " was not found. Please check your spelling.");
 			l_isValidCommand = false;
 		}
+		if(l_numArmies <=0) {
+			GenericView.printError("Army number should above zero.");
+			l_isValidCommand = false;
+		}
 		
 		if(l_isValidCommand) {			
 			//create the deploy order
