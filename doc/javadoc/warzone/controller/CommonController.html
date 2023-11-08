@@ -22,7 +22,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -160,11 +160,17 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/CommonController.html#changePhase-java.lang.String-">changePhase</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_actionParameters)</code>
+<div class="block">Change the game phase, and then other commands will be available.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/CommonController.html#help--">help</a></span>()</code>
 <div class="block">printout help menu</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/CommonController.html#welcome-java.lang.String-">welcome</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_actionParameters)</code>
 <div class="block">printout welcome sentence</div>
@@ -243,7 +249,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <a name="help--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>help</h4>
 <pre>public&nbsp;boolean&nbsp;help()</pre>
@@ -251,6 +257,22 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true if success</dd>
+</dl>
+</li>
+</ul>
+<a name="changePhase-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>changePhase</h4>
+<pre>public&nbsp;boolean&nbsp;changePhase(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_actionParameters)</pre>
+<div class="block">Change the game phase, and then other commands will be available.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p_actionParameters</code> - the new game phase.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if succeed to change the game phase.</dd>
 </dl>
 </li>
 </ul>

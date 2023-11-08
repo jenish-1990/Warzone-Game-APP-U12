@@ -4,8 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Tests for WarzoneProperties test
+ */
 public class WarzonePropertiesTest {
 
+	/**
+	 * check if the gamemap directory is not null
+	 */
 	@Test
 	public void warzonePropertiesTest() {
 
