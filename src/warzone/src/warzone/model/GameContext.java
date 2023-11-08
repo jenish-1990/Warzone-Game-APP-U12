@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import warzone.service.LogService;
+import warzone.service.MapService;
+
 /**
  * This class represent the state of the game, and it contains some useful instances for
  * other classes.
@@ -27,6 +30,8 @@ public class GameContext {
 	private String d_mapFileCards;
 	
 	private WarzoneProperties d_warzoneProperties;
+	
+	private static LogEntryBuffer LOG_ENTRY_BUFFER;
 	
 	/**
 	 * get map file cards
@@ -65,6 +70,19 @@ public class GameContext {
 			GAME_CONTEXT = new GameContext();
 		}
 		return GAME_CONTEXT;
+	}
+	
+	/**
+	 * This method can return the logEntryBuffer instance and create a new one if
+	 * it is null.
+	 * @return the logEntryBuffer instance
+	 */
+	public static LogEntryBuffer getLogEntryBuffer() {
+		if(LOG_ENTRY_BUFFER == null) {
+			LOG_ENTRY_BUFFER= new LogEntryBuffer();
+			LOG_ENTRY_BUFFER.attach(new LogService());
+		}
+		return LOG_ENTRY_BUFFER;
 	}
 	
 	/**
@@ -179,11 +197,27 @@ public class GameContext {
 	}
 	
 	/**
+	 * This method will show whether needs logs
+	 * @return true if the game needs logs
+	 */
+	public boolean getIsLog() {
+		return d_warzoneProperties.getIsLog();
+	}
+	
+	/**
 	 * This method will return Map folder.
 	 * @return  Map folder path
 	 */
 	public String getMapfolder() {
 		return d_warzoneProperties.getGameMapDirectory();
+	}	
+	
+	/**
+	 * This method will return Log folder.
+	 * @return  Map folder path
+	 */
+	public String getLogfolder() {
+		return d_warzoneProperties.getLogDirectory();
 	}	
 	
 	/**

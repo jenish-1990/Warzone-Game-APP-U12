@@ -1,5 +1,6 @@
 package warzone.service;
 
+import warzone.model.GameContext;
 import warzone.view.GenericView;
 
 /**
@@ -20,7 +21,8 @@ public class CommonTool {
 				 l_result = Integer.parseInt(p_number.trim());
 			}
 			catch(Exception ex) {
-				GenericView.printError("cannot convert " + p_number + " into integer.");
+//				GenericView.printError("cannot convert " + p_number + " into integer.");
+				GameContext.getLogEntryBuffer().setMessage("cannot convert " + p_number + " into integer.");
 			}
 		}
 		return l_result;		
