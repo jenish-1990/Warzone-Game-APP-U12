@@ -62,4 +62,12 @@ public class Continent {
 	public Map<Integer, Country> getCountries() {
 		return d_countries;
 	}
+
+	public boolean addCountry(Country p_country) {
+		if( p_country != null ) {
+			d_countries.put(p_country.getCountryID(), p_country);
+			return p_country.setContinent(this);
+		}
+		return false;
+	}
 }
