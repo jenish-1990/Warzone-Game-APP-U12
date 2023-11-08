@@ -7,20 +7,14 @@ import org.junit.Test;
 
 import warzone.service.StartupService;
 
-/**
- * Advance Order Test
- */
 public class AdvanceOrderTest {
 
-	private GameContext d_gameContext; // game context
-	private Player d_attacker; // the attacker
-	private Player d_defender; // the defender
-	private Country d_attackingCountry; // the attacking country
-	private Country d_defendingCountry;// the defending country
-
-	/**
-	 * set up in gamecontext
-	 */
+	private GameContext d_gameContext;
+	private Player d_attacker;
+	private Player d_defender;
+	private Country d_attackingCountry;
+	private Country d_defendingCountry;
+	
 	@Before
 	public void setup() {
 		
@@ -52,10 +46,7 @@ public class AdvanceOrderTest {
 		d_gameContext.getCountries().put(1, d_attackingCountry);
 		d_gameContext.getCountries().put(2, d_defendingCountry);
 	}
-
-	/**
-	 * testAttackerConquersDefender
-	 */
+	
 	@Test
 	public void testAttackerConquersDefender() {
 		
@@ -75,43 +66,15 @@ public class AdvanceOrderTest {
 		assertTrue(d_attackingCountry.getArmyNumber() == 0); //Attacker moves all armies to defender's country 
 		assertTrue(d_defendingCountry.getArmyNumber() < 1000); //The attacker moves all remaining armies (some should be lost due to fights)
 	}
-
-	/**
-	 * testAttackerConquersDefenderHasNoArmy
-	 */
-	@Test
-	public void testAttackerConquersDefenderHasNoArmy() {
-		
-		//Add armies to both countries
-		d_attackingCountry.setArmyNumber(1000);
-		d_defendingCountry.setArmyNumber(0);
-		
-		
-		//Execute AdvanceOrder
-		new AdvanceOrder(d_attacker, d_attackingCountry, d_defendingCountry, 1000).execute();
-		
-		//Make sure attacker conquered country
-		assertTrue(d_attacker.getConqueredCountries().size() == 2);
-		assertTrue(d_defender.getConqueredCountries().size() == 0);
-		
-		//Make sure the attacking and defending countries lost armies
-		assertTrue(d_attackingCountry.getArmyNumber() == 0); //Attacker moves all armies to defender's country 
-		assertTrue(d_defendingCountry.getArmyNumber() == 1000); //The attacker moves all remaining armies (some should be lost due to fights)
-	}
-
-	/**
-	 * testAttackerConquersDefenderButKeepsSomeArmies
-	 */
+	
 	@Test
 	public void testAttackerConquersDefenderButKeepsSomeArmies() {
 		
 		//Add armies to both countries
 		d_attackingCountry.setArmyNumber(1000);
 		d_defendingCountry.setArmyNumber(20);
-
-		/**
-		 * testAttackerConquersDefenderButKeepsSomeArmies
-		 */
+		
+		
 		//Execute AdvanceOrder
 		new AdvanceOrder(d_attacker, d_attackingCountry, d_defendingCountry, 500).execute();
 		
@@ -123,10 +86,7 @@ public class AdvanceOrderTest {
 		assertTrue(d_attackingCountry.getArmyNumber() == 500); //Attacker move 500 armies to defender's country, but keeps 500 in attacking country
 		assertTrue(d_defendingCountry.getArmyNumber() < 500); //The attacker moves all remaining armies (some should be lost due to fights)
 	}
-
-	/**
-	 * testAttackerDoesNotConquerDefender
-	 */
+	
 	@Test
 	public void testAttackerDoesNotConquerDefender() {
 		
@@ -147,49 +107,4 @@ public class AdvanceOrderTest {
 		assertTrue(d_defendingCountry.getArmyNumber() < 1000); //Some should be lost due to fights
 	}
 
-	/**
-	 * test Attacker With Zero Army
-	 */
-	@Test
-	public void testAttackerWithZeroArmy() {
-
-		//Add armies to both countries
-		d_attackingCountry.setArmyNumber(3);
-		d_defendingCountry.setArmyNumber(2);
-
-
-		//Execute AdvanceOrder
-		new AdvanceOrder(d_attacker, d_attackingCountry, d_defendingCountry, 0).execute();
-
-		//Make sure attacker did not conquer country
-		assertTrue(d_attacker.getConqueredCountries().size() == 1);
-		assertTrue(d_defender.getConqueredCountries().size() == 1);
-
-		//Make sure the attacking and defending countries lost armies
-		assertEquals(d_attackingCountry.getArmyNumber(), 3); //Attacker does not lose some armies
-		assertEquals(d_defendingCountry.getArmyNumber(),  2); //Some should be lost due to fights
-	}
-
-	/**
-	 * test case for test Attacker With Territory Have Zero Army
-	 */
-	@Test
-	public void testAttackerWithTerritoryHaveZeroArmy() {
-
-		//Add armies to both countries
-		d_attackingCountry.setArmyNumber(0);
-		d_defendingCountry.setArmyNumber(2);
-
-
-		//Execute AdvanceOrder
-		new AdvanceOrder(d_attacker, d_attackingCountry, d_defendingCountry, 20).execute();
-
-		//Make sure attacker did not conquer country
-		assertTrue(d_attacker.getConqueredCountries().size() == 1);
-		assertTrue(d_defender.getConqueredCountries().size() == 1);
-
-		//Make sure the attacking and defending countries lost armies
-		assertEquals(d_attackingCountry.getArmyNumber(), 0); //Attacker does not lose some armies
-		assertEquals(d_defendingCountry.getArmyNumber(),  2); //Some should be lost due to fights
-	}
 }

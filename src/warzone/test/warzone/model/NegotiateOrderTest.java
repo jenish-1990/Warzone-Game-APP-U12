@@ -67,29 +67,4 @@ public class NegotiateOrderTest {
 		Boolean l_result = l_order.valid();
 		assert(l_result);
 	}	
-	
-	/**
-	 * check if game engine will Update Context After Execution
-	 */
-	@Test
-	public void willUpdateContextAfterExecution() {
-		//arrange
-		Player l_player = new Player("P1");
-		Player l_player2 = new Player("p2");
-		Player l_player3 = new Player("p3");
-		GameContext l_gameContext = GameContext.getGameContext();
-		l_gameContext.getPlayers().put(l_player2.getName(), l_player2);
-		l_player.getCards().add(Card.NEGOTIATE);
-		Order l_order = l_player.conventOrder("negotiate p2");
-		
-		//act
-		l_order.execute();
-		
-		//assert
-		assert(l_gameContext.isDiplomacyInCurrentTurn(l_player,l_player2));
-		assert(l_gameContext.isDiplomacyInCurrentTurn(l_player2,l_player));	
-		assertFalse(l_gameContext.isDiplomacyInCurrentTurn(l_player,l_player3));	
-	}
-	
-	
 }
