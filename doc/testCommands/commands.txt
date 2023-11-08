@@ -16,3 +16,9 @@ editneighbor -add 41 42
 editneighbor -add 42 43
 editneighbor -add 42 43
 editneighbor -add 44 41 -remove 42 43
+
+
+gameplayer -add PL1 -remove PL2
+gameplayer -add PL1 -add PL2  -add PL3   -add PL3    -add PL4    -add PL5
+gameplayer -remove PL3
+gameplayer -remove PL4  -remove PL5

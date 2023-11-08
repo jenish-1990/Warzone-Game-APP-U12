@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 import warzone.controller.MapController;
@@ -24,6 +25,39 @@ public class StartupService {
 		d_gameContext = p_gameContext;
 	}
 	
+	/**
+	 * Add player
+	 * @param p_player Player object
+	 * @return true if add success else false
+	 */
+	public boolean addPlayer(Player p_player) {
+		//0. add the item to
+		Map<String,Player> l_players=d_gameContext.getPlayers();
+		if(p_player != null 
+				&& p_player.getName()!="" 
+				&& l_players.size()<= 5 ) {			
+			l_players.put(p_player.getName(), p_player);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Remove player by name
+	 * @param p_playerName name of player
+	 * @return true if remove success else false
+	 */
+	public boolean removePlayer(String p_playerName) {
+		if(p_playerName != null && d_gameContext.getPlayers().containsKey(p_playerName)) {
+			Player l_player = d_gameContext.getPlayers().get(p_playerName);
+			for( Country l_country : l_player.getConqueredCountries().values() ) 
+				l_country.setOwner(null);					
+			d_gameContext.getPlayers().remove(p_playerName);
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * Performs the action for user command: loadmap filename
 	 * 

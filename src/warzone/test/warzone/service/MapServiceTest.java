@@ -21,7 +21,7 @@ public class MapServiceTest {
      */
     @Before
     public void beforeEachTetCase(){
-        d_gameContext = GameContext.clear();
+        d_gameContext = GameContext.getGameContext();
     }
 
     /**

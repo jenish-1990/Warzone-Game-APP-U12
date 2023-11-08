@@ -113,14 +113,17 @@ public class RouterService {
 				StartupController l_startupController = l_controllerFactory.getStartupController();
 				switch(p_router.getActionName()) {
 					case "add":
-						l_startupController.addRawPlayer(p_router.getActionParameters());
+						l_startupController.addPlayer(p_router.getActionParameters());
 						break;
 					case "remove":
-						l_startupController.removeRawPlayer(p_router.getActionParameters());
+						l_startupController.removePlayer(p_router.getActionParameters());
 						break;
 					case "loadmap":
 						l_startupController.loadMap(p_router.getActionParameters());
 						break;
+					case "assigncountries":
+						l_startupController.assignCountries();
+						break;						
 				}
 				break;
 			case ERROR:
@@ -141,7 +144,8 @@ public class RouterService {
 					GenericView.printDebug("Excuting router: " + router.toString() );
 					route(router);
 				}
-				catch(Exception ex){					
+				catch(Exception ex){	
+					GenericView.printError("Exception occur: " + ex.toString());
 				}
 			});			
 		}
@@ -177,16 +181,16 @@ public class RouterService {
 		String l_firstWord = l_commandArray[0];
 		// TODO move these commands into the properties file
 		String l_complexCommand = "editcontinent,editcountry,editneighbor,gameplayer";
-		String l_simpleCommand = "loadmap,editmap,savemap,assigncountries,validatemap,showmap,help";
-		if(l_complexCommand.indexOf(l_firstWord) > -1) {
+		String l_simpleCommand = "loadmap,editmap,savemap,assigncountries,validatemap,showmap,help,play";
+		 if(l_simpleCommand.indexOf(l_firstWord) > -1) {
+				//simple command with only one router
+				GenericView.printDebug("parseCommand: start to work on simple command: " + p_command);
+				l_routerList.add(parseSimpleCommand(l_commandArray));				
+		}		 
+		else if(l_complexCommand.indexOf(l_firstWord) > -1) {
 			//complex command with multiple routers
 			GenericView.printDebug("parseCommand: start to work on complex command: " + p_command);
 			l_routerList = parseComplexCommand(l_commandArray);
-		}
-		else if(l_simpleCommand.indexOf(l_firstWord) > -1) {
-			//simple command with only one router
-			GenericView.printDebug("parseCommand: start to work on simple command: " + p_command);
-			l_routerList.add(parseSimpleCommand(l_commandArray));				
 		}
 		else {
 			l_routerList.add(createErrorRouter(ErrorType.NO_SUCH_COMMAND.toString()));
@@ -224,7 +228,7 @@ public class RouterService {
 				l_controllerName = ControllerName.NEIGHBOR;				
 				break;
 			case "gameplayer":
-				l_controllerName = ControllerName.GAMEPLAY;				
+				l_controllerName = ControllerName.STARTUP;				
 				break;
 		}
 		GenericView.printDebug("ControllerName is :" + l_controllerName.toString() );
@@ -266,6 +270,9 @@ public class RouterService {
 			case  "validatemap":
 				l_router =  new Router(ControllerName.MAP, "validatemap");
 				break;
+			case  "play":
+				l_router =  new Router(ControllerName.GAMEPLAY, "play");
+				break;				
 			case  "assigncountries":
 				l_router =  new Router(ControllerName.STARTUP, "assigncountries");
 				break;

@@ -8,47 +8,61 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import warzone.controller.StartupController;
+import warzone.model.GameContext;
 import warzone.service.ControllerFactory;
 
 public class StartupControllerTest {
-	StartupController d_startupController = ControllerFactory.getControllerFactory().getStartupController();
+	StartupController d_startupController ;
 	String l_parameters = null;
+	GameContext d_gameContext = GameContext.getGameContext();
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() throws Exception {		
+		d_gameContext.clear();
+		d_startupController = new StartupController(d_gameContext);		
 	}
 	
 	@Test
-	public void testPlayerCountry1() {
+	public void testPlayer1() {
 		l_parameters = "123";
-//		assertTrue(d_startupController.addRawPlayer(l_parameters));
+		assertTrue(d_startupController.addPlayer(l_parameters));
+		assertTrue(d_gameContext.getPlayers().containsKey(l_parameters));		
 	}
 	
 	@Test
-	public void testPlayerCountry2() {
-		l_parameters = "123 111";
-		assertFalse(d_startupController.addRawPlayer(l_parameters));
+	public void testPlayer2() {
+		l_parameters = "123 1114";
+		assertTrue(d_startupController.addPlayer(l_parameters));
 	}
 	
 	@Test
-	public void testPlayerCountry3() {
+	public void testPlayer3() {
 		l_parameters = "   ";
-		assertFalse(d_startupController.addRawPlayer(l_parameters));
+		assertFalse(d_startupController.addPlayer(l_parameters));
 	}
 	
 	@Test
-	public void testRemoveCountry1() {
-		l_parameters = "123";
-		assertFalse(d_startupController.removeRawPlayer(l_parameters));
+	public void testRemovePlayer1() {
+		l_parameters = "123456";
+		assertFalse(d_startupController.removePlayer(l_parameters));
 	}
 	
 	@Test
-	public void testRemoveCountry2() {
-		l_parameters = "123 sss";
-		assertFalse(d_startupController.removeRawPlayer(l_parameters));
+	public void testRemovePlayer2() {
+		l_parameters = "123 sssadsfdsf";
+		assertFalse(d_startupController.removePlayer(l_parameters));
+	}
+	
+	@Test
+	public void testRemovePlayer3() {
+		l_parameters = "1234";
+		assertTrue(d_startupController.addPlayer(l_parameters));
+		assertTrue(d_gameContext.getPlayers().containsKey(l_parameters));	
+		assertTrue(d_startupController.removePlayer(l_parameters));
+		assertFalse(d_gameContext.getPlayers().containsKey(l_parameters));
 	}
 }
