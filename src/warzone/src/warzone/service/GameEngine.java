@@ -1,17 +1,20 @@
 package warzone.service;
 
-import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
-import java.util.List;
-
 import warzone.model.*;
-import warzone.state.*;
+import warzone.state.IssueOrder;
+import warzone.state.MapEditor;
+import warzone.state.OrderExecution;
+import warzone.state.Phase;
 import warzone.view.GenericView;
 import warzone.view.HelpView;
 import warzone.view.MapView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Main game loop.
@@ -25,7 +28,6 @@ public class GameEngine {
 	 * This method is the entrance of the game. It will initiate the game context and use
 	 * command scanner to get the command of the player.
 	 * @param args the parameters for Java Virtual Machine
-	 * @throws IOException the exception of creating or deleting files
 	 */
 	public static void main(String args[]) {
 		GameContext l_gameContext = GameContext.getGameContext();
@@ -33,9 +35,14 @@ public class GameEngine {
 		l_gameEngine.setPhase(new MapEditor(l_gameEngine));
 		l_gameEngine.start();
 	}
-	
-	
-	private GameContext d_gameContext;	
+
+	/**
+	 * game context
+	 */
+	private GameContext d_gameContext;
+	/**
+	 * game engine
+	 */
 	private static GameEngine GAME_ENGINE;
 
 	/**
@@ -183,6 +190,8 @@ public class GameEngine {
 		if(l_alivePlayers <= 1){
 			GenericView.println("-------------------- Game End");
 			GenericView.printSuccess("player " + l_protentialWinner.getName() + " wins the game.");
+			GenericView.println("-------------------- Reboot the game");
+			this.reboot();
 			return true;
 		}
 		else
@@ -217,6 +226,7 @@ public class GameEngine {
 	public void issueOrders() {
 		if( isGameEnded()) {
 			//todo: call game over and change state
+			return;
 		}		
 
 		//local list of player
@@ -350,7 +360,7 @@ public class GameEngine {
 	 * 1)reset the context
 	 * 2) read commands from a file and run it sequencially
 	 * @param p_fileName given file name
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException  exception of file not found
 	 */
 	public void qaMode(String p_fileName) throws FileNotFoundException {
 		if(p_fileName == null || p_fileName.trim() == "") {

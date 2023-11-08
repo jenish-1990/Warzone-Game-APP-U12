@@ -43,9 +43,9 @@ public abstract class Phase {
 	 * Constructor for Phase
 	 * @param p_ge Game Engine
 	 */
-	Phase(GameEngine p_ge) {
-		d_gameEngine = p_ge;
-		d_gameContext = p_ge.getGameContext();
+	Phase(GameEngine p_gameEngine) {
+		d_gameEngine = p_gameEngine;
+		d_gameContext = p_gameEngine.getGameContext();
 	}
 
 	/**

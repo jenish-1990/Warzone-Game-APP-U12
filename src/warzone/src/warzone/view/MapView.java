@@ -3,10 +3,8 @@ package warzone.view;
 import warzone.model.Continent;
 import warzone.model.Country;
 import warzone.model.GameContext;
-import warzone.model.Render;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 

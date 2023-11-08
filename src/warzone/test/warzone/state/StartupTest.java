@@ -20,6 +20,9 @@ public class StartupTest {
 	private GameEngine d_gameEngine;
 	private Startup d_startupState;
 	
+	/**
+	 * set up the context of the test class
+	 */
 	@Before
 	public void setup() {
 		
@@ -30,6 +33,9 @@ public class StartupTest {
 		d_gameEngine.setPhase(d_startupState);
 	}
 	
+	/**
+	 * This method will test the wrong input map name
+	 */
 	@Test
 	public void loadMapWrongFileNameIntegrationTest() {
 		
@@ -44,6 +50,9 @@ public class StartupTest {
 		
 	}
 	
+	/**
+	 * This mehod will test the valid input map name
+	 */
 	@Test
 	public void loadMapCorrectFileNameIntegrationTest() {
 		
@@ -58,6 +67,9 @@ public class StartupTest {
 		
 	}
 	
+	/**
+	 * This method can load a non-connected map.
+	 */
 	@Test
 	public void loadMapLowConnectivityIntegrationTest() {
 		

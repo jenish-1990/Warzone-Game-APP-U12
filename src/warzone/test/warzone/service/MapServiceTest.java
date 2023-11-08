@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import warzone.model.*;
 import warzone.state.MapEditor;
-import warzone.state.Startup;
 
 /**
  * test cases for map service

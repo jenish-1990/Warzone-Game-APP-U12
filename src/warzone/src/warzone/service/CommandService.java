@@ -11,10 +11,18 @@ import warzone.view.*;
  *
  */
 public class CommandService {
-	
+	/**
+	 * command service
+	 */
 	private static CommandService COMMAND_SERVICE;
-	
+
+	/**
+	 * game context
+	 */
 	private GameContext d_gameContext;
+	/**
+	 * game engine
+	 */
 	private GameEngine d_gameEngine;	
 
 	/**

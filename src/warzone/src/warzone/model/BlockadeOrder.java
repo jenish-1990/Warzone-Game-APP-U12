@@ -17,7 +17,7 @@ public class BlockadeOrder extends Order {
     private Country d_targetCountry;
     
     /** 
-     * current player     * 
+     * current player
      */
     private Player d_player;
     

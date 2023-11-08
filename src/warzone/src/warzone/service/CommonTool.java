@@ -1,6 +1,5 @@
 package warzone.service;
 
-import warzone.model.GameContext;
 import warzone.view.GenericView;
 
 /**

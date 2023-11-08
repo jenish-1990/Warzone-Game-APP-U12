@@ -1,7 +1,7 @@
 package warzone.model;
 
 /**
- * This interface abstract the action of Order
+ * This abstract class of the action of Order
  *
  */
 public abstract class Order {
@@ -55,6 +55,7 @@ public abstract class Order {
 
 	/**
 	 * get command which create this order
+	 * @return the command
 	 */
 	public String getCommand() {
 		return d_command;

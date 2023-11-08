@@ -9,7 +9,10 @@ import warzone.model.*;
  *
  */
 public class ContinentService {
-	
+
+	/**
+	 * game context
+	 */
 	private GameContext d_gameContext;
 
 	/**

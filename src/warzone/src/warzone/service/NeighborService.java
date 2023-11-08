@@ -11,7 +11,10 @@ import warzone.view.GenericView;
  *
  */
 public class NeighborService {
-	
+
+	/**
+	 * game context
+	 */
 	private GameContext d_gameContext;
 
 	/**

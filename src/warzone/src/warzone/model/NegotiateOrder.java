@@ -1,19 +1,26 @@
 package warzone.model;
 
-import java.util.Map;
-
 import warzone.view.GenericView;
-import warzone.view.MapView;
 
 /**
  * This class represents one deploy order of the gameplay
  */
 public class NegotiateOrder extends Order {
 
+	/**
+	 * owner of the order
+	 */
 	private Player d_player;
+	/**
+	 * target player
+	 */
 	private Player d_targetPlayer;
-	
 
+	/**
+	 * constructor of negotiate order
+	 * @param p_player owner of the order
+	 * @param p_targetPlayer target of the order
+	 */
 	public NegotiateOrder(Player p_player,Player p_targetPlayer) {
 		d_targetPlayer = p_targetPlayer;
 		d_player = p_player;

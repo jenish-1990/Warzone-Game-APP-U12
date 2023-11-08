@@ -9,6 +9,9 @@ import warzone.view.GenericView;
  * This class will provide controllers with some service related to 'country' module.
  */
 public class CountryService {
+	/**
+	 * game context
+	 */
 	private GameContext d_gameContext;
 
 	/**

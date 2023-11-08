@@ -9,15 +9,42 @@ import java.util.Map;
  * This class represents the country in the game
  */
 public class Country {
-	
+
+	/**
+	 * country id
+	 */
 	private int d_countryID;
+	/**
+	 * country name
+	 */
 	private String d_countryName;
+	/**
+	 * owner of the country
+	 */
 	private Player d_owner;
+	/**
+	 * xposition of the country
+	 */
 	private int d_xPosition;
+	/**
+	 * yposition of the country
+	 */
 	private int d_yPosition;
+	/**
+	 * armys in the country
+	 */
 	private int d_armyNumber = 0;
+	/**
+	 * neighbor of the country
+	 */
 	private Map<Integer, Country> d_neighbors;
+	/**
+	 * continent of the country
+	 */
 	private Continent d_continent;
+	/**
+	 * country state
+	 */
 	private CountryState d_countryState;
 
 	/**
@@ -208,11 +235,11 @@ public class Country {
 	 */
 	public void setCountryState(CountryState p_countryState, Player p_player){
 		switch (p_countryState){
-			case Initial:
+			case Initial://country initial
 				this.d_countryState = p_countryState;
 				this.d_owner = null;
 				return;
-			case Occupied:
+			case Occupied://country is occupied
 				if(p_player == null){
 					GenericView.printError("player can not be null.");
 					return;
@@ -220,7 +247,7 @@ public class Country {
 				this.setOwner(p_player);
 				this.d_countryState = p_countryState;
 				return;
-			case Neutral:
+			case Neutral://country is neutral
 				this.setOwner(null);
 				this.d_countryState = p_countryState;
 				return;

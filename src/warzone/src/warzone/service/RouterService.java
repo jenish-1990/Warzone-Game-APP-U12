@@ -14,12 +14,27 @@ import warzone.view.GenericView;
  *
  */
 public class RouterService {
-		
+
+	/**
+	 * Router service
+	 */
 	private static RouterService ROUTER_SERVICE;
-	
+
+	/**
+	 * game context
+	 */
 	private GameContext d_gameContext;
+
+	/**
+	 * game engine
+	 */
 	private GameEngine d_gameEngine;
+
+	/**
+	 * game phase
+	 */
 	private Phase d_gamePhase;
+
 	/**
 	 * the constructor of it, only can be used inside this class.
 	 * @param p_gameEngine the current  Game Engine
@@ -40,19 +55,6 @@ public class RouterService {
 			ROUTER_SERVICE = new RouterService(p_gameEngine);
 		return ROUTER_SERVICE;
 	}
-//	/**
-//	 * Check if current game phase is included in the given game phases list.
-//	 * @param p_gamePhases Given game phases list
-//	 * @return True if included, otherwise false.
-//	 */
-//	private boolean getIsContainCurrentPhase(List<GamePhase> p_gamePhases) {
-//		if( d_gameContext.getIsContainCurrentPhase(p_gamePhases))
-//			return true;
-//		else {
-//			GenericView.printWarning("The command is not valid in the current phase: " + d_gameContext.getGamePhase());
-//			return false;
-//		}
-//	}
 	
 	/**
 	 * This method will parse a single console commands entered by the user and call the corresponding controller by controller name
@@ -62,7 +64,7 @@ public class RouterService {
 	public void route(Router p_router) throws IOException{
 		d_gamePhase = d_gameEngine.getPhase();
 		switch(p_router.getControllerName()) {
-		case COMMON:
+		case COMMON:// actions of common
 			switch(p_router.getActionName()) {
 				case "help":
 					d_gamePhase.help();
@@ -78,7 +80,7 @@ public class RouterService {
 					break;
 			}
 			break;
-		case CONTINENT:
+		case CONTINENT://actions of continent
 			switch(p_router.getActionName()) {
 				case "add":
 					d_gamePhase.addContinent(p_router.getActionParameters());
@@ -88,7 +90,7 @@ public class RouterService {
 					break;
 			}
 			break;
-		case MAP:
+		case MAP://actions of map
 			switch(p_router.getActionName().toLowerCase()) {
 				case "savemap":
 					d_gamePhase.saveMap(p_router.getActionParameters());
@@ -104,7 +106,7 @@ public class RouterService {
 					break;
 			}
 			break;
-		case COUNTRY:
+		case COUNTRY://actions of country
 			switch(p_router.getActionName()) {
 				case "add":
 					d_gamePhase.addCountry(p_router.getActionParameters());			
@@ -114,7 +116,7 @@ public class RouterService {
 					break;
 			}
 			break;
-		case NEIGHBOR:
+		case NEIGHBOR://actions of neighbor
 			switch(p_router.getActionName()) {
 				case "add":
 					d_gamePhase.addNeighbor(p_router.getActionParameters());
@@ -124,7 +126,7 @@ public class RouterService {
 					break;
 			}
 			break;
-		case GAMEPLAY:
+		case GAMEPLAY://actions of gameplay
 			switch(p_router.getActionName()) {
 				case "showmap":
 					d_gamePhase.showMap();
@@ -134,7 +136,7 @@ public class RouterService {
 					break;
 			}
 			break;
-		case STARTUP:
+		case STARTUP://actions in startup phase
 			switch(p_router.getActionName()) {
 				case "add":
 					d_gamePhase.addPlayer(p_router.getActionParameters());
@@ -150,7 +152,7 @@ public class RouterService {
 					break;						
 			}
 			break;
-		case ERROR:
+		case ERROR://error
 			d_gamePhase.error();
 			break;
 		}		
@@ -204,8 +206,8 @@ public class RouterService {
 		
 		String l_firstWord = "," + l_commandArray[0] + ",";
 		// TODO move these commands into the properties file
-		String l_complexCommand = ",editcontinent,editcountry,editneighbor,gameplayer,";
-		String l_simpleCommand = ",loadmap,editmap,savemap,assigncountries,validatemap,showmap,help,qamode,play,next,reboot,startup,mapeditor,";
+		String l_complexCommand = d_gameContext.getComplexCommand();
+		String l_simpleCommand = d_gameContext.getSimpleCommand();
 		 if(l_simpleCommand.indexOf(l_firstWord) > -1) {
 				//simple command with only one router
 				GenericView.printDebug("parseCommand: start to work on simple command: " + p_command);
@@ -239,7 +241,8 @@ public class RouterService {
 			GenericView.printDebug("parseComplexCommand: Empty Action" );
 			return l_routers;
 		}
-		
+
+		//check and get the controller
 		ControllerName l_controllerName = ControllerName.COMMON;		
 		switch (p_commandArray[0]) {
 			case "editcontinent":
@@ -262,10 +265,6 @@ public class RouterService {
 			String l_actionArray = "-add,-remove";
 			if(l_actionArray.indexOf(l_action.getAction()) > -1) { 
 				String l_command = Arrays.toString(p_commandArray).replace(",", " ");
-//				String l_command =  String.format("%s %s %s", 
-//						p_commandArray[0], 
-//						(p_commandArray.length > 1)? p_commandArray[1]:"", 
-//						(p_commandArray.length > 2)? p_commandArray[2]:"" ) ;
 				Router l_router = new Router(l_controllerName, l_action.getAction(), l_action.getParameters(),l_command);
 				
 				l_routers.add(l_router);
@@ -292,10 +291,6 @@ public class RouterService {
 		Router l_router = null;
 		// the first element of commandArray is command
 		String l_command = Arrays.toString(p_commandArray).replace(",", " ");
-//		String l_command = String.format("%s %s %s", 
-//					p_commandArray[0], 
-//					(p_commandArray.length > 1)? p_commandArray[1]:"", 
-//					(p_commandArray.length > 2)? p_commandArray[2]:"" );
 		switch (p_commandArray[0]) {
 			case "reboot":
 				l_router = new Router(ControllerName.COMMON, "reboot", l_command);
