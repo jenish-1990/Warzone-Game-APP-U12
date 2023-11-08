@@ -90,7 +90,7 @@ public class MapService {
 	}
 
 	/**
-	 * Load a map from an existing “domination” map file,
+	 * Load a map from an existing â€œdominationâ€� map file,
 	 * or create a new map from scratch if the file does not exist.
 	 * @param p_fileName file name
 	 * @return if success
@@ -368,14 +368,7 @@ public class MapService {
 
 		// condition6: check if the whole map is strongly connected
 		// if each connected continents are strongly connected, the whole map is connected
-		if(!ifConnected(l_continent.size(), l_continentAdjList)) {
-			GenericView.printError("It is not a connected map.");
-			return false;
-		}
-		else {
-			GenericView.printSuccess("Yeah! You got a connected map!");
-			return true;
-		}
+		return ifConnected(l_continent.size(), l_continentAdjList);
 	}
 
 	/**

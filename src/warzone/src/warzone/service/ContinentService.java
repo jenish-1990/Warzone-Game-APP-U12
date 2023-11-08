@@ -26,6 +26,12 @@ public class ContinentService {
 		if(p_continentID > 0) {
 			Map<Integer,Continent> l_continents=d_gameContext.getContinents();
 			if(l_continents.containsKey(p_continentID)){
+				Continent l_continent = l_continents.get(p_continentID);
+				//remove from continent list
+		        for (Country l_tempCountry : l_continent.getCountries().values())
+		        	l_tempCountry.setContinent(null);        
+		        
+				//remove from the country reference
 				l_continents.remove(p_continentID);
 				return true;
 			}			
