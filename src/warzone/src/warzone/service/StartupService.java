@@ -24,8 +24,8 @@ public class StartupService {
 	 * 
 	 * Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph
 	 * 
-	 * @param fileName
-	 * @return
+	 * @param p_fileName file name of map
+	 * @return if map successfully laad
 	 */
 	public boolean loadMap(String p_fileName) {
 		

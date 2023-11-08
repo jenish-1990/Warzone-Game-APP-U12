@@ -22,8 +22,8 @@ public class StartupController {
 	 * 
 	 * Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph
 	 * 
-	 * @param fileName
-	 * @return
+	 * @param p_fileName
+	 * @return if load map success
 	 */
 	public boolean loadMap(String p_fileName) {
 		

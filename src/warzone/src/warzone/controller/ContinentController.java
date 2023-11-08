@@ -50,6 +50,8 @@ public class ContinentController {
 	
 	/**
 	 * Performs the action for the user command: editcontinent -remove continentID
+	 * @param p_parameters id of continent
+	 * @return if remove success
 	 */
 	public boolean removeContinent(String p_parameters) {
 		//0. parse [p_parameters] to  [ l_continentID ]
