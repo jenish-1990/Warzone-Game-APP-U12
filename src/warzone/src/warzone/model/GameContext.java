@@ -5,18 +5,20 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameContext {
+	private static GameContext GAME_CONTEXT;
+	GamePhase d_gamePhase = GamePhase.MAPEDITING;
+	private int d_orderNumberPerRound = 5;
+	
 
 	private Map<String, Player> d_players;
 	private Map<Integer, Country> d_countries;
 	private Map<Integer, Continent> d_continents;
 	
-	private static GameContext GAME_CONTEXT;
-	
 	private String d_mapFileName;
 	private String d_mapFilePic;
 	private String d_mapFileMap;
 	private String d_mapFileCards;
-	
+		
 	public String getMapFileCards() {
 		return d_mapFileCards;
 	}
@@ -91,4 +93,16 @@ public class GameContext {
 	public void setMapFileMap(String p_mapFileMap) {
 		this.d_mapFileMap = p_mapFileMap;
 	}
+	
+	public GamePhase getGamePhase() {
+		return d_gamePhase;
+	}
+
+	public void setGamePhase(GamePhase p_gamePhase) {
+		this.d_gamePhase = p_gamePhase;
+	}	
+	public int getOrderNumberPerRound() {
+		return d_orderNumberPerRound;
+	}	
+	
 }

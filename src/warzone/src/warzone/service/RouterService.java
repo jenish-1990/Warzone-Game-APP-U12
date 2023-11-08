@@ -74,6 +74,18 @@ public class RouterService {
 						break;
 				}
 				break;
+			case GAMEPLAY:
+				GameplayController l_gameplayController = l_controllerFactory.getGameplayController();
+
+				switch(p_router.getActionName()) {
+					case "showmap":
+						l_gameplayController.showMap();
+						break;
+					case "play":
+						l_gameplayController.play();
+						break;
+				}
+				break;
 			
 		}	
 		
