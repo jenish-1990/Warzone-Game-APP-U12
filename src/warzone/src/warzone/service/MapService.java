@@ -51,17 +51,20 @@ public class MapService {
 			l_map.append("\nmap "+ l_fileName +"_map.gif");
 			l_map.append("\ncrd "+ l_fileName + "europe.cards");
 			l_map.append("\n");
-			
+			Map<Integer,Integer> l_continentIdMapping = new HashMap(); 
 			l_map.append("\n[continents]");
+			int l_continentId = 1;
 			for (Continent l_continent : d_gameContext.getContinents().values()) {
+				l_continentIdMapping.put(l_continent.getContinentID(), l_continentId);
 				l_map.append("\n" + l_continent.getContinentName()  +  " " + l_continent.getBonusReinforcements() +  " " + l_continent.getColor());
+				l_continentId ++ ;
 			}
 			l_map.append("\n");
 			
 			l_map.append("\n[countries]");
 			for (Continent l_continent : d_gameContext.getContinents().values()) {
 				for (Country l_country : l_continent.getCountries().values()) {
-					l_map.append("\n" + l_country.getCountryID()  +  " " + l_country.getCountryName()  +  " " + l_continent.getContinentID() +  " " + l_country.getXPosition()+  " " + l_country.getYPosition() );
+					l_map.append("\n" + l_country.getCountryID()  +  " " + l_country.getCountryName()  +  " " + l_continentIdMapping.get(l_continent.getContinentID()) +  " " + l_country.getXPosition()+  " " + l_country.getYPosition() );
 				}				
 			}			
 			l_map.append("\n");

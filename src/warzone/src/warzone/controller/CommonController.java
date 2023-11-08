@@ -51,9 +51,11 @@ public class CommonController {
 	 */
 	public boolean changePhase(String p_actionParameters) {
 		if(p_actionParameters.equals("reboot") || p_actionParameters.equals("mapeditor") ) {
+			d_gameContext.reset();
 			d_gameContext.setGamePhase(GamePhase.MAPEDITOR);	
 		}
 		else if(p_actionParameters.equals("startup")) {
+			d_gameContext.reset();
 			d_gameContext.setGamePhase(GamePhase.STARTUP);	
 		}
 		
