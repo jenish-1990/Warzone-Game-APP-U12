@@ -47,7 +47,6 @@ public class HelpView {
     	switch(p_gamePhase) {
 	    	case MAPEDITOR:
 	    		System.out.println(""
-	    				+ " -  loadmap filename\n"
 	    				+ " -  editmap filename\n"
 	    				+ " -  savemap filename\n"
 	    				+ " -  showmap\n"

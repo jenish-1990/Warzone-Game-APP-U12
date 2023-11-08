@@ -92,8 +92,8 @@ public class StartupController {
 		
 		boolean result = d_startupService.assignCountries();
 		
-		if(result == false) {			
-			GenericView.printError("There must be at least the same number of countries as players");
+		if(result == false) {
+			GenericView.printError("Must have more than 2 players, and map have at least the same number of countries as players ");
 		}
 		else
 			GenericView.printSuccess("Succeed to assign all the countries to players");			

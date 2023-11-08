@@ -116,8 +116,7 @@ public class MapService {
 		try {
 			
 			//Clear gameContext
-			d_gameContext.getContinents().clear();
-			d_gameContext.getCountries().clear();
+			d_gameContext.clear();
 			
 			File mapFile = new File(mapDirectory + p_fileName);
 			
@@ -179,8 +178,12 @@ public class MapService {
 					processingContinents = false;
 					processingCountries = false;
 					processingBorders = true;
-					
-					line = scanner.nextLine();
+
+					if(!scanner.hasNextLine())
+						processingBorders = false;
+					else{
+						line = scanner.nextLine();
+					}
 				}
 				
 				if(processingFiles) {
