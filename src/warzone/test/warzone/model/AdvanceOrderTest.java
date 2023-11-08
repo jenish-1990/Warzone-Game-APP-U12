@@ -68,6 +68,26 @@ public class AdvanceOrderTest {
 	}
 	
 	@Test
+	public void testAttackerConquersDefenderHasNoArmy() {
+		
+		//Add armies to both countries
+		d_attackingCountry.setArmyNumber(1000);
+		d_defendingCountry.setArmyNumber(0);
+		
+		
+		//Execute AdvanceOrder
+		new AdvanceOrder(d_attacker, d_attackingCountry, d_defendingCountry, 1000).execute();
+		
+		//Make sure attacker conquered country
+		assertTrue(d_attacker.getConqueredCountries().size() == 2);
+		assertTrue(d_defender.getConqueredCountries().size() == 0);
+		
+		//Make sure the attacking and defending countries lost armies
+		assertTrue(d_attackingCountry.getArmyNumber() == 0); //Attacker moves all armies to defender's country 
+		assertTrue(d_defendingCountry.getArmyNumber() == 1000); //The attacker moves all remaining armies (some should be lost due to fights)
+	}
+	
+	@Test
 	public void testAttackerConquersDefenderButKeepsSomeArmies() {
 		
 		//Add armies to both countries

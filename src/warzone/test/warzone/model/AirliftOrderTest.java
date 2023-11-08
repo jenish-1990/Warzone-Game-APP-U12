@@ -15,6 +15,8 @@ public class AirliftOrderTest {
         Player l_player = new Player("P1");
         Country l_country1 = new Country(1,"C1",0,0,null);
         Country l_country2 = new Country(2,"C2",0,0,null);
+        GameContext.getGameContext().getCountries().put(l_country1.getCountryID(),l_country1);
+        GameContext.getGameContext().getCountries().put(l_country2.getCountryID(),l_country2);
         l_country1.setArmyNumber(5);
         l_country2.setArmyNumber(3);
         l_country1.setCountryState(CountryState.Occupied, l_player);
@@ -39,6 +41,8 @@ public class AirliftOrderTest {
         Player l_player = new Player("P1");
         Country l_country1 = new Country(1,"C1",0,0,null);
         Country l_country2 = new Country(2,"C2",0,0,null);
+        GameContext.getGameContext().getCountries().put(l_country1.getCountryID(),l_country1);
+        GameContext.getGameContext().getCountries().put(l_country2.getCountryID(),l_country2);
         l_country1.setArmyNumber(5);
         l_country2.setArmyNumber(3);
         l_country1.setCountryState(CountryState.Occupied, l_player);
@@ -64,6 +68,8 @@ public class AirliftOrderTest {
         Player l_player2 = new Player("P2");
         Country l_country1 = new Country(1,"C1",0,0,null);
         Country l_country2 = new Country(2,"C2",0,0,null);
+        GameContext.getGameContext().getCountries().put(l_country1.getCountryID(),l_country1);
+        GameContext.getGameContext().getCountries().put(l_country2.getCountryID(),l_country2);
         l_country1.setArmyNumber(5);
         l_country2.setArmyNumber(3);
         l_country1.setCountryState(CountryState.Occupied, l_player);
@@ -88,6 +94,8 @@ public class AirliftOrderTest {
         Player l_player = new Player("P1");
         Country l_country1 = new Country(1,"C1",0,0,null);
         Country l_country2 = new Country(2,"C2",0,0,null);
+        GameContext.getGameContext().getCountries().put(l_country1.getCountryID(),l_country1);
+        GameContext.getGameContext().getCountries().put(l_country2.getCountryID(),l_country2);
         l_country1.setArmyNumber(5);
         l_country2.setArmyNumber(3);
         l_country1.setCountryState(CountryState.Occupied, l_player);
@@ -112,6 +120,8 @@ public class AirliftOrderTest {
         Player l_player = new Player("P1");
         Country l_country1 = new Country(1,"C1",0,0,null);
         Country l_country2 = new Country(2,"C2",0,0,null);
+        GameContext.getGameContext().getCountries().put(l_country1.getCountryID(),l_country1);
+        GameContext.getGameContext().getCountries().put(l_country2.getCountryID(),l_country2);
         l_country1.setArmyNumber(5);
         l_country2.setArmyNumber(3);
         l_country1.setCountryState(CountryState.Occupied, l_player);
@@ -137,6 +147,8 @@ public class AirliftOrderTest {
         Player l_player = new Player("P1");
         Country l_country1 = new Country(1,"C1",0,0,null);
         Country l_country2 = new Country(2,"C2",0,0,null);
+        GameContext.getGameContext().getCountries().put(l_country1.getCountryID(),l_country1);
+        GameContext.getGameContext().getCountries().put(l_country2.getCountryID(),l_country2);
         l_country1.setArmyNumber(5);
         l_country2.setArmyNumber(3);
         l_country1.setCountryState(CountryState.Occupied, l_player);
@@ -161,6 +173,8 @@ public class AirliftOrderTest {
         Player l_player = new Player("P1");
         Country l_country1 = new Country(1,"C1",0,0,null);
         Country l_country2 = new Country(2,"C2",0,0,null);
+        GameContext.getGameContext().getCountries().put(l_country1.getCountryID(),l_country1);
+        GameContext.getGameContext().getCountries().put(l_country2.getCountryID(),l_country2);
         l_country1.setArmyNumber(5);
         l_country2.setArmyNumber(3);
         l_country1.setCountryState(CountryState.Occupied, l_player);
@@ -187,6 +201,8 @@ public class AirliftOrderTest {
         Player l_player = new Player("P1");
         Country l_country1 = new Country(1,"C1",0,0,null);
         Country l_country2 = new Country(2,"C2",0,0,null);
+        GameContext.getGameContext().getCountries().put(l_country1.getCountryID(),l_country1);
+        GameContext.getGameContext().getCountries().put(l_country2.getCountryID(),l_country2);
         l_country1.setArmyNumber(5);
         l_country2.setArmyNumber(3);
         l_country1.setCountryState(CountryState.Occupied, l_player);
