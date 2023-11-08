@@ -11,7 +11,10 @@ import java.util.Queue;
 import warzone.service.CommonTool;
 import warzone.view.GenericView;
 
-
+/**
+ * This class represents the player in the game.
+ *
+ */
 public class Player {
 
 	private String d_name;
@@ -23,6 +26,10 @@ public class Player {
 	
 	private Scanner d_keyboard = new Scanner(System.in);
 	
+	/**
+	 * This constructor initiate the player instance.
+	 * @param p_name the name of the player
+	 */
 	public Player(String p_name) {
 		
 		d_name = p_name;
@@ -30,46 +37,91 @@ public class Player {
 		d_orders = new LinkedList<Order>();
 	}
 	
+	/**
+	 * This method will provide the name of the player.
+	 * @return the name of the player
+	 */
 	public String getName() {
 		return d_name;
 	}
 
+	/**
+	 * This method can set the name of the player.
+	 * @param p_name the name of the player
+	 */
 	public void setName(String p_name) {
 		this.d_name = p_name;
 	}
 
+	/**
+	 * This method will provide all countries conquered by the current player as Map structure.
+	 * @return all coutries that are conquered by the player
+	 */
 	public Map<Integer, Country> getConqueredCountries() {
 		return d_conqueredCountries;
 	}
 
+	/**
+	 * This method will offer all Orders issued by the current player.
+	 * @return all orders issued by the player
+	 */
 	public Queue<Order> getOrders() {
 		return d_orders;
 	}
 	
+	/**
+	 * This method will provide the number of armies owned by the current player.
+	 * @return the number of armies
+	 */
 	public int getArmyNumber() {
 		return d_armyNumber;
 	}
 
+	/**
+	 * This method can set the number of armies owned by the current player.
+	 * @param p_armyNumber the number of armies
+	 */
 	public void setArmyNumber(int p_armyNumber) {
 		this.d_armyNumber = p_armyNumber;
 	}
 	
+	/**
+	 * This method will provide the number of armies deployed by the current player.
+	 * @return the number of armies
+	 */
 	public int getArmiesToDeploy() {
 		return d_armiesToDeploy;
 	}
 
+	/**
+	 * This method can set the number of armies deployed by the current player.
+	 * @param p_armyNumber the number of armies
+	 */
 	public void setArmiesToDeploy(int p_armiesToDeploy) {
 		this.d_armiesToDeploy = p_armiesToDeploy;
 	}	
 	
+	/**
+	 * This method will show whether a player is out of the game.
+	 * @return true the current player still has at least one territory.
+	 */
 	public boolean getIsAlive() {
 		return d_isAlive;
 	}
 
+	/**
+	 * This method can set the survival of the current player.
+	 * @param p_isAlive false if the player has no territory.
+	 */
 	public void setIsAlive(boolean p_isAlive) {
 		this.d_isAlive = p_isAlive;
 	}
 	
+	/**
+	 * This method can convert command String into DeployOrder class.
+	 * @param p_command the command that should be converted
+	 * @return the converted command
+	 */
 	private DeployOrder conventDeployOrder(String p_command) {
 		if(p_command == null)
 			return null;
@@ -147,13 +199,16 @@ public class Player {
 	 * The GameEngine calls the next_order() method of the Player. Then the Order objects execute() method is called, 
 	 * which will enact the order. 
 	 * 
-	 * @return
+	 * @return the next Order of the player
 	 */
 	public Order next_order() {
 		
 		return this.d_orders.poll();
 	}
 	
+	/**
+	 * This method can assign reinforcements to players in the beginning of his turn.
+	 */
 	public void assignReinforcements() {		
 
 	}	

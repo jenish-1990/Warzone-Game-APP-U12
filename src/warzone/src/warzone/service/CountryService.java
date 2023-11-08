@@ -6,13 +6,26 @@ import warzone.model.Continent;
 import warzone.model.Country;
 import warzone.model.GameContext;
 
+/**
+ * This class will provide controllers with some service related to 'country' module.
+ */
 public class CountryService {
 	private GameContext d_gameContext;
 
+	/**
+	 * This method will initiate current game context.
+	 * @param p_gameContext the current game context
+	 */
 	public CountryService(GameContext p_gameContext) {
 		d_gameContext = p_gameContext;
 	}
 	
+	/**
+	 * This method will add a new country to the continent.
+	 * @param p_countryID the ID of the country that should insert
+	 * @param p_ContinentID the ID of the continent
+	 * @return the result of operation
+	 */
 	public boolean addCountryToContient(int p_countryID, int p_ContinentID) {
 		if(p_countryID > 0 && p_ContinentID>0) {
 			Country l_country = d_gameContext.getCountries().get(p_countryID);
@@ -31,6 +44,11 @@ public class CountryService {
 		return false;
 	}	
 	
+	/**
+	 * This method will remove a country from the continent.
+	 * @param p_countryID the ID of the country that should be removed
+	 * @return the result of operation
+	 */
 	public boolean remove(int p_countryID) {
 		Country l_country = d_gameContext.getCountries().get(p_countryID);
 		
@@ -50,6 +68,12 @@ public class CountryService {
 		
 		return false;		
 	}
+	
+	/**
+	 * This method will show the existence of the country.
+	 * @param p_countryID the ID of the country
+	 * @return true if the country exists
+	 */
 	public boolean isExisted(int p_countryID) {
 		return d_gameContext.getCountries().containsKey(p_countryID);
 	}

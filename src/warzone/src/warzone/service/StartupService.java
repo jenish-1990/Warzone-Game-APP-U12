@@ -17,10 +17,18 @@ import warzone.model.GameContext;
 import warzone.model.Player;
 import warzone.view.GenericView;
 
+/**
+ * This class will provide controllers with service associating with starup
+ *
+ */
 public class StartupService {
 
 	private GameContext d_gameContext;
 
+	/**
+	 * This constructor can initiate the game context of current instance.
+	 * @param p_gameContext the current game context
+	 */
 	public StartupService(GameContext p_gameContext) {
 		d_gameContext = p_gameContext;
 	}
