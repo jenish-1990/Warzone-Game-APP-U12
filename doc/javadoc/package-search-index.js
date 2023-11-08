@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"warzone.controller"},{"l":"warzone.model"},{"l":"warzone.service"},{"l":"warzone.view"}];updateSearchResults();
