@@ -1,5 +1,7 @@
 package warzone.service;
 
+import warzone.view.GenericView;
+
 public class CommonTool {
 	
 	public static int parseInt(String p_number) {
@@ -23,5 +25,16 @@ public class CommonTool {
 	
 	public static int getRandomNumber(int p_minNumber, int p_maxNumber) {
 	    return (int) ((Math.random() * (p_maxNumber - p_minNumber)) + p_minNumber);
+	}
+	
+	public static String convertArray2String(String[] p_stringArray, String p_separator, int from, int to) {
+		StringBuilder l_sb = new StringBuilder();
+		for (int i = from; i < to + 1; i++) {
+			l_sb.append(p_stringArray[i]);
+			if (i < to && i < p_stringArray.length - 1) {
+				l_sb.append(p_separator);
+			}
+		}
+		return l_sb.toString();
 	}
 }

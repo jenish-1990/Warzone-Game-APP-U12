@@ -14,6 +14,7 @@ public class GameContext {
 	private Map<String, Player> d_players;
 	private Map<Integer, Country> d_countries;
 	private Map<Integer, Continent> d_continents;
+
 	
 	private String d_mapFileName;
 	private String d_mapFilePic;
@@ -32,7 +33,7 @@ public class GameContext {
 		
 		d_players = new HashMap<String, Player>() ;
 		d_countries = new HashMap<Integer, Country>();
-		d_continents = new HashMap<Integer, Continent>();
+		d_continents = new HashMap<Integer, Continent>();		
 	}		
 	
 	public static GameContext getGameContext() {

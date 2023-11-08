@@ -14,8 +14,14 @@ public class ContinentController {
 		d_continentService = new ContinentService(p_gameContext);
 	}
 	
+	/**
+	 * This methods can receive parameters from the Router, check the correctness of 
+	 * commands and call the internal methods.
+	 * @param p_parameters parameters parsed by parser
+	 * @return the result of adding new continent
+	 * @see {@link #addContinent(int p_continentID, String p_continentName)}
+	 */
 	public boolean addContinent(String p_parameters) {
-		//0. parse [p_parameters] to  [ l_continentID, String l_continentName]
 		if(p_parameters == null)
 		{			
 			GenericView.printError("Missing valid parameters.");
@@ -36,6 +42,7 @@ public class ContinentController {
 
 		return addContinent(l_continentID, l_continentName);		
 	}
+	
 	public boolean addContinent(int p_continentID, String p_continentName) {
 		//1. create a new contient instance
 		Continent l_Continent = new Continent(p_continentID, p_continentName);
@@ -54,21 +61,18 @@ public class ContinentController {
 	 * @return if remove success
 	 */
 	public boolean removeContinent(String p_parameters) {
-		//0. parse [p_parameters] to  [ l_continentID ]
+		//parse [p_parameters] to  [ l_continentID ]
 		if(p_parameters == null)
 		{			
 			GenericView.printError("Missing valid parameters.");
 			return false;
 		}
-
 		int l_continentID = CommonTool.parseInt(p_parameters);
-		
-		if(l_continentID == -1 ){
-			GenericView.printError("Missing valid parameters.");
-			return false;
+		if(l_continentID == -1 ){	
+			GenericView.printError("Missing valid parameters.");	
+			return false;	
 		}
 		
-		//1. remove continent from ContinentService by id
 		return removeContinent(l_continentID);
 	}
 	

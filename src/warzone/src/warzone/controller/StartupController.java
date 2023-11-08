@@ -2,6 +2,7 @@ package warzone.controller;
 
 import warzone.view.*;
 import warzone.model.*;
+import warzone.service.CommonTool;
 import warzone.service.MapService;
 import warzone.service.StartupService;
 
@@ -30,6 +31,26 @@ public class StartupController {
 		return d_startupService.loadMap(p_fileName);
 	}
 	
+	public boolean addRawPlayer(String p_parameters) {
+		//parse [p_parameters]
+		if(p_parameters == null){			
+			GenericView.printError("Missing valid parameters.");
+			return false;
+		}
+
+		String l_playerName = "";
+		String[] l_parameters = CommonTool.conventToArray(p_parameters);
+		if(l_parameters.length == 1 ) {			
+			l_playerName = l_parameters[0];
+		}
+		if(l_playerName == ""){
+			GenericView.printError("Missing valid parameters.");
+			return false;
+		}
+
+		return addPlayer(l_playerName);	
+	}
+	
 	/**
 	 * Performs the action for user command: gameplayer -add playerName
 	 * 
@@ -41,6 +62,26 @@ public class StartupController {
 		// TODO Auto-generated method stub
 		
 		return false;
+	}
+	
+	public boolean removeRawPlayer(String p_parameters) {
+		//parse [p_parameters]
+		if(p_parameters == null){			
+			GenericView.printError("Missing valid parameters.");
+			return false;
+		}
+
+		String l_playerName = "";
+		String[] l_parameters = CommonTool.conventToArray(p_parameters);
+		if(l_parameters.length == 1 ) {			
+			l_playerName = l_parameters[0];
+		}
+		if(l_playerName == ""){
+			GenericView.printError("Missing valid parameters.");
+			return false;
+		}
+
+		return removePlayer(l_playerName);	
 	}
 	
 	/**

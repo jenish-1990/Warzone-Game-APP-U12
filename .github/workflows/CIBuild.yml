@@ -26,6 +26,7 @@ jobs:
     - name: Build
       run: mvn install
     - name: Generate JavaDoc
+      if: github.ref == 'refs/heads/develop'
       run: mvn javadoc:javadoc
     - name: move doc file
       if: github.ref == 'refs/heads/develop'
