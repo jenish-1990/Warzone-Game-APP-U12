@@ -1,6 +1,9 @@
 package warzone.model;
 
+import java.util.Map;
+
 import warzone.view.GenericView;
+import warzone.view.MapView;
 
 /**
  * This class represents one deploy order of the gameplay
@@ -89,17 +92,18 @@ public class DeployOrder implements Order {
 	@Override
 	public boolean execute() {
 		//check
-		if(!this.d_country.getOwner().equals(this.d_player) ) {
+		if(this.d_country.getOwner()== null || !this.d_country.getOwner().equals(this.d_player) || this.d_armyNumber <0 ) {
 			return false;
 		} 
 		// if the remaining army is less than deploy number:
 		if( this.d_player.getArmiesToDeploy() <  this.d_armyNumber) {
 			this.d_armyNumber = this.d_player.getArmiesToDeploy();
 		}
-		GenericView.printSuccess(String.format("Succeed to deploy %s army to [%s] for player [%s]", this.getArmyNumber(), this.getCountry().getCountryName(), this.getPlayer().getName() ));
+		GenericView.printSuccess(String.format("Succeed to deploy [%s] army to [%s] for player [%s]", this.getArmyNumber(), this.getCountry().getCountryName(), this.getPlayer().getName() ));
 		//move army
 		this.d_country.setArmyNumber( this.d_country.getArmyNumber() +  this.d_armyNumber );
 		this.d_player.setArmiesToDeploy(this.d_player.getArmiesToDeploy() - this.d_armyNumber);
+		
 		return true;
 	}
 }

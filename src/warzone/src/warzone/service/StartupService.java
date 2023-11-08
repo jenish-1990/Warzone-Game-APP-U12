@@ -33,7 +33,7 @@ public class StartupService {
 	}
 	
 	/**
-	 * Add player
+	 * Add player, maximum number is 5.
 	 * @param p_player Player object
 	 * @return true if add success else false
 	 */
@@ -42,7 +42,8 @@ public class StartupService {
 		Map<String,Player> l_players=d_gameContext.getPlayers();
 		if(p_player != null 
 				&& p_player.getName()!="" 
-				&& l_players.size()<= 5 ) {			
+				&& l_players.size()<= 5 
+				&& !l_players.containsKey(p_player.getName())) {			
 			l_players.put(p_player.getName(), p_player);
 			return true;
 		}
@@ -93,7 +94,7 @@ public class StartupService {
 		try {
 			
 			//Clear gameContext
-			d_gameContext.clear();
+			GameContext.clear();
 
 		
 			File mapFile = new File(mapDirectory + p_fileName);

@@ -54,6 +54,11 @@ public class MapController {
 			return false;
 		}
 		
+		if(! d_mapService.validateMap(d_gameContext) ) {
+			GenericView.printError("InValid map, please check the map.");
+			return false;
+		}
+		
 		// call mapService to save the map and return the path
 		p_fileName = p_fileName.trim();
 		try{
