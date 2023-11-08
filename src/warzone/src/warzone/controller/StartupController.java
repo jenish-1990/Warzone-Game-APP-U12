@@ -2,10 +2,21 @@ package warzone.controller;
 
 import warzone.view.*;
 import warzone.model.*;
+import warzone.service.MapService;
+import warzone.service.StartupService;
 
 public class StartupController {
 
+	private StartupService d_startupService;
+	private GameContext d_gameContext;
 
+	public StartupController(GameContext p_gameContext) {
+		
+		d_gameContext = p_gameContext;
+		d_startupService = new StartupService(p_gameContext);
+	}
+	
+	
 	/**
 	 * Performs the action for user command: loadmap filename
 	 * 
@@ -14,11 +25,9 @@ public class StartupController {
 	 * @param fileName
 	 * @return
 	 */
-	public GameContext loadMap(String fileName) {
+	public boolean loadMap(String p_fileName) {
 		
-		// TODO Auto-generated method stub
-		
-		return null;
+		return d_startupService.loadMap(p_fileName);
 	}
 	
 	/**

@@ -11,9 +11,7 @@ public class MapView {
 
     /**
      * generate the table of continent information
-     * continentId and continentName
-     *                              countryId, countryName,
-     *                                                      neighbours
+     * continentId & Name, countryId & Name, neighbours
      * @param p_continents map of continent
      */
     public static void printMap(Map<Integer, Continent> p_continents) {
@@ -29,10 +27,35 @@ public class MapView {
             System.out.println(String.format("%-2s", _continent.getContinentID()) + _continent.getContinentName());
 
                 for (Country _country : _continent.getCountries().values()) {
-                    System.out.println(String.format("%25s", _country.getCountryID()) + " " + _country.getCountryName());
+                    System.out.println(String.format("%22s", _country.getCountryID()) + " " + _country.getCountryName());
                     for (Country _nCountry : _country.getNeighbors().values())
-                        System.out.println(String.format("%50s", _nCountry.getCountryID()) + " " +_nCountry.getCountryName());
+                        System.out.println(String.format("%35s", _nCountry.getCountryID()) + " " +_nCountry.getCountryName());
                 }
+        }
+    }
+
+    /**
+     * generate the table
+     * with continentid & name, countryid & name, Ownerplayer & armies
+     * @param p_continents map of continent
+     */
+    public static void printMapWithArmies(Map<Integer, Continent> p_continents) {
+        System.out.println("************************************************************");
+        System.out.println("**      Continent  -  Country  -  Player  -  Armies       **");
+        System.out.println("************************************************************");
+
+        if( p_continents.isEmpty())
+            GenericView.println("No continent exist.");
+
+        for (Continent _continent : p_continents.values()) {
+            System.out.println(String.format("%-2s", _continent.getContinentID()) + _continent.getContinentName());
+
+            for (Country _country : _continent.getCountries().values()) {
+                System.out.println(String.format("%22s", _country.getCountryID()) + " "
+                        + String.format("%-10s", _country.getCountryName()) + " "
+                        + String.format("%-12s", _country.getOwner().getName())
+                        + _country.getDeployedForces());
+            }
         }
     }
 }
