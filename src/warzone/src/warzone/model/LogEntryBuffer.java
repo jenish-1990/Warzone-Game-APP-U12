@@ -21,7 +21,7 @@ public class LogEntryBuffer extends Observable{
 	private GameContext d_gameContext;
 	
 	/**
-	 * This is the constructor of LogEntryBuffer class.
+	 * This method will print log messages and save them to the log file.
 	 * @param p_result result of the action
 	 * @param p_message message
 	 */

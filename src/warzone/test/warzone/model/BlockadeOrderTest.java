@@ -21,12 +21,12 @@ public class BlockadeOrderTest {
 		Player l_player=new Player("player1");
 		Country l_country=new Country(0,"country1");
 		BlockadeOrder l_order=new BlockadeOrder(l_player, l_country);
-		assert(l_order.valid()==false);
-		l_country.setOwner(l_player);
+		assertFalse(l_order.valid());
+		l_country.setCountryState(CountryState.Occupied, l_player);
 		l_player.getConqueredCountries().put(l_country.getCountryID(), l_country);
-		assert(l_order.valid()==true);
+		assertTrue(l_order.valid());
 		l_player.setIsAlive(false);
-		assert(l_order.valid()==false);
+		assertFalse(l_order.valid());
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class BlockadeOrderTest {
 		Player l_player=new Player("player1");
 		Country l_country=new Country(0,"country1");
 		BlockadeOrder l_order=new BlockadeOrder(l_player, l_country);
-		l_country.setOwner(l_player);
+		l_country.setCountryState(CountryState.Occupied, l_player);
 		l_player.getConqueredCountries().put(l_country.getCountryID(), l_country);
 		assert(l_order.valid());
 		l_player.setIsAlive(false);
@@ -64,7 +64,7 @@ public class BlockadeOrderTest {
 		Country l_country=new Country(0,"country1");
 		l_country.setArmyNumber(4);
 		BlockadeOrder l_order=new BlockadeOrder(l_player, l_country);
-		l_country.setOwner(l_player);
+		l_country.setCountryState(CountryState.Occupied, l_player);
 		l_player.getConqueredCountries().put(l_country.getCountryID(), l_country);
 		l_order.execute();
 		assertEquals(l_country.getArmyNumber(),12);
@@ -79,7 +79,7 @@ public class BlockadeOrderTest {
 		Player l_player = new Player("P1");
 		Country l_country = new Country(1,"C1",0,0,null);
 		l_country.setArmyNumber(5);
-		l_country.setOwner(l_player);
+		l_country.setCountryState(CountryState.Occupied, l_player);
 		l_player.getConqueredCountries().put(l_country.getCountryID(), l_country);
 		l_player.getCards().add(Card.BLOCKADE);
 		Order l_order = l_player.conventOrder("blockade 1");
@@ -122,7 +122,7 @@ public class BlockadeOrderTest {
 	public void willTrueWhenTargetCountryIsTheSameOwner() {
 		Player l_player=new Player("player1");
 		Country l_country=new Country(1,"country1");
-		l_country.setOwner(l_player);
+		l_country.setCountryState(CountryState.Occupied, l_player);
 		
 		//act
 		Order l_order=new BlockadeOrder(l_player, l_country);
@@ -139,7 +139,7 @@ public class BlockadeOrderTest {
 		Player l_player=new Player("player1");
 		Player l_player2=new Player("player2");
 		Country l_country=new Country(1,"country2");
-		l_country.setOwner(l_player2);
+		l_country.setCountryState(CountryState.Occupied, l_player2);
 		
 		GameContext l_gameContext = GameContext.getGameContext();
 		NegotiateOrder l_negotiateOrder = new NegotiateOrder(l_player, l_player2 );

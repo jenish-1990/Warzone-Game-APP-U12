@@ -15,6 +15,7 @@ import java.util.*;
 public class MapService {
 
 	private GameContext d_gameContext;
+	private LogEntryBuffer d_logEntryBuffer;
 
 	/**
 	 * constructor
@@ -22,6 +23,7 @@ public class MapService {
 	 */
 	public MapService(GameContext p_gameContext) {
 		d_gameContext = p_gameContext;
+		d_logEntryBuffer = p_gameContext.getLogEntryBuffer();
 	}
 
 	/**
@@ -111,8 +113,7 @@ public class MapService {
 
 			//Specified file name does not exist (new map)
 			if(!l_mapFile.exists() || l_mapFile.isDirectory()) {
-
-				GenericView.printSuccess("Creating a new map: " + p_fileName);
+				d_logEntryBuffer.logAction("SUCCESS", "Creating a new map: " + p_fileName);
 				return true;
 			}
 			
@@ -245,10 +246,10 @@ public class MapService {
 			//close reading the file
 			l_scanner.close();
 			
-			GenericView.printSuccess("Map succesfully loaded: " + p_fileName);
+			d_logEntryBuffer.logAction("SUCCESS", "Map succesfully loaded: " + p_fileName);
 		    
 		} catch (Exception e) {
-			GenericView.printError("An error occured reading the map file: " + p_fileName);
+			d_logEntryBuffer.logAction("ERROR", "An error occured reading the map file: " + p_fileName);
 			return false;
 		}
 		

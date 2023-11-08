@@ -11,7 +11,9 @@ import org.junit.Test;
 import warzone.model.Country;
 import warzone.model.GameContext;
 import warzone.model.Player;
+import warzone.model.Router;
 import warzone.model.WarzoneProperties;
+import warzone.state.Startup;
 import warzone.view.GenericView;
 
 /**
@@ -33,6 +35,8 @@ public class StartupServiceTest {
 		d_gameContext.getContinents().clear();
 		d_gameContext.getCountries().clear();
 		d_gameContext.getPlayers().clear();
+		GameEngine.getGameEngine(d_gameContext).setPhase(new Startup(GameEngine.getGameEngine(d_gameContext)));
+		d_gameContext.setCurrentRouter(new Router(null, null, null, "testCommand"));
 	}
 	
 	/**
@@ -191,6 +195,7 @@ public class StartupServiceTest {
 		
 		//Load map file
 		d_startupService = new StartupService(d_gameContext);
+		System.out.println(GameEngine.getGameEngine(d_gameContext).getPhase());
 		d_startupService.loadMap("europe.map");
 		
 		Player l_player1 = new Player("player1");

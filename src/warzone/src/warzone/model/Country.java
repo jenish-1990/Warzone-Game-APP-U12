@@ -1,5 +1,7 @@
 package warzone.model;
 
+import warzone.view.GenericView;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,7 @@ public class Country {
 	private int d_armyNumber = 0;
 	private Map<Integer, Country> d_neighbors;
 	private Continent d_continent;
+	private CountryState d_countryState;
 
 	/**
 	 * constructor
@@ -33,6 +36,7 @@ public class Country {
 		d_yPosition = p_yPosition;
 		d_neighbors = new HashMap<Integer, Country>();
 		d_continent = p_continent;
+		setCountryState(CountryState.Initial, null);
 	}
 
 	/**
@@ -44,7 +48,7 @@ public class Country {
 		d_countryID = p_countryID;
 		d_countryName = p_countryName;
 		d_neighbors = new HashMap<Integer, Country>();
-		
+		setCountryState(CountryState.Initial, null);
 	}
 
 	/**
@@ -187,5 +191,39 @@ public class Country {
 		}
 		else
 			return false;
+	}
+
+	/**
+	 * get country state
+	 * @return the state of country
+	 */
+	public CountryState getCountryState(){
+		return d_countryState;
+	}
+
+	/**
+	 * set country state
+	 * @param p_countryState country state
+	 * @param p_player player, can be null
+	 */
+	public void setCountryState(CountryState p_countryState, Player p_player){
+		switch (p_countryState){
+			case Initial:
+				this.d_countryState = p_countryState;
+				this.d_owner = null;
+				return;
+			case Occupied:
+				if(p_player == null){
+					GenericView.printError("player can not be null.");
+					return;
+				}
+				this.setOwner(p_player);
+				this.d_countryState = p_countryState;
+				return;
+			case Neutral:
+				this.setOwner(null);
+				this.d_countryState = p_countryState;
+				return;
+		}
 	}
 }
