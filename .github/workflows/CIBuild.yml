@@ -4,10 +4,11 @@
 name: Java CI with Maven
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ feature/002-CI-Configuration ]
+    branches: [develop]
   pull_request:
-    branches: [ feature/002-CI-Configuration ]
+    branches: [develop]
 
 jobs:
   build:
@@ -24,5 +25,30 @@ jobs:
       run: mvn install
     - name: Test
       run: mvn test
-    - name: JavaDoc
+    - name: Generate JavaDoc
       run: mvn javadoc:javadoc
+    - name: Copy Document to Location
+      run: |
+        rm -rf doc/javadoc
+        cp -rf target/site/apidocs/. doc/javadoc
+    - name: Tidy up the Javadocs
+      id: tidy
+      uses: cicirello/javadoc-cleanup@v1.2.0
+      with:
+        path-to-root: doc/javadoc
+    - name: Log javadoc-cleanup output
+      run: |
+        echo "modified-count = ${{ steps.tidy.outputs.modified-count }}"
+    - name: Commit Documentation Changes
+      run: |
+        if [ $(git status | grep -c "**/*.html") == "0" ]; then
+          git checkout .
+        else
+          git config --global user.name 'amyhcy'
+          git config --global user.email 'amy.chuanyanhu@gmail.com'
+          git add -A
+          git commit -m "Javadoc updates."
+        fi
+    - name: push test
+      run: |
+        git push origin develop
