@@ -5,7 +5,7 @@ This project involves building a Java program for a simplified version of the cl
 
 ## Project Overview
 - Team Members : Alay Parikh, Jenish Akhed, Ayush Patel, Sahil Khunt, Nidhi Patel and Shruti Pavasiya 
-- Project Number: U12
+- Team Number: U12
 
 The objective of the game is to conquer all countries on the map. It consists of the following main components:
 
