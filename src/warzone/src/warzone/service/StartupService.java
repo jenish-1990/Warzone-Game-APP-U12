@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 import warzone.controller.MapController;
-import warzone.model.Color;
 import warzone.model.Continent;
 import warzone.model.Country;
 import warzone.model.GameContext;
@@ -196,7 +195,7 @@ public class StartupService {
 					splitArray = line.split("\\s+");
 										
 					d_gameContext.getContinents().put(continentCtr, 
-							new Continent(continentCtr, splitArray[0], Integer.parseInt(splitArray[1]), Color.valueOf(splitArray[2].toUpperCase())));
+							new Continent(continentCtr, splitArray[0], Integer.parseInt(splitArray[1]), splitArray[2]));
 					
 					continentCtr++;
 				}

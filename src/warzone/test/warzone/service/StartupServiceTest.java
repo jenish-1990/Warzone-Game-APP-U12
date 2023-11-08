@@ -3,6 +3,8 @@ package warzone.service;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,11 +17,18 @@ import warzone.model.Player;
 import warzone.model.WarzoneProperties;
 import warzone.view.GenericView;
 
+/**
+ * This class will test the correctness of StartupService.
+ *
+ */
 public class StartupServiceTest {
 
 	GameContext d_gameContext;
 	StartupController d_startupController;
 	
+	/**
+	 * This method can set up game context before test cases begin.
+	 */
 	@Before
 	public void setup() {
 		
@@ -29,6 +38,19 @@ public class StartupServiceTest {
 		d_gameContext.getPlayers().clear();
 	}
 	
+	/**
+	 * This method can clear the current game context so that it will not affect other
+	 * test cases.
+	 * @throws Exception exception when reading properties file
+	 */
+	@AfterClass
+	public static void afterClass() throws Exception {
+		GameContext.clear();
+	}
+	
+	/**
+	 * This method can test the correctness of loadmap.
+	 */
 	@Test
 	public void testLoadMap() {
 		
@@ -145,6 +167,9 @@ public class StartupServiceTest {
 //		System.out.println();
 //	}
 	
+	/**
+	 * This method can test the correctness of assigning reinforcement for players without any territory.
+	 */
 	@Test
 	public void testAssignReinforcementsNoOwnedContinentsNoOwnedCountries() {
 		
@@ -163,6 +188,9 @@ public class StartupServiceTest {
 		assertTrue(player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound());
 	}
 	
+	/**
+	 * This method will test the correctness of assigning reinforcement for players owned fourteen countries.
+	 */
 	@Test
 	public void testAssignReinforcementsNoOwnedContinentsFourteenOwnedCountries() {
 		
@@ -202,6 +230,9 @@ public class StartupServiceTest {
 		assertTrue(l_player1.getArmiesToDeploy() == 4);
 	}
 	
+	/**
+	 * This method will test the correctness of assigning reinforcement for players owned five countries.
+	 */
 	@Test
 	public void testAssignReinforcementsOneOwnedContinentFiveOwnedCountries() {
 		
