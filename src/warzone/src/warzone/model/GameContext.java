@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import warzone.service.LogService;
+import warzone.service.MapService;
+
 /**
  * This class represent the state of the game, and it contains some useful instances for
  * other classes.
@@ -19,7 +22,8 @@ public class GameContext {
 	private Map<String, Player> d_players;
 	private Map<Integer, Country> d_countries;
 	private Map<Integer, Continent> d_continents;
-
+	private LogService d_logService;
+	private Router d_currentRouter;
 	
 	private String d_mapFileName;
 	private String d_mapFilePic;
@@ -27,6 +31,25 @@ public class GameContext {
 	private String d_mapFileCards;
 	
 	private WarzoneProperties d_warzoneProperties;
+	
+	/**
+	 * get current running router
+	 * @return current running router
+	 */
+	public Router getCurrentRouter() {
+		return d_currentRouter;
+	}
+	
+	/**
+	 * set current running router
+	 * @param p_currentRouter current running router
+	 */
+	public void setCurrentRouter(Router p_currentRouter) {
+		d_currentRouter =  p_currentRouter;
+	}
+
+	
+	private LogEntryBuffer d_logEntryBuffer;
 	
 	/**
 	 * get map file cards
@@ -53,6 +76,7 @@ public class GameContext {
 		d_countries = new HashMap<Integer, Country>();
 		d_continents = new HashMap<Integer, Continent>();
 		d_warzoneProperties = WarzoneProperties.getWarzoneProperties();
+		d_logService = new LogService();
 	}		
 	
 	/**
@@ -65,6 +89,19 @@ public class GameContext {
 			GAME_CONTEXT = new GameContext();
 		}
 		return GAME_CONTEXT;
+	}
+	
+	/**
+	 * This method can return the logEntryBuffer instance and create a new one if
+	 * it is null.
+	 * @return the logEntryBuffer instance
+	 */
+	public LogEntryBuffer getLogEntryBuffer() {
+		if(d_logEntryBuffer == null) {
+			d_logEntryBuffer= new LogEntryBuffer(this);
+			d_logEntryBuffer.attach(d_logService);
+		}
+		return d_logEntryBuffer;
 	}
 	
 	/**
@@ -179,11 +216,27 @@ public class GameContext {
 	}
 	
 	/**
+	 * This method will show whether needs logs
+	 * @return true if the game needs logs
+	 */
+	public boolean getIsLog() {
+		return d_warzoneProperties.getIsLog();
+	}
+	
+	/**
 	 * This method will return Map folder.
 	 * @return  Map folder path
 	 */
 	public String getMapfolder() {
 		return d_warzoneProperties.getGameMapDirectory();
+	}	
+	
+	/**
+	 * This method will return Log folder.
+	 * @return  Map folder path
+	 */
+	public String getLogfolder() {
+		return d_warzoneProperties.getLogDirectory();
 	}	
 	
 	/**
