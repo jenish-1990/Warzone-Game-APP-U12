@@ -190,7 +190,7 @@ public class Player {
 		}
 		return null;			
 	}
-	
+
 	/**
 	 * convert command into order
 	 * @param p_command command line
@@ -210,9 +210,9 @@ public class Player {
 			case "deploy":
 				return createDeployOrder(l_commandInfos);
 			case "advance":
-				return createAdvanceOrder(l_commandInfos);
+				break;
 			case "bomb":
-				return createBombOrder(l_commandInfos);
+				break;
 			case "blockade":
 				break;
 			case "airlift":
@@ -252,78 +252,7 @@ public class Player {
 
 		return l_deployOrder;
 	}
-	
-	/**
-	 * create the bomb order by command
-	 * @param p_commandInfos command info
-	 * @return the bomb order
-	 */
-	public BombOrder createBombOrder(String[] p_commandInfos){
-		if(p_commandInfos.length != 2) return null;
 
-		//read the information of command
-		int l_targetCountryId = CommonTool.parseInt(p_commandInfos[1]);
-
-		BombOrder l_bombOrder = new BombOrder(l_targetCountryId);
-		l_bombOrder.setPlayer(this);
-
-		return l_bombOrder;
-	}
-
-	 * create the advance order by command
-	 * @param p_commandInfos command infor
-	 * @return the deploy order if success, otherwise return null
-	 */
-	public AdvanceOrder createAdvanceOrder(String[] p_commandInfos){
-
-		if(p_commandInfos.length != 4) {
-			
-			GenericView.printError("Incorrect number of parameters. The command should be as follows: advance countryfromname countrytoname numarmies");
-			return null;
-		}
-
-		//read the information of command
-		Country l_fromCountry = findCountryByName(p_commandInfos[1]);
-		Country l_toCountry = findCountryByName(p_commandInfos[2]);
-		int l_numArmies = Integer.parseInt(p_commandInfos[3]);
-		boolean l_isValidCommand = true;
-
-		//check if the command is valid
-		if (l_fromCountry == null) {
-			
-			GenericView.printError("Country " + p_commandInfos[1] + " was not found. Please check your spelling.");
-			l_isValidCommand = false;
-		}
-		if (l_toCountry == null) {
-			
-			GenericView.printError("Country " + p_commandInfos[2] + " was not found. Please check your spelling.");
-			l_isValidCommand = false;
-		}
-		
-		if(l_isValidCommand) {
-			
-			//create the deploy order
-			return new AdvanceOrder(this, l_fromCountry, l_toCountry, l_numArmies);
-		}
-		return null;
-	}
-	
-	private Country findCountryByName(String p_countryName) {
-		
-		Map<Integer, Country> l_countries = GameContext.getGameContext().getCountries();
-		List<Integer> l_countryIDs = new ArrayList<Integer>(l_countries.keySet());
-		
-		for(Integer l_countryID : l_countryIDs) {
-			
-			if(l_countries.get(l_countryID).getCountryName().equalsIgnoreCase(p_countryName.trim())) {
-				
-				return l_countries.get(l_countryID);
-			}
-		}
-		
-		return null;
-	}
-	
 	/**
 	 * create the airlift order by command
 	 * @param p_commandInfos command info
@@ -336,21 +265,7 @@ public class Player {
 		int l_countrySourceId = CommonTool.parseInt(p_commandInfos[1]);
 		int l_countryTargetId = CommonTool.parseInt(p_commandInfos[2]);
 		int l_armyNumber = CommonTool.parseInt(p_commandInfos[3]);
-		//check if the player has a airlift card
-		if(!this.getCards().contains(Card.AIRLIFT)){
-			GenericView.printError("Player " + this.getName() + " does not have a airlift card");
-			return null;
-		}
-		//check if country exist
-		if(!GameContext.getGameContext().getCountries().containsKey(l_countryTargetId) || !GameContext.getGameContext().getCountries().containsKey(l_countrySourceId)){
-			GenericView.printError("Does not exist the sorce/target country");
-			return null;
-		}
-		//check if army number is more than 0
-		if(l_armyNumber <= 0){
-			GenericView.printError("The number of airlift army shoud more than 0.");
-			return null;
-		}
+
 		AirliftOrder l_airliftOrder = new AirliftOrder(l_countrySourceId, l_countryTargetId, l_armyNumber);
 		l_airliftOrder.setPlayer(this);
 
