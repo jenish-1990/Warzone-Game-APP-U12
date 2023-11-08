@@ -1,39 +1,36 @@
 package warzone.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
-public class Continent implements IRender {
+public class Continent {
 	
 	private int d_continentID;
 	private String d_continentName;
-	private String d_color;
-	private List<Country> d_countries;
+	private Map<Integer, Country> d_countries;
 	
-	public Continent(int p_ContinentID, String p_ContinentName) {
-		d_continentID = p_ContinentID;
-		d_continentName = p_ContinentName;
+	public Continent(int p_continentID, String p_continentName) {
+		
+		d_continentID = p_continentID;
+		d_continentName = p_continentName;
 	}
 	
 	public int getContinentID() {
 		return d_continentID;
 	}
 	
-	public void setContinentID(int p_ContinentID) {
-		this.d_continentID = p_ContinentID;
+	public void setContinentID(int p_continentID) {
+		this.d_continentID = p_continentID;
 	}
 	
 	public String getContinentName() {
 		return d_continentName;
 	}
 	
-	public void setContinentName(String p_ContinentName) {
-		this.d_continentName = p_ContinentName;
+	public void setContinentName(String p_continentName) {
+		this.d_continentName = p_continentName;
 	}	
 	
-	@Override
-	public void render() {
-		// todo: 
-		//e.g.  System.out.println("ID" + getContinentID());
+	public Map<Integer, Country> getCountries() {
+		return d_countries;
 	}
 }

@@ -1,32 +1,66 @@
 package warzone.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class Country {
 	
-	private int countryID;
-	private String countryName;
-	private int continentID;
-	private int positionX;
-	private int positionY;
-	private List<Country> country;
-	
-	private Continent continent; 
+	private int d_countryID;
+	private String d_countryName;
+	private int d_ownerID;
+	private int d_deployedForces;
+	private int d_xPosition;
+	private int d_yPosition;
+	private Map<Integer, Country> d_neighbors;
 	
 	public int getCountryID() {
-		return countryID;
+		return d_countryID;
 	}
 	
-	public void setCountryID(int countryID) {
-		this.countryID = countryID;
+	public void setCountryID(int p_countryID) {
+		this.d_countryID = p_countryID;
 	}
 	
 	public String getCountryName() {
-		return countryName;
+		return d_countryName;
 	}
 	
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
+	public void setCountryName(String p_countryName) {
+		this.d_countryName = p_countryName;
 	}	
+	
+	public int getOwnerID() {
+		return d_ownerID;
+	}
+
+	public void setOwnerID(int p_ownerID) {
+		this.d_ownerID = p_ownerID;
+	}
+
+	public int getDeployedForces() {
+		return d_deployedForces;
+	}
+
+	public void setDeployedForces(int p_deployedForces) {
+		this.d_deployedForces = p_deployedForces;
+	}
+
+	public int getXPosition() {
+		return d_xPosition;
+	}
+
+	public void setXPosition(int p_xPosition) {
+		this.d_xPosition = p_xPosition;
+	}
+
+	public int getYPosition() {
+		return d_yPosition;
+	}
+
+	public void setYPosition(int p_yPosition) {
+		this.d_yPosition = p_yPosition;
+	}
+
+	public Map<Integer, Country> getNeighbors() {
+		return d_neighbors;
+	}
 }

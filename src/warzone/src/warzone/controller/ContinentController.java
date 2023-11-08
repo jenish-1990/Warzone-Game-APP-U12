@@ -25,7 +25,7 @@ public class ContinentController {
 		//ContinentService.add(continent);
 		
 		//3. render to view
-		GenericView.println(l_Continent);
+		GenericView.println(l_Continent.getContinentName());
 		return true;
 	}
 	

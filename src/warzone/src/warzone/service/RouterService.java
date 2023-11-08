@@ -6,17 +6,10 @@ import warzone.controller.*;
 import warzone.model.*;
 
 public class RouterService {
-	/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * */
+	
 	public void route(Router p_router){
 		 
-		ControllerFactory l_controllerFactory = ControllerFactory.getControllerFactory(GameContext.getGameContext());
+		ControllerFactory l_controllerFactory = ControllerFactory.getControllerFactory();
 		switch(p_router.getControllerName()) {
 			case COMMON:
 				switch(p_router.getActionName()) {
