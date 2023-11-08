@@ -11,7 +11,6 @@ public class Country {
 	private int d_countryID;
 	private String d_countryName;
 	private Player d_owner;
-	private int d_deployedForces;
 	private int d_xPosition;
 	private int d_yPosition;
 	private int d_armyNumber = 0;
@@ -94,22 +93,6 @@ public class Country {
 	 */
 	public void setOwner(Player p_owner) {
 		this.d_owner = p_owner;
-	}
-
-	/**
-	 * get the deployed force of the country
-	 * @return the deployed force
-	 */
-	public int getDeployedForces() {
-		return d_deployedForces;
-	}
-
-	/**
-	 * set the deploy force to the country
-	 * @param p_deployedForces the number of the deployed force
-	 */
-	public void setDeployedForces(int p_deployedForces) {
-		this.d_deployedForces = p_deployedForces;
 	}
 
 	/**

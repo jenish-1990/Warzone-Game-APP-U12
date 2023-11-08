@@ -77,7 +77,6 @@ public class StartupController {
 	 * @return true if load map successfully, otherwise return false
 	 */
 	public boolean loadMap(String p_fileName) {
-		
 		return d_startupService.loadMap(p_fileName);
 	}
 		
