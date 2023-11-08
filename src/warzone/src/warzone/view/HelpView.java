@@ -3,6 +3,8 @@ package warzone.view;
 import java.util.Map;
 
 import warzone.model.*;
+import warzone.service.GameEngine;
+import warzone.state.Phase;
 
 /**
  * This class can print some help hints to players.
@@ -27,25 +29,26 @@ public class HelpView {
     
     /**
      * This method will print current status of the game from the game context.
-     * @param p_gameContext the current game context
+     * @param p_gameEngine the current Game Engine
      */
-    public static void printStatus(GameContext p_gameContext) {
+    public static void printStatus(GameEngine p_gameEngine) {
+    	GameContext l_gameContext = p_gameEngine.getGameContext();
     	System.out.print(String.format("[Status] Game Phase:%s | Demo Mode:%s | Debug Mode:%s | ", 
-    			p_gameContext.getGamePhase(), p_gameContext.getIsDemoMode(), p_gameContext.getIsDebug()));
+    			p_gameEngine.getPhase(), l_gameContext.getIsDemoMode(), l_gameContext.getIsDebug()));
     	System.out.println(String.format("Player:%s | Continent:%s | Country:%s",
-    			p_gameContext.getPlayers().size(), p_gameContext.getContinents().size(), p_gameContext.getCountries().size(), p_gameContext.getMapFileName()));
+    			l_gameContext.getPlayers().size(), l_gameContext.getContinents().size(), l_gameContext.getCountries().size(), l_gameContext.getMapFileName()));
     }
     
     /**
      * This method will print out the message how to use every command according to
      * the current phase.
-     * @param p_gamePhase the current phase of the game.
+     * @param p_phase the current phase of the game.
      */
-    public static void printHelp(GamePhase p_gamePhase ) {
-    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
-    	System.out.println("Commands available for current game phase: " + p_gamePhase);
-    	switch(p_gamePhase) {
-	    	case MAPEDITOR:
+    public static void printHelp(Phase p_phase ) {
+    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_phase));    	
+    	System.out.println("Commands available for current game phase: " + p_phase);
+    	switch(p_phase.toString().toUpperCase()) {
+	    	case "MAPEDITOR":
 	    		System.out.println(""
 	    				+ " -  editmap filename\n"
 	    				+ " -  savemap filename\n"
@@ -58,7 +61,7 @@ public class HelpView {
 	    				+ " -  reboot \n");
 
 	    		break;
-	    	case STARTUP:
+	    	case "STARTUP":
 	    		System.out.println(""
 	    				+ " -  loadmap filename\n"
 	    				+ " -  showmap\n"
@@ -69,7 +72,7 @@ public class HelpView {
 	    				+ " -  mapeditor \n"
 	    				+ " -  reboot \n");
 	    		break;
-	    	case PLAY:
+	    	case "PLAY":
 	    		System.out.println(""
 	    				+ " You are in game PLAYING phase, you can deploy armies. \n"
 	    				+ " -  deploy countryID num\n"
@@ -79,7 +82,8 @@ public class HelpView {
 	    				+ " -  play \n"
 	    				+ " -  startup \n"	    				);
 	    		break;
+	    		//todo: add other info
     	}
-    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
+    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_phase));    	
     }
 }

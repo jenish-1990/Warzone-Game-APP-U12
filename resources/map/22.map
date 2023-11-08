@@ -1,0 +1,24 @@
+; map: 22
+; map made with the 6441 Super Team
+; 6441.net  1.0.0.1 
+
+[files]
+pic 22_pic.jpg
+map 22_map.gif
+crd 22europe.cards
+
+[continents]
+CONTINENT-1 5 null
+CONTINENT-2 7 null
+
+[countries]
+1 COUNTRY-1 1 0 0
+2 COUNTRY-2 1 0 0
+3 COUNTRY-3 2 0 0
+4 COUNTRY-4 2 0 0
+
+[borders]
+1 2
+2 1 3
+3 4
+4 1 3

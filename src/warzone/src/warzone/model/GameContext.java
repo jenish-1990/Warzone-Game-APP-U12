@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class GameContext {
 	private static GameContext GAME_CONTEXT;
-	GamePhase d_gamePhase = GamePhase.MAPEDITOR;
+	//GamePhase d_gamePhase = GamePhase.MAPEDITOR;
 	private int d_orderNumberPerRound = 5;
 	
 
@@ -160,21 +160,6 @@ public class GameContext {
 		this.d_mapFileMap = p_mapFileMap;
 	}
 	
-	/**
-	 * This method will provide current game phase
-	 * @return the current game phase
-	 */
-	public GamePhase getGamePhase() {
-		return d_gamePhase;
-	}
-
-	/**
-	 * This method can set current game phase
-	 * @param p_gamePhase the current game phase
-	 */
-	public void setGamePhase(GamePhase p_gamePhase) {
-		this.d_gamePhase = p_gamePhase;
-	}	
 	
 	/**
 	 * This method will show current mode whether is demo mode.
@@ -208,18 +193,18 @@ public class GameContext {
 	public int getOrderNumberPerRound() {
 		return d_orderNumberPerRound;
 	}	
-	/**
-	 * check if current game phase is in the given phase list
-	 * @param p_gamePhases given phase list
-	 * @return true if include, otherwise false
-	 */
-	public boolean getIsContainCurrentPhase(List<GamePhase> p_gamePhases) {
-		if(p_gamePhases != null) {
-			return p_gamePhases.contains(this.d_gamePhase);
-		}
-		return false;
-	}
-	
+//	/**
+//	 * check if current game phase is in the given phase list
+//	 * @param p_gamePhases given phase list
+//	 * @return true if include, otherwise false
+//	 */
+//	public boolean getIsContainCurrentPhase(List<GamePhase> p_gamePhases) {
+//		if(p_gamePhases != null) {
+//			return p_gamePhases.contains(this.d_gamePhase);
+//		}
+//		return false;
+//	}
+//	
 	
 	
 }
