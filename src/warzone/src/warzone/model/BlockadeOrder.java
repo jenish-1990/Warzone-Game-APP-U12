@@ -2,7 +2,7 @@ package warzone.model;
 
 import warzone.view.GenericView;
 
-public class BlockadeOrder implements Order {
+public class BlockadeOrder extends Order {
 	
 	/** target country id */
     private int d_targetCountryId;
@@ -28,8 +28,8 @@ public class BlockadeOrder implements Order {
      */
 	@Override
 	public void execute() {
-		if(!this.valid())return;
-		//triple the number of armies on one of the current player¡¯s territories
+		if(!this.valid())	return;
+		//triple the number of armies on one of the current player's territories
 		d_targetCountry.setArmyNumber(d_targetCountry.getArmyNumber()*3);
 		//remove target country from conquered countries
 		d_targetCountry.getOwner().getConqueredCountries().remove(d_targetCountryId);

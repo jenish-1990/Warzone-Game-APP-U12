@@ -2,7 +2,7 @@ package warzone.model;
 
 import warzone.view.GenericView;
 
-public class AirliftOrder implements Order{
+public class AirliftOrder extends Order{
 
     private int d_sourceCountryId;
     private int d_targetCountryId;
@@ -21,6 +21,8 @@ public class AirliftOrder implements Order{
         d_sourceCountryId = p_sourceCountryId;
         d_targetCountryId = p_tragetCountryId;
         d_armyNumber = p_armyNumber;
+		this.d_orderType = OrderType.AIRLIFT;
+		this.d_gameContext = GameContext.getGameContext();  
     }
 
     /**

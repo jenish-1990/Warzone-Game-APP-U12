@@ -7,7 +7,7 @@ import warzone.view.GenericView;
  * @author zexin
  *
  */
-public class BombOrder implements Order{
+public class BombOrder extends Order{
 	private int d_targetCountryId;
 	private int d_previousArmyNum;
 	private Country d_targetCountry;
