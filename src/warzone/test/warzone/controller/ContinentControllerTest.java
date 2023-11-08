@@ -40,7 +40,7 @@ public class ContinentControllerTest {
 	 */
 	@Test
 	public void testAddContinent1() {
-		l_parameters = "123 aaa";
+		l_parameters = "123 7";
 		assertTrue(d_continentController.addContinent(l_parameters));
 	}
 

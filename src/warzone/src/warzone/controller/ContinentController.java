@@ -34,33 +34,33 @@ public class ContinentController {
 		}
 
 		int l_continentID = -1;
-		String l_continentName = "";
+		int l_bonusReinforcements = -1;
 		// separate the parameter string
 		String[] l_parameters = CommonTool.conventToArray(p_parameters);
 		// check if parameter length is valid
 		if(l_parameters.length == 2 ) {			
 			l_continentID = CommonTool.parseInt(l_parameters[0]);
-			l_continentName = l_parameters[1];
+			l_bonusReinforcements = CommonTool.parseInt(l_parameters[1]);
 		}
 		// if continent id or name is not correct, return error info
-		if(l_continentID == -1 || l_continentName ==""){
+		if(l_continentID == -1 || l_bonusReinforcements < 0){
 			GenericView.printError("Missing valid parameters.");
 			return false;
 		}
 
-		return addContinent(l_continentID, l_continentName);		
+		return addContinent(l_continentID, l_bonusReinforcements);		
 	}
 
 	/**
 	 * add continent into map
 	 * @param p_continentID continent id
-	 * @param p_continentName continent name
+	 * @param p_bonusReinforcements bonusReinforcements
 	 * @return true if successfully add the continent, otherwise return false
 	 */
-	public boolean addContinent(int p_continentID, String p_continentName) {
+	public boolean addContinent(int p_continentID, int p_bonusReinforcements) {
 		//1. create a new contient instance
-		Continent l_Continent = new Continent(p_continentID, p_continentName);
-		
+		Continent l_Continent = new Continent(p_continentID, "CONTINENT-"+p_continentID);
+		l_Continent.setBonusReinforcements(p_bonusReinforcements);
 		//2. add continent to ContinentService
 		d_continentService.add(l_Continent);
 		
