@@ -29,16 +29,6 @@ public class DeployOrder extends Order {
 	}
 
 	/**
-	 * constructor
-	 * @param p_country the country this order manipulate
-	 * @param p_armyNumber the army number it deploys
-	 */
-	public DeployOrder(Country p_country, int p_armyNumber) {
-		d_country = p_country;
-		d_armyNumber = p_armyNumber;
-	}
-
-	/**
 	 * get the country of this order
 	 * @return the country
 	 */
@@ -92,7 +82,11 @@ public class DeployOrder extends Order {
 	 */
 	@Override
 	public void execute() {
-		if(!valid()) return;		
+		if(!valid()){		
+			GenericView.printWarning("Fail to execute order:" + toString());
+    		this.logExecution("Fail","The context does not satisfy the order" );
+    		return;
+		}
 
 		//move army
 		this.d_country.setArmyNumber( this.d_country.getArmyNumber() +  this.d_armyNumber );
@@ -100,6 +94,7 @@ public class DeployOrder extends Order {
 		
 		//print success information
 		GenericView.printSuccess("Success to execute order:" + toString());
+		this.logExecution("Success", this.toString() );
 	}
 
 	/**

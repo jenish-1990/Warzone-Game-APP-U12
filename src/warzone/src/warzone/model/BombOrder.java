@@ -15,7 +15,7 @@ public class BombOrder extends Order{
     private Country d_targetCountry;
     	
     /** 
-     * current player     * 
+     * current player
      */
     private Player d_player;
 	
@@ -54,6 +54,7 @@ public class BombOrder extends Order{
 	public void execute() {
         if(!valid()) {
         	GenericView.printWarning("Fail to execute order:" + toString());
+        	this.logExecution("Fail","The context does not satisfy the order" );
         	return;
         }
         
@@ -61,6 +62,7 @@ public class BombOrder extends Order{
 
 		//print success information
 		GenericView.printSuccess("Success to execute order:" + toString());
+		this.logExecution("Success", this.toString() );
 	}
 
 	/**
@@ -69,11 +71,6 @@ public class BombOrder extends Order{
 	 */
 	@Override
 	public boolean valid() {
-//        //check if the player has a bomb card, checked it in the creation
-//        if(!d_player.getCards().contains(Card.BOMB)){
-//            GenericView.printError("Player " + d_player.getName() + " does not have a bomb card");
-//            return false;
-//        }
         
         //check whether the target country belongs to the player
         if(d_player.getConqueredCountries().containsValue(d_targetCountry)){

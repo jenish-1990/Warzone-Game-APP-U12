@@ -39,19 +39,33 @@ public class LogEntryBuffer extends Observable{
 	 *  log Issue Order
 	 * @param p_order result of logging Issue Order
 	 * @param p_message  msg of logging Issue Order
+	 * @param p_command  command which create the order
 	 */
-	public void logIssueOrder(Order p_order, String p_message ) {
-		//todo
+	public void logIssueOrder(String p_result, String p_message, String p_command) {
+		this.d_message = p_message;
+		this.d_result = p_result;
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		d_time = df.format(new Date());
+		this.d_phase = GamePhase.IssueOrder;
+		this.d_order = p_command;
+		this.notify(this);
 	}
+		
 	/**
-	 *  log execute Order
-	 * @param p_order result of logging execute Order
-	 * @param p_message  msg of logging execute Order
+	 *  log executing Order
+	 * @param p_order result of executing Order
+	 * @param p_message  msg of executing Order
+	 * @param p_command  command which create the order
 	 */
-	public void logExecuteOrder(Order p_order , String p_message) {
-		//todo
+	public void logExecuteOrder(String p_result, String p_message, Order p_order) {
+		this.d_message = p_message;
+		this.d_result = p_result;
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		d_time = df.format(new Date());
+		this.d_phase = GamePhase.OrderExecution;
+		this.d_order = p_order.getCommand();
+		this.notify(this);
 	}
-	
 	
 	/**
 	 * This is the constructor of the class.
