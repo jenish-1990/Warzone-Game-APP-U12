@@ -42,9 +42,32 @@ public abstract class Phase {
 		d_gameEngine = p_ge;
 		d_gameContext = p_ge.getGameContext();
 	}
+
+	/**
+	 * This methods can receive parameters from the Router, check the correctness of
+	 * commands and call the internal methods.
+	 * @param p_parameters parameters parsed by parser
+	 */
 	abstract public void addContinent(String p_parameters);
-	abstract public void removeContinent(String p_parameters);	
+
+	/**
+	 * Performs the action for the user command: editcontinent -remove continentID
+	 * @param p_parameters id of continent
+	 */
+	abstract public void removeContinent(String p_parameters);
+
+	/**
+	 * add country to the map
+	 * This methods can receive parameters from the Router, check the correctness of
+	 * commands and call the internal methods.
+	 * @param p_parameters parameters parsed by parser
+	 */
 	abstract public void addCountry (String p_parameters);
+
+	/**
+	 * remove the country from map
+	 * @param p_parameters parameters parsed by parser
+	 */
 	abstract public void removeCountry(String p_parameters);
 
 	/**
@@ -72,25 +95,64 @@ public abstract class Phase {
 	 * @return true if success. otherwise return false
 	 */
 	abstract public boolean validateMap();
-	abstract public void addNeighbor (String p_parameters);	
-	abstract public void removeNeighbor (String p_parameters);	
-	abstract public void addPlayer(String p_playerName);	
-	abstract public void removePlayer(String p_playerName);	
-	abstract public void loadMap(String p_fileName);	
+
+	/**
+	 * Performs the action for the user command: editneighbor -add countryID neighborCountryID
+	 * This methods can receive parameters from the Router, check the correctness of
+	 * commands and call the internal methods.
+	 * @param p_parameters parameters parsed by parser
+	 */
+	abstract public void addNeighbor (String p_parameters);
+
+	/**
+	 * Performs the action for the user command: editneighbor -remove countryID neighborCountryID
+	 * This methods can receive parameters from the Router, check the correctness of
+	 * commands and call the internal methods.
+	 * @param p_parameters parameters parsed by parser
+	 */
+	abstract public void removeNeighbor (String p_parameters);
+
+	/**
+	 * Performs the action for user command: gameplayer -add playerName
+	 *
+	 * @param p_playerName player's name
+	 */
+	abstract public void addPlayer(String p_playerName);
+
+	/**
+	 * Performs the action for user command: gameplayer -remove playerName
+	 *
+	 * @param p_playerName player's name
+	 */
+	abstract public void removePlayer(String p_playerName);
+
+	/**
+	 * Performs the action for user command: loadmap filename
+	 *
+	 * Game starts by user selection of a user-saved map file,
+	 * the map should be a connected graph
+	 *
+	 * @param p_fileName the file to load
+	 */
+	abstract public void loadMap(String p_fileName);
+
+	/**
+	 * Performs the action for user command: assigncountries
+	 *
+	 * After user creates all the players, all countries are randomly assigned to players.
+	 */
 	abstract public void assigncountries();
-	
-//	abstract public void reinforcement(); 
-//	abstract public void issueOrder();
-//	abstract public void executeOrder();
-	
 
-	
-	
-
-	// go to next phase
+	/**
+	 * 	go to next phase
+	 */
 	abstract public void next();
 
+	/**
+	 * execute issue_order or execute_order
+	 */
 	abstract public void play();
+
 	/**
 	 *  Common method to all States. 
 	 */
