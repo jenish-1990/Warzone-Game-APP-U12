@@ -49,11 +49,11 @@ validatemap
 gameplayer -add Player1 -add Player2  
 assigncountries
 showmap
-play
-reinforcements
-issue_order
-
-
+play[5]
+	reinforcements
+	issue_order
+	excute_order
+//add: 
 
 ---------- test map
 loadmap simple.map
