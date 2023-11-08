@@ -6,9 +6,9 @@ name: Java CI with Maven
 on:
   workflow_dispatch:
   push:
-    branches: [feature/002-CI-Configuration-2]
+    branches: [008-check-all-class]
   pull_request:
-    branches: [feature/002-CI-Configuration-2]
+    branches: [008-check-all-class]
 
 jobs:
   build:
@@ -51,4 +51,4 @@ jobs:
         fi
     - name: push test
       run: |
-        git push origin feature/002-CI-Configuration-2
+        git push origin 008-check-all-class

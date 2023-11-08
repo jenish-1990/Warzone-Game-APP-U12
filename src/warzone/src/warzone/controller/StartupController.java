@@ -1,5 +1,8 @@
 package warzone.controller;
 
+import warzone.view.*;
+import warzone.model.*;
+
 public class StartupController {
 
 
@@ -11,11 +14,11 @@ public class StartupController {
 	 * @param fileName
 	 * @return
 	 */
-	public boolean loadMap(String fileName) {
+	public GameMap loadMap(String fileName) {
 		
 		// TODO Auto-generated method stub
 		
-		return false;
+		return null;
 	}
 	
 	/**
