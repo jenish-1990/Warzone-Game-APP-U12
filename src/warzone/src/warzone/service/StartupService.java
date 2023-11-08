@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
-import warzone.controller.MapController;
 import warzone.model.Continent;
 import warzone.model.Country;
 import warzone.model.GameContext;
@@ -255,7 +254,7 @@ public class StartupService {
 			l_scanner.close();
 			
 			//Validate the map
-			if(!(new MapController(d_gameContext).validateMap())) {
+			if(!(new MapService(d_gameContext).validateMap())) {
 				
 				GenericView.printError("The map file selected failed validation: " + p_fileName);
 				return false;

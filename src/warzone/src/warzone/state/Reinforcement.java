@@ -37,12 +37,14 @@ public class Reinforcement extends GamePlay {
 		 printInvalidCommandMessage();
 	 }	
 	
-	 public void populatecountries(){
+	 public void assigncountries(){
 		 printInvalidCommandMessage();
 	 }	
 	 
 	 
- 
+ 	public void play(){
+	 printInvalidCommandMessage();
+ }
 	public void issueOrder(){
 		 printInvalidCommandMessage();
 	 }	

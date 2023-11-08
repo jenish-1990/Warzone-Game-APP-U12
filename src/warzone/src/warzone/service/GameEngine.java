@@ -1,14 +1,14 @@
 package warzone.service;
 
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
 import warzone.model.*;
-import warzone.state.Startup;
-import warzone.state.MapEditor;
-import warzone.state.Phase;
+import warzone.state.*;
 import warzone.view.GenericView;
 import warzone.view.HelpView;
 import warzone.view.MapView;
@@ -151,14 +151,15 @@ public class GameEngine {
 	 * This method represent one turn for each player. It contains three steps: 
 	 * 1. assigning reinforcements 2. issuing orders 3.executing orders
 	 */
-	private void startTurn() {	
-		GenericView.println("Start to assign reinforcements........");
+	private void startTurn() {
+		setPhase(new IssueOrder(this));
+		GenericView.println("--------------------Start to assign reinforcements");
 		assignReinforcements();
-		GenericView.println("Start to issue orders........");
+		GenericView.println("--------------------Start to issue orders");
 		issueOrders();
-		GenericView.println("Start to execute orders........");
+		GenericView.println("--------------------Start to execute orders");
 		executeOrders();
-		GenericView.println("Start to assign cards randomly........");
+		GenericView.println("--------------------Start to assign cards randomly");
 		assignCards();
 	}
 	
@@ -189,13 +190,14 @@ public class GameEngine {
 		if( isGameEnded()) {
 			//todo: call game over and change state
 		}
-		
+		GenericView.println("-------------------- Start to assign reinforcements");
 		d_gameContext.getPlayers().forEach((l_k, l_player) -> {
 			if(l_player.getIsAlive()) {
-				GenericView.println("Start to assign reinforcements for player ["+ l_player.getName() +"]");
+				GenericView.println("---------- Start to assign reinforcements for player ["+ l_player.getName() +"]");
 				l_player.assignReinforcements();
 			}
 		});
+		GenericView.println("-------------------- Finish assigning reinforcements");		
 		
 	}
 	
@@ -212,22 +214,34 @@ public class GameEngine {
 
 		//local list of player
 		List<Player> l_playersList = new ArrayList<>();
-		d_gameContext.getPlayers().forEach((l_k, l_player) -> {
-			l_player.setHasFinisedIssueOrder(false);
-			l_playersList.add(l_player);
-		});
-
-		while(l_playersList.size() > 0){
-			for(Player l_player : l_playersList){
-				if(l_player.getIsAlive()) {
-					GenericView.println("Start to issue orders for player ["+ l_player.getName() +"]");
-					l_player.issue_order();
-				}
-				//if player finished, remove from the list
-				if(l_player.getHasFinisedIssueOrder())
-					l_playersList.remove(l_player);
+		d_gameContext.getPlayers().forEach((l_k, l_player) -> {			
+			if(l_player.getIsAlive()) {
+				l_player.setHasFinisedIssueOrder(false);
+				l_playersList.add(l_player);
 			}
+		});
+		List<Player> l_finishPlayerlist = new ArrayList<>();
+		GenericView.println("-------------------- Start to issue orders");		
+		if(l_playersList.size() > 0) {
+			do{
+				l_finishPlayerlist.clear();
+				for (Player l_player : l_playersList) {
+					if (l_player.getIsAlive() && !l_player.getHasFinisedIssueOrder() ) {
+						GenericView.println("---------- Start to issue orders for player [" + l_player.getName() + "]");
+						l_player.issue_order();
+					}
+					//if player finished, add to the list
+					if (l_player.getHasFinisedIssueOrder())
+						l_finishPlayerlist.add(l_player);
+				}
+			}while (l_finishPlayerlist.size() != l_playersList.size());
 		}
+		
+		GenericView.println("-------------------- Finish issuing orders for this turn");
+		
+		//call the order execution
+		this.setPhase(new OrderExecution(this));
+
 	}
 	
 	
@@ -254,7 +268,7 @@ public class GameEngine {
 		}
 
 		//2. excute the orders
-		GenericView.println("Start to execute orders.");
+		GenericView.println("-------------------- Start to execute orders.");
 		
 		d_gameContext.resetDiplomacyOrderList();
 		int l_roundIndex = 1;
@@ -263,7 +277,7 @@ public class GameEngine {
 				//todo: call game over and change state
 			}	
 			
-			GenericView.println("Start to execute round [" + l_roundIndex + "] of orders");
+			GenericView.println("---------- Start to execute round [" + l_roundIndex + "] of orders");
 			d_gameContext.getPlayers().forEach((l_k, l_player) -> {
 				if(l_player.getIsAlive()) {
 					Order l_order = l_player.next_order();
@@ -275,12 +289,14 @@ public class GameEngine {
 			});
 			l_roundIndex ++;			
 		}
+		
+		GenericView.println("-------------------- Finish executing orders for this turn");
 	}	
 	
 	/**
 	 * This method will assign a random card to each player that conquered a country this turn
 	 */
-	private void assignCards() {
+	public void assignCards() {
 
 		d_gameContext.getPlayers().forEach((l_playerID, l_player) -> {
 
@@ -313,5 +329,59 @@ public class GameEngine {
 				l_player.setConqueredACountryThisTurn(false);
 			}
 		});
+	}
+	
+	/**
+	 * reboot the game
+	 */
+	public void reboot() {
+		d_gameContext.reset();
+		setPhase( new MapEditor(this));
+	}
+	
+	/**
+	 * 1)reset the context
+	 * 2) read commands from a file and run it sequencially
+	 * @param p_fileName given file name
+	 * @throws FileNotFoundException 
+	 */
+	public void qaMode(String p_fileName) throws FileNotFoundException {
+		if(p_fileName == null || p_fileName.trim() == "") {
+			GenericView.printWarning("loading default command");
+			p_fileName = "default.txt";
+		}
+
+		reboot();
+		
+		//read file
+		String l_mapDirectory = WarzoneProperties.getWarzoneProperties().getGameMapDirectory();
+		File l_mapFile = new File(l_mapDirectory + p_fileName);
+		
+		d_gameContext.setMapFileName(p_fileName);
+
+		//Specified file name does not exist (new map)
+		if(!l_mapFile.exists() || l_mapFile.isDirectory()) {
+
+			GenericView.printError("file is not existed.");
+			return;
+		}
+		
+		Scanner l_scanner = new Scanner(l_mapFile);
+		String l_command;
+		List<Router> l_routers;
+		RouterService l_routerService =  RouterService.getRouterService(this);
+		CommandService l_commandService =  CommandService.getCommandService(this );	
+
+
+		LoadMapPhase l_loadMapPhase = null;
+		
+		while (l_scanner.hasNextLine()) {
+			l_command = l_scanner.nextLine();			
+
+			l_routers = l_routerService.parseCommand(l_command);						
+			//excute the command
+			l_routerService.route(l_routers);				
+		}
+		
 	}
 }

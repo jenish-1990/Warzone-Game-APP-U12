@@ -291,27 +291,28 @@ public class MapService {
 	 * condition5: check if each continent is strongly connected
 	 * condition6: check if the whole map is strongly connected
 	 *
-	 * @param p_gameContext game context
 	 * @return if map is valid
 	 */
-	public boolean validateMap(GameContext p_gameContext) {
+	public boolean validateMap() {
 		d_mapIndexToContinentId.clear();
 		d_mapContinentIdToIndex.clear();
 
 		// condition1: check if more than one country
-		int l_countryCount = p_gameContext.getCountries().size();
+		int l_countryCount = d_gameContext.getCountries().size();
 		if ( l_countryCount <= 1 ) {
 			GenericView.printError("The map should contain more than one country.");
 			return false;
 		}
  		// condition2: check if each country belongs to one continent
-		for (Country l_countryTemp : p_gameContext.getCountries().values()){
-			if(l_countryTemp.getContinent() == null)
+		for (Country l_countryTemp : d_gameContext.getCountries().values()){
+			if(l_countryTemp.getContinent() == null) {
 				GenericView.printError("Each country should belong to one continent.");
+				return false;
+			}
 
 		}
 		// condition3: check if more than one continent
-		Map<Integer, Continent> l_continent = p_gameContext.getContinents();
+		Map<Integer, Continent> l_continent = d_gameContext.getContinents();
 		if ( l_continent.size() <= 1 ) {
 			GenericView.printError("The map should contain at least one continent.");
 			return false;

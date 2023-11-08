@@ -42,17 +42,16 @@ public class NegotiateOrder extends Order {
 	 */
 	@Override
 	public void execute() {
-		if(!valid()) {
-			GenericView.printSuccess("The Diplomacy Order is invalid, because one or more player is not alive.");
-			return;
-		} 
+        if(!valid()) {
+        	GenericView.printWarning("Fail to execute order:" + toString());
+        	return;
+        }
+        
 		// add order to engine
 		d_gameContext.addDiplomacyOrderToList(this);
 		
 		//print success information
-		GenericView.printSuccess("Success to apply Diplomacy order.");
-		
-		printOrder();
+		GenericView.printSuccess("Success to execute order:" + toString());
 	}
 
 	/**
@@ -65,8 +64,10 @@ public class NegotiateOrder extends Order {
 				&& d_targetPlayer != null && d_player.getIsAlive() 
 				&&  d_player != d_targetPlayer)
 			return true;
-		else
+		else {
+			GenericView.printWarning("One of the indecated player is not alive.");
 			return false;
+		}
 	}
 
 	/**
@@ -82,7 +83,7 @@ public class NegotiateOrder extends Order {
 	 */
 	@Override
 	public String toString(){
-		return String.format("Diplomacy order for player %s and player %s ",  this.d_player.getName(), this.d_targetPlayer.getName());		
+		return String.format("Negotiate order, issued by player [%s], negotiating with player [%s] ",  this.d_player.getName(), this.d_targetPlayer.getName());		
 	}
 	
 }
