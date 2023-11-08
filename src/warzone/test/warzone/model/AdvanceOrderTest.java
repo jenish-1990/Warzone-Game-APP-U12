@@ -51,7 +51,7 @@ public class AdvanceOrderTest {
 		d_gameContext.getCountries().put(1, d_attackingCountry);
 		d_gameContext.getCountries().put(2, d_defendingCountry);
 	}
-
+	
 	/**
 	 * test attacker conquers but no army in the territory
 	 */
@@ -74,7 +74,7 @@ public class AdvanceOrderTest {
 		assertTrue(d_attackingCountry.getArmyNumber() == 0); //Attacker moves all armies to defender's country 
 		assertTrue(d_defendingCountry.getArmyNumber() < 1000); //The attacker moves all remaining armies (some should be lost due to fights)
 	}
-
+	
 	/**
 	 * test attacker conquers a defender
 	 */
@@ -97,7 +97,7 @@ public class AdvanceOrderTest {
 		assertTrue(d_attackingCountry.getArmyNumber() == 0); //Attacker moves all armies to defender's country 
 		assertTrue(d_defendingCountry.getArmyNumber() == 1000); //The attacker moves all remaining armies (some should be lost due to fights)
 	}
-
+	
 	/**
 	 * test when attacker conquer, some armis are kept
 	 */
@@ -120,7 +120,7 @@ public class AdvanceOrderTest {
 		assertTrue(d_attackingCountry.getArmyNumber() == 500); //Attacker move 500 armies to defender's country, but keeps 500 in attacking country
 		assertTrue(d_defendingCountry.getArmyNumber() < 500); //The attacker moves all remaining armies (some should be lost due to fights)
 	}
-
+	
 	/**
 	 * test when attacker does not conquer a defender
 	 */

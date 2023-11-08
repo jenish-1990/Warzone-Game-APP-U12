@@ -243,11 +243,19 @@ public class AdvanceOrder extends Order{
 			
 		    return false;
 		}
+
+		if (this.d_numberOfArmies <= 0 ) {			
+			GenericView.printWarning("The advance army number should greater than 0.");
+			return false;
+		}		
+		
+
 		if(d_fromCountry.getArmyNumber() < d_numberOfArmies && d_fromCountry.getArmyNumber() == 0) {
 			GenericView.printWarning("Could not perform the advance order moving with 0 army in "+ d_fromCountry.getCountryName());
 
 			return false;
 		}
+
     	return true;
     }
 
