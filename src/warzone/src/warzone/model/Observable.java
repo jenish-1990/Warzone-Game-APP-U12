@@ -8,6 +8,9 @@ import java.util.List;
  *
  */
 public class Observable {
+	/**
+	 * list of Observers
+	 */
 	private List<Observer> d_observers = new ArrayList<Observer>();
 	
 	/**

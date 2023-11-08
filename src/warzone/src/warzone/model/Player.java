@@ -386,7 +386,7 @@ public class Player {
 		return null;
 	}	
 
-	/*
+	/**
 	 * create the advance order by command
 	 * @param p_commandInfos command infor
 	 * @return the deploy order if success, otherwise return null

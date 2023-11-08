@@ -9,7 +9,14 @@ import static org.junit.Assert.*;
  */
 public class CountryTest {
 
+	/**
+	 * Country for test
+	 */
     Country d_country;
+    
+    /**
+	 * Player for test
+	 */
     Player d_player;
 
     /**

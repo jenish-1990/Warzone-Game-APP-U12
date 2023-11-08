@@ -16,8 +16,17 @@ import warzone.service.StartupService;
  */
 public class StartupTest {
 
+	/**
+	 * Game Context
+	 */
 	private GameContext d_gameContext;
+	/**
+	 * Game Engine
+	 */
 	private GameEngine d_gameEngine;
+	/**
+	 * Startup phase
+	 */
 	private Startup d_startupState;
 	
 	/**

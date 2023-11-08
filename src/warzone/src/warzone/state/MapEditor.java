@@ -13,15 +13,30 @@ import java.io.IOException;
  */
 public class MapEditor extends Phase {
 
+	/**
+	 * Map Service
+	 */
 	private MapService d_mapService;
+	/**
+	 * Continent Service
+	 */
 	private ContinentService d_continentService;
+	/**
+	 * Country Service
+	 */
 	private CountryService d_countryService;
+	/**
+	 * Neighbor Service
+	 */
 	private NeighborService d_neighborService;
+	/**
+	 * LogEntry Buffer
+	 */
 	private LogEntryBuffer d_logEntryBuffer;
 
 	/**
 	 * Constructor for MapEditor
-	 * @param p_ge Game Engine
+	 * @param p_gameEngine Game Engine
 	 */
 	public MapEditor(GameEngine p_gameEngine) {
 		super(p_gameEngine);
@@ -38,6 +53,7 @@ public class MapEditor extends Phase {
 	 */
 	public void next() {
 		d_gameEngine.setPhase(new Startup(d_gameEngine));
+		super.next();
 	}
 	
 	/**

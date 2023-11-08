@@ -12,7 +12,7 @@ public abstract class GamePlay extends Phase {
 
 	/**
 	 * The constructor of the class
-	 * @param p_ge the game engine
+	 * @param p_gameEngine the game engine
 	 */
 	public GamePlay(GameEngine p_gameEngine) {
 		super(p_gameEngine);
@@ -22,7 +22,9 @@ public abstract class GamePlay extends Phase {
 	/**
 	 *  Call this method to go the the next state in the sequence. 
 	 */
-	abstract public void next();
+	public void next() {
+		super.next();
+	}
 
 	/**
 	 * Performs the action for user command: showmap

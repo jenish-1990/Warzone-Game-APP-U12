@@ -41,7 +41,7 @@ public abstract class Phase {
 
 	/**
 	 * Constructor for Phase
-	 * @param p_ge Game Engine
+	 * @param p_gameEngine Game Engine
 	 */
 	Phase(GameEngine p_gameEngine) {
 		d_gameEngine = p_gameEngine;
@@ -151,7 +151,9 @@ public abstract class Phase {
 	/**
 	 * 	go to next phase
 	 */
-	abstract public void next();
+	public void next() {
+		this.d_gameContext.getLogEntryBuffer().logAction("SUCCESS", "go to next phase : " + this.d_gamePhase);
+	}
 
 	/**
 	 * execute issue_order or execute_order

@@ -121,7 +121,9 @@ public class GameContext {
 		d_currentRouter =  p_currentRouter;
 	}
 
-	
+	/**
+	 * singlton of LogEntryBuffer
+	 */
 	private LogEntryBuffer d_logEntryBuffer;
 	
 	/**

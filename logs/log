@@ -76,3 +76,95 @@
 2021-03-24 17:12:24 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
 2021-03-24 17:12:24 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
 2021-03-24 17:12:24 SUCCESS :[Phase] MAPEDITOR [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:51 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:51 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [500] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:51 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:51 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:51 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:51 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [20] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:51 Success :[Phase] OrderExecution [Order] null [Message] Blockade Order, issued by player [player1], blockading [country1]
+2021-03-25 00:17:51 SUCCESS :[Phase] MAPEDITOR [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:51 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Blockade Order, issued by player [player1], blockading [country1]
+2021-03-25 00:17:52 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [500] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:52 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [20] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Blockade Order, issued by player [player1], blockading [country1]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Negotiate order, issued by player [P1], negotiating with player [p2] 
+2021-03-25 00:17:52 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [500] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:52 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [20] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Deploy Order, issued by player [P1], deploying [5] armies to [C1]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Deploy Order, issued by player [P1], deploying [10] armies to [C1]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Bomb Order, issued by player [P1], bombing [C2]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Bomb Order, issued by player [P1], bombing [C2]
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Airlift Order, issued by player [P1], airlifting [3] armies from  [C1] to [C2]
+2021-03-25 00:17:52 ERROR :[Phase] STARTUP [Order] invalid_map_name.mapp [Message] The following map file is invalid, please select another one: invalid_map_name.mapp
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] europe.map [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 ERROR :[Phase] STARTUP [Order] not-connected.map [Message] The map file selected failed validation: not-connected.map
+2021-03-25 00:17:52 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [p1], sending [3] armies from  [country1] to [country2]
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] MAPEDITOR [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:52 SUCCESS :[Phase] MAPEDITOR [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [500] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [20] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Blockade Order, issued by player [player1], blockading [country1]
+2021-03-25 00:17:57 SUCCESS :[Phase] MAPEDITOR [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Blockade Order, issued by player [player1], blockading [country1]
+2021-03-25 00:17:57 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [500] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [20] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Blockade Order, issued by player [player1], blockading [country1]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Negotiate order, issued by player [P1], negotiating with player [p2] 
+2021-03-25 00:17:57 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [500] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [1000] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Fail :[Phase] OrderExecution [Order] null [Message] The context does not satisfy the order
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [attacker], sending [20] armies from  [attackingCountry] to [defendingCountry]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Deploy Order, issued by player [P1], deploying [5] armies to [C1]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Deploy Order, issued by player [P1], deploying [10] armies to [C1]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Bomb Order, issued by player [P1], bombing [C2]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Bomb Order, issued by player [P1], bombing [C2]
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Airlift Order, issued by player [P1], airlifting [3] armies from  [C1] to [C2]
+2021-03-25 00:17:57 ERROR :[Phase] STARTUP [Order] invalid_map_name.mapp [Message] The following map file is invalid, please select another one: invalid_map_name.mapp
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] europe.map [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 ERROR :[Phase] STARTUP [Order] not-connected.map [Message] The map file selected failed validation: not-connected.map
+2021-03-25 00:17:57 Success :[Phase] OrderExecution [Order] null [Message] Advance Order, issued by player [p1], sending [3] armies from  [country1] to [country2]
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] MAPEDITOR [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] STARTUP [Order] testCommand [Message] Map succesfully loaded: europe.map
+2021-03-25 00:17:57 SUCCESS :[Phase] MAPEDITOR [Order] testCommand [Message] Map succesfully loaded: europe.map

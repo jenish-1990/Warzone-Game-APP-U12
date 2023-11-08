@@ -12,13 +12,19 @@ import warzone.view.*;
  */
 public class Startup extends GamePlay {
 
+	/**
+	 * Startup Service
+	 */
 	private StartupService d_startupService;
+	/**
+	 * Log Entry Buffer
+	 */
 	private LogEntryBuffer d_logEntryBuffer;
 
 	/**
 	 * constructor of the startup class
 	 * 
-	 * @param p_ge gameengine instance to initial the class
+	 * @param p_gameEngine gameengine instance to initial the class
 	 */
 	public Startup(GameEngine p_gameEngine) {
 		super(p_gameEngine);
@@ -36,6 +42,8 @@ public class Startup extends GamePlay {
 		else {
 			GenericView.printWarning("It is no ready to play, please check prerequists.");
 		}
+		
+		super.next();
 	}
 
 	/**

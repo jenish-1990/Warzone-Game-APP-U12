@@ -20,8 +20,17 @@ import warzone.model.Router;
  *
  */
 public class RouterServiceTest {
+	/**
+	 *  command
+	 */
 	private String d_command;
+	/**
+	 *   router Service
+	 */
 	private RouterService d_routerService;
+	/**
+	 *   router List
+	 */
 	private List<Router> d_routerList;
 
 	/**
