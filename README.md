@@ -1,17 +1,25 @@
-## Warzone
-SOEN 6441 Group Project
+# Compiled class file
+*.class
 
-Group members : Qinhui, Sijie, Derek, Zexin, Amy
+# Log file
+*.log
 
-type of project : command line application
+# BlueJ files
+*.ctxt
 
-default meeting schedule : Tuesday 8:30 p.m. est
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
 
-IDE : eclipse
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
-environment : JDK8
-
-
-### useful link: 
-
-map files: http://domination.sourceforge.net/getmaps.shtml
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/bin/
+/target/

@@ -1,211 +1,364 @@
-package warzone.model;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-/**
- * This class represent the state of the game, and it contains some useful instances for
- * other classes.
- *
- */
-public class GameContext {
-	private static GameContext GAME_CONTEXT;
-	GamePhase d_gamePhase = GamePhase.MAPEDITOR;
-	private int d_orderNumberPerRound = 5;
-	
-
-	private Map<String, Player> d_players;
-	private Map<Integer, Country> d_countries;
-	private Map<Integer, Continent> d_continents;
-
-	
-	private String d_mapFileName;
-	private String d_mapFilePic;
-	private String d_mapFileMap;
-	private String d_mapFileCards;
-	
-	private WarzoneProperties d_warzoneProperties;
-	
-	/**
-	 * get map file cards
-	 * @return the map file cards
-	 */
-	public String getMapFileCards() {
-		return d_mapFileCards;
-	}
-
-	/**
-	 * set map file cards
-	 * @param mapFileCards the map file cards
-	 */
-	public void setMapFileCards(String mapFileCards) {
-		this.d_mapFileCards = mapFileCards;
-	}
-
-	/**
-	 * This constructor will initiate the players, countries and continents.
-	 */
-	private GameContext() {
-		
-		d_players = new HashMap<String, Player>() ;
-		d_countries = new HashMap<Integer, Country>();
-		d_continents = new HashMap<Integer, Continent>();
-		d_warzoneProperties = WarzoneProperties.getWarzoneProperties();
-	}		
-	
-	/**
-	 * This method can return the game context instance and create a new one if
-	 * it is null.
-	 * @return the game context instance
-	 */
-	public static GameContext getGameContext() {
-		if(GAME_CONTEXT == null) {
-			GAME_CONTEXT = new GameContext();
-		}
-		return GAME_CONTEXT;
-	}
-	
-	/**
-	 * clear the game context
-	 */
-	public static void clear(){
-		GAME_CONTEXT = new GameContext();		
-	}
-	
-	/**
-	 * This method will offer all players in Map structure.
-	 * @return a Map object containing all players
-	 */
-	public Map<String, Player> getPlayers() {
-		return d_players;
-	}
-	
-	/**
-	 * This method will offer all countries in Map structure.
-	 * @return a Map object containing all countries
-	 */
-	public Map<Integer, Country> getCountries() {
-		return d_countries;
-	}
-	
-	/**
-	 * This method will offer all continents in Map structure.
-	 * @return a Map object containing all continents
-	 */
-	public Map<Integer, Continent> getContinents() {
-		return d_continents;
-	}
-
-	/**
-	 * This method will provide the name of the current map.
-	 * @return the name of the current map.
-	 */
-	public String getMapFileName() {
-		return d_mapFileName;
-	}
-
-	/**
-	 * This method can set the name of the current map.
-	 * @param p_mapFileName the name of the map.
-	 */
-	public void setMapFileName(String p_mapFileName) {
-		this.d_mapFileName = p_mapFileName;
-	}
-
-	/**
-	 * This method will provide map file picture as a String
-	 * @return the map file picture
-	 */
-	public String getMapFilePic() {
-		return d_mapFilePic;
-	}
-
-	/**
-	 * This method can set map file picture
-	 * @param p_mapFilePic the map file picture
-	 */
-	public void setMapFilePic(String p_mapFilePic) {
-		this.d_mapFilePic = p_mapFilePic;
-	}
-
-	/**
-	 * This method will provide map file map as a String
-	 * @return the map file map
-	 */
-	public String getMapFileMap() {
-		return d_mapFileMap;
-	}
-
-	/**
-	 * This method can set map file map
-	 * @param p_mapFileMap the map file map
-	 */
-	public void setMapFileMap(String p_mapFileMap) {
-		this.d_mapFileMap = p_mapFileMap;
-	}
-	
-	/**
-	 * This method will provide current game phase
-	 * @return the current game phase
-	 */
-	public GamePhase getGamePhase() {
-		return d_gamePhase;
-	}
-
-	/**
-	 * This method can set current game phase
-	 * @param p_gamePhase the current game phase
-	 */
-	public void setGamePhase(GamePhase p_gamePhase) {
-		this.d_gamePhase = p_gamePhase;
-	}	
-	
-	/**
-	 * This method will show current mode whether is demo mode.
-	 * @return true if the current mode is demo
-	 */
-	public boolean getIsDemoMode() {
-		return d_warzoneProperties.getIsDemoMode();
-	}
-
-	
-	/**
-	 * This method will show current mode whether is debug mode.
-	 * @return true if the current mode is debug mode
-	 */
-	public boolean getIsDebug() {
-		return d_warzoneProperties.getIsDebug();
-	}
-	
-	/**
-	 * This method will return Map folder.
-	 * @return  Map folder path
-	 */
-	public String getMapfolder() {
-		return d_warzoneProperties.getGameMapDirectory();
-	}	
-	
-	/**
-	 * This method can provide the number of order in every round of the game.
-	 * @return the number of orders in each round
-	 */
-	public int getOrderNumberPerRound() {
-		return d_orderNumberPerRound;
-	}	
-	/**
-	 * check if current game phase is in the given phase list
-	 * @param p_gamePhases given phase list
-	 * @return true if include, otherwise false
-	 */
-	public boolean getIsContainCurrentPhase(List<GamePhase> p_gamePhases) {
-		if(p_gamePhases != null) {
-			return p_gamePhases.contains(this.d_gamePhase);
-		}
-		return false;
-	}
-	
-	
-	
-}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<!-- GitHub action javadoc-cleanup -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- End javadoc-cleanup block -->
+<!-- Generated by javadoc -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ContinentController (Warzone 0.0.1-SNAPSHOT API)</title>
+<meta name="date" content="2021-02-23">
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
+<script type="text/javascript" src="../../script.js"></script>
+</head>
+<body>
+<script type="text/javascript"><!--
+    try {
+        if (location.href.indexOf('is-external=true') == -1) {
+            parent.document.title="ContinentController (Warzone 0.0.1-SNAPSHOT API)";
+        }
+    }
+    catch(err) {
+    }
+//-->
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar.top">
+<!--   -->
+</a>
+<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.top.firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/ContinentController.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+<li><a href="../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../warzone/controller/CommonController.html" title="class in warzone.controller"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../warzone/controller/CountryController.html" title="class in warzone.controller"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../index.html?warzone/controller/ContinentController.html" target="_top">Frames</a></li>
+<li><a href="ContinentController.html" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../allclasses-noframe.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">warzone.controller</div>
+<h2 title="Class ContinentController" class="title">Class ContinentController</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li>warzone.controller.ContinentController</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<hr>
+<br>
+<pre>public class <span class="typeNameLabel">ContinentController</span>
+extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+<div class="block">Continent controller is for manipulate the continents in the map</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor.summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#ContinentController-warzone.model.GameContext-">ContinentController</a></span>(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</code>
+<div class="block">constructor with setting game context and create continent service</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method.summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#addContinent-int-java.lang.String-">addContinent</a></span>(int&nbsp;p_continentID,
+            <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_continentName)</code>
+<div class="block">add continent into map</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#addContinent-java.lang.String-">addContinent</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</code>
+<div class="block">This methods can receive parameters from the Router, check the correctness of
+ commands and call the internal methods.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#removeContinent-int-">removeContinent</a></span>(int&nbsp;p_continentID)</code>
+<div class="block">remove the continent from the map</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/ContinentController.html#removeContinent-java.lang.String-">removeContinent</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</code>
+<div class="block">Performs the action for the user command: editcontinent -remove continentID</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor.detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="ContinentController-warzone.model.GameContext-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>ContinentController</h4>
+<pre>public&nbsp;ContinentController(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</pre>
+<div class="block">constructor with setting game context and create continent service</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p_gameContext</code> - game context</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method.detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="addContinent-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addContinent</h4>
+<pre>public&nbsp;boolean&nbsp;addContinent(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</pre>
+<div class="block">This methods can receive parameters from the Router, check the correctness of
+ commands and call the internal methods.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p_parameters</code> - parameters parsed by parser</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the result of adding new continent</dd>
+</dl>
+</li>
+</ul>
+<a name="addContinent-int-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addContinent</h4>
+<pre>public&nbsp;boolean&nbsp;addContinent(int&nbsp;p_continentID,
+                            <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_continentName)</pre>
+<div class="block">add continent into map</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p_continentID</code> - continent id</dd>
+<dd><code>p_continentName</code> - continent name</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if successfully add the continent, otherwise return false</dd>
+</dl>
+</li>
+</ul>
+<a name="removeContinent-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeContinent</h4>
+<pre>public&nbsp;boolean&nbsp;removeContinent(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</pre>
+<div class="block">Performs the action for the user command: editcontinent -remove continentID</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p_parameters</code> - id of continent</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>if remove success</dd>
+</dl>
+</li>
+</ul>
+<a name="removeContinent-int-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>removeContinent</h4>
+<pre>public&nbsp;boolean&nbsp;removeContinent(int&nbsp;p_continentID)</pre>
+<div class="block">remove the continent from the map</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p_continentID</code> - the continent id</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if successfully removed, otherwise return false</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar.bottom">
+<!--   -->
+</a>
+<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.bottom.firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/ContinentController.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../index-all.html">Index</a></li>
+<li><a href="../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../warzone/controller/CommonController.html" title="class in warzone.controller"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../warzone/controller/CountryController.html" title="class in warzone.controller"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../index.html?warzone/controller/ContinentController.html" target="_top">Frames</a></li>
+<li><a href="ContinentController.html" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../allclasses-noframe.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small>Copyright &#169; 2021. All rights reserved.</small></p>
+</body>
+</html>
