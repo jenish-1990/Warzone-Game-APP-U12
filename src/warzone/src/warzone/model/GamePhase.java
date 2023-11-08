@@ -6,8 +6,7 @@ package warzone.model;
  *
  */
 public enum GamePhase {
-	MAPEDITING,	
+	MAPEDITOR,	
 	STARTUP,
-	PLAYING,
-	FINISHED
+	PLAY
 }

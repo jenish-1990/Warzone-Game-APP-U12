@@ -47,6 +47,7 @@ public class CommandService {
 		Scanner l_keyboard = new Scanner(System.in);		
 		List<Router> l_routers;
 		do {
+			GenericView.println("");
 			HelpView.printStatus(d_gameContext);
 			//render the help
 			GenericView.println("Please input the command, type [help] for help, type [quit] to quit the game.");
