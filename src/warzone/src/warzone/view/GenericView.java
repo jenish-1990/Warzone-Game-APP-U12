@@ -11,6 +11,17 @@ public class GenericView {
 		System.out.println(p_text);
 	}
 	
+	public static void printWarning(String p_text) {
+		System.out.println("Warning : " + p_text );
+	}
+	
+	public static void printError(String p_text) {
+		System.out.println("Error : " + p_text);
+	}
+	public static void printSuccess(String p_text) {
+		System.out.println("Success : " + p_text);
+	}
+	
 	public static void println(Render p_content) {
 		p_content.render();
 	}
