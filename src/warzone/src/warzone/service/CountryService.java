@@ -35,14 +35,14 @@ public class CountryService {
 				d_gameContext.getCountries().put(p_countryID, l_country);
 			}
 			if(l_country.getContinent() != null)
-				GameContext.getLogEntryBuffer().setMessage("Country ID " + l_country.getCountryID() + " is already belongs to Continent ID " + l_country.getContinent().getContinentID());
+				GenericView.printError("Country ID " + l_country.getCountryID() + " is already belongs to Continent ID " + l_country.getContinent().getContinentID());
 			else {
 				if (l_continent != null) {
 					l_continent.addCountry(l_country);
 					return true;
 				}
 				else
-					GameContext.getLogEntryBuffer().setMessage("The continent " + p_ContinentID + " does not exist.");
+					GenericView.printError(" The continent " + p_ContinentID + " does not exist.");
 			}
 		}
 		return false;

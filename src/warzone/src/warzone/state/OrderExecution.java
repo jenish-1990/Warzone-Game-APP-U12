@@ -12,19 +12,21 @@ public class OrderExecution extends GamePlay {
 
 	public OrderExecution(GameEngine p_ge) {
 		super(p_ge);
+
+		this.d_gamePhase = GamePhase.OrderExecution;
 	}
 
 	/**
 	 *  Call this method to go the the next state in the sequence. 
 	 */
 	public void next() {
-		d_gameEngine.setPhase(new Startup(d_gameEngine));
+		if(this.d_gameEngine.isGameEnded())
+			d_gameEngine.setPhase(new Startup(d_gameEngine));
+		else
+			d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
 	}
 	
-	public void executeOrder(){
-		//todo
-	 }	
-	
+
 	 public void loadMap(String p_fileName){
 		 printInvalidCommandMessage();
 	 }	

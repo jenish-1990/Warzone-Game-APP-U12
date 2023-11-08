@@ -12,6 +12,9 @@ public class IssueOrder extends GamePlay {
 
 	public IssueOrder(GameEngine p_ge) {
 		super(p_ge);
+
+		this.d_gamePhase = GamePhase.IssueOrder;
+		d_gameEngine.issueOrders();
 	}
 
 	/**
@@ -20,10 +23,7 @@ public class IssueOrder extends GamePlay {
 	public void next() {
 		d_gameEngine.setPhase(new OrderExecution(d_gameEngine));
 	}
-	 public void issueOrder() {
-		 //todo:
-	 }
-	
+		
 	 public void loadMap(String p_fileName){
 		 printInvalidCommandMessage();
 	 }	

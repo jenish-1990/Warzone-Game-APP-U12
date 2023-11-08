@@ -12,6 +12,9 @@ public class Reinforcement extends GamePlay {
 
 	public Reinforcement(GameEngine p_ge) {
 		super(p_ge);
+		this.d_gamePhase = GamePhase.Reinforcement;
+		
+		this.d_gameEngine.assignReinforcements();
 	}
 
 	/**
@@ -21,9 +24,6 @@ public class Reinforcement extends GamePlay {
 		d_gameEngine.setPhase(new IssueOrder(d_gameEngine));
 	}
 	
-	public void reinforcement(){
-		 //todo:
-	 }	
 	
 	 public void loadMap(String p_fileName){
 		 printInvalidCommandMessage();
@@ -48,6 +48,5 @@ public class Reinforcement extends GamePlay {
 	 }	
 	public void executeOrder(){
 		 printInvalidCommandMessage();
-	 }	
-
+	 }
 }

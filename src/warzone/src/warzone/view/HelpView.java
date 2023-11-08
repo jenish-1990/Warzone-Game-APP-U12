@@ -42,12 +42,12 @@ public class HelpView {
     /**
      * This method will print out the message how to use every command according to
      * the current phase.
-     * @param p_phase the current phase of the game.
+     * @param p_gamePhase the current phase of the game.
      */
-    public static void printHelp(Phase p_phase ) {
-    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_phase));    	
-    	System.out.println("Commands available for current game phase: " + p_phase);
-    	switch(p_phase.toString().toUpperCase()) {
+    public static void printHelp(GamePhase p_gamePhase ) {
+    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
+    	System.out.println("Commands available for current game phase: " + p_gamePhase);
+    	switch(p_gamePhase.toString().toUpperCase()) {
 	    	case "MAPEDITOR":
 	    		System.out.println(""
 	    				+ " -  editmap filename\n"
@@ -84,6 +84,6 @@ public class HelpView {
 	    		break;
 	    		//todo: add other info
     	}
-    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_phase));    	
+    	System.out.println(String.format("*****************************************    HELP IN PHASE [ %s ]  *********************************",  p_gamePhase));    	
     }
 }

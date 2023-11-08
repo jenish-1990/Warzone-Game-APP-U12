@@ -22,13 +22,18 @@ public class Startup extends GamePlay {
 
 	public Startup(GameEngine p_ge) {
 		super(p_ge);
+		this.d_gamePhase = GamePhase.STARTUP;
 	}
 
 	/**
 	 *  Call this method to go the the next state in the sequence. 
 	 */
 	public void next() {
-		d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
+		if(d_gameEngine.isReadyToStart())
+			d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
+		else {
+			GenericView.printWarning("It is no ready to play, please check prerequists.");
+		}
 	}
 	
 	/**
