@@ -186,13 +186,13 @@ public class RouterService {
 	 */
 	public void route(List<Router> p_routers) {
 		if(p_routers != null) {
-			p_routers.forEach((router) ->{
+			p_routers.forEach((l_router) ->{
 				try {
-					GenericView.printDebug("Excuting router: " + router.toString() );
-					route(router);
+					GenericView.printDebug("Excuting router: " + l_router.toString() );
+					route(l_router);
 				}
-				catch(Exception ex){	
-					GenericView.printError("Exception occur: " + ex.toString());
+				catch(Exception l_ex){
+					GenericView.printError("Exception occur: " + l_ex.toString());
 				}
 			});			
 		}
@@ -380,24 +380,24 @@ public class RouterService {
 		List<Action> l_actions = new LinkedList<Action>();
 
 		// in this loop we recognize option and according parameter
-		for(int i = 1; i < p_commandArray.length; i++) {
+		for(int l_tempi = 1; l_tempi < p_commandArray.length; l_tempi++) {
 			// judge that if p_commandArray[i] is an option
-			if(p_commandArray[i].charAt(0) == '-') {
+			if(p_commandArray[l_tempi].charAt(0) == '-') {
 				// if an option is the last element of the array or there are two
 				// continuous options, we still return missing parameter error
-				if (i == p_commandArray.length - 1 || p_commandArray[i + 1].charAt(0) == '-') {
+				if (l_tempi == p_commandArray.length - 1 || p_commandArray[l_tempi + 1].charAt(0) == '-') {
 					return new LinkedList<Action>();
 				}
-				for (int j = i + 1; j < p_commandArray.length; j++) {
-					if (p_commandArray[j].charAt(0) == '-') {
-						Action l_action = new Action(p_commandArray[i].replace("-", ""), CommonTool.convertArray2String(p_commandArray, " ", i + 1, j - 1));
+				for (int l_tempj = l_tempi + 1; l_tempj < p_commandArray.length; l_tempj++) {
+					if (p_commandArray[l_tempj].charAt(0) == '-') {
+						Action l_action = new Action(p_commandArray[l_tempi].replace("-", ""), CommonTool.convertArray2String(p_commandArray, " ", l_tempi + 1, l_tempj - 1));
 						l_actions.add(l_action);
-						i = j;
+						l_tempi = l_tempj;
 					}
-					if (j == p_commandArray.length - 1) {
-						Action l_action = new Action(p_commandArray[i].replace("-", ""), CommonTool.convertArray2String(p_commandArray, " ", i + 1, j));
+					if (l_tempj == p_commandArray.length - 1) {
+						Action l_action = new Action(p_commandArray[l_tempi].replace("-", ""), CommonTool.convertArray2String(p_commandArray, " ", l_tempi + 1, l_tempj));
 						l_actions.add(l_action);
-						i = j;
+						l_tempi = l_tempj;
 					}
 				}
 			}
