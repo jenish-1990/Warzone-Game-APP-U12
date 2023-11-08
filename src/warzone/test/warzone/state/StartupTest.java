@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import warzone.model.ControllerName;
 import warzone.model.GameContext;
+import warzone.model.GamePhase;
 import warzone.model.Router;
 import warzone.service.GameEngine;
 import warzone.service.StartupService;
@@ -37,6 +38,7 @@ public class StartupTest {
 		
 		d_gameContext = GameContext.getGameContext();
 		d_gameEngine = GameEngine.getGameEngine(d_gameContext);
+		d_gameContext.setCurrentRouter(new Router(null, null, null));
 		d_startupState = new Startup(d_gameEngine);
 		
 		d_gameEngine.setPhase(d_startupState);
@@ -92,5 +94,14 @@ public class StartupTest {
 		assertTrue(d_gameContext.getContinents().size() == 2);
 		assertTrue(d_gameContext.getCountries().size() == 5);
 		
+	}
+	
+	/**
+	 * test for next command
+	 */
+	@Test
+	public void inputNextCommand() {
+		d_startupState.next();
+		assert(d_gameEngine.getPhase().getGamePhase()==GamePhase.STARTUP);
 	}
 }

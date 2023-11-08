@@ -11,9 +11,20 @@ import warzone.model.Player;
 import warzone.model.Router;
 import warzone.state.Startup;
 
+/**
+ *  Game Engine Service Test
+ * @author fzuray
+ *
+ */
 public class GameEngineServiceTest {
 
+	/**
+	 * Game Context
+	 */
 	private GameContext d_gameContext;
+	/**
+	 * Game Engine
+	 */
 	private GameEngine d_gameEngine;
 
 	/**
