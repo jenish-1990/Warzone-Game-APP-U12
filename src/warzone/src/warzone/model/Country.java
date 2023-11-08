@@ -14,13 +14,14 @@ public class Country {
 	private Map<Integer, Country> d_neighbors;
 	private Continent d_continent;
 
-	public Country(int p_countryID, String p_countryName, int p_xPosition, int p_yPosition, Continent d_continent) {
+	public Country(int p_countryID, String p_countryName, int p_xPosition, int p_yPosition, Continent p_continent) {
 		
 		d_countryID = p_countryID;
 		d_countryName = p_countryName;
 		d_xPosition = p_xPosition;
 		d_yPosition = p_yPosition;
 		d_neighbors = new HashMap<Integer, Country>();
+		d_continent = p_continent;
 	}
 	
 	public int getCountryID() {
