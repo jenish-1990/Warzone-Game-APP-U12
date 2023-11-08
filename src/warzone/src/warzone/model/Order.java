@@ -55,6 +55,7 @@ public abstract class Order {
 
 	/**
 	 * get command which create this order
+	 * @return the command
 	 */
 	public String getCommand() {
 		return d_command;

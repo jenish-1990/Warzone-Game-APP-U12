@@ -25,7 +25,6 @@ public class GameEngine {
 	 * This method is the entrance of the game. It will initiate the game context and use
 	 * command scanner to get the command of the player.
 	 * @param args the parameters for Java Virtual Machine
-	 * @throws IOException the exception of creating or deleting files
 	 */
 	public static void main(String args[]) {
 		GameContext l_gameContext = GameContext.getGameContext();
@@ -350,7 +349,7 @@ public class GameEngine {
 	 * 1)reset the context
 	 * 2) read commands from a file and run it sequencially
 	 * @param p_fileName given file name
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException  exception of file not found
 	 */
 	public void qaMode(String p_fileName) throws FileNotFoundException {
 		if(p_fileName == null || p_fileName.trim() == "") {

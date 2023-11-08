@@ -16,10 +16,10 @@ public class AdvanceOrder extends Order{
 	/**
 	 * AdvanceOrder constructor
 	 * 
-	 * @param p_player
-	 * @param p_fromCountry
-	 * @param p_toCountry
-	 * @param p_numberOfArmies
+	 * @param p_player the owner of the order
+	 * @param p_fromCountry advance from country
+	 * @param p_toCountry advance to country
+	 * @param p_numberOfArmies number of armies
 	 */
 	public AdvanceOrder(Player p_player, Country p_fromCountry, Country p_toCountry, int p_numberOfArmies) {
 		d_player = p_player;
@@ -42,7 +42,7 @@ public class AdvanceOrder extends Order{
 	/**
 	 * Set fromCountry, the country that is attacking
 	 * 
-	 * @param fromCountry
+	 * @param fromCountry advance from country
 	 */
 	public void setFromCountry(Country fromCountry) {
 		this.d_fromCountry = fromCountry;
@@ -60,7 +60,7 @@ public class AdvanceOrder extends Order{
 	/**
 	 * Set toCountry, the country that is defending
 	 * 
-	 * @param toCountry
+	 * @param toCountry advance to country
 	 */
 	public void setToCountry(Country toCountry) {
 		this.d_toCountry = toCountry;
