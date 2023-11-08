@@ -22,7 +22,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -133,7 +133,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../warzone/controller/NeighborController.html#NeighborController--">NeighborController</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../warzone/controller/NeighborController.html#NeighborController-warzone.model.GameContext-">NeighborController</a></span>(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -152,17 +152,25 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/NeighborController.html#addNeighbor-int-java.lang.String-">addNeighbor</a></span>(int&nbsp;countryID,
-           <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;neighborCountryID)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/NeighborController.html#addNeighbor-int-int-">addNeighbor</a></span>(int&nbsp;p_countryID,
+           int&nbsp;p_neighborCountryID)</code>
 <div class="block">Performs the action for the user command: editneighbor -add countryID neighborCountryID</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/NeighborController.html#removeNeighbor-int-java.lang.String-">removeNeighbor</a></span>(int&nbsp;countryID,
-              <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;neighborCountryID)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/NeighborController.html#addNeighbor-java.lang.String-">addNeighbor</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</code>&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/NeighborController.html#removeNeighbor-int-int-">removeNeighbor</a></span>(int&nbsp;p_countryID,
+              int&nbsp;p_neighborCountryID)</code>
 <div class="block">Performs the action for the user command: editneighbor -remove countryID neighborCountryID</div>
 </td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/controller/NeighborController.html#removeNeighbor-java.lang.String-">removeNeighbor</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -186,13 +194,13 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="NeighborController--">
+<a name="NeighborController-warzone.model.GameContext-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>NeighborController</h4>
-<pre>public&nbsp;NeighborController()</pre>
+<pre>public&nbsp;NeighborController(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</pre>
 </li>
 </ul>
 </li>
@@ -203,25 +211,43 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="addNeighbor-int-java.lang.String-">
+<a name="addNeighbor-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addNeighbor</h4>
-<pre>public&nbsp;boolean&nbsp;addNeighbor(int&nbsp;countryID,
-                           <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;neighborCountryID)</pre>
+<pre>public&nbsp;boolean&nbsp;addNeighbor(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</pre>
+</li>
+</ul>
+<a name="addNeighbor-int-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addNeighbor</h4>
+<pre>public&nbsp;boolean&nbsp;addNeighbor(int&nbsp;p_countryID,
+                           int&nbsp;p_neighborCountryID)</pre>
 <div class="block">Performs the action for the user command: editneighbor -add countryID neighborCountryID</div>
 </li>
 </ul>
-<a name="removeNeighbor-int-java.lang.String-">
+<a name="removeNeighbor-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeNeighbor</h4>
+<pre>public&nbsp;boolean&nbsp;removeNeighbor(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_parameters)</pre>
+</li>
+</ul>
+<a name="removeNeighbor-int-int-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>removeNeighbor</h4>
-<pre>public&nbsp;boolean&nbsp;removeNeighbor(int&nbsp;countryID,
-                              <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;neighborCountryID)</pre>
+<pre>public&nbsp;boolean&nbsp;removeNeighbor(int&nbsp;p_countryID,
+                              int&nbsp;p_neighborCountryID)</pre>
 <div class="block">Performs the action for the user command: editneighbor -remove countryID neighborCountryID</div>
 </li>
 </ul>
