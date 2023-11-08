@@ -11,6 +11,7 @@ public class Country {
 	private int d_deployedForces;
 	private int d_xPosition;
 	private int d_yPosition;
+	private int d_armyNumber = 0;
 	private Map<Integer, Country> d_neighbors;
 	private Continent d_continent;
 
@@ -66,12 +67,22 @@ public class Country {
 
 	public int getYPosition() {
 		return d_yPosition;
-	}
+	}	
 
 	public void setYPosition(int p_yPosition) {
 		this.d_yPosition = p_yPosition;
 	}
+	
+	public int getArmyNumber() {
+		return d_armyNumber;
+	}	
 
+	public void setArmyNumber(int p_armyNumber) {
+		this.d_armyNumber = p_armyNumber;
+	}
+	
+	
+	
 	public Map<Integer, Country> getNeighbors() {
 		return d_neighbors;
 	}
