@@ -305,4 +305,28 @@ public class PlayerTest {
 		assertEquals(l_country1.getArmyNumber(), 2);
 		assertEquals(l_country2.getArmyNumber(), 6);
 	}
+	/**
+	 * check if failed to generate the airlift order if the country does not exist
+	 */
+	@Test
+	public void WillNotCreqteAirliftOrderWithErrorCountryID() {
+		//arrange
+		Player l_player = new Player("P1");
+		Country l_country1 = new Country(1,"C1",0,0,null);
+		Country l_country2 = new Country(2,"C2",0,0,null);
+		l_country1.setArmyNumber(5);
+		l_country2.setArmyNumber(3);
+		l_country1.setOwner(l_player);
+		l_country2.setOwner(l_player);
+		l_player.getConqueredCountries().put(l_country1.getCountryID(), l_country1);
+		l_player.getConqueredCountries().put(l_country2.getCountryID(), l_country2);
+		l_player.getCards().add(Card.AIRLIFT);
+
+		//act
+		Order l_order = l_player.conventOrder("airlift 3 2 2");
+
+		//assert
+		assertEquals(l_order, null);
+	}
+
 }
