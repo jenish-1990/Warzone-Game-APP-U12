@@ -232,7 +232,7 @@ public class AdvanceOrder extends Order{
 		//check if DIPLOMACY 
 		if( d_toCountry.getOwner()!= null && this.d_player != null 
 				&& this.d_gameContext.isDiplomacyInCurrentTurn(d_player, d_toCountry.getOwner())){
-      			GenericView.printWarning(String.format("The player [%s] and [%s] are in Diplomacy in current turn.", this.d_player.getName(), d_toCountry.getOwner() ));
+      			GenericView.printWarning(String.format("The player [%s] and [%s] are in Diplomacy in current turn.", this.d_player.getName(), d_toCountry.getOwner().getName() ));
       		    return false;
 		}		
 		
