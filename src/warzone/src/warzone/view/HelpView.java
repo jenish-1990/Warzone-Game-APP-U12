@@ -15,12 +15,7 @@ public class HelpView {
 	 */
     public static void printWelcome() {
     	System.out.println("");
-    	System.out.println("        #    #   ##   #####  ######  ####  #    # ######"); 
-    	System.out.println("        #    #  #  #  #    #     #  #    # ##   # #      ");
-    	System.out.println("        #    # #    # #    #    #   #    # # #  # #####  ");
-    	System.out.println("        # ## # ###### #####    #    #    # #  # # #      ");
-    	System.out.println("        ##  ## #    # #   #   #     #    # #   ## #      ");
-    	System.out.println("        #    # #    # #    # ######  ####  #    # ######  By 6441 Group #22");
+    	System.out.println("Welcome to Warzone Game! A Project by group U12");
     	System.out.println("");
     }
 
