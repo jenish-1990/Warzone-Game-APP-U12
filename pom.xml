@@ -6,6 +6,11 @@
   <build>
   	<sourceDirectory>src/warzone/src</sourceDirectory>
   	<testSourceDirectory>src/warzone/test</testSourceDirectory>
+  	<resources>
+       <resource>
+          <directory>resources</directory>
+       </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>

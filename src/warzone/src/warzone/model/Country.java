@@ -43,7 +43,7 @@ public class Country {
 		return d_owner;
 	}
 
-	public void setOwnerID(Player p_owner) {
+	public void setOwner(Player p_owner) {
 		this.d_owner = p_owner;
 	}
 

@@ -1,5 +1,7 @@
 package warzone.model;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
@@ -9,6 +11,13 @@ public class Player {
 	private String d_name;
 	private Map<Integer, Country> d_conqueredCountries;
 	private Queue<Order> d_orders;
+	
+	public Player(String p_name) {
+		
+		d_name = p_name;
+		d_conqueredCountries = new HashMap<Integer, Country>();
+		d_orders = new LinkedList<Order>();
+	}
 	
 	public String getName() {
 		return d_name;
