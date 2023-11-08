@@ -24,6 +24,8 @@ public class Player {
 	private int d_armiesToDeploy = 0; 
 	private boolean d_isAlive = true;
 	private boolean d_hasFinishIssueOrder;
+	private boolean d_conqueredACountryThisTurn = false;
+	private List<Card> d_cards;
 	
 	private Scanner d_keyboard = new Scanner(System.in);
 	
@@ -36,6 +38,7 @@ public class Player {
 		d_name = p_name;
 		d_conqueredCountries = new HashMap<Integer, Country>();
 		d_orders = new LinkedList<Order>();
+		d_cards = new ArrayList<Card>();
 	}
 	
 	/**
@@ -138,6 +141,30 @@ public class Player {
 	 */
 	public boolean getHasFinisedIssueOrder(){
 		return d_hasFinishIssueOrder;
+	}
+	
+	/**
+	 * get the value of conqueredACountryThisTurn
+	 * @return true if player has conquered a country this turn
+	 */
+	public boolean getConqueredACountryThisTurn() {
+		return d_conqueredACountryThisTurn;
+	}
+
+	/**
+	 * set if the player has conquered a country or not this turn 
+	 * @param p_conqueredACountryThisTurn
+	 */
+	public void setConqueredACountryThisTurn(boolean p_conqueredACountryThisTurn) {
+		this.d_conqueredACountryThisTurn = p_conqueredACountryThisTurn;
+	}
+	
+	/**
+	 * Cards the player has available to play
+	 * @return list of cards
+	 */
+	public List<Card> getCards() {
+		return d_cards;
 	}
 
 	/**
