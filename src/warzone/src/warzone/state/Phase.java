@@ -164,21 +164,21 @@ public abstract class Phase implements Serializable {
 	/**
 	 * Sets the list of map files to be used in the tournament.
 	 * 
-	 * @param p_mapFiles
+	 * @param p_mapFiles given map files
 	 */
 	abstract public void setTournamentMapFiles(String[] p_mapFiles);
 	
 	/**
 	 * Sets the list of player strategies to be used in the tournament.
 	 * 
-	 * @param p_playerStrategies
+	 * @param p_playerStrategies given strategies
 	 */
 	abstract public void setTournamentPlayerStrategies(String[] p_playerStrategies);
 
 	/**
 	 * Sets the number of games to be played on each map in the tournament.
 	 * 
-	 * @param p_numberOfGames
+	 * @param p_numberOfGames given game number
 	 */
 	abstract public void setTournamentNumberOfGames(int p_numberOfGames);
 	
@@ -186,7 +186,7 @@ public abstract class Phase implements Serializable {
 	 * Sets the maximum number of turns for each player in the tournament.
 	 * If no player has won once this limit is reached, the game will end as a draw.
 	 * 
-	 * @param p_maxTurns
+	 * @param p_maxTurns given max turns
 	 */
 	abstract public void setTournamentMaxTurns(int p_maxTurns);
 
@@ -199,6 +199,7 @@ public abstract class Phase implements Serializable {
 
 	/**
 	 * execute issue_order or execute_order
+	 * @param p_mode given game mode
 	 */
 	abstract public void play(String p_mode);
 
