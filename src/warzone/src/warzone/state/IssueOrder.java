@@ -1,5 +1,7 @@
 package warzone.state;
 import warzone.service.*;
+import warzone.view.GenericView;
+import warzone.view.HelpView;
 import warzone.model.*;
 
 /**
@@ -42,7 +44,14 @@ public class IssueOrder extends GamePlay {
 	/**
 	 * execute issue_order or execute_order
 	 */
-	public void play(){
+	public void play(String p_mode){
+		//add all cards for each player
+		if(p_mode != null && p_mode.equalsIgnoreCase("super")) {
+			d_gameEngine.addCardsForAllAlivePlayers();
+			GenericView.printDebug("All cards have been assigned to all the alived players.");
+			
+		}
+		
 		d_gameEngine.issueOrders();
 	}
 	

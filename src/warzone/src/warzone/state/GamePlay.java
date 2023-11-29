@@ -100,7 +100,7 @@ public abstract class GamePlay extends Phase {
 	/**
 	 * execute issue_order or execute_order
 	 */
-	public void play(){
+	public void play(String p_mode){
 		printInvalidCommandMessage();
 	}
 	

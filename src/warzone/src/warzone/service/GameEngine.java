@@ -340,6 +340,24 @@ public class GameEngine implements Serializable {
 		
 	}
 	
+	/***
+	 * add card for all Alive players
+	 */
+	public void addCardsForAllAlivePlayers() {
+		d_gameContext.getPlayers().forEach((l_k, l_player) -> {			
+			if(l_player.getIsAlive()) {
+				if( !l_player.getCards().contains(Card.AIRLIFT))
+					l_player.addCard(Card.AIRLIFT);
+				if( !l_player.getCards().contains(Card.BLOCKADE))
+					l_player.addCard(Card.BLOCKADE);
+				if( !l_player.getCards().contains(Card.BOMB))
+					l_player.addCard(Card.BOMB);
+				if( !l_player.getCards().contains(Card.NEGOTIATE))
+					l_player.addCard(Card.NEGOTIATE);
+			}
+		});
+	}
+	
 	/**
 	 * The GameEngine class calls the issue_order() method of the Player. This method will wait for the following command, 
 	 * then create a deploy order object on the players list of orders, then reduce the number of armies in the 

@@ -200,7 +200,7 @@ public abstract class Phase implements Serializable {
 	/**
 	 * execute issue_order or execute_order
 	 */
-	abstract public void play();
+	abstract public void play(String p_mode);
 
 	/**
 	 *  Common method to all States. 

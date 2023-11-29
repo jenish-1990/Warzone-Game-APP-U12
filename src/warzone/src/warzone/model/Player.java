@@ -257,6 +257,14 @@ public class Player implements Serializable {
 	public List<Card> getCards() {
 		return d_cards;
 	}
+	
+	/**
+	 * add card for player
+	 * @param p_card card
+	 */
+	public void addCard(Card p_card) {
+		d_cards.add(p_card);
+	}
 
 	/**
 	 * This method can convert command String into DeployOrder class.
