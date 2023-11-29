@@ -76,7 +76,10 @@ public class GameContext implements Serializable {
 	 *  is Tournament Mode
 	 */
 	private boolean d_isTournamentMode=false;
-	
+	/**
+	 * the type of the map
+	 */
+	private MapType d_mapType = MapType.DOMINATION;
 
 	/**
 	 * properties of the game
@@ -370,5 +373,21 @@ public class GameContext implements Serializable {
 	 */
 	public int getOrderNumberPerRound() {
 		return d_orderNumberPerRound;
+	}
+	
+	/**
+	 * get map type
+	 * @return the format of the current map
+	 */
+	public MapType getMapType() {
+		return d_mapType;
+	}
+
+	/**
+	 * set the format of the current map
+	 * @param d_mapType the format of the cureent map
+	 */
+	public void setMapType(MapType d_mapType) {
+		this.d_mapType = d_mapType;
 	}
 }
