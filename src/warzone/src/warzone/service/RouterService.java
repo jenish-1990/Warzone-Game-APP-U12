@@ -140,12 +140,6 @@ public class RouterService {
 				case "loadgame":
 					d_gamePhase.loadGame(p_router.getActionParameters());
 					break;
-				case "savegame":
-					d_gamePhase.saveGame(p_router.getActionParameters());
-					break;
-				case "loadgame":
-					d_gamePhase.loadGame(p_router.getActionParameters());
-					break;
 			}
 			break;
 		case STARTUP://actions in startup phase
