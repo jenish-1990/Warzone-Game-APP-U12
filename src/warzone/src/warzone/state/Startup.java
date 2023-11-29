@@ -2,9 +2,13 @@ package warzone.state;
 
 import warzone.service.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
+import java.util.Scanner;
 
 import warzone.model.*;
 import warzone.view.*;
@@ -45,8 +49,10 @@ public class Startup extends GamePlay {
 		if(d_gameEngine.getIsInTournamentMode() == true) {
 			
 			d_gameEngine.playTournament();
+		}	
+		else if(d_gameEngine.isSingleMode()) {
+			d_gameEngine.playSingleMode();
 		}
-		
 		else if (d_gameEngine.isReadyToStart()) {
 			
 			d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
@@ -57,6 +63,7 @@ public class Startup extends GamePlay {
 			GenericView.printWarning("It is no ready to play, please check prerequists.");
 		}
 	}
+	
 
 	/**
 	 * Performs the action for user command: loadmap filename
@@ -67,7 +74,57 @@ public class Startup extends GamePlay {
 	 * @param p_fileName the file to load
 	 */
 	public void loadMap(String p_fileName) {
+		determineMapType(p_fileName);
 		d_startupService.loadMap(p_fileName);
+	}
+
+	/**
+	 * This method will determine the map type and instance the d_StartupService with according
+	 * objects.
+	 * @param p_startupService the startupService instance
+	 * @param p_fileName the file name of the map
+	 */
+	private void determineMapType(String p_fileName) {
+		String l_mapDirectory = null;
+
+		try {
+			//Get the map directory from the properties file
+			Properties l_properties = new Properties();
+			l_properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
+			l_mapDirectory = l_properties.getProperty("gameMapDirectory");
+
+		} catch (IOException ex) {
+			return;
+		}
+
+		try {
+
+			//Clear gameContext
+			d_gameContext.reset();
+
+			File l_mapFile = new File(l_mapDirectory + p_fileName);
+
+			d_gameContext.setMapFileName(p_fileName);
+
+			//Specified file name does not exist (new map)
+			if(!l_mapFile.exists() || l_mapFile.isDirectory()) {
+				return;
+			}
+			
+			Scanner l_scanner = new Scanner(l_mapFile);
+			
+			String l_line = l_scanner.nextLine();
+
+			// the format of the current map is 'conquest'
+			if (l_line.startsWith("[Map]")) {
+				l_scanner.close();
+				GameContext l_gameContext  = GameContext.getGameContext();
+				d_startupService = new StartupServiceAdapter(l_gameContext, new ConquestMapReader(l_gameContext));
+				l_gameContext.setMapType(MapType.CONQUEST);
+			}
+		} catch (Exception e) {
+			return;
+		}
 	}
 
 	/**
@@ -80,8 +137,24 @@ public class Startup extends GamePlay {
 			d_logEntryBuffer.logAction("ERROR", "Invalid player name.");
 			return;
 		}
+		// split command with any number of whitespace
+		String[] l_paraArray = p_playerName.split("\\s+");
+		String l_playerName = "";
+		PlayerStrategyType l_playerStrategyType = PlayerStrategyType.HUMAN;
+		l_playerName = l_paraArray[0];
+		if(l_paraArray.length >1) {
+			try {
+				l_playerStrategyType = PlayerStrategyType.valueOf(l_paraArray[1].toUpperCase());
+			}
+			catch(Exception ex) {
+				GenericView.printError("Error happen when converting the Player Strategy Type [" + l_paraArray[1] + "], please try again.");
+				return;
+			}
+			
+		}
+		
 		// 1. create a new player instance
-		Player l_player = new Player(p_playerName);
+		Player l_player = new Player(p_playerName,l_playerStrategyType);
 
 		// 2. add player to PlayerService
 		boolean l_ok = d_startupService.addPlayer(l_player);
