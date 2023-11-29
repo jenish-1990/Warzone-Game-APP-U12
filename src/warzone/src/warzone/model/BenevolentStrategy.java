@@ -1,21 +1,17 @@
 package warzone.model;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.io.Serializable;
+import java.util.*;
 
 
 /**
  *	define of the BenevolentStrategy
  */
-	public class BenevolentStrategy extends PlayerStrategy {
+	public class BenevolentStrategy extends PlayerStrategy implements Serializable {
 
 	/**
-	 * Armies to deploy
+	 *  a random number
 	 */
-	private int d_armiesToDeploy;
+	private static Random l_rand = new Random();
 
 	/**
 	 * constructor of BenevolentStrategy
@@ -23,7 +19,6 @@ import java.util.List;
 	 */
 	BenevolentStrategy(Player p_player){
 		super(p_player);
-		d_armiesToDeploy=p_player. getArmiesToDeploy();
 	}
 	
 	/**
@@ -53,11 +48,19 @@ import java.util.List;
 		if(!d_player.getIsAlive())
 			return null;
 
+		//if have a negotiate card, use it
+		if(d_player.getCards().size() > 0){
+			for(Card l_card: d_player.getCards()){
+				if (l_card == Card.NEGOTIATE) {
+					l_order = new NegotiateOrder(d_player, getRandomPlayer());
+					return l_order;
+				}
+			}
+		}
 		//deploy to weakest country
-		if(d_armiesToDeploy>0) {
-			Country l_weakestCountry=getWeakestConqueredCountry();			
-			l_order = new DeployOrder(d_player, l_weakestCountry, d_armiesToDeploy);
-			d_armiesToDeploy-=d_armiesToDeploy;
+		if(d_player.getArmiesToDeploy() - d_player.d_armyHasIssued > 0) {
+			Country l_weakestCountry=getWeakestConqueredCountry();
+			l_order = new DeployOrder(d_player, l_weakestCountry, this.d_player.getArmiesToDeploy());
 			return l_order;
 		}
 		//move armies to reinforce its weaker country
@@ -92,5 +95,19 @@ import java.util.List;
 		}
 		d_player.setHasFinisedIssueOrder(true);
 		return null;
+	}
+
+	/**
+	 * get random player
+	 * @return random player
+	 */
+	protected Player getRandomPlayer(){
+		int l_idx=l_rand.nextInt(GameContext.getGameContext().getPlayers().size());
+		Player l_player = (Player) GameContext.getGameContext().getPlayers().values().toArray()[l_idx];
+		while(l_player.equals(d_player)){
+			l_idx=l_rand.nextInt(GameContext.getGameContext().getPlayers().size());
+			l_player = (Player) GameContext.getGameContext().getPlayers().values().toArray()[l_idx];
+		}
+		return l_player;
 	}
 }

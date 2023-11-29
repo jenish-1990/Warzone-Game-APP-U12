@@ -22,7 +22,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":9,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":9,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -201,64 +201,82 @@ implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializab
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#isGameEnded-boolean-">isGameEnded</a></span>(boolean&nbsp;isShowResult)</code>
+<div class="block">This method will determine if the game whether can end.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#isReadyToStart--">isReadyToStart</a></span>()</code>
 <div class="block">This method will show whether the game can start.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#isSingleMode--">isSingleMode</a></span>()</code>
+<div class="block">if no player is human, it is single mode</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#issueOrders--">issueOrders</a></span>()</code>
 <div class="block">The GameEngine class calls the issue_order() method of the Player.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#loadGameContext-warzone.model.GameContext-">loadGameContext</a></span>(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</code>
 <div class="block">load game context</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#main-java.lang.String:A-">main</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;args)</code>
 <div class="block">This method is the entrance of the game.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#play--">play</a></span>()</code>
 <div class="block">If the game turn is greater than 100, the game will end.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#playSingleMode--">playSingleMode</a></span>()</code>
+<div class="block">Play single mode</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#playTournament--">playTournament</a></span>()</code>
 <div class="block">Loop for tournament games</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#qaMode-java.lang.String-">qaMode</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)</code>
 <div class="block">1)reset the context
  2) read commands from a file and run it sequencially</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#reboot--">reboot</a></span>()</code>
 <div class="block">reboot the game</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#setIsInTournamentMode-boolean-">setIsInTournamentMode</a></span>(boolean&nbsp;p_isInTournamentMode)</code>&nbsp;</td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#setPhase-warzone.state.Phase-">setPhase</a></span>(<a href="../../warzone/state/Phase.html" title="class in warzone.state">Phase</a>&nbsp;p_phase)</code>
 <div class="block">Method that allows the GameEngine object to change its state.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/GameEngine.html#start--">start</a></span>()</code>
 <div class="block">This method will ask the user: 
@@ -437,6 +455,34 @@ implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializab
 </dl>
 </li>
 </ul>
+<a name="isSingleMode--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isSingleMode</h4>
+<pre>public&nbsp;boolean&nbsp;isSingleMode()</pre>
+<div class="block">if no player is human, it is single mode</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>if is Single Mode</dd>
+</dl>
+</li>
+</ul>
+<a name="playSingleMode--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>playSingleMode</h4>
+<pre>public&nbsp;boolean&nbsp;playSingleMode()</pre>
+<div class="block">Play single mode</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>if it is finished</dd>
+</dl>
+</li>
+</ul>
 <a name="playTournament--">
 <!--   -->
 </a>
@@ -460,6 +506,23 @@ implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializab
 <pre>public&nbsp;boolean&nbsp;isGameEnded()</pre>
 <div class="block">This method will determine if the game whether can end.</div>
 <dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if the current state satisfy the end condition: 
+ 1. there is just one player left 2. the number of game turn is greater than 100.</dd>
+</dl>
+</li>
+</ul>
+<a name="isGameEnded-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isGameEnded</h4>
+<pre>public&nbsp;boolean&nbsp;isGameEnded(boolean&nbsp;isShowResult)</pre>
+<div class="block">This method will determine if the game whether can end.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>isShowResult</code> - is show result</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true if the current state satisfy the end condition: 
  1. there is just one player left 2. the number of game turn is greater than 100.</dd>

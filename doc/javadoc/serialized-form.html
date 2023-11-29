@@ -328,11 +328,6 @@
 <h3>Serialized Fields</h3>
 <ul class="blockList">
 <li class="blockList">
-<h4>d_orderNumberPerRound</h4>
-<pre>int d_orderNumberPerRound</pre>
-<div class="block">order Number Per Round</div>
-</li>
-<li class="blockList">
 <h4>d_players</h4>
 <pre><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">K</a>,<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">V</a>&gt; d_players</pre>
 <div class="block">players in game context</div>
@@ -405,6 +400,11 @@
 </ul>
 </li>
 </ul>
+</li>
+<li class="blockList"><a name="warzone.model.HumanStrategy">
+<!--   -->
+</a>
+<h3>Class <a href="warzone/model/HumanStrategy.html" title="class in warzone.model">warzone.model.HumanStrategy</a> extends <a href="warzone/model/PlayerStrategy.html" title="class in warzone.model">PlayerStrategy</a> implements Serializable</h3>
 </li>
 <li class="blockList"><a name="warzone.model.LogEntryBuffer">
 <!--   -->
@@ -690,10 +690,15 @@
 <pre>int d_minimumCountriesPerReinforcementBonus</pre>
 <div class="block">minimum Countries PerReinforcement Bonus</div>
 </li>
-<li class="blockListLast">
+<li class="blockList">
 <h4>d_maxTurnPerRound</h4>
 <pre>int d_maxTurnPerRound</pre>
 <div class="block">max turn number per round</div>
+</li>
+<li class="blockListLast">
+<h4>d_maxTurnNumberPerGame</h4>
+<pre>int d_maxTurnNumberPerGame</pre>
+<div class="block">max Turn Number Per Game</div>
 </li>
 </ul>
 </li>
@@ -704,11 +709,6 @@
 <li class="blockList">
 <h2 title="Package">Package&nbsp;warzone.service</h2>
 <ul class="blockList">
-<li class="blockList"><a name="warzone.service.ControllerFactory">
-<!--   -->
-</a>
-<h3>Class warzone.service.ControllerFactory extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
-</li>
 <li class="blockList"><a name="warzone.service.GameEngine">
 <!--   -->
 </a>

@@ -1,15 +1,14 @@
 package warzone.model;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import warzone.view.GenericView;
+
+import java.io.Serializable;
 import java.util.Random;
 
 
 /**
  *	define of the RandomStrategy
  */
-public class RandomStrategy extends PlayerStrategy {	
+public class RandomStrategy extends PlayerStrategy implements Serializable {
 	
 	/**
 	 * constructor of RandomStrategy
@@ -81,17 +80,19 @@ public class RandomStrategy extends PlayerStrategy {
 	 *	@return Order
 	 */
 	public Order createOrder() {
+
 		Order l_order = null;		
 		if(!d_player.getIsAlive())
 			return null;
 
-		int l_randomAction = l_rand.nextInt(3);
-
+		int l_randomAction = l_rand.nextInt(4);
 		switch(l_randomAction){
-			case 1:
+			case 0:
+				GenericView.println("Random action: deploy");
 				l_order=new DeployOrder(d_player,getRandomConqueredCountry(),l_rand.nextInt(10));
 				break;
-			case 2:
+			case 1:
+				GenericView.println("Random action: advance");
 				Country l_randomConqueredCountry=getRandomConqueredCountry();
 				Country l_randomNeighbor=getRandomNeighbor(l_randomConqueredCountry);
 				if(l_randomNeighbor!=null) {
@@ -99,9 +100,12 @@ public class RandomStrategy extends PlayerStrategy {
 					l_order=new AdvanceOrder(d_player,l_randomConqueredCountry,l_randomNeighbor,l_num);
 				}
 				break;
-			case 3:
-				if(d_player.getCards().size() <= 0)
+			case 2:
+				GenericView.println("Random action: play card");
+				if(d_player.getCards().size() <= 0) {
+					GenericView.println("No card exist for random player.");
 					return null;
+				}
 				int l_randomCardIdx = l_rand.nextInt(d_player.getCards().size());
 				Card l_card = d_player.getCards().get(l_randomCardIdx);
 				switch(l_card){
@@ -118,6 +122,10 @@ public class RandomStrategy extends PlayerStrategy {
 						l_order = new NegotiateOrder(d_player, getRandomPlayer());
 						break;
 				}
+				break;
+			case 3:
+				GenericView.println("Random action: stop issue order");
+				d_player.setHasFinisedIssueOrder(true);
 				break;
 		}
 		return l_order;

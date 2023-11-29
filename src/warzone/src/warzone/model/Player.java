@@ -65,11 +65,6 @@ public class Player implements Serializable {
 	int d_armyHasIssued = 0;
 
 	/**
-	 * scanner of the command
-	 */
-	private transient Scanner d_keyboard = new Scanner(System.in);
-	
-	/**
 	 * PlayerStrategyType of player
 	 */
 	private PlayerStrategyType d_playerStrategyType;
@@ -602,6 +597,8 @@ public class Player implements Serializable {
 
 		String l_command = "";
 		int l_armyToIssue = this.d_armiesToDeploy - d_armyHasIssued;
+		if(l_armyToIssue < 0)
+			l_armyToIssue = 0;
 		GameEngine l_gameEngine = GameEngine.getGameEngine(d_gameContext);
 		
 		Order l_order = null;
@@ -609,7 +606,7 @@ public class Player implements Serializable {
 			
 			GenericView.println(String.format("----- Player [%s] has [%s] Countries ", this.getName(), this.getConqueredCountries().size() ));
 			for(Country l_countryTemp : this.getConqueredCountries().values()) {
-				GenericView.println(String.format("Country ID : [%s] , Name : [%s], Army: [%s]", l_countryTemp.getCountryID(), l_countryTemp.getCountryName(), l_countryTemp.getArmyNumber() ));	
+				GenericView.println(String.format("Country ID : [%s] , Name : [%s], Army: [%s]", l_countryTemp.getCountryID(), l_countryTemp.getCountryName(), l_countryTemp.getArmyNumber() ));
 			}
 			
 			//render available cards 

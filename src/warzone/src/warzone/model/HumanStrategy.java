@@ -1,9 +1,7 @@
 package warzone.model;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Scanner;
 
-import warzone.service.GameEngine;
 import warzone.view.GenericView;
 
 
@@ -23,13 +21,13 @@ public class HumanStrategy extends PlayerStrategy implements Serializable {
 	 * @param p_player PlayerStrategy
 	 */
 	HumanStrategy(Player p_player){
-		super(p_player); 
+		super(p_player);
 
 	}
 	
 	/**
 	 *  implementation of createOrder
-	 * @return
+	 * @return the order
 	 */
 	public Order createOrder() {
 		

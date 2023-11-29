@@ -1,4 +1,5 @@
 package warzone.model;
+import java.io.Serializable;
 import java.util.List;
 
 import warzone.service.GameEngine;
@@ -7,7 +8,7 @@ import warzone.service.GameEngine;
 /**
  *	Strategy of the Strategy pattern
  */
-public abstract class PlayerStrategy {	
+public abstract class PlayerStrategy implements Serializable {
 
 	/**
 	 * the owner player
