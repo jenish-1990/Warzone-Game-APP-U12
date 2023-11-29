@@ -25,7 +25,7 @@ public class TournamentResultsView {
         
         System.out.format("%15s", "");
         
-        for(int i = 1; i <= p_tournamentContext.getMapFiles().size(); i++) {
+        for(int i = 1; i <= p_tournamentContext.getNumberOfGames(); i++) {
         	
         	System.out.format("%15s", "Game " + i);
         }
