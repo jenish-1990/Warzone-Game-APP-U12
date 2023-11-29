@@ -2,10 +2,12 @@ package warzone.model;
 
 import warzone.view.GenericView;
 
+import java.io.Serializable;
+
 /**
  * This class represents one advance order of the gameplay
  */
-public class AdvanceOrder extends Order{
+public class AdvanceOrder extends Order implements Serializable {
 
 	/**
 	 * advance from country
@@ -46,7 +48,6 @@ public class AdvanceOrder extends Order{
 		d_toCountry = p_toCountry;
 		d_numberOfArmies = p_numberOfArmies;
 		this.d_orderType = OrderType.ADVANCE;
-		this.d_gameContext = GameContext.getGameContext();  
 	}
 	
 	/**
@@ -231,7 +232,7 @@ public class AdvanceOrder extends Order{
       
 		//check if DIPLOMACY 
 		if( d_toCountry.getOwner()!= null && this.d_player != null 
-				&& this.d_gameContext.isDiplomacyInCurrentTurn(d_player, d_toCountry.getOwner())){
+				&& this.getGameContext().isDiplomacyInCurrentTurn(d_player, d_toCountry.getOwner())){
       			GenericView.printWarning(String.format("The player [%s] and [%s] are in Diplomacy in current turn.", this.d_player.getName(), d_toCountry.getOwner().getName() ));
       		    return false;
 		}		

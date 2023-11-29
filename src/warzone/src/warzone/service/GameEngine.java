@@ -12,6 +12,7 @@ import warzone.view.TournamentResultsView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -23,8 +24,13 @@ import java.util.Scanner;
  * Loop over each player for the assign reinforcements, issue orders, and execute orders main game loop phases
  * 
  */
-public class GameEngine {
-	
+public class GameEngine implements Serializable {
+
+	/**
+	 * serial id
+	 */
+	private static final long serialVersionUID = 2L;
+
 	/**
 	 * This method is the entrance of the game. It will initiate the game context and use
 	 * command scanner to get the command of the player.
@@ -98,14 +104,26 @@ public class GameEngine {
 	 */
 	public GameContext getGameContext() {
 		return d_gameContext;
-	}	
-	
+	}
+
+
+	/**
+	 * load game context
+	 * @param p_gameContext game context
+	 */
+	public void loadGameContext(GameContext p_gameContext){
+		if(p_gameContext != null) {
+			d_gameContext = p_gameContext;
+			GameContext.setGameContext(p_gameContext);
+		}
+	}
 	/**
 	 * Method that allows the GameEngine object to change its state.  
 	 * @param p_phase new state to be set for the GameEngine object.
 	 */
 	public void setPhase(Phase p_phase) {
 		d_gamePhase = p_phase;
+		p_phase.refresh(this);
 		System.out.println("new phase: " + p_phase.getClass().getSimpleName());
 	}
 	
@@ -320,6 +338,24 @@ public class GameEngine {
 		});
 		GenericView.println("-------------------- Finish assigning reinforcements");		
 		
+	}
+	
+	/***
+	 * add card for all Alive players
+	 */
+	public void addCardsForAllAlivePlayers() {
+		d_gameContext.getPlayers().forEach((l_k, l_player) -> {			
+			if(l_player.getIsAlive()) {
+				if( !l_player.getCards().contains(Card.AIRLIFT))
+					l_player.addCard(Card.AIRLIFT);
+				if( !l_player.getCards().contains(Card.BLOCKADE))
+					l_player.addCard(Card.BLOCKADE);
+				if( !l_player.getCards().contains(Card.BOMB))
+					l_player.addCard(Card.BOMB);
+				if( !l_player.getCards().contains(Card.NEGOTIATE))
+					l_player.addCard(Card.NEGOTIATE);
+			}
+		});
 	}
 	
 	/**

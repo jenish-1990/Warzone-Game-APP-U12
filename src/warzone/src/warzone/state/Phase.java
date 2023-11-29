@@ -2,6 +2,7 @@ package warzone.state;
 import warzone.service.*;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import warzone.model.*;
 import warzone.view.*;
@@ -21,8 +22,12 @@ import warzone.view.*;
  *        
  *      In each state, nextState() is defined so that it goes down in 
  */
-public abstract class Phase {
+public abstract class Phase implements Serializable {
 
+	/**
+	 * serial id
+	 */
+	private static final long serialVersionUID = 2L;
 	/**
 	 *  Contains a reference to the State of the GameEngine 
 	 *  so that the state object can change the state of 
@@ -48,6 +53,14 @@ public abstract class Phase {
 		d_gameContext = p_gameEngine.getGameContext();
 	}
 
+	/**
+	 * refresh the game engine
+	 * @param p_gameEngine game engine
+	 */
+	public void refresh(GameEngine p_gameEngine){
+		d_gameEngine = p_gameEngine;
+		d_gameContext = p_gameEngine.getGameContext();
+	}
 	/**
 	 * This methods can receive parameters from the Router, check the correctness of
 	 * commands and call the internal methods.
@@ -187,7 +200,7 @@ public abstract class Phase {
 	/**
 	 * execute issue_order or execute_order
 	 */
-	abstract public void play();
+	abstract public void play(String p_mode);
 
 	/**
 	 *  Common method to all States. 
@@ -218,4 +231,17 @@ public abstract class Phase {
 		return this.d_gamePhase;
 	}
 
+	/**
+	 * save game context
+	 * @param p_fileName file name
+	 * @return true if success
+	 */
+	abstract public boolean saveGame(String p_fileName);
+
+	/**
+	 * load game context
+	 * @param p_fileName file name
+	 * @return true if success
+	 */
+	abstract public boolean loadGame(String p_fileName);
 }

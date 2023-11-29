@@ -2,6 +2,7 @@ package warzone.model;
 
 import warzone.service.LogService;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,11 +13,17 @@ import java.util.Map;
  * other classes.
  *
  */
-public class GameContext {
+public class GameContext implements Serializable {
+
+	/**
+	 * serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * game context
 	 */
 	private static GameContext GAME_CONTEXT;
+
 	/**
 	 * order Number Per Round
 	 */
@@ -187,7 +194,10 @@ public class GameContext {
 		}
 		return GAME_CONTEXT;
 	}
-	
+
+	public static void setGameContext(GameContext p_gameContext){
+		GAME_CONTEXT = p_gameContext;
+	}
 	/**
 	 * This method can return the logEntryBuffer instance and create a new one if
 	 * it is null.

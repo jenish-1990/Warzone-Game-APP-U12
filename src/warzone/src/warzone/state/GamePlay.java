@@ -11,12 +11,18 @@ import warzone.view.*;
 public abstract class GamePlay extends Phase {
 
 	/**
+	 * start up service
+	 */
+	private StartupService d_startUpService;
+
+	/**
 	 * The constructor of the class
 	 * @param p_gameEngine the game engine
 	 */
 	public GamePlay(GameEngine p_gameEngine) {
 		super(p_gameEngine);
 		this.d_gamePhase = GamePhase.GamePlay;
+		d_startUpService = new StartupService(p_gameEngine);
 	}
 	
 	/**
@@ -33,7 +39,7 @@ public abstract class GamePlay extends Phase {
 	 * and connectivity in a way that enables efficient game play
 	 */
 	 public void showMap() {
-		 MapView.printMapWithArmies(d_gameContext.getContinents());
+		 MapView.printMapWithArmies(GameContext.getGameContext().getContinents());
 	 }	
 	
 	/**
@@ -94,7 +100,7 @@ public abstract class GamePlay extends Phase {
 	/**
 	 * execute issue_order or execute_order
 	 */
-	public void play(){
+	public void play(String p_mode){
 		printInvalidCommandMessage();
 	}
 	
@@ -125,7 +131,23 @@ public abstract class GamePlay extends Phase {
 	 public boolean validateMap() {
 		 printInvalidCommandMessage();
 		 return false;
-	 }		
-	 
+	 }
 
+	/**
+	 * save game context
+	 * @param p_fileName file name
+	 * @return true if success
+	 */
+	public boolean saveGame(String p_fileName){
+		return d_startUpService.saveGame(p_fileName);
+	 }
+
+	/**
+	 * lode game context
+	 * @param p_fileName file name
+	 * @return true if success
+	 */
+	public boolean loadGame(String p_fileName){
+		return d_startUpService.loadGame(p_fileName);
+	 }
 }

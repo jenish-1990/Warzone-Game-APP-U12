@@ -1,6 +1,7 @@
 package warzone.model;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Properties;
 
 import warzone.view.GenericView;
@@ -9,7 +10,7 @@ import warzone.view.GenericView;
  * This class is responsible to get all properties written in the properties file.
  *
  */
-public class WarzoneProperties {
+public class WarzoneProperties implements Serializable {
 
 	/**
 	 * static member of Warzone Properties
