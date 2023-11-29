@@ -19,7 +19,7 @@ import org.junit.runners.Suite;
 	AggressiveStrategyTest.class,
 	BenevolentStrategyTest.class,
 	CheaterStrategyTest.class,
-	RandomStrategyTest.class
+	RandomStrategyTest.class,
 	})
 public class ModelTestSuite {
 

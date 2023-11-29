@@ -152,6 +152,10 @@ public class AdvanceOrder extends Order implements Serializable {
 		}
 		//Else toCountry is owned by opponent -> attack
 		else {
+			GenericView.println("------------------------------------------------------------------------------------------------------------------------------");
+			GenericView.println(d_fromCountry.getCountryName() + "[" + d_fromCountry.getOwner().getName() + "]" + " is attacking " + 
+								d_toCountry.getCountryName() + "[" + d_toCountry.getOwner().getName() + "]" + ":");
+			GenericView.println("------------------------------------------------------------------------------------------------------------------------------");
 			do {
 				// check if successfully conquer a country
 				if(d_toCountry.getArmyNumber() == 0 && l_numberOfArmies >0) {
@@ -171,18 +175,29 @@ public class AdvanceOrder extends Order implements Serializable {
 	 * a single attack between two army units
 	 */
 	private void singleAttack(){
-
+		
+		int l_toCountryRandomNumber = (int) (Math.random() * 10);
+		int l_fromCountryRandomNumber = (int) (Math.random() * 10);
+		
 		//Attacking army has a 60% chance of killing a defending army
-		if(Math.random() * 10 <= 6) {
+		if(l_toCountryRandomNumber <= 6) {
 			//Kill defending army
 			d_toCountry.setArmyNumber(d_toCountry.getArmyNumber() - 1);
+			GenericView.println("\t" + d_toCountry.getCountryName() + " defeated an army of " + d_fromCountry.getCountryName() + ": " + l_toCountryRandomNumber + " <= 6");
+		}
+		else {
+			GenericView.println("\t" + d_toCountry.getCountryName() + " failed to defeat an army of " + d_fromCountry.getCountryName() + ": " + l_toCountryRandomNumber + " > 6");
 		}
 
 		//Defending army has a 70% chance of killing a attacking army
-		if(Math.random() * 10 <= 7) {
+		if(l_fromCountryRandomNumber <= 7) {
 			//Kill attacking army
 			d_fromCountry.setArmyNumber(d_fromCountry.getArmyNumber() - 1);
 			l_numberOfArmies--;
+			GenericView.println("\t" + d_fromCountry.getCountryName() + " defeated an army of " + d_toCountry.getCountryName() + ": " + l_fromCountryRandomNumber + " <= 7");
+		}
+		else {
+			GenericView.println("\t" + d_fromCountry.getCountryName() + " failed to defeat an army of " + d_toCountry.getCountryName() + ": " + l_fromCountryRandomNumber + " > 7");
 		}
 	}
 
