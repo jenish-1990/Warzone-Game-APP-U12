@@ -23,5 +23,9 @@ public enum LoadMapPhase {
 	/**
 	 * Load Map Phase of COMPLETE
 	 */
-	COMPLETE
+	COMPLETE, 
+	/**
+	 * Load Map Phase of loading Territories
+	 */
+	TERRITORIES
 }
