@@ -141,7 +141,7 @@ public class GameContext implements Serializable {
 	
 	/**
 	 * set  Is Tournament Mode
-	 * @param p_isTournamentMode
+	 * @param p_isTournamentMode true if is Tournament
 	 */
 	public void setIsTournamentMode(boolean p_isTournamentMode) {
 		d_isTournamentMode =  p_isTournamentMode;

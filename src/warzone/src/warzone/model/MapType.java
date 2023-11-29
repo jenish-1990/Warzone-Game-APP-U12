@@ -1,5 +1,10 @@
 package warzone.model;
 
+/**
+ * Map Type
+ * @author fzuray
+ *
+ */
 public enum MapType {
 	/**
 	 * the 'conquest' format
