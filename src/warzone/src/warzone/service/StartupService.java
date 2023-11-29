@@ -107,7 +107,60 @@ public class StartupService implements Serializable {
 	 * @return if succeed
 	 */
 	public boolean loadMap(String p_fileName) {
+		determineMapType(p_fileName);
 		return d_mapHandler.loadMap(p_fileName);
+	}
+
+	/**
+	 * This method will determine the map type and instance the d_StartupService with according
+	 * objects.
+	 * @param p_fileName the file name of the map
+	 */
+	private void determineMapType(String p_fileName) {
+		String l_mapDirectory = null;
+
+		try {
+			//Get the map directory from the properties file
+			Properties l_properties = new Properties();
+			l_properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
+			l_mapDirectory = l_properties.getProperty("gameMapDirectory");
+
+		} catch (IOException ex) {
+			return;
+		}
+
+		try {
+
+			//Clear gameContext
+			d_gameContext.reset();
+
+			File l_mapFile = new File(l_mapDirectory + p_fileName);
+
+			d_gameContext.setMapFileName(p_fileName);
+
+			//Specified file name does not exist (new map)
+			if(!l_mapFile.exists() || l_mapFile.isDirectory()) {
+				return;
+			}
+
+			Scanner l_scanner = new Scanner(l_mapFile);
+
+			String l_line = l_scanner.nextLine();
+
+			// the format of the current map is 'conquest'
+			if (l_line.startsWith("[Map]")) {
+				l_scanner.close();
+				d_gameContext.setMapType(MapType.CONQUEST);
+				this.setMapHandler(new ConquestMapHandlerAdapter(d_gameContext, new ConquestMapHandler(d_gameContext) ));
+
+			}
+			else {
+				d_gameContext.setMapType(MapType.DOMINATION);
+				this.setMapHandler(new DominateMapHandler(d_gameContext));
+			}
+		} catch (Exception e) {
+			return;
+		}
 	}
 
 	/**
