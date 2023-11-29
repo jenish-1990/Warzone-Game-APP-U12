@@ -13,7 +13,7 @@ import warzone.state.Startup;
 
 /**
  *  Game Engine Service Test
- * @author nidhi
+ * @author fzuray
  *
  */
 public class GameEngineServiceTest {

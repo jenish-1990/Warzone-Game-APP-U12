@@ -147,6 +147,35 @@ public abstract class Phase {
 	 * After user creates all the players, all countries are randomly assigned to players.
 	 */
 	abstract public void assigncountries();
+	
+	/**
+	 * Sets the list of map files to be used in the tournament.
+	 * 
+	 * @param p_mapFiles
+	 */
+	abstract public void setTournamentMapFiles(String[] p_mapFiles);
+	
+	/**
+	 * Sets the list of player strategies to be used in the tournament.
+	 * 
+	 * @param p_playerStrategies
+	 */
+	abstract public void setTournamentPlayerStrategies(String[] p_playerStrategies);
+
+	/**
+	 * Sets the number of games to be played on each map in the tournament.
+	 * 
+	 * @param p_numberOfGames
+	 */
+	abstract public void setTournamentNumberOfGames(int p_numberOfGames);
+	
+	/**
+	 * Sets the maximum number of turns for each player in the tournament.
+	 * If no player has won once this limit is reached, the game will end as a draw.
+	 * 
+	 * @param p_maxTurns
+	 */
+	abstract public void setTournamentMaxTurns(int p_maxTurns);
 
 	/**
 	 * 	go to next phase
