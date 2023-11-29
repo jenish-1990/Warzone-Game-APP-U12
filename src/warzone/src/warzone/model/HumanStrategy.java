@@ -1,4 +1,5 @@
 package warzone.model;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import warzone.view.GenericView;
 /**
  *	Strategy of the Strategy pattern
  */
-public class HumanStrategy extends PlayerStrategy {	
+public class HumanStrategy extends PlayerStrategy implements Serializable {
 	
 	/**
 	 * scanner of the command

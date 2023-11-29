@@ -71,6 +71,7 @@ public class WarzoneProperties implements Serializable {
 		d_simpleCommand = d_properties.getProperty("simpleCommand");
 		d_complexCommand = d_properties.getProperty("complexCommand");
 		d_maxTurnPerRound = Integer.parseInt(d_properties.getProperty("maxTurnsPerRound"));
+		d_maxTurnNumberPerGame = Integer.parseInt(d_properties.getProperty("maxTurnNumberPerGame"));
 	}
 	
 	/**
@@ -183,4 +184,17 @@ public class WarzoneProperties implements Serializable {
 	 * @return max turn number per round
 	 */
 	public int getMaxTurnPerRound() { return d_maxTurnPerRound; }
+
+	/**
+	 * max Turn Number Per Game
+	 */
+	private int d_maxTurnNumberPerGame = 10;
+
+	/**
+	 * the max number of turns in each game
+	 * @return the max number of turns in each game
+	 */
+	public int getMaxTurnNumberPerGame() {
+		return d_maxTurnNumberPerGame;
+	}
 }

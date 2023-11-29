@@ -131,7 +131,13 @@ public class Player implements Serializable {
 		}
 		return d_playerStrategy;
 	}
-	
+	/**
+	 * This method will provide PlayerStrategyType.
+	 * @return the Strategy Type of the player
+	 */
+	public PlayerStrategyType getPlayerStrategyType() {
+		return d_playerStrategyType;
+	}	
 	/**
 	 * This method will provide the name of the player.
 	 * @return the name of the player

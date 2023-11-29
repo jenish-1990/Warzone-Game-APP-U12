@@ -49,8 +49,10 @@ public class Startup extends GamePlay {
 		if(d_gameEngine.getIsInTournamentMode() == true) {
 			
 			d_gameEngine.playTournament();
+		}	
+		else if(d_gameEngine.isSingleMode()) {
+			d_gameEngine.playSingleMode();
 		}
-		
 		else if (d_gameEngine.isReadyToStart()) {
 			
 			d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
@@ -61,6 +63,7 @@ public class Startup extends GamePlay {
 			GenericView.printWarning("It is no ready to play, please check prerequists.");
 		}
 	}
+	
 
 	/**
 	 * Performs the action for user command: loadmap filename
@@ -134,8 +137,24 @@ public class Startup extends GamePlay {
 			d_logEntryBuffer.logAction("ERROR", "Invalid player name.");
 			return;
 		}
+		// split command with any number of whitespace
+		String[] l_paraArray = p_playerName.split("\\s+");
+		String l_playerName = "";
+		PlayerStrategyType l_playerStrategyType = PlayerStrategyType.HUMAN;
+		l_playerName = l_paraArray[0];
+		if(l_paraArray.length >1) {
+			try {
+				l_playerStrategyType = PlayerStrategyType.valueOf(l_paraArray[1].toUpperCase());
+			}
+			catch(Exception ex) {
+				GenericView.printError("Error happen when converting the Player Strategy Type [" + l_paraArray[1] + "], please try again.");
+				return;
+			}
+			
+		}
+		
 		// 1. create a new player instance
-		Player l_player = new Player(p_playerName);
+		Player l_player = new Player(p_playerName,l_playerStrategyType);
 
 		// 2. add player to PlayerService
 		boolean l_ok = d_startupService.addPlayer(l_player);
