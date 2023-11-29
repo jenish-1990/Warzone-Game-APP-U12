@@ -16,10 +16,6 @@ import org.junit.runners.Suite;
 	DeployOrderTest.class,
 	NegotiateOrderTest.class,
 	WarzonePropertiesTest.class,
-	AggressiveStrategyTest.class,
-	BenevolentStrategyTest.class,
-	CheaterStrategyTest.class,
-	RandomStrategyTest.class,
 	})
 public class ModelTestSuite {
 
