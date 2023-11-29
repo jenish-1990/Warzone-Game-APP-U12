@@ -49,17 +49,17 @@ public class Startup extends GamePlay {
 		if(d_gameEngine.getIsInTournamentMode() == true) {
 			
 			d_gameEngine.playTournament();
+			d_gameEngine.reboot();			
 		}	
 		else if(d_gameEngine.isSingleMode()) {
 			d_gameEngine.playSingleMode();
+			d_gameEngine.reboot();
 		}		
-		else if (d_gameEngine.isReadyToStart()) {
-			
+		else if (d_gameEngine.isReadyToStart()) {			
 			d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
 			super.next();
 		}
-		else {
-			
+		else {			
 			GenericView.printWarning("It is no ready to play, please check prerequists.");
 		}
 	}
