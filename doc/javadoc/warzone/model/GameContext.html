@@ -22,7 +22,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":9,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":9,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10};
+var methods = {"i0":10,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":9,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":9,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -255,80 +255,92 @@ implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializab
 </td>
 </tr>
 <tr id="i18" class="altColor">
+<td class="colFirst"><code><a href="../../warzone/model/MapType.html" title="enum in warzone.model">MapType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#getMapType--">getMapType</a></span>()</code>
+<div class="block">get map type</div>
+</td>
+</tr>
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#getOrderNumberPerRound--">getOrderNumberPerRound</a></span>()</code>
 <div class="block">This method can provide the number of order in every round of the game.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../warzone/model/Player.html" title="class in warzone.model">Player</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#getPlayers--">getPlayers</a></span>()</code>
 <div class="block">This method will offer all players in Map structure.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#getSimpleCommand--">getSimpleCommand</a></span>()</code>
 <div class="block">This method will return simple commands.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#isDiplomacyInCurrentTurn-warzone.model.Player-warzone.model.Player-">isDiplomacyInCurrentTurn</a></span>(<a href="../../warzone/model/Player.html" title="class in warzone.model">Player</a>&nbsp;p_playerA,
                         <a href="../../warzone/model/Player.html" title="class in warzone.model">Player</a>&nbsp;p_playerB)</code>
 <div class="block">check if there is a Diplomacy existed between 2 given players</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#reset--">reset</a></span>()</code>
 <div class="block">clear the game context</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#resetDiplomacyOrderList--">resetDiplomacyOrderList</a></span>()</code>
 <div class="block">rest Diplomacy Order List when a new turn is started</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#setCurrentRouter-warzone.model.Router-">setCurrentRouter</a></span>(<a href="../../warzone/model/Router.html" title="class in warzone.model">Router</a>&nbsp;p_currentRouter)</code>
 <div class="block">set current running router</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#setGameContext-warzone.model.GameContext-">setGameContext</a></span>(<a href="../../warzone/model/GameContext.html" title="class in warzone.model">GameContext</a>&nbsp;p_gameContext)</code>&nbsp;</td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#setIsTournamentMode-boolean-">setIsTournamentMode</a></span>(boolean&nbsp;p_isTournamentMode)</code>
 <div class="block">set  Is Tournament Mode</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#setMapFileCards-java.lang.String-">setMapFileCards</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;mapFileCards)</code>
 <div class="block">set map file cards</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#setMapFileMap-java.lang.String-">setMapFileMap</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_mapFileMap)</code>
 <div class="block">This method can set map file map</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#setMapFileName-java.lang.String-">setMapFileName</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_mapFileName)</code>
 <div class="block">This method can set the name of the current map.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#setMapFilePic-java.lang.String-">setMapFilePic</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_mapFilePic)</code>
 <div class="block">This method can set map file picture</div>
+</td>
+</tr>
+<tr id="i32" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/model/GameContext.html#setMapType-warzone.model.MapType-">setMapType</a></span>(<a href="../../warzone/model/MapType.html" title="enum in warzone.model">MapType</a>&nbsp;d_mapType)</code>
+<div class="block">set the format of the current map</div>
 </td>
 </tr>
 </table>
@@ -765,7 +777,7 @@ implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializab
 <a name="getOrderNumberPerRound--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getOrderNumberPerRound</h4>
 <pre>public&nbsp;int&nbsp;getOrderNumberPerRound()</pre>
@@ -773,6 +785,34 @@ implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializab
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the number of orders in each round</dd>
+</dl>
+</li>
+</ul>
+<a name="getMapType--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getMapType</h4>
+<pre>public&nbsp;<a href="../../warzone/model/MapType.html" title="enum in warzone.model">MapType</a>&nbsp;getMapType()</pre>
+<div class="block">get map type</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the format of the current map</dd>
+</dl>
+</li>
+</ul>
+<a name="setMapType-warzone.model.MapType-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setMapType</h4>
+<pre>public&nbsp;void&nbsp;setMapType(<a href="../../warzone/model/MapType.html" title="enum in warzone.model">MapType</a>&nbsp;d_mapType)</pre>
+<div class="block">set the format of the current map</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>d_mapType</code> - the format of the cureent map</dd>
 </dl>
 </li>
 </ul>
