@@ -82,7 +82,7 @@ public class GamePlayTest {
 		
 		//Execute the advance order to win the game
 		//p1.getOrders().poll().execute();
-		d_gameEngine.getPhase().play();
+		d_gameEngine.getPhase().play("");
 		
 		//Assert that the game has ended
 		//todo: fix this assert
