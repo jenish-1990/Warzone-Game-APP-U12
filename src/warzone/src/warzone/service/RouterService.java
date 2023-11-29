@@ -290,7 +290,14 @@ public class RouterService {
 		for(Action l_action: l_actions) {
 			//TODO add it in the property file
 			String l_actionArray = "-add,-remove,-m,-p,-g,-d";
-			if(l_actionArray.indexOf(l_action.getAction()) > -1) { 
+			if(l_action.getAction().equals("p") && l_action.getParameters().contains("human")) {
+				
+				l_routers = new LinkedList<Router>();
+				l_routers.add(createErrorRouter(ErrorType.BAD_OPTION.toString()));
+				GenericView.printError("Human players are not permitted in this game mode.");
+				return l_routers;
+			}
+			else if(l_actionArray.indexOf(l_action.getAction()) > -1) { 
 				String l_command = Arrays.toString(p_commandArray).replace(",", " ");
 				Router l_router = new Router(l_controllerName, l_action.getAction(), l_action.getParameters(),l_command);
 				
