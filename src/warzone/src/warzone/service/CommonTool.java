@@ -4,7 +4,7 @@ import warzone.view.GenericView;
 
 /**
  * This class is responsible to provide some basic tools to other classes.
- * @author ayush, alay
+ * @author Zexin, Ray
  *
  */
 public class CommonTool {

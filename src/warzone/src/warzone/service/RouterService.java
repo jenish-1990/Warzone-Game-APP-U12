@@ -149,7 +149,19 @@ public class RouterService {
 					break;
 				case "assigncountries":
 					d_gamePhase.assigncountries();
-					break;						
+					break;
+				case "m":
+					d_gamePhase.setTournamentMapFiles(p_router.getActionParameters().split("\\s+"));
+					break;
+				case "p":
+					d_gamePhase.setTournamentPlayerStrategies(p_router.getActionParameters().split("\\s+"));
+					break;
+				case "g":
+					d_gamePhase.setTournamentNumberOfGames(Integer.parseInt(p_router.getActionParameters()));
+					break;
+				case "d":
+					d_gamePhase.setTournamentMaxTurns(Integer.parseInt(p_router.getActionParameters()));
+					break;
 			}
 			break;
 		case ERROR://error
@@ -257,12 +269,15 @@ public class RouterService {
 			case "gameplayer":
 				l_controllerName = ControllerName.STARTUP;				
 				break;
+			case "tournament":
+				l_controllerName = ControllerName.STARTUP;				
+				break;
 		}
 		GenericView.printDebug("ControllerName is :" + l_controllerName.toString() );
 		// if the action is not equal to 'add' or 'remove', we return an error router
 		for(Action l_action: l_actions) {
 			//TODO add it in the property file
-			String l_actionArray = "-add,-remove";
+			String l_actionArray = "-add,-remove,-m,-p,-g,-d";
 			if(l_actionArray.indexOf(l_action.getAction()) > -1) { 
 				String l_command = Arrays.toString(p_commandArray).replace(",", " ");
 				Router l_router = new Router(l_controllerName, l_action.getAction(), l_action.getParameters(),l_command);

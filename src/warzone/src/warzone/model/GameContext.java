@@ -66,10 +66,15 @@ public class GameContext {
 	 */
 	private List<NegotiateOrder> d_negotiateOrdersInCurrentTurn;
 	/**
+	 *  is Tournament Mode
+	 */
+	private boolean d_isTournamentMode=false;
+	
+
+	/**
 	 * properties of the game
 	 */
 	private WarzoneProperties d_warzoneProperties;
-
 
 	/**
 	 * check if there is a Diplomacy existed between 2 given players
@@ -120,6 +125,22 @@ public class GameContext {
 	public void setCurrentRouter(Router p_currentRouter) {
 		d_currentRouter =  p_currentRouter;
 	}
+	
+	/**
+	 * get  Is Tournament Mode
+	 * @return  if Is Tournament Mode
+	 */
+	public boolean getIsTournamentMode() {
+		return d_isTournamentMode;
+	}
+	
+	/**
+	 * set  Is Tournament Mode
+	 * @param p_isTournamentMode 
+	 */
+	public void setIsTournamentMode(boolean p_isTournamentMode) {
+		d_isTournamentMode =  p_isTournamentMode;
+	}	
 
 	/**
 	 * singlton of LogEntryBuffer

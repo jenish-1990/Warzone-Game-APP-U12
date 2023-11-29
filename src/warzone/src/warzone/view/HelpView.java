@@ -15,7 +15,12 @@ public class HelpView {
 	 */
     public static void printWelcome() {
     	System.out.println("");
-    	System.out.println("Welcome to Warzone Game! A Project by group U12");
+    	System.out.println("        #    #   ##   #####  ######  ####  #    # ######"); 
+    	System.out.println("        #    #  #  #  #    #     #  #    # ##   # #      ");
+    	System.out.println("        #    # #    # #    #    #   #    # # #  # #####  ");
+    	System.out.println("        # ## # ###### #####    #    #    # #  # # #      ");
+    	System.out.println("        ##  ## #    # #   #   #     #    # #   ## #      ");
+    	System.out.println("        #    # #    # #    # ######  ####  #    # ######  By 6441 Group #22");
     	System.out.println("");
     }
 
@@ -60,6 +65,7 @@ public class HelpView {
 	    				+ " -  showmap\n"
 	    				+ " -  gameplayer -add playername -remove playername\n"
 	    				+ " -  assigncountries\n"
+	    				+ " -  tournament -m listofmapfiles -p listofplayerstrategies -g numberofgames -d maxnumberofturns\n"
 						+ " -  next\n"
 	    				+ " -  reboot \n");
 	    		break;

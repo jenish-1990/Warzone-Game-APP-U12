@@ -2,6 +2,10 @@ package warzone.state;
 
 import warzone.service.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import warzone.model.*;
 import warzone.view.*;
 
@@ -37,13 +41,21 @@ public class Startup extends GamePlay {
 	 * Call this method to go the the next state in the sequence.
 	 */
 	public void next() {
-		if (d_gameEngine.isReadyToStart())
-			d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
-		else {
-			GenericView.printWarning("It is no ready to play, please check prerequists.");
+		
+		if(d_gameEngine.getIsInTournamentMode() == true) {
+			
+			d_gameEngine.playTournament();
 		}
 		
-		super.next();
+		else if (d_gameEngine.isReadyToStart()) {
+			
+			d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
+			super.next();
+		}
+		else {
+			
+			GenericView.printWarning("It is no ready to play, please check prerequists.");
+		}
 	}
 
 	/**
@@ -116,6 +128,58 @@ public class Startup extends GamePlay {
 		} else {
 			d_logEntryBuffer.logAction("SUCCESS", "Succeed to assign all the countries to players");
 		}
+	}
+	
+	/**
+	 * Sets the list of map files to be used in the tournament.
+	 * 
+	 * @param p_mapFiles
+	 */
+	public void setTournamentMapFiles(String[] p_mapFiles) {
+		
+		TournamentContext.getTournamentContext().setMapFiles(Arrays.asList(p_mapFiles));
+		d_gameEngine.setIsInTournamentMode(true);
+	}
+	
+	/**
+	 * Sets the list of player strategies to be used in the tournament.
+	 * 
+	 * @param p_playerStrategies
+	 */
+	public void setTournamentPlayerStrategies(String[] p_playerStrategies) {
+		
+		List<PlayerStrategyType> playerStrategyTypes = new ArrayList<PlayerStrategyType>();
+		
+		for(String playerStrategy : p_playerStrategies) {
+			
+			playerStrategyTypes.add(PlayerStrategyType.valueOf(playerStrategy.toUpperCase()));
+		}
+		
+		TournamentContext.getTournamentContext().setPlayerStrategies(playerStrategyTypes);
+		d_gameEngine.setIsInTournamentMode(true);
+	}
+
+	/**
+	 * Sets the number of games to be played on each map in the tournament.
+	 * 
+	 * @param p_numberOfGames
+	 */
+	public void setTournamentNumberOfGames(int p_numberOfGames) {
+		
+		TournamentContext.getTournamentContext().setNumberOfGames(p_numberOfGames);
+		d_gameEngine.setIsInTournamentMode(true);
+	}
+	
+	/**
+	 * Sets the maximum number of turns for each player in the tournament.
+	 * If no player has won once this limit is reached, the game will end as a draw.
+	 * 
+	 * @param p_maxTurns
+	 */
+	public void setTournamentMaxTurns(int p_maxTurns) {
+		
+		TournamentContext.getTournamentContext().setMaxTurns(p_maxTurns);
+		d_gameEngine.setIsInTournamentMode(true);
 	}
 
 	/**
