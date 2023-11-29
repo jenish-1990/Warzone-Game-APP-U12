@@ -2,10 +2,12 @@ package warzone.model;
 
 import warzone.view.GenericView;
 
+import java.io.Serializable;
+
 /**
  * This class represents one deploy order of the gameplay
  */
-public class NegotiateOrder extends Order {
+public class NegotiateOrder extends Order implements Serializable {
 
 	/**
 	 * owner of the order
@@ -25,7 +27,6 @@ public class NegotiateOrder extends Order {
 		d_targetPlayer = p_targetPlayer;
 		d_player = p_player;
 		this.d_orderType = OrderType.NEGOTIATE;
-		this.d_gameContext = GameContext.getGameContext(); 
 	}
 
 	/**
@@ -56,7 +57,7 @@ public class NegotiateOrder extends Order {
         }
         
 		// add order to engine
-		d_gameContext.addDiplomacyOrderToList(this);
+		getGameContext().addDiplomacyOrderToList(this);
 		
 		//print success information
 		GenericView.printSuccess("Success to execute order:" + toString());

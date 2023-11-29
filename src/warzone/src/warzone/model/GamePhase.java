@@ -1,11 +1,13 @@
 package warzone.model;
 
+import java.io.Serializable;
+
 /**
  * There are four phases in the game. They are map editing, startup, playing
  * and finished respectively.
  *
  */
-public enum GamePhase {
+public enum GamePhase implements Serializable {
 	/**
 	 * Game Phase of  MAPEDITOR
 	 */

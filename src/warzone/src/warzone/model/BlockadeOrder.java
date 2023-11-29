@@ -2,13 +2,15 @@ package warzone.model;
 
 import warzone.view.GenericView;
 
+import java.io.Serializable;
+
 /**
  *  Blockade Order
  *  the implimentation of Blockading a country
  * @author fzuray
  *
  */
-public class BlockadeOrder extends Order {	
+public class BlockadeOrder extends Order implements Serializable {
     
 
 	/**
@@ -30,7 +32,6 @@ public class BlockadeOrder extends Order {
     	d_targetCountry = p_targetCountry;
         d_player=p_player;
 		this.d_orderType = OrderType.BLOCKADE;
-		this.d_gameContext = GameContext.getGameContext();
     }
 
     /**

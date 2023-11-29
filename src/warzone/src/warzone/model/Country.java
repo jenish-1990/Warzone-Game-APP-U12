@@ -2,13 +2,14 @@ package warzone.model;
 
 import warzone.view.GenericView;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * This class represents the country in the game
  */
-public class Country {
+public class Country implements Serializable {
 
 	/**
 	 * country id

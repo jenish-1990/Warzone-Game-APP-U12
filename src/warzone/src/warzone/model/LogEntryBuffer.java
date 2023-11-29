@@ -2,6 +2,7 @@ package warzone.model;
 
 import warzone.service.GameEngine;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
  * @author zexin
  *
  */
-public class LogEntryBuffer extends Observable{
+public class LogEntryBuffer extends Observable implements Serializable {
 	/**
 	 * message
 	 */

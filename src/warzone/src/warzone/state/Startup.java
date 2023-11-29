@@ -32,7 +32,7 @@ public class Startup extends GamePlay {
 	 */
 	public Startup(GameEngine p_gameEngine) {
 		super(p_gameEngine);
-		d_startupService = new StartupService(d_gameContext);
+		d_startupService = new StartupService(p_gameEngine);
 		d_logEntryBuffer = d_gameContext.getLogEntryBuffer();
 		this.d_gamePhase = GamePhase.STARTUP;
 	}
@@ -116,7 +116,7 @@ public class Startup extends GamePlay {
 	 */
 	public void assigncountries() {
 		// check if current map is valid.
-		if (!(new MapService(d_gameContext).validateMap())) {
+		if (!(new MapService(GameContext.getGameContext()).validateMap())) {
 			d_logEntryBuffer.logAction("ERROR", "The map is invalid,please fix it before assigning countries");
 			return;
 		}

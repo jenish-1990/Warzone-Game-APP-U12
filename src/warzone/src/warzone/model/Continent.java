@@ -1,12 +1,13 @@
 package warzone.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * This class represents the continent in the game
  */
-public class Continent {
+public class Continent implements Serializable {
 
 	/**
 	 * continent id
