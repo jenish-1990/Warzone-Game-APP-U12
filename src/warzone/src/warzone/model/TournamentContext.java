@@ -1,9 +1,10 @@
 package warzone.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TournamentContext {
+public class TournamentContext implements Serializable {
 
 	private static TournamentContext TOURNAMENT_CONTEXT;
 	

@@ -132,7 +132,13 @@ public class RouterService {
 					d_gamePhase.showMap();
 					break;
 				case "play":
-					d_gamePhase.play();
+					d_gamePhase.play(p_router.getActionParameters());
+					break;
+				case "savegame":
+					d_gamePhase.saveGame(p_router.getActionParameters());
+					break;
+				case "loadgame":
+					d_gamePhase.loadGame(p_router.getActionParameters());
 					break;
 				case "savegame":
 					d_gamePhase.saveGame(p_router.getActionParameters());
@@ -316,6 +322,7 @@ public class RouterService {
 	private Router parseSimpleCommand(String[] p_commandArray) {
 		// create the router according to the command
 		Router l_router = null;
+		String l_para = "";
 		// the first element of commandArray is command
 		String l_command = Arrays.toString(p_commandArray).replace(",", " ");
 		switch (p_commandArray[0]) {
@@ -330,7 +337,7 @@ public class RouterService {
 				l_router = new Router(ControllerName.COMMON, "help", l_command);
 				break;	
 			case  "qamode":
-				String l_para =  p_commandArray.length > 1 ? p_commandArray[1] : "" ;
+				l_para = p_commandArray.length > 1 ? p_commandArray[1] : "" ;
 				l_router = new Router(ControllerName.COMMON, "qamode", l_para ,l_command);
 				break;	
 			case  "next":
@@ -342,8 +349,9 @@ public class RouterService {
 			case  "validatemap":
 				l_router =  new Router(ControllerName.MAP, "validatemap", l_command);
 				break;
-			case  "play":
-				l_router =  new Router(ControllerName.GAMEPLAY, "play", l_command);
+			case  "play":				
+				l_para =  p_commandArray.length > 1 ? p_commandArray[1] : "" ;
+				l_router =  new Router(ControllerName.GAMEPLAY, "play", l_para, l_command);
 				break;				
 			case  "assigncountries":
 				l_router =  new Router(ControllerName.STARTUP, "assigncountries", l_command);
