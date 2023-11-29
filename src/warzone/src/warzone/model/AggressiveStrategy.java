@@ -108,14 +108,12 @@ public class AggressiveStrategy extends PlayerStrategy implements Serializable {
 		for (Country l_c : l_strongestCountry.getNeighbors().values()) {
 			if (l_c.getOwner() != d_player) {
 				l_order = new AdvanceOrder(d_player, l_strongestCountry, l_c, l_strongestCountry.getArmyNumber() + d_player.d_armyHasIssued);
-				l_strongestCountry = l_c;
 				return l_order;
 			}
 		}
 		//has no enemy, move the army to next country
 		for (Country l_c : l_strongestCountry.getNeighbors().values()) {
 			l_order = new AdvanceOrder(d_player, l_strongestCountry, l_c, l_strongestCountry.getArmyNumber() + d_player.d_armyHasIssued);
-			l_strongestCountry = l_c;
 			return l_order;
 		}
 		
