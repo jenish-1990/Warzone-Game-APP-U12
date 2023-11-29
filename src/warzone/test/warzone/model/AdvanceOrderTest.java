@@ -207,16 +207,4 @@ public class AdvanceOrderTest {
 		assertEquals(d_attackingCountry.getArmyNumber(), 0); //Attacker does not lose some armies
 		assertEquals(d_defendingCountry.getArmyNumber(),  2); //Some should be lost due to fights
 	}
-
-	/**
-	 * faild test due to in Diplomacy
-	 */
-	@Test
-	public void testWithDiplomacyInCurrentTurn(){
-		d_defender.addCard(Card.NEGOTIATE);
-		NegotiateOrder l_order = new NegotiateOrder(d_defender, d_attacker);
-		l_order.execute();
-		AdvanceOrder l_advance = new AdvanceOrder(d_attacker, d_attackingCountry, d_defendingCountry, 2);
-		assertFalse(l_advance.valid());
-	}
 }

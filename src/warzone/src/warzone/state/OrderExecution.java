@@ -49,7 +49,6 @@ public class OrderExecution extends GamePlay {
 	 */
 	public void play(String p_mode) {
 		d_gameEngine.executeOrders();
-		d_gameEngine.renderAndUpdateGameResult();
 		if (!d_gameEngine.isGameEnded())
 			d_gameEngine.assignCards();
 	}
@@ -85,7 +84,7 @@ public class OrderExecution extends GamePlay {
 	/**
 	 * Sets the list of map files to be used in the tournament.
 	 * 
-	 * @param p_mapFiles given map files
+	 * @param p_mapFiles
 	 */
 	public void setTournamentMapFiles(String[] p_mapFiles) {
 		printInvalidCommandMessage();
@@ -94,7 +93,7 @@ public class OrderExecution extends GamePlay {
 	/**
 	 * Sets the list of player strategies to be used in the tournament.
 	 * 
-	 * @param p_playerStrategies given strategies
+	 * @param p_playerStrategies
 	 */
 	public void setTournamentPlayerStrategies(String[] p_playerStrategies) {
 		printInvalidCommandMessage();
@@ -103,7 +102,7 @@ public class OrderExecution extends GamePlay {
 	/**
 	 * Sets the number of games to be played on each map in the tournament.
 	 * 
-	 * @param p_numberOfGames given game numbers
+	 * @param p_numberOfGames
 	 */
 	public void setTournamentNumberOfGames(int p_numberOfGames) {
 		printInvalidCommandMessage();
@@ -113,7 +112,7 @@ public class OrderExecution extends GamePlay {
 	 * Sets the maximum number of turns for each player in the tournament.
 	 * If no player has won once this limit is reached, the game will end as a draw.
 	 * 
-	 * @param p_maxTurns given max turns
+	 * @param p_maxTurns
 	 */
 	public void setTournamentMaxTurns(int p_maxTurns) {
 		printInvalidCommandMessage();

@@ -1,5 +1,6 @@
 package warzone.model;
 import java.io.Serializable;
+import java.util.Scanner;
 
 import java.util.ArrayList;
 import java.util.HashMap;

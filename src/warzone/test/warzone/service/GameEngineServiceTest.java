@@ -115,9 +115,6 @@ public class GameEngineServiceTest {
 		assertTrue(d_gameEngine.isReadyToStart() == false);
 	}
 	
-	/**
-	 * test TournamentMode Empty Map List
-	 */
 	@Test
 	public void testTournamentModeEmptyMapList() {
 		
@@ -136,9 +133,6 @@ public class GameEngineServiceTest {
 		assertTrue(l_tournamentContext.getResults() == null || l_tournamentContext.getResults()[0][0] == null );
 	}
 	
-	/**
-	 * test Tournament Mode Empty Player Strategies List
-	 */
 	@Test
 	public void testTournamentModeEmptyPlayerStrategiesList() {
 		
@@ -157,9 +151,6 @@ public class GameEngineServiceTest {
 		assertTrue(l_tournamentContext.getResults() == null || l_tournamentContext.getResults()[0][0] == null );
 	}
 	
-	/**
-	 * test Tournament Mode whether is Valid
-	 */
 	@Test
 	public void testTournamentModeValid() {
 		
