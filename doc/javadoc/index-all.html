@@ -354,19 +354,19 @@
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/service/CommonTool.html#CommonTool--">CommonTool()</a></span> - Constructor for class warzone.service.<a href="warzone/service/CommonTool.html" title="class in warzone.service">CommonTool</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="warzone/service/ConquestMapReader.html" title="class in warzone.service"><span class="typeNameLink">ConquestMapReader</span></a> - Class in <a href="warzone/service/package-summary.html">warzone.service</a></dt>
+<dt><a href="warzone/model/ConquestMapHandler.html" title="class in warzone.model"><span class="typeNameLink">ConquestMapHandler</span></a> - Class in <a href="warzone/model/package-summary.html">warzone.model</a></dt>
 <dd>
-<div class="block">Conquest map reader</div>
+<div class="block">class of Conquest Map Handler</div>
 </dd>
-<dt><span class="memberNameLink"><a href="warzone/service/ConquestMapReader.html#ConquestMapReader-warzone.model.GameContext-">ConquestMapReader(GameContext)</a></span> - Constructor for class warzone.service.<a href="warzone/service/ConquestMapReader.html" title="class in warzone.service">ConquestMapReader</a></dt>
+<dt><span class="memberNameLink"><a href="warzone/model/ConquestMapHandler.html#ConquestMapHandler-warzone.model.GameContext-">ConquestMapHandler(GameContext)</a></span> - Constructor for class warzone.model.<a href="warzone/model/ConquestMapHandler.html" title="class in warzone.model">ConquestMapHandler</a></dt>
 <dd>
 <div class="block">The constructor of this class</div>
 </dd>
-<dt><a href="warzone/service/ConquestMapWriter.html" title="class in warzone.service"><span class="typeNameLink">ConquestMapWriter</span></a> - Class in <a href="warzone/service/package-summary.html">warzone.service</a></dt>
+<dt><a href="warzone/model/ConquestMapHandlerAdapter.html" title="class in warzone.model"><span class="typeNameLink">ConquestMapHandlerAdapter</span></a> - Class in <a href="warzone/model/package-summary.html">warzone.model</a></dt>
 <dd>
-<div class="block">Conquest Map Writer</div>
+<div class="block">adapter of ConquestMapHandler</div>
 </dd>
-<dt><span class="memberNameLink"><a href="warzone/service/ConquestMapWriter.html#ConquestMapWriter-warzone.model.GameContext-">ConquestMapWriter(GameContext)</a></span> - Constructor for class warzone.service.<a href="warzone/service/ConquestMapWriter.html" title="class in warzone.service">ConquestMapWriter</a></dt>
+<dt><span class="memberNameLink"><a href="warzone/model/ConquestMapHandlerAdapter.html#ConquestMapHandlerAdapter-warzone.model.GameContext-warzone.model.ConquestMapHandler-">ConquestMapHandlerAdapter(GameContext, ConquestMapHandler)</a></span> - Constructor for class warzone.model.<a href="warzone/model/ConquestMapHandlerAdapter.html" title="class in warzone.model">ConquestMapHandlerAdapter</a></dt>
 <dd>
 <div class="block">The constructor of this class</div>
 </dd>
@@ -491,6 +491,10 @@
 <dd>
 <div class="block">command which create this order</div>
 </dd>
+<dt><span class="memberNameLink"><a href="warzone/model/DominateMapHandler.html#d_gameContext">d_gameContext</a></span> - Variable in class warzone.model.<a href="warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a></dt>
+<dd>
+<div class="block">game context</div>
+</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/PlayerStrategy.html#d_gameContext">d_gameContext</a></span> - Variable in class warzone.model.<a href="warzone/model/PlayerStrategy.html" title="class in warzone.model">PlayerStrategy</a></dt>
 <dd>
 <div class="block">Get Game Context</div>
@@ -513,6 +517,10 @@
 <dd>
 <div class="block">currenet phase</div>
 </dd>
+<dt><span class="memberNameLink"><a href="warzone/model/DominateMapHandler.html#d_logEntryBuffer">d_logEntryBuffer</a></span> - Variable in class warzone.model.<a href="warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a></dt>
+<dd>
+<div class="block">log entry buffer</div>
+</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/Order.html#d_orderType">d_orderType</a></span> - Variable in class warzone.model.<a href="warzone/model/Order.html" title="class in warzone.model">Order</a></dt>
 <dd>
 <div class="block">current Order Type</div>
@@ -529,25 +537,34 @@
 <dd>
 <div class="block">This method can detach observers from the observer list in it.</div>
 </dd>
+<dt><a href="warzone/model/DominateMapHandler.html" title="class in warzone.model"><span class="typeNameLink">DominateMapHandler</span></a> - Class in <a href="warzone/model/package-summary.html">warzone.model</a></dt>
+<dd>
+<div class="block">Dominate Map Handler</div>
+</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/DominateMapHandler.html#DominateMapHandler-warzone.model.GameContext-">DominateMapHandler(GameContext)</a></span> - Constructor for class warzone.model.<a href="warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a></dt>
+<dd>
+<div class="block">The constructor of this class</div>
+</dd>
 </dl>
 <a name="I:E">
 <!--   -->
 </a>
 <h2 class="title">E</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="warzone/service/ConquestMapReader.html#editConquestMap-java.lang.String-">editConquestMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/ConquestMapReader.html" title="class in warzone.service">ConquestMapReader</a></dt>
+<dt><span class="memberNameLink"><a href="warzone/model/ConquestMapHandler.html#editMap-java.lang.String-">editMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/ConquestMapHandler.html" title="class in warzone.model">ConquestMapHandler</a></dt>
 <dd>
 <div class="block">Load a map with format 'conquest'
  or create a new map from scratch if the file does not exist.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="warzone/service/MapService.html#editDominateMap-java.lang.String-">editDominateMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
+<dt><span class="memberNameLink"><a href="warzone/model/ConquestMapHandlerAdapter.html#editMap-java.lang.String-">editMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/ConquestMapHandlerAdapter.html" title="class in warzone.model">ConquestMapHandlerAdapter</a></dt>
+<dd>
+<div class="block">Load a map with format 'conquest'
+ or create a new map from scratch if the file does not exist.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/DominateMapHandler.html#editMap-java.lang.String-">editMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a></dt>
 <dd>
 <div class="block">Load a map from an existing map
  or create a new map from scratch if the file does not exist.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="warzone/model/MapServiceAdapter.html#editMap-java.lang.String-">editMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/MapServiceAdapter.html" title="class in warzone.model">MapServiceAdapter</a></dt>
-<dd>
-<div class="block">This method will perform editmap to maps with 'conquest' format</div>
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/service/MapService.html#editMap-java.lang.String-">editMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
 <dd>
@@ -1172,16 +1189,6 @@
 <dd>
 <div class="block">initiate the list of neighbours</div>
 </dd>
-<dt><span class="memberNameLink"><a href="warzone/service/ConquestMapReader.html#loadConquestMap-java.lang.String-">loadConquestMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/ConquestMapReader.html" title="class in warzone.service">ConquestMapReader</a></dt>
-<dd>
-<div class="block">Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#loadDominateMap-java.lang.String-">loadDominateMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
-<dd>
-<div class="block">Performs the action for user command: loadmap filename
- 
- Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph</div>
-</dd>
 <dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#loadGame-java.lang.String-">loadGame(String)</a></span> - Method in class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
 <dd>
 <div class="block">load game context</div>
@@ -1201,6 +1208,20 @@
 <dt><span class="memberNameLink"><a href="warzone/service/GameEngine.html#loadGameContext-warzone.model.GameContext-">loadGameContext(GameContext)</a></span> - Method in class warzone.service.<a href="warzone/service/GameEngine.html" title="class in warzone.service">GameEngine</a></dt>
 <dd>
 <div class="block">load game context</div>
+</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/ConquestMapHandler.html#loadMap-java.lang.String-">loadMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/ConquestMapHandler.html" title="class in warzone.model">ConquestMapHandler</a></dt>
+<dd>
+<div class="block">Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/ConquestMapHandlerAdapter.html#loadMap-java.lang.String-">loadMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/ConquestMapHandlerAdapter.html" title="class in warzone.model">ConquestMapHandlerAdapter</a></dt>
+<dd>
+<div class="block">Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/DominateMapHandler.html#loadMap-java.lang.String-">loadMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a></dt>
+<dd>
+<div class="block">Performs the action for user command: loadmap filename
+ 
+ Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph</div>
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#loadMap-java.lang.String-">loadMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
 <dd>
@@ -1310,14 +1331,6 @@
 <dt><span class="memberNameLink"><a href="warzone/service/MapService.html#MapService-warzone.model.GameContext-">MapService(GameContext)</a></span> - Constructor for class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
 <dd>
 <div class="block">constructor</div>
-</dd>
-<dt><a href="warzone/model/MapServiceAdapter.html" title="class in warzone.model"><span class="typeNameLink">MapServiceAdapter</span></a> - Class in <a href="warzone/model/package-summary.html">warzone.model</a></dt>
-<dd>
-<div class="block">This class is the adapter for MapServiceAdapter</div>
-</dd>
-<dt><span class="memberNameLink"><a href="warzone/model/MapServiceAdapter.html#MapServiceAdapter-warzone.model.GameContext-warzone.service.ConquestMapWriter-warzone.service.ConquestMapReader-">MapServiceAdapter(GameContext, ConquestMapWriter, ConquestMapReader)</a></span> - Constructor for class warzone.model.<a href="warzone/model/MapServiceAdapter.html" title="class in warzone.model">MapServiceAdapter</a></dt>
-<dd>
-<div class="block">the constructor of the class</div>
 </dd>
 <dt><a href="warzone/model/MapType.html" title="enum in warzone.model"><span class="typeNameLink">MapType</span></a> - Enum in <a href="warzone/model/package-summary.html">warzone.model</a></dt>
 <dd>
@@ -1790,14 +1803,6 @@
 </a>
 <h2 class="title">S</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="warzone/service/ConquestMapWriter.html#saveConquestMap-java.lang.String-">saveConquestMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/ConquestMapWriter.html" title="class in warzone.service">ConquestMapWriter</a></dt>
-<dd>
-<div class="block">Save a map to a text file exactly as edited (using the "conquest" game map format).</div>
-</dd>
-<dt><span class="memberNameLink"><a href="warzone/service/MapService.html#saveDominateMap-java.lang.String-">saveDominateMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
-<dd>
-<div class="block">save map to file</div>
-</dd>
 <dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#saveGame-java.lang.String-">saveGame(String)</a></span> - Method in class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
 <dd>
 <div class="block">save game context</div>
@@ -1814,9 +1819,17 @@
 <dd>
 <div class="block">save game context</div>
 </dd>
-<dt><span class="memberNameLink"><a href="warzone/model/MapServiceAdapter.html#saveMap-java.lang.String-">saveMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/MapServiceAdapter.html" title="class in warzone.model">MapServiceAdapter</a></dt>
+<dt><span class="memberNameLink"><a href="warzone/model/ConquestMapHandler.html#saveMap-java.lang.String-">saveMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/ConquestMapHandler.html" title="class in warzone.model">ConquestMapHandler</a></dt>
 <dd>
-<div class="block">This method will save maps with 'conquest' format</div>
+<div class="block">Save a map to a text file exactly as edited (using the "conquest" game map format).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/ConquestMapHandlerAdapter.html#saveMap-java.lang.String-">saveMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/ConquestMapHandlerAdapter.html" title="class in warzone.model">ConquestMapHandlerAdapter</a></dt>
+<dd>
+<div class="block">Save a map to a text file exactly as edited (using the "conquest" game map format).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="warzone/model/DominateMapHandler.html#saveMap-java.lang.String-">saveMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a></dt>
+<dd>
+<div class="block">save map to file</div>
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/service/MapService.html#saveMap-java.lang.String-">saveMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
 <dd>
@@ -1939,6 +1952,14 @@
 <dt><span class="memberNameLink"><a href="warzone/model/TournamentContext.html#setMapFiles-java.util.List-">setMapFiles(List&lt;String&gt;)</a></span> - Method in class warzone.model.<a href="warzone/model/TournamentContext.html" title="class in warzone.model">TournamentContext</a></dt>
 <dd>
 <div class="block">set map files</div>
+</dd>
+<dt><span class="memberNameLink"><a href="warzone/service/MapService.html#setMapHandler-warzone.model.DominateMapHandler-">setMapHandler(DominateMapHandler)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
+<dd>
+<div class="block">set map Handler</div>
+</dd>
+<dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#setMapHandler-warzone.model.DominateMapHandler-">setMapHandler(DominateMapHandler)</a></span> - Method in class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
+<dd>
+<div class="block">set map Handler</div>
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/model/GameContext.html#setMapType-warzone.model.MapType-">setMapType(MapType)</a></span> - Method in class warzone.model.<a href="warzone/model/GameContext.html" title="class in warzone.model">GameContext</a></dt>
 <dd>

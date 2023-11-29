@@ -183,34 +183,32 @@ implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializab
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/StartupService.html#loadDominateMap-java.lang.String-">loadDominateMap</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)</code>
-<div class="block">Performs the action for user command: loadmap filename
- 
- Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/StartupService.html#loadGame-java.lang.String-">loadGame</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)</code>
 <div class="block">load game context</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/StartupService.html#loadMap-java.lang.String-">loadMap</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)</code>
 <div class="block">load map according to the type of map</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/StartupService.html#removePlayer-java.lang.String-">removePlayer</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_playerName)</code>
 <div class="block">Remove player by name</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/StartupService.html#saveGame-java.lang.String-">saveGame</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)</code>
 <div class="block">save game context</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../warzone/service/StartupService.html#setMapHandler-warzone.model.DominateMapHandler-">setMapHandler</a></span>(<a href="../../warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a>&nbsp;p_mapHandler)</code>
+<div class="block">set map Handler</div>
 </td>
 </tr>
 </table>
@@ -271,6 +269,20 @@ implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializab
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="setMapHandler-warzone.model.DominateMapHandler-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setMapHandler</h4>
+<pre>public&nbsp;void&nbsp;setMapHandler(<a href="../../warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a>&nbsp;p_mapHandler)</pre>
+<div class="block">set map Handler</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p_mapHandler</code> - given map Handler</dd>
+</dl>
+</li>
+</ul>
 <a name="addPlayer-warzone.model.Player-">
 <!--   -->
 </a>
@@ -316,24 +328,6 @@ implements <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializab
 <dd><code>p_fileName</code> - given filename</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>if succeed</dd>
-</dl>
-</li>
-</ul>
-<a name="loadDominateMap-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>loadDominateMap</h4>
-<pre>public&nbsp;boolean&nbsp;loadDominateMap(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;p_fileName)</pre>
-<div class="block">Performs the action for user command: loadmap filename
- 
- Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>p_fileName</code> - file name of map</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>if map successfully loaded</dd>
 </dl>
 </li>
 </ul>

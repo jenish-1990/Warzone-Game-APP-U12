@@ -243,6 +243,63 @@
 </li>
 </ul>
 </li>
+<li class="blockList"><a name="warzone.model.ConquestMapHandler">
+<!--   -->
+</a>
+<h3>Class <a href="warzone/model/ConquestMapHandler.html" title="class in warzone.model">warzone.model.ConquestMapHandler</a> extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>1L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>d_gameContext</h4>
+<pre><a href="warzone/model/GameContext.html" title="class in warzone.model">GameContext</a> d_gameContext</pre>
+<div class="block">game context</div>
+</li>
+<li class="blockList">
+<h4>d_logEntryBuffer</h4>
+<pre><a href="warzone/model/LogEntryBuffer.html" title="class in warzone.model">LogEntryBuffer</a> d_logEntryBuffer</pre>
+<div class="block">log entry buffer</div>
+</li>
+<li class="blockListLast">
+<h4>d_mapService</h4>
+<pre><a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a> d_mapService</pre>
+<div class="block">Map Service</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="warzone.model.ConquestMapHandlerAdapter">
+<!--   -->
+</a>
+<h3>Class <a href="warzone/model/ConquestMapHandlerAdapter.html" title="class in warzone.model">warzone.model.ConquestMapHandlerAdapter</a> extends <a href="warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a> implements Serializable</h3>
+<dl class="nameValue">
+<dt>serialVersionUID:</dt>
+<dd>1L</dd>
+</dl>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>d_mapService</h4>
+<pre><a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a> d_mapService</pre>
+<div class="block">Map Service</div>
+</li>
+<li class="blockListLast">
+<h4>d_conquestMapHandler</h4>
+<pre><a href="warzone/model/ConquestMapHandler.html" title="class in warzone.model">ConquestMapHandler</a> d_conquestMapHandler</pre>
+<div class="block">Conquest MapHandler</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="blockList"><a name="warzone.model.Continent">
 <!--   -->
 </a>
@@ -359,6 +416,28 @@
 <h4>d_armyNumber</h4>
 <pre>int d_armyNumber</pre>
 <div class="block">army number</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="blockList"><a name="warzone.model.DominateMapHandler">
+<!--   -->
+</a>
+<h3>Class <a href="warzone/model/DominateMapHandler.html" title="class in warzone.model">warzone.model.DominateMapHandler</a> extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
+<ul class="blockList">
+<li class="blockList">
+<h3>Serialized Fields</h3>
+<ul class="blockList">
+<li class="blockList">
+<h4>d_gameContext</h4>
+<pre><a href="warzone/model/GameContext.html" title="class in warzone.model">GameContext</a> d_gameContext</pre>
+<div class="block">game context</div>
+</li>
+<li class="blockListLast">
+<h4>d_logEntryBuffer</h4>
+<pre><a href="warzone/model/LogEntryBuffer.html" title="class in warzone.model">LogEntryBuffer</a> d_logEntryBuffer</pre>
+<div class="block">log entry buffer</div>
 </li>
 </ul>
 </li>
@@ -769,28 +848,6 @@
 <li class="blockList">
 <h2 title="Package">Package&nbsp;warzone.service</h2>
 <ul class="blockList">
-<li class="blockList"><a name="warzone.service.ConquestMapReader">
-<!--   -->
-</a>
-<h3>Class <a href="warzone/service/ConquestMapReader.html" title="class in warzone.service">warzone.service.ConquestMapReader</a> extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a> implements Serializable</h3>
-<ul class="blockList">
-<li class="blockList">
-<h3>Serialized Fields</h3>
-<ul class="blockList">
-<li class="blockList">
-<h4>d_gameContext</h4>
-<pre><a href="warzone/model/GameContext.html" title="class in warzone.model">GameContext</a> d_gameContext</pre>
-<div class="block">game context</div>
-</li>
-<li class="blockListLast">
-<h4>d_logEntryBuffer</h4>
-<pre><a href="warzone/model/LogEntryBuffer.html" title="class in warzone.model">LogEntryBuffer</a> d_logEntryBuffer</pre>
-<div class="block">log entry buffer</div>
-</li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="blockList"><a name="warzone.service.GameEngine">
 <!--   -->
 </a>
@@ -872,10 +929,15 @@
 <pre><a href="warzone/service/GameEngine.html" title="class in warzone.service">GameEngine</a> d_gameEngine</pre>
 <div class="block">game engine</div>
 </li>
-<li class="blockListLast">
+<li class="blockList">
 <h4>d_logEntryBuffer</h4>
 <pre><a href="warzone/model/LogEntryBuffer.html" title="class in warzone.model">LogEntryBuffer</a> d_logEntryBuffer</pre>
 <div class="block">log entry buffer</div>
+</li>
+<li class="blockListLast">
+<h4>d_mapHandler</h4>
+<pre><a href="warzone/model/DominateMapHandler.html" title="class in warzone.model">DominateMapHandler</a> d_mapHandler</pre>
+<div class="block">Dominate Map Handler</div>
 </li>
 </ul>
 </li>
