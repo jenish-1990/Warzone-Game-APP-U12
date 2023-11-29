@@ -540,13 +540,18 @@
 <div class="block">Load a map with format 'conquest'
  or create a new map from scratch if the file does not exist.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="warzone/service/MapService.html#editDominateMap-java.lang.String-">editDominateMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
+<dd>
+<div class="block">Load a map from an existing map
+ or create a new map from scratch if the file does not exist.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="warzone/model/MapServiceAdapter.html#editMap-java.lang.String-">editMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/MapServiceAdapter.html" title="class in warzone.model">MapServiceAdapter</a></dt>
 <dd>
 <div class="block">This method will perform editmap to maps with 'conquest' format</div>
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/service/MapService.html#editMap-java.lang.String-">editMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
 <dd>
-<div class="block">Load a map from an existing â€œdominationâ€� map file,
+<div class="block">Load a map from an existing map
  or create a new map from scratch if the file does not exist.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/state/GamePlay.html#editMap-java.lang.String-">editMap(String)</a></span> - Method in class warzone.state.<a href="warzone/state/GamePlay.html" title="class in warzone.state">GamePlay</a></dt>
@@ -1171,6 +1176,12 @@
 <dd>
 <div class="block">Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#loadDominateMap-java.lang.String-">loadDominateMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
+<dd>
+<div class="block">Performs the action for user command: loadmap filename
+ 
+ Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph</div>
+</dd>
 <dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#loadGame-java.lang.String-">loadGame(String)</a></span> - Method in class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
 <dd>
 <div class="block">load game context</div>
@@ -1191,15 +1202,9 @@
 <dd>
 <div class="block">load game context</div>
 </dd>
-<dt><span class="memberNameLink"><a href="warzone/model/StartupServiceAdapter.html#loadMap-java.lang.String-">loadMap(String)</a></span> - Method in class warzone.model.<a href="warzone/model/StartupServiceAdapter.html" title="class in warzone.model">StartupServiceAdapter</a></dt>
-<dd>
-<div class="block">This method will load the map from the resource file</div>
-</dd>
 <dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#loadMap-java.lang.String-">loadMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
 <dd>
-<div class="block">Performs the action for user command: loadmap filename
- 
- Game starts by user selection of a user-saved map file, which loads the map as a connected directed graph</div>
+<div class="block">load map according to the type of map</div>
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/state/IssueOrder.html#loadMap-java.lang.String-">loadMap(String)</a></span> - Method in class warzone.state.<a href="warzone/state/IssueOrder.html" title="class in warzone.state">IssueOrder</a></dt>
 <dd>
@@ -1315,7 +1320,9 @@
 <div class="block">the constructor of the class</div>
 </dd>
 <dt><a href="warzone/model/MapType.html" title="enum in warzone.model"><span class="typeNameLink">MapType</span></a> - Enum in <a href="warzone/model/package-summary.html">warzone.model</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Map Type</div>
+</dd>
 <dt><a href="warzone/view/MapView.html" title="class in warzone.view"><span class="typeNameLink">MapView</span></a> - Class in <a href="warzone/view/package-summary.html">warzone.view</a></dt>
 <dd>
 <div class="block">This class can print the map in the command line</div>
@@ -1783,6 +1790,10 @@
 <dd>
 <div class="block">Save a map to a text file exactly as edited (using the "conquest" game map format).</div>
 </dd>
+<dt><span class="memberNameLink"><a href="warzone/service/MapService.html#saveDominateMap-java.lang.String-">saveDominateMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
+<dd>
+<div class="block">save map to file</div>
+</dd>
 <dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#saveGame-java.lang.String-">saveGame(String)</a></span> - Method in class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
 <dd>
 <div class="block">save game context</div>
@@ -1805,7 +1816,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/service/MapService.html#saveMap-java.lang.String-">saveMap(String)</a></span> - Method in class warzone.service.<a href="warzone/service/MapService.html" title="class in warzone.service">MapService</a></dt>
 <dd>
-<div class="block">save map to file</div>
+<div class="block">save map to file according to the map type</div>
 </dd>
 <dt><span class="memberNameLink"><a href="warzone/state/GamePlay.html#saveMap-java.lang.String-">saveMap(String)</a></span> - Method in class warzone.state.<a href="warzone/state/GamePlay.html" title="class in warzone.state">GamePlay</a></dt>
 <dd>
@@ -2118,14 +2129,6 @@
 <dt><span class="memberNameLink"><a href="warzone/service/StartupService.html#StartupService-warzone.service.GameEngine-">StartupService(GameEngine)</a></span> - Constructor for class warzone.service.<a href="warzone/service/StartupService.html" title="class in warzone.service">StartupService</a></dt>
 <dd>
 <div class="block">This constructor can initiate the game context of current instance.</div>
-</dd>
-<dt><a href="warzone/model/StartupServiceAdapter.html" title="class in warzone.model"><span class="typeNameLink">StartupServiceAdapter</span></a> - Class in <a href="warzone/model/package-summary.html">warzone.model</a></dt>
-<dd>
-<div class="block">This class is the adapter for StartupService by loading maps with 'conquest' format</div>
-</dd>
-<dt><span class="memberNameLink"><a href="warzone/model/StartupServiceAdapter.html#StartupServiceAdapter-warzone.model.GameContext-warzone.service.ConquestMapReader-">StartupServiceAdapter(GameContext, ConquestMapReader)</a></span> - Constructor for class warzone.model.<a href="warzone/model/StartupServiceAdapter.html" title="class in warzone.model">StartupServiceAdapter</a></dt>
-<dd>
-<div class="block">the constructor of the class</div>
 </dd>
 </dl>
 <a name="I:T">
