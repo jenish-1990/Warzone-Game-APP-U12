@@ -2,6 +2,7 @@ package warzone.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +20,7 @@ import warzone.model.WarzoneProperties;
 /**
  * Conquest map reader
  */
-public class ConquestMapReader {
+public class ConquestMapReader implements Serializable {
 	/**
 	 * game context
 	 */
@@ -33,7 +34,7 @@ public class ConquestMapReader {
 	/**
 	 * the scanner
 	 */
-	private Scanner l_scanner;
+	private transient Scanner l_scanner;
 
 	/**
 	 * The constructor of this class

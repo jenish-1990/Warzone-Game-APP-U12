@@ -11,7 +11,7 @@ import java.util.*;
 	/**
 	 *  a random number
 	 */
-	private static Random l_rand = new Random();
+	private static Random d_rand = new Random();
 
 	/**
 	 * constructor of BenevolentStrategy
@@ -102,10 +102,10 @@ import java.util.*;
 	 * @return random player
 	 */
 	protected Player getRandomPlayer(){
-		int l_idx=l_rand.nextInt(GameContext.getGameContext().getPlayers().size());
+		int l_idx=d_rand.nextInt(GameContext.getGameContext().getPlayers().size());
 		Player l_player = (Player) GameContext.getGameContext().getPlayers().values().toArray()[l_idx];
 		while(l_player.equals(d_player)){
-			l_idx=l_rand.nextInt(GameContext.getGameContext().getPlayers().size());
+			l_idx=d_rand.nextInt(GameContext.getGameContext().getPlayers().size());
 			l_player = (Player) GameContext.getGameContext().getPlayers().values().toArray()[l_idx];
 		}
 		return l_player;
