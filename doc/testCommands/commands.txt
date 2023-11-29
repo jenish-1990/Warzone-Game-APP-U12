@@ -12,11 +12,13 @@ editneighbor -remove 5 2
 editneighbor -add 1 3 -add 4 5 -add 5 4 -add 2 5 
 
 showmap
- 
+  gameplayer -add Mike -add Rik  
  gameplayer -add Mike Human -add Rik Human 
  gameplayer -add Mike aggressive -add Rik aggressive
  
- gameplayer -add Mike Human -add Rik aggressive  
+ gameplayer -add Mike Human -add Rik aggressive
+ 
+ gameplayer -add Mike Random -add Rik Random    
  
   gameplayer -remove jack
  

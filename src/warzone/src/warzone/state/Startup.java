@@ -161,9 +161,9 @@ public class Startup extends GamePlay {
 		// 3. render to view
 		if (l_ok) {
 			d_logEntryBuffer.logAction("SUCCESS",
-					String.format("Player [%s] was added successfully.", l_player.getName()));
+					String.format("Player [%s - %s] was added successfully.", l_player.getName(), l_player.getPlayerStrategyType() ));
 		} else {
-			d_logEntryBuffer.logAction("ERROR", String.format("Player [%s] was added failed.", l_player.getName()));
+			d_logEntryBuffer.logAction("ERROR", String.format("Player [%s - %s] was added failed.", l_player.getName(), l_player.getPlayerStrategyType()));
 		}
 	}
 

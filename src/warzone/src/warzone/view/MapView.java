@@ -61,7 +61,7 @@ public class MapView {
      */
     public static void printMapWithArmies(Map<Integer, Continent> p_continents) {
         System.out.println("***************************************************************************************");
-        System.out.println("** Continent[Bonus Army]  -  Country  -  neighbors  -   Armies  -  State[Player]     **");
+        System.out.println("** Continent[Bonus Army]  -  Country  -  neighbors  -   Armies  -  State[Player - Status - Army In Pool]     **");
         System.out.println("***************************************************************************************");
 
         if( p_continents.isEmpty())
@@ -73,8 +73,8 @@ public class MapView {
             for (Country l_country : l_continent.getCountries().values()) {
                 System.out.println(String.format("%27s", l_country.getCountryID()) + " "
                         + String.format("%-25s", l_country.getCountryName()) + " "
-                        + String.format("%-25s",l_country.getArmyNumber()) + " "
-                        + String.format("%-25s", l_country.getCountryState().toString() + " [" + (l_country.getOwner()==null ? "": l_country.getOwner().getName()) + "]"));
+                        + String.format("%-10s",l_country.getArmyNumber()) + " "
+                        + String.format("%-25s", l_country.getCountryState().toString() + " [" + (l_country.getOwner()==null ? "": (l_country.getOwner().getName()) + " - "+ l_country.getOwner().getLifeStatus() +" - "+ l_country.getOwner().getArmiesToDeploy()) +" ]"));
                         
                 for (Country l_nCountry : l_country.getNeighbors().values())
                     System.out.println(String.format("%40s", l_nCountry.getCountryID()) + " " +l_nCountry.getCountryName());

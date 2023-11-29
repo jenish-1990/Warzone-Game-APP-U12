@@ -210,6 +210,14 @@ public class Player implements Serializable {
 	public boolean getIsAlive() {
 		return d_isAlive;
 	}
+	
+	/**
+	 * This method will show whether a player is out of the game.
+	 * @return Alive the current player still has at least one territory.
+	 */
+	public String getLifeStatus() {
+		return d_isAlive ? "Alive" : "Died";
+	}
 
 	/**
 	 * This method can set the survival of the current player.
@@ -592,7 +600,15 @@ public class Player implements Serializable {
 			this.setHasFinisedIssueOrder(true);
 		
 		//check if the player finish the issue order
-		if(d_hasFinishIssueOrder) return;
+		if(d_hasFinishIssueOrder) {
+			GenericView.printWarning(String.format("----- Player [%s] has reached max orders in this Turn or has finished issuing order.", this.getName() ));
+			return;
+		}
+		
+		if(!this.getIsAlive()) {
+			GenericView.printWarning(String.format("----- Player [%s] is died ", this.getName() ));
+			return;
+		}
 		
 
 		String l_command = "";
