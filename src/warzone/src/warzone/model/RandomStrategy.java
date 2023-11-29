@@ -21,7 +21,7 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 	/**
 	 *  a random number
 	 */
-	private static Random l_rand = new Random();
+	private static Random d_rand = new Random();
 
 	/**
 	 * Get a random country owned by the player
@@ -31,10 +31,10 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 		Country l_randomCountry = null;
 		if(GameContext.getGameContext().getCountries().size() > 0
 				&& d_player.getConqueredCountries().size() < GameContext.getGameContext().getCountries().size()  ) {
-			int l_idx=l_rand.nextInt(GameContext.getGameContext().getCountries().size());
+			int l_idx=d_rand.nextInt(GameContext.getGameContext().getCountries().size());
 			l_randomCountry=(Country) GameContext.getGameContext().getCountries().values().toArray()[l_idx];
 			while(l_randomCountry.getOwner().equals(d_player)){
-				l_idx=l_rand.nextInt(GameContext.getGameContext().getCountries().size());
+				l_idx=d_rand.nextInt(GameContext.getGameContext().getCountries().size());
 				l_randomCountry=(Country) GameContext.getGameContext().getCountries().values().toArray()[l_idx];
 			}
 		}
@@ -46,7 +46,7 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 	 * @return random country owned by the player
 	 */
 	protected Country getRandomConqueredCountry() {
-		int l_idx=l_rand.nextInt(d_player.getConqueredCountries().size());
+		int l_idx=d_rand.nextInt(d_player.getConqueredCountries().size());
 		Country l_randomCountry=(Country) d_player.getConqueredCountries().values().toArray()[l_idx];
 		return l_randomCountry;
 	}
@@ -59,7 +59,7 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 	protected Country getRandomNeighbor(Country p_currentCountry) {
 		if(p_currentCountry.getNeighbors().size()==0)
 			return null;
-		int l_idx=l_rand.nextInt(p_currentCountry.getNeighbors().size());
+		int l_idx=d_rand.nextInt(p_currentCountry.getNeighbors().size());
 		Country l_randNeighbor=(Country) p_currentCountry.getNeighbors().values().toArray()[l_idx];
 		return l_randNeighbor;
 	}
@@ -69,10 +69,10 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 	 * @return random player
 	 */
 	protected Player getRandomPlayer(){
-		int l_idx=l_rand.nextInt(GameContext.getGameContext().getPlayers().size());
+		int l_idx=d_rand.nextInt(GameContext.getGameContext().getPlayers().size());
 		Player l_player = (Player) GameContext.getGameContext().getPlayers().values().toArray()[l_idx];
 		while(l_player.equals(d_player)){
-			l_idx=l_rand.nextInt(GameContext.getGameContext().getPlayers().size());
+			l_idx=d_rand.nextInt(GameContext.getGameContext().getPlayers().size());
 			l_player = (Player) GameContext.getGameContext().getPlayers().values().toArray()[l_idx];
 		}
 		return l_player;
@@ -89,13 +89,13 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 		if(!d_player.getIsAlive())
 			return null;
 
-		int l_randomAction = l_rand.nextInt(8);
+		int l_randomAction = d_rand.nextInt(8);
 		switch(l_randomAction){
 			case 0:
 			case 1:
 			case 2:
 				GenericView.println("Random action: deploy");
-				l_order=new DeployOrder(d_player,getRandomConqueredCountry(),l_rand.nextInt(10));
+				l_order=new DeployOrder(d_player,getRandomConqueredCountry(),d_rand.nextInt(10));
 				break;
 			case 3:
 			case 4:
@@ -104,7 +104,7 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 				Country l_randomConqueredCountry=getRandomConqueredCountry();
 				Country l_randomNeighbor=getRandomNeighbor(l_randomConqueredCountry);
 				if(l_randomNeighbor!=null) {
-					int l_num=l_rand.nextInt(l_randomConqueredCountry.getArmyNumber()+10);
+					int l_num=d_rand.nextInt(l_randomConqueredCountry.getArmyNumber()+10);
 					l_order=new AdvanceOrder(d_player,l_randomConqueredCountry,l_randomNeighbor,l_num);
 				}
 				break;
@@ -114,7 +114,7 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 					GenericView.println("No card exist for random player.");
 					return null;
 				}
-				int l_randomCardIdx = l_rand.nextInt(d_player.getCards().size());
+				int l_randomCardIdx = d_rand.nextInt(d_player.getCards().size());
 				Card l_card = d_player.getCards().get(l_randomCardIdx);
 				switch(l_card){
 					case BLOCKADE:
@@ -124,7 +124,7 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 						l_order = new BombOrder(d_player, getRandomUnconqueredCountry());
 						break;
 					case AIRLIFT:
-						l_order = new AirliftOrder(d_player, getRandomConqueredCountry(), getRandomConqueredCountry(),l_rand.nextInt(10));
+						l_order = new AirliftOrder(d_player, getRandomConqueredCountry(), getRandomConqueredCountry(),d_rand.nextInt(10));
 						break;
 					case NEGOTIATE:
 						l_order = new NegotiateOrder(d_player, getRandomPlayer());

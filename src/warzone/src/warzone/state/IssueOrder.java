@@ -1,7 +1,6 @@
 package warzone.state;
 import warzone.service.*;
 import warzone.view.GenericView;
-import warzone.view.HelpView;
 import warzone.model.*;
 
 /**
@@ -85,7 +84,7 @@ public class IssueOrder extends GamePlay {
 	/**
 	 * Sets the list of map files to be used in the tournament.
 	 * 
-	 * @param p_mapFiles
+	 * @param p_mapFiles given map files
 	 */
 	public void setTournamentMapFiles(String[] p_mapFiles) {
 		printInvalidCommandMessage();
@@ -94,7 +93,7 @@ public class IssueOrder extends GamePlay {
 	/**
 	 * Sets the list of player strategies to be used in the tournament.
 	 * 
-	 * @param p_playerStrategies
+	 * @param p_playerStrategies given strategies
 	 */
 	public void setTournamentPlayerStrategies(String[] p_playerStrategies) {
 		printInvalidCommandMessage();
@@ -103,7 +102,7 @@ public class IssueOrder extends GamePlay {
 	/**
 	 * Sets the number of games to be played on each map in the tournament.
 	 * 
-	 * @param p_numberOfGames
+	 * @param p_numberOfGames given game number
 	 */
 	public void setTournamentNumberOfGames(int p_numberOfGames) {
 		printInvalidCommandMessage();
@@ -113,7 +112,7 @@ public class IssueOrder extends GamePlay {
 	 * Sets the maximum number of turns for each player in the tournament.
 	 * If no player has won once this limit is reached, the game will end as a draw.
 	 * 
-	 * @param p_maxTurns
+	 * @param p_maxTurns given turns
 	 */
 	public void setTournamentMaxTurns(int p_maxTurns) {
 		printInvalidCommandMessage();
