@@ -98,6 +98,7 @@ public class StartupTest {
 	
 	/**
 	 * test for next command
+	 * it is not ready to play
 	 */
 	@Test
 	public void inputNextCommand() {
