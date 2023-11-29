@@ -8,7 +8,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	GenericViewTest.class
+	GenericViewTest.class,
 	})
 public class ViewTestSuite {
 
