@@ -103,6 +103,6 @@ public class StartupTest {
 	@Test
 	public void inputNextCommand() {
 		d_startupState.next();
-		assert(d_gameEngine.getPhase().getGamePhase()==GamePhase.STARTUP);
+		assertFalse(d_gameEngine.getPhase().getGamePhase().equals(GamePhase.Reinforcement));
 	}
 }

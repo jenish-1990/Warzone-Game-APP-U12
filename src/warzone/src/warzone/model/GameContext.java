@@ -193,6 +193,10 @@ public class GameContext implements Serializable {
 		return GAME_CONTEXT;
 	}
 
+	/**
+	 * This method will set the game context
+	 * @param p_gameContext the game context that should set
+	 */
 	public static void setGameContext(GameContext p_gameContext){
 		GAME_CONTEXT = p_gameContext;
 	}

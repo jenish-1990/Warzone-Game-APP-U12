@@ -1,7 +1,6 @@
 package warzone.state;
 import warzone.service.*;
 import warzone.view.GenericView;
-import warzone.view.HelpView;
 import warzone.model.*;
 
 /**
