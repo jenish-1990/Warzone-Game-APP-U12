@@ -68,9 +68,13 @@ public class AggressiveStrategy extends PlayerStrategy implements Serializable {
 
 	/**
 	 * implementation of createOrder
+	 * the main logic is:
+	 * deploy : note that all the army will be deployed to the same country
+	 * attack
 	 * @return Order
 	 */
 	public Order createOrder() {
+
 		Order l_order=null;
 		if(!d_player.getIsAlive())
 			return null;
@@ -79,49 +83,40 @@ public class AggressiveStrategy extends PlayerStrategy implements Serializable {
 		if(d_player.getArmiesToDeploy() - d_player.d_armyHasIssued > 0) {
 			l_strongestCountry = getStrongestConqueredCountry();
 			l_order = new DeployOrder(d_player, l_strongestCountry, d_player.getArmiesToDeploy());
-			d_hasAttack = false;
 			return l_order;
 		}
-		//if have a airlift card, airlift army to its strongest country
+		
+		//attack with bomb
 		if(d_player.getCards().size() > 0){
 			for(Card l_card: d_player.getCards()){
-				if (l_card == Card.AIRLIFT && d_player.getConqueredCountries().size() > 1) {
-					Country l_randomCountry = getRandomConqueredCountry(l_strongestCountry);
-					l_order = new AirliftOrder(d_player, l_randomCountry, l_strongestCountry, l_randomCountry.getArmyNumber());
-					return l_order;
-				}
-			}
-		}
-
-		if(!d_hasAttack) {
-			d_hasAttack = true;
-			//if has enemy, attack
-			for (Country l_c : l_strongestCountry.getNeighbors().values()) {
-				if (l_c.getOwner() != d_player) {
-					l_order = new AdvanceOrder(d_player, l_strongestCountry, l_c, l_strongestCountry.getArmyNumber() + d_player.d_armyHasIssued);
-					return l_order;
-				}
-			}
-			//has no enemy, move the army to next country
-			for (Country l_c : l_strongestCountry.getNeighbors().values()) {
-				l_order = new AdvanceOrder(d_player, l_strongestCountry, l_c, l_strongestCountry.getArmyNumber() + d_player.d_armyHasIssued);
-				return l_order;
-			}
-		}
-
-		//after attack, aggregate the force
-		for (Country l_countryFrom : this.d_player.getConqueredCountries().values()) {
-			for (Country l_countryTo : l_countryFrom.getNeighbors().values()){
-				if(l_countryFrom.getOwner() == l_countryTo.getOwner() && l_countryFrom.getArmyNumber() > 0){
-					if(l_countryTo.getArmyNumber() > l_countryFrom.getArmyNumber()){
-						l_order = new AdvanceOrder(this.d_player, l_countryFrom, l_countryTo, l_countryFrom.getArmyNumber());
-						return l_order;
+				if (l_card == Card.BOMB ) {
+					for (Country l_c : d_player.getConqueredCountries().values()) {
+						for (Country l_b : l_c.getNeighbors().values()) {
+							if ( !l_b.getOwner().equals(d_player) && l_b.getArmyNumber() > 0 ) {
+								l_order = new BombOrder(d_player, l_b);
+								d_player.getCards().remove(Card.BOMB);
+								return l_order;
+							}
+						}
 					}
 				}
 			}
 		}
-		d_player.setHasFinisedIssueOrder(true);
+
+
+		//if has enemy, attack
+		for (Country l_c : l_strongestCountry.getNeighbors().values()) {
+			if (l_c.getOwner() != d_player) {
+				l_order = new AdvanceOrder(d_player, l_strongestCountry, l_c, l_strongestCountry.getArmyNumber() + d_player.d_armyHasIssued);
+				return l_order;
+			}
+		}
+		//has no enemy, move the army to next country
+		for (Country l_c : l_strongestCountry.getNeighbors().values()) {
+			l_order = new AdvanceOrder(d_player, l_strongestCountry, l_c, l_strongestCountry.getArmyNumber() + d_player.d_armyHasIssued);
+			return l_order;
+		}
+		
 		return null;
 	}
-
 }

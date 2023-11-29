@@ -28,11 +28,15 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 	 * @return random country owned by the player
 	 */
 	protected Country getRandomUnconqueredCountry() {
-		int l_idx=l_rand.nextInt(GameContext.getGameContext().getCountries().size());
-		Country l_randomCountry=(Country) GameContext.getGameContext().getCountries().values().toArray()[l_idx];
-		while(l_randomCountry.getOwner().equals(d_player)){
-			l_idx=l_rand.nextInt(GameContext.getGameContext().getCountries().size());
+		Country l_randomCountry = null;
+		if(GameContext.getGameContext().getCountries().size() > 0
+				&& d_player.getConqueredCountries().size() < GameContext.getGameContext().getCountries().size()  ) {
+			int l_idx=l_rand.nextInt(GameContext.getGameContext().getCountries().size());
 			l_randomCountry=(Country) GameContext.getGameContext().getCountries().values().toArray()[l_idx];
+			while(l_randomCountry.getOwner().equals(d_player)){
+				l_idx=l_rand.nextInt(GameContext.getGameContext().getCountries().size());
+				l_randomCountry=(Country) GameContext.getGameContext().getCountries().values().toArray()[l_idx];
+			}
 		}
 		return l_randomCountry;
 	}
@@ -85,13 +89,17 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 		if(!d_player.getIsAlive())
 			return null;
 
-		int l_randomAction = l_rand.nextInt(4);
+		int l_randomAction = l_rand.nextInt(8);
 		switch(l_randomAction){
 			case 0:
+			case 1:
+			case 2:
 				GenericView.println("Random action: deploy");
 				l_order=new DeployOrder(d_player,getRandomConqueredCountry(),l_rand.nextInt(10));
 				break;
-			case 1:
+			case 3:
+			case 4:
+			case 5:
 				GenericView.println("Random action: advance");
 				Country l_randomConqueredCountry=getRandomConqueredCountry();
 				Country l_randomNeighbor=getRandomNeighbor(l_randomConqueredCountry);
@@ -100,7 +108,7 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 					l_order=new AdvanceOrder(d_player,l_randomConqueredCountry,l_randomNeighbor,l_num);
 				}
 				break;
-			case 2:
+			case 6:
 				GenericView.println("Random action: play card");
 				if(d_player.getCards().size() <= 0) {
 					GenericView.println("No card exist for random player.");
@@ -123,7 +131,7 @@ public class RandomStrategy extends PlayerStrategy implements Serializable {
 						break;
 				}
 				break;
-			case 3:
+			case 7:
 				GenericView.println("Random action: stop issue order");
 				d_player.setHasFinisedIssueOrder(true);
 				break;

@@ -256,6 +256,9 @@ public class GameEngine implements Serializable {
 					l_winersName += l_player.getName() + ",";
 					l_alivePlayers ++;
 				}
+				else {
+					l_player.setIsAlive(false);
+				}
 			}
 			
 			if(l_alivePlayers == 1) {
@@ -539,6 +542,17 @@ public class GameEngine implements Serializable {
 					}
 				}				
 			});
+			
+			//update players status of IsAlive			
+			for(Player l_player :d_gameContext.getPlayers().values() ){
+				if(l_player.getConqueredCountries().size() > 0)
+					l_player.setIsAlive( true );
+				else {
+					l_player.setIsAlive( false );
+					GenericView.printWarning(String.format("----- Player [%s] is died ", l_player.getName() ));
+				}
+			}
+			
 			l_roundIndex ++;			
 		}
 		
