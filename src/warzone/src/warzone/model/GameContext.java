@@ -25,11 +25,6 @@ public class GameContext implements Serializable {
 	private static GameContext GAME_CONTEXT;
 
 	/**
-	 * order Number Per Round
-	 */
-	private int d_orderNumberPerRound = 5;
-
-	/**
 	 * players in game context
 	 */
 	private Map<String, Player> d_players;
@@ -146,7 +141,7 @@ public class GameContext implements Serializable {
 	
 	/**
 	 * set  Is Tournament Mode
-	 * @param p_isTournamentMode 
+	 * @param p_isTournamentMode
 	 */
 	public void setIsTournamentMode(boolean p_isTournamentMode) {
 		d_isTournamentMode =  p_isTournamentMode;
@@ -366,15 +361,7 @@ public class GameContext implements Serializable {
 	public String getComplexCommand() {
 		return d_warzoneProperties.getComplexCommand();
 	}
-	
-	/**
-	 * This method can provide the number of order in every round of the game.
-	 * @return the number of orders in each round
-	 */
-	public int getOrderNumberPerRound() {
-		return d_orderNumberPerRound;
-	}
-	
+
 	/**
 	 * get map type
 	 * @return the format of the current map
