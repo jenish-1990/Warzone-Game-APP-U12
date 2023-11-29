@@ -153,7 +153,7 @@ public class Startup extends GamePlay {
 		}
 		
 		// 1. create a new player instance
-		Player l_player = new Player(p_playerName,l_playerStrategyType);
+		Player l_player = new Player(l_playerName,l_playerStrategyType);
 
 		// 2. add player to PlayerService
 		boolean l_ok = d_startupService.addPlayer(l_player);
