@@ -81,7 +81,7 @@ public class LogEntryBuffer extends Observable implements Serializable {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		d_time = df.format(new Date());
 		this.d_phase = GamePhase.OrderExecution;
-		this.d_order = p_order.getOrderType().toString();
+		this.d_order = p_order.getOrderType() != null ? p_order.getOrderType().toString() : "";
 		this.notify(this);
 	}
 	

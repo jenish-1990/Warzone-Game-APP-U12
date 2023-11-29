@@ -3,16 +3,13 @@ package warzone.service;
 import  warzone.model.*;
 import warzone.view.GenericView;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**
  * service class for map
  */
-public class MapService {
+public class MapService implements Serializable {
 
 	/**
 	 * game context
