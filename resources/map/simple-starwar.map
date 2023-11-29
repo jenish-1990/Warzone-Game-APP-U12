@@ -1,0 +1,17 @@
+[Map]
+author=Iceworm72
+image=001_I72_Ghtroc 720.bmp
+wrap=no
+scroll=vertical
+warn=no
+
+[Continents]
+Cockpit=5
+Right Thruster=6
+
+[Territories]
+Cockpit01,658,355,Cockpit,Cockpit02
+Cockpit02,658,375,Cockpit,Cockpit01,Territory22,Territory23
+Territory22,577,512,Right Thruster,Territory23,Territory24
+Territory23,450,650,Right Thruster,Territory24
+Territory24,468,668,Right Thruster,Territory23
