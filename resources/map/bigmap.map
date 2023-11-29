@@ -1,0 +1,37 @@
+; map: bigmap
+; map made with the 6441 Super Team
+; 6441.net  1.0.0.1 
+
+[files]
+pic bigmap_pic.jpg
+map bigmap_map.gif
+crd bigmapeurope.cards
+
+[continents]
+North_Europe 5 red
+East_Europe 4 magenta
+CONTINENT-3 6 null
+
+[countries]
+1 England 1 164 126
+2 Scotland 1 158 44
+3 Canada 2 125 70
+4 US 2 106 90
+5 COUNTRY-5 2 0 0
+6 COUNTRY-6 2 0 0
+7 COUNTRY-7 3 0 0
+8 COUNTRY-8 3 0 0
+9 COUNTRY-9 3 0 0
+10 COUNTRY-10 3 0 0
+
+[borders]
+1 2 3 4
+2 1 3 4 7
+3 1 2 4
+4 1 2 3 5
+5 1 4 6
+6 2 5
+7 1 8
+8 9
+9 10
+10 7
