@@ -1,5 +1,4 @@
 package warzone.model;
-import warzone.view.GenericView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,6 +14,11 @@ public class CheaterStrategy extends PlayerStrategy implements Serializable {
 	 * save the cheat country list
 	 */
 	List<Country> l_cheatCountryList;
+	
+	/**
+	 * log entry buffer
+	 */
+	private LogEntryBuffer d_logEntryBuffer;
 
 	/**
 	 * constructor of CheaterStrategy
@@ -23,6 +27,7 @@ public class CheaterStrategy extends PlayerStrategy implements Serializable {
 	CheaterStrategy(Player p_player){
 		super(p_player);
 		l_cheatCountryList = new ArrayList<>();
+		d_logEntryBuffer = GameContext.getGameContext().getLogEntryBuffer();
 	}
 	
 	/**
@@ -44,7 +49,7 @@ public class CheaterStrategy extends PlayerStrategy implements Serializable {
 		//set cheat countries' owner
 		for(Country  l_cheat: l_cheatCountryList){
 			l_cheat.setCountryState(CountryState.Occupied, d_player);
-			GenericView.println("Cheater get the country " + l_cheat.getCountryName());
+			d_logEntryBuffer.logAction("SUCCESS", "Cheater get the country " + l_cheat.getCountryName());
 		}
 
 		//double the army of a country if it has an enemy
@@ -53,7 +58,7 @@ public class CheaterStrategy extends PlayerStrategy implements Serializable {
 				if (l_neighbor.getOwner() != d_player) {
 					int l_army = l_country.getArmyNumber();
 					l_country.setArmyNumber(l_army * 2);
-					GenericView.println("Cheater double the army in country " + l_country.getCountryName());
+					d_logEntryBuffer.logAction("SUCCESS", "Cheater double the army in country " + l_country.getCountryName());
 					break;
 				}
 			}
