@@ -8,11 +8,8 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
-import warzone.model.Country;
-import warzone.model.GameContext;
-import warzone.model.Player;
-import warzone.model.Router;
-import warzone.model.WarzoneProperties;
+import warzone.model.*;
+import warzone.state.IssueOrder;
 import warzone.state.Startup;
 import warzone.view.GenericView;
 
@@ -21,6 +18,11 @@ import warzone.view.GenericView;
  *
  */
 public class StartupServiceTest {
+
+	/**
+	 * game engine
+	 */
+	GameEngine d_gameEngine;
 
 	/**
 	 * Game Context
@@ -277,5 +279,38 @@ public class StartupServiceTest {
 		GenericView.printDebug("Total reinforcements assigned: " + l_player1.getArmiesToDeploy());
 		
 		assertTrue(l_player1.getArmiesToDeploy() == WarzoneProperties.getWarzoneProperties().getMinimumReinforcementsEachRound() + d_gameContext.getContinents().get(l_continentID).getBonusReinforcements());
+	}
+
+	/**
+	 * test case for save and load gamecontext
+	 */
+	@Test
+	public void checkGamePhaseAfterSaveAndLoadGameContext(){
+		//GameEngine.getGameEngine(d_gameContext).setPhase(new Startup(GameEngine.getGameEngine(d_gameContext)));
+		d_startupService = new StartupService(d_gameContext);
+		d_startupService.loadMap("europe.map");
+		Player l_player1 = new Player("player1");
+
+		//All but 1 country from continent 1
+		l_player1.getConqueredCountries().put(1, d_gameContext.getCountries().get(1));
+		l_player1.getConqueredCountries().put(2, d_gameContext.getCountries().get(2));
+
+		GameEngine.getGameEngine(d_gameContext).setPhase(new IssueOrder(GameEngine.getGameEngine(d_gameContext)));
+
+		assertTrue(d_startupService.saveGame("test4savegamecontext"));
+		GameEngine.getGameEngine(d_gameContext).reboot();
+		assertEquals(GameEngine.getGameEngine(d_gameContext).getPhase().getGamePhase(), GamePhase.MAPEDITOR);
+		assertTrue(d_startupService.loadGame("test4savegamecontext"));
+		assertEquals(GameEngine.getGameEngine(d_gameContext).getPhase().getGamePhase(), GamePhase.IssueOrder);
+	}
+
+	/**
+	 * test case for not loading wrong gamecontext
+	 */
+	@Test
+	public void willNotLoadNonExistGameContext(){
+		GameEngine.getGameEngine(d_gameContext).setPhase(new Startup(GameEngine.getGameEngine(d_gameContext)));
+		d_startupService = new StartupService(d_gameContext);
+		assertFalse(d_startupService.loadGame("wrongfile"));
 	}
 }

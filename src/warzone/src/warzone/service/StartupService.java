@@ -1,7 +1,6 @@
 package warzone.service;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,17 +9,24 @@ import java.util.Properties;
 import java.util.Scanner;
 
 import warzone.model.*;
+import warzone.state.Phase;
+import warzone.view.GenericView;
 
 /**
  * This class will provide controllers with service associating with starup
  *
  */
-public class StartupService {
+public class StartupService implements Serializable {
 
 	/**
 	 * game context
 	 */
 	private GameContext d_gameContext;
+
+	/**
+	 * game engine
+	 */
+	private GameEngine d_gameEngine;
 
 	/**
 	 * log entry buffer
@@ -32,10 +38,21 @@ public class StartupService {
 	 * @param p_gameContext the current game context
 	 */
 	public StartupService(GameContext p_gameContext) {
+		d_gameEngine = GameEngine.getGameEngine(p_gameContext);
 		d_gameContext = p_gameContext;
 		d_logEntryBuffer = d_gameContext.getLogEntryBuffer();
 	}
-	
+
+	/**
+	 * This constructor can initiate the game context of current instance.
+	 * @param p_gameEngine the current game engine
+	 */
+	public StartupService(GameEngine p_gameEngine) {
+		d_gameEngine = p_gameEngine;
+		d_gameContext = p_gameEngine.getGameContext();
+		d_logEntryBuffer = d_gameContext.getLogEntryBuffer();
+	}
+
 	/**
 	 * Add player, maximum number is 5.
 	 * @param p_player Player object
@@ -331,5 +348,62 @@ public class StartupService {
 		}
 		
 		return true;
+	}
+
+	/**
+	 * save game context
+	 * @param p_fileName file name
+	 */
+	public boolean saveGame(String p_fileName) {
+		String l_path = this.d_gameContext.getMapfolder();
+		try {
+			ObjectOutputStream l_objectOutputStream = new ObjectOutputStream(new FileOutputStream(l_path + p_fileName));
+			//save the gameContext and game phase
+			l_objectOutputStream.writeObject(d_gameContext);
+			l_objectOutputStream.writeObject(GameEngine.getGameEngine(d_gameContext).getPhase());
+			l_objectOutputStream.close();
+			GenericView.printSuccess("Success to save the game to " + p_fileName);
+			return true;
+		}catch (IOException e) {
+			GenericView.printError("Failed to save the game to " + p_fileName);
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * load game context
+	 * @param p_fileName file name
+	 */
+	public boolean loadGame(String p_fileName){
+		String l_path = this.d_gameContext.getMapfolder();
+		try {
+			//check if file exist
+			File l_file = new File(l_path + p_fileName);
+			if(!l_file.exists() || l_file.isDirectory()) {
+				GenericView.printError( String.format("File [%s] does not exist, please check.", p_fileName) );
+				return false;
+			}
+			//read from file
+			ObjectInputStream l_objectInputStream = new ObjectInputStream(new FileInputStream(l_path + p_fileName));
+			try {
+				//read the gameContext and game phase value
+				GameContext l_gameContext = (GameContext)l_objectInputStream.readObject();
+				Phase l_gamePhase = (Phase)l_objectInputStream.readObject();
+				//refresh the gameContext and game Phase
+				d_gameEngine.loadGameContext(l_gameContext);
+				GameEngine.getGameEngine(GameContext.getGameContext()).setPhase((Phase)l_gamePhase);
+				GenericView.printSuccess("Success to load the game from " + p_fileName);
+				return true;
+			} catch (ClassNotFoundException e) {
+				GenericView.printError("Failed to load the game from " + p_fileName);
+				e.printStackTrace();
+				return false;
+			}
+		} catch (IOException e) {
+			GenericView.printError("Failed to load the game from " + p_fileName);
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

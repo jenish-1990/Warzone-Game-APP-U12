@@ -1,4 +1,5 @@
 package warzone.model;
+import java.io.Serializable;
 import java.util.Scanner;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import warzone.view.GenericView;
  * This class represents the player in the game.
  *
  */
-public class Player {
+public class Player implements Serializable {
 
 	/**
 	 * name of the player
@@ -66,7 +67,7 @@ public class Player {
 	/**
 	 * scanner of the command
 	 */
-	private Scanner d_keyboard = new Scanner(System.in);
+	private transient Scanner d_keyboard = new Scanner(System.in);
 	
 	/**
 	 * PlayerStrategyType of player
@@ -608,6 +609,8 @@ public class Player {
 
 			if(this.d_playerStrategyType == PlayerStrategyType.HUMAN ) {
 				//1. issue order from interaction
+				if(d_keyboard == null)
+					d_keyboard = new Scanner(System.in);
 				l_command = d_keyboard.nextLine().trim();				
 
 				if(l_command.equalsIgnoreCase("help")) {

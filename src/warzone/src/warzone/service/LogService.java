@@ -1,9 +1,6 @@
 package warzone.service;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -18,7 +15,7 @@ import warzone.model.Observer;
  * @author 10413
  *
  */
-public class LogService implements Observer{
+public class LogService implements Observer, Serializable {
 	
 	/**
 	 * Log file Name
