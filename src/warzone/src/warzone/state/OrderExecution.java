@@ -49,7 +49,6 @@ public class OrderExecution extends GamePlay {
 	 */
 	public void play(String p_mode) {
 		d_gameEngine.executeOrders();
-		d_gameEngine.renderAndUpdateGameResult();
 		if (!d_gameEngine.isGameEnded())
 			d_gameEngine.assignCards();
 	}
