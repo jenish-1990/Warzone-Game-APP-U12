@@ -74,7 +74,7 @@ public class MapView {
                 System.out.println(String.format("%27s", l_country.getCountryID()) + " "
                         + String.format("%-25s", l_country.getCountryName()) + " "
                         + String.format("%-10s",l_country.getArmyNumber()) + " "
-                        + String.format("%-25s", l_country.getCountryState().toString() + " [" + (l_country.getOwner()==null ? "": (l_country.getOwner().getName()) + " - "+ l_country.getOwner().getLifeStatus() +" - "+ l_country.getOwner().getArmiesToDeploy()) +" ]"));
+                        + String.format("%-25s", l_country.getCountryState().toString() + " [" + (l_country.getOwner()==null ? "": (l_country.getOwner().getName()) + " - "+ l_country.getOwner().getPlayerStrategyType() + " - "+ l_country.getOwner().getLifeStatus() +" - "+ l_country.getOwner().getArmiesToDeploy()) +" ]"));
                         
                 for (Country l_nCountry : l_country.getNeighbors().values())
                     System.out.println(String.format("%40s", l_nCountry.getCountryID()) + " " +l_nCountry.getCountryName());

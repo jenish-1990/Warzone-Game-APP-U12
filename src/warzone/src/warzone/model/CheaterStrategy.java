@@ -13,7 +13,7 @@ public class CheaterStrategy extends PlayerStrategy implements Serializable {
 	/**
 	 * save the cheat country list
 	 */
-	List<Country> l_cheatCountryList;
+	List<Country> d_cheatCountryList;
 	
 	/**
 	 * log entry buffer
@@ -26,7 +26,7 @@ public class CheaterStrategy extends PlayerStrategy implements Serializable {
 	 */
 	CheaterStrategy(Player p_player){
 		super(p_player);
-		l_cheatCountryList = new ArrayList<>();
+		d_cheatCountryList = new ArrayList<>();
 		d_logEntryBuffer = GameContext.getGameContext().getLogEntryBuffer();
 	}
 	
@@ -40,14 +40,14 @@ public class CheaterStrategy extends PlayerStrategy implements Serializable {
 		for(Country l_country : d_player.getConqueredCountries().values()){
 			for( Country l_neighbor : l_country.getNeighbors().values()){
 				if(l_neighbor.getOwner() != d_player){
-					if(!l_cheatCountryList.contains(l_neighbor))
-						l_cheatCountryList.add(l_neighbor);
+					if(!d_cheatCountryList.contains(l_neighbor))
+						d_cheatCountryList.add(l_neighbor);
 				}
 			}
 		}
 
 		//set cheat countries' owner
-		for(Country  l_cheat: l_cheatCountryList){
+		for(Country  l_cheat: d_cheatCountryList){
 			l_cheat.setCountryState(CountryState.Occupied, d_player);
 			d_logEntryBuffer.logAction("SUCCESS", "Cheater get the country " + l_cheat.getCountryName());
 		}

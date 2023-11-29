@@ -127,20 +127,35 @@ public class GameEngine implements Serializable {
 		System.out.println("new phase: " + p_phase.getClass().getSimpleName());
 	}
 	
+	/**
+	 * IsInTournamentMode getter
+	 * @return IsInTournamentMode
+	 */
 	public boolean getIsInTournamentMode() {
 		
 		return d_isInTournamentMode;
 	}
 	
+	/**
+	 * IsInTournamentMode setter 
+	 * @param p_isInTournamentMode IsInTournamentMode
+	 */
 	public void setIsInTournamentMode(boolean p_isInTournamentMode) {
 		
 		this.d_isInTournamentMode = p_isInTournamentMode;
 	}
 	
+	/**
+	 * This method will initialize the tournament context
+	 */
 	public void initializeTournamentContext() {
 		d_tournamentContext = TournamentContext.getTournamentContext();
 	}
 	
+	/**
+	 * TournamentContext getter
+	 * @return the TournamentContext
+	 */
 	public TournamentContext getTournamentContext() {
 		if(d_tournamentContext == null)
 			initializeTournamentContext();
@@ -209,7 +224,13 @@ public class GameEngine implements Serializable {
 		return true;		
 	}
 	
+	/**
+	 * the map index
+	 */
 	private int d_mapIndex;
+	/**
+	 * the game index
+	 */
 	private int d_gameIndex;
 	
 	/**
@@ -240,34 +261,9 @@ public class GameEngine implements Serializable {
 			startTurn();
 			l_turnCounter++;
 		}
+		renderAndUpdateGameResult();		
 		
-		if(isGameEnded(true)) {
-			GenericView.println("-------------------- Reboot the game");
-			this.reboot();
-		}
-		else if(l_turnCounter < WarzoneProperties.getWarzoneProperties().getMaxTurnNumberPerGame()) {
-			//check and update PlayerStatus		
-			//set p_isLoser = true, when the player does not have any country
-			int l_alivePlayers = 0;
-			String l_winersName = "";
-			for(Player l_player :d_gameContext.getPlayers().values() ){
-				if(l_player.getConqueredCountries().size() > 0) {
-					l_player.setIsAlive(true);
-					l_winersName += l_player.getName() + ",";
-					l_alivePlayers ++;
-				}
-				else {
-					l_player.setIsAlive(false);
-				}
-			}
-			
-			if(l_alivePlayers == 1) {
-				GenericView.printSuccess("The winer is: " + l_winersName);
-			}else{
-				GenericView.printSuccess("The game is draw, and the alive players are: " + l_winersName);
-			}				
-		}
-		GenericView.println("Single Mode is Ended");
+		GenericView.println("Single Mode is Ended after executing ["+ l_turnCounter +"] Turn. ");
 		
 		return true;	
 	}
@@ -278,7 +274,7 @@ public class GameEngine implements Serializable {
 	 * @return true if the game can end.
 	 */
 	public TournamentContext playTournament() {
-		
+
 		int l_turnCounter; 
 		
 		d_tournamentContext.prepareResultsTable();
@@ -290,20 +286,24 @@ public class GameEngine implements Serializable {
 				l_turnCounter = 0;
 				
 				//Prepare the current game context
-				prepareGameContextForTournamentMatch(d_tournamentContext.getMapFiles().get(d_mapIndex));
+				if(!prepareGameContextForTournamentMatch(d_tournamentContext.getMapFiles().get(d_mapIndex)))
+					continue;
+
 				
-				while(l_turnCounter < d_tournamentContext.getMaxTurns() && !isGameEnded(true)) {
+				while(l_turnCounter < d_tournamentContext.getMaxTurns() && !isGameEnded() ) {
 						
 					startTurn();
 					l_turnCounter++;
 				}
-				if(l_turnCounter >= d_tournamentContext.getMaxTurns()) {
-					
+				GenericView.println(String.format("Game is end for map [%s] and game [%s], in Turn [%s]. ",d_mapIndex, d_gameIndex, l_turnCounter));
+				if(isGameEnded()) {
+					renderAndUpdateGameResult(true);					
+				}
+				else if(l_turnCounter >= d_tournamentContext.getMaxTurns()) {					
 					d_tournamentContext.getResults()[d_mapIndex][d_gameIndex] = "Draw";
 				}
 			}
 		}
-		
 		TournamentResultsView.printTournamentResults(d_tournamentContext);
 		
 		return d_tournamentContext;		
@@ -312,11 +312,14 @@ public class GameEngine implements Serializable {
 	/**
 	 * prepare Game Context For Tournament Match
 	 * @param p_mapFileName file name
+	 * @return if the game is prepared
 	 */
-	private void prepareGameContextForTournamentMatch(String p_mapFileName) {
+	private boolean prepareGameContextForTournamentMatch(String p_mapFileName) {
 		
 		d_gameContext.reset();
 		StartupService startupService = new StartupService(d_gameContext);
+		if(p_mapFileName == "" || d_tournamentContext.getPlayerStrategies().size() == 0)
+			return false;
 		
 		startupService.loadMap(p_mapFileName);
 		
@@ -328,6 +331,7 @@ public class GameEngine implements Serializable {
 		}
 		
 		startupService.assignCountries();
+		return true;
 	}
 	
 	
@@ -348,6 +352,76 @@ public class GameEngine implements Serializable {
 	}
 	
 	/**
+	 * get alive player
+	 * @return number of alive players
+	 */
+	public int getAlivePlayer() {
+		int l_alivePlayers=0;
+		for(Player l_player :d_gameContext.getPlayers().values() ){
+			if(l_player.getConqueredCountries().size() > 0) {
+				l_player.setIsAlive(true);
+				l_alivePlayers ++;
+			}
+			else {
+				l_player.setIsAlive( false );
+			}
+		}
+		return l_alivePlayers;
+	}
+	/**
+	 * update Game Result for what ever game
+	 */
+	public void renderAndUpdateGameResult() {
+		renderAndUpdateGameResult(false);
+	}
+	/**
+	 * update Game Result for what ever game
+	 * @param p_isUpdateTournamentResult  is Update Tournament Result
+	 */
+	public void renderAndUpdateGameResult(boolean p_isUpdateTournamentResult) {
+		int l_alivePlayers = 0;
+		Player l_protentialWinner = null;
+		for(Player l_player :d_gameContext.getPlayers().values() ){
+			if(l_player.getConqueredCountries().size() > 0) {
+				l_player.setIsAlive(true);
+				l_protentialWinner = l_player;
+				l_alivePlayers ++;
+			}
+			else {
+				l_player.setIsAlive( false );
+			}
+		}
+		
+		if(l_alivePlayers == 1) {
+			
+			GenericView.printSuccess("player " + l_protentialWinner.getName() + " wins the game.");
+			
+			if(p_isUpdateTournamentResult) {
+				
+				d_tournamentContext.getResults()[d_mapIndex][d_gameIndex] = l_protentialWinner.getName();
+			}
+		}
+		else if(l_alivePlayers == 0){
+			GenericView.printSuccess("All the player died.");
+			
+			if(p_isUpdateTournamentResult) {
+
+				d_tournamentContext.getResults()[d_mapIndex][d_gameIndex] = "Draw";
+			}
+		}
+		else{
+			GenericView.printSuccess("Many player alived.");
+			
+			if(p_isUpdateTournamentResult) {
+
+				d_tournamentContext.getResults()[d_mapIndex][d_gameIndex] = "Draw";
+			}
+		}
+		
+	}
+	
+	
+	/**
 	 * This method will determine if the game whether can end.
 	 * @return true if the current state satisfy the end condition: 
 	 * 1. there is just one player left 2. the number of game turn is greater than 100.
@@ -357,6 +431,7 @@ public class GameEngine implements Serializable {
 	}
 	/**
 	 * This method will determine if the game whether can end.
+	 * update player 's status 
 	 * @param p_isShowResult is show result
 	 * @return true if the current state satisfy the end condition: 
 	 * 1. there is just one player left 2. the number of game turn is greater than 100.
@@ -375,32 +450,11 @@ public class GameEngine implements Serializable {
 				l_protentialWinner = l_player;
 				l_alivePlayers ++;
 			}
-			else
-				l_player.setIsAlive(false);
-		}
-		if(l_alivePlayers <= 1){
-			if(p_isShowResult) {
-				GenericView.println("-------------------- Game End");
-				if(l_alivePlayers == 1) {
-					
-					GenericView.printSuccess("player " + l_protentialWinner.getName() + " wins the game.");
-					
-					if(d_gameContext.getIsTournamentMode() == true) {
-						
-						d_tournamentContext.getResults()[d_mapIndex][d_gameIndex] = l_protentialWinner.getName();
-					}
-				}
-				else {
-					GenericView.printSuccess("All the player died.");
-					
-					if(d_gameContext.getIsTournamentMode() == true) {
-	
-						d_tournamentContext.getResults()[d_mapIndex][d_gameIndex] = "Draw";
-					}
-				}
-				//GenericView.println("-------------------- Reboot the game");
-				//this.reboot();
+			else {
+				l_player.setIsAlive( false );
 			}
+		}
+		if(l_alivePlayers <= 1){			
 			return true;
 		}
 		else
@@ -412,9 +466,8 @@ public class GameEngine implements Serializable {
 	 * according to the Warzone rules.
 	 */
 	public void assignReinforcements() {
-		if( isGameEnded(true)) {
+		if( isGameEnded()) {
 			GenericView.println("Game is ended.");
-			this.reboot();
 			return ;
 		}
 		GenericView.println("-------------------- Start to assign reinforcements");
@@ -454,8 +507,7 @@ public class GameEngine implements Serializable {
 	 */
 	public void issueOrders() {
 		if( isGameEnded()) {
-			//todo: call game over and change state
-			this.reboot();
+			GenericView.println("Game is ended.");
 			return;
 		}		
 
@@ -509,9 +561,8 @@ public class GameEngine implements Serializable {
 	 */
 	public void executeOrders() {	
 
-		if( isGameEnded(true)) {
+		if( isGameEnded()) {
 			GenericView.println("Game is ended.");
-			this.reboot();
 			return ;
 		}
 		
@@ -559,6 +610,10 @@ public class GameEngine implements Serializable {
 		}
 		
 		GenericView.println("-------------------- Finish executing orders for this turn");
+		if(isGameEnded() && !this.isSingleMode() && !this.getIsInTournamentMode() ) {
+			renderAndUpdateGameResult();
+			reboot();
+		}
 	}	
 	
 	/**
@@ -603,6 +658,7 @@ public class GameEngine implements Serializable {
 	 * reboot the game
 	 */
 	public void reboot() {
+		GenericView.printWarning("------------------------------------- rebooting the game");
 		d_gameContext.reset();
 		setPhase( new MapEditor(this));
 	}

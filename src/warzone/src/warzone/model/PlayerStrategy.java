@@ -1,6 +1,5 @@
 package warzone.model;
 import java.io.Serializable;
-import java.util.List;
 
 import warzone.service.GameEngine;
 

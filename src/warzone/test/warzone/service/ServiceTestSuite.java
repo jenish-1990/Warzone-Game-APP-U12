@@ -11,7 +11,9 @@ import org.junit.runners.Suite;
 	GameEngineServiceTest.class,
 	MapServiceTest.class,
 	RouterServiceTest.class,
-	StartupServiceTest.class
+	StartupServiceTest.class,
+	ConquestMapReaderTest.class,
+	ConquestMapWriterTest.class
 	})
 public class ServiceTestSuite {
 
