@@ -2,16 +2,8 @@ package warzone.view;
 
 import warzone.model.TournamentContext;
 
-/**
- * This class will print the result of tournament
- *
- */
 public class TournamentResultsView {
 
-	/**
-	 * This method will print the result of tournament
-	 * @param p_tournamentContext the tournament context
-	 */
 	public static void printTournamentResults(TournamentContext p_tournamentContext) {
 		
 		System.out.println("**************************************************************************");
@@ -25,7 +17,7 @@ public class TournamentResultsView {
         
         System.out.format("%15s", "");
         
-        for(int i = 1; i <= p_tournamentContext.getNumberOfGames(); i++) {
+        for(int i = 1; i <= p_tournamentContext.getMapFiles().size(); i++) {
         	
         	System.out.format("%15s", "Game " + i);
         }

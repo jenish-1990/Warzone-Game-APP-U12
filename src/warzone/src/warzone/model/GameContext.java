@@ -67,7 +67,10 @@ public class GameContext implements Serializable {
 	 * negotiate Orders In Current Turn
 	 */
 	private List<NegotiateOrder> d_negotiateOrdersInCurrentTurn;
-
+	/**
+	 *  is Tournament Mode
+	 */
+	private boolean d_isTournamentMode=false;
 	/**
 	 * the type of the map
 	 */
@@ -128,7 +131,21 @@ public class GameContext implements Serializable {
 		d_currentRouter =  p_currentRouter;
 	}
 	
-
+	/**
+	 * get  Is Tournament Mode
+	 * @return  if Is Tournament Mode
+	 */
+	public boolean getIsTournamentMode() {
+		return d_isTournamentMode;
+	}
+	
+	/**
+	 * set  Is Tournament Mode
+	 * @param p_isTournamentMode
+	 */
+	public void setIsTournamentMode(boolean p_isTournamentMode) {
+		d_isTournamentMode =  p_isTournamentMode;
+	}	
 
 	/**
 	 * singlton of LogEntryBuffer
@@ -176,10 +193,6 @@ public class GameContext implements Serializable {
 		return GAME_CONTEXT;
 	}
 
-	/**
-	 * This method will set the game context
-	 * @param p_gameContext the game context that should set
-	 */
 	public static void setGameContext(GameContext p_gameContext){
 		GAME_CONTEXT = p_gameContext;
 	}

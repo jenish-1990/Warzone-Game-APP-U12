@@ -32,21 +32,6 @@ public class MapService {
 		d_gameContext = p_gameContext;
 		d_logEntryBuffer = p_gameContext.getLogEntryBuffer();
 	}
-	
-	/**
-	 * save map to file according to the map type
-	 * @param p_fullFileName file name
-	 * @return if success
-	 * @throws IOException if any io exception
-	 */
-	public boolean saveMap(String p_fullFileName) throws IOException {
-		if(this.d_gameContext.getMapType() == MapType.CONQUEST) {
-			ConquestMapWriter l_conquestMapWriter= new ConquestMapWriter(this.d_gameContext);
-			return l_conquestMapWriter.saveConquestMap(p_fullFileName);
-		}
-		else
-			return saveDominateMap(p_fullFileName);
-	}
 
 	/**
 	 * save map to file
@@ -54,7 +39,7 @@ public class MapService {
 	 * @return if success
 	 * @throws IOException if any io exception
 	 */
-	public boolean saveDominateMap(String p_fullFileName) throws IOException {
+	public boolean saveMap(String p_fullFileName) throws IOException {
 		try{
 			String l_fileName ;
 			if(p_fullFileName.indexOf(".") > -1)
@@ -113,29 +98,14 @@ public class MapService {
 			throw ex;
 		}		
 	}
-	
+
 	/**
-	 * Load a map from an existing map
+	 * Load a map from an existing â€œdominationâ€� map file,
 	 * or create a new map from scratch if the file does not exist.
 	 * @param p_fileName file name
 	 * @return if success
 	 */
 	public boolean editMap (String p_fileName) {
-		if(this.d_gameContext.getMapType() == MapType.CONQUEST) {
-			ConquestMapReader l_conquestMapReader= new ConquestMapReader(this.d_gameContext);
-			return l_conquestMapReader.editConquestMap(p_fileName);
-		}
-		else
-			return editDominateMap(p_fileName);
-	}
-
-	/**
-	 * Load a map from an existing map
-	 * or create a new map from scratch if the file does not exist.
-	 * @param p_fileName file name
-	 * @return if success
-	 */
-	public boolean editDominateMap (String p_fileName) {
 
 		String l_mapDirectory = WarzoneProperties.getWarzoneProperties().getGameMapDirectory();
 		

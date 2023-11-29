@@ -49,17 +49,17 @@ public class Startup extends GamePlay {
 		if(d_gameEngine.getIsInTournamentMode() == true) {
 			
 			d_gameEngine.playTournament();
-			d_gameEngine.reboot();			
 		}	
 		else if(d_gameEngine.isSingleMode()) {
 			d_gameEngine.playSingleMode();
-			d_gameEngine.reboot();
 		}		
-		else if (d_gameEngine.isReadyToStart()) {			
+		else if (d_gameEngine.isReadyToStart()) {
+			
 			d_gameEngine.setPhase(new Reinforcement(d_gameEngine));
 			super.next();
 		}
-		else {			
+		else {
+			
 			GenericView.printWarning("It is no ready to play, please check prerequists.");
 		}
 	}
@@ -117,11 +117,10 @@ public class Startup extends GamePlay {
 			// the format of the current map is 'conquest'
 			if (l_line.startsWith("[Map]")) {
 				l_scanner.close();
-				//GameContext l_gameContext  = GameContext.getGameContext();
-				d_gameContext.setMapType(MapType.CONQUEST);
+				GameContext l_gameContext  = GameContext.getGameContext();
+				d_startupService = new StartupServiceAdapter(l_gameContext, new ConquestMapReader(l_gameContext));
+				l_gameContext.setMapType(MapType.CONQUEST);
 			}
-			else
-				d_gameContext.setMapType(MapType.DOMINATION);
 		} catch (Exception e) {
 			return;
 		}
@@ -154,7 +153,7 @@ public class Startup extends GamePlay {
 		}
 		
 		// 1. create a new player instance
-		Player l_player = new Player(l_playerName,l_playerStrategyType);
+		Player l_player = new Player(p_playerName,l_playerStrategyType);
 
 		// 2. add player to PlayerService
 		boolean l_ok = d_startupService.addPlayer(l_player);
@@ -206,7 +205,7 @@ public class Startup extends GamePlay {
 	/**
 	 * Sets the list of map files to be used in the tournament.
 	 * 
-	 * @param p_mapFiles given map files
+	 * @param p_mapFiles
 	 */
 	public void setTournamentMapFiles(String[] p_mapFiles) {
 		
@@ -217,7 +216,7 @@ public class Startup extends GamePlay {
 	/**
 	 * Sets the list of player strategies to be used in the tournament.
 	 * 
-	 * @param p_playerStrategies given strategies
+	 * @param p_playerStrategies
 	 */
 	public void setTournamentPlayerStrategies(String[] p_playerStrategies) {
 		
@@ -239,7 +238,7 @@ public class Startup extends GamePlay {
 	/**
 	 * Sets the number of games to be played on each map in the tournament.
 	 * 
-	 * @param p_numberOfGames given  number of games
+	 * @param p_numberOfGames
 	 */
 	public void setTournamentNumberOfGames(int p_numberOfGames) {
 		
@@ -251,7 +250,7 @@ public class Startup extends GamePlay {
 	 * Sets the maximum number of turns for each player in the tournament.
 	 * If no player has won once this limit is reached, the game will end as a draw.
 	 * 
-	 * @param p_maxTurns given maximum number of turns
+	 * @param p_maxTurns
 	 */
 	public void setTournamentMaxTurns(int p_maxTurns) {
 		

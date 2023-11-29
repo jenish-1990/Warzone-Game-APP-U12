@@ -5,8 +5,6 @@ editcontinent -add 3 6
 editcontinent -remove 3
 showmap
 editcountry -add 1 2 -add 2 2 -add 3 2 -add 4 3 -add 5 3 -add 6 3 
-editcountry -add 4 1 -add 5 1 -add 6 1 
-
 editcountry -remove 6
 showmap
 editneighbor -add 1 2 -add 2 1 -add 3 1 -add 4 2 -add 5 2 -add 6 2 -add 5 2 -add 5 3 -add 3 5
@@ -17,8 +15,6 @@ showmap
   gameplayer -add Mike -add Rik  
  gameplayer -add Mike Human -add Rik Human 
  gameplayer -add Mike aggressive -add Rik aggressive
-  gameplayer -add Mike aggressive -add Rik aggressive
-   gameplayer -add Mike benevolent -add Rik aggressive -add Jack cheater
  
  gameplayer -add Mike Human -add Rik aggressive
  
@@ -111,18 +107,3 @@ editcontinent -remove 7
 showmap
 savemap test-2.map
 
-
-loadmap simple.map
-editcontinent -add 3 6 
-editcountry -add 5 2 -add 6 2 -add 7 3  -add 8 3  -add 9 3  -add 10 3  
-
-validatemap
-editneighbor -add 5 4 -add 4 5 -add 5 6 -add 6 5  -add 5 1 -add 6 2
-editneighbor -add 7 8 -add 8 9 -add 9 10 -add 10 7  -add 7 1 -add 2 7
-
-
-loadmap bigmap.map
-   gameplayer -add Mike benevolent -add Rik aggressive -add Jack cheater -add Tom random -add Max human 
-   gameplayer -add Mike benevolent -add Rik aggressive -add Jack aggressive -add Tom random -add Max human
-
-assigncountries
