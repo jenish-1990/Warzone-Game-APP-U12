@@ -357,11 +357,11 @@ public class GameEngine implements Serializable {
 	}
 	/**
 	 * This method will determine if the game whether can end.
-	 * @param isShowResult is show result
+	 * @param p_isShowResult is show result
 	 * @return true if the current state satisfy the end condition: 
 	 * 1. there is just one player left 2. the number of game turn is greater than 100.
 	 */
-	public boolean isGameEnded(boolean isShowResult) {
+	public boolean isGameEnded(boolean p_isShowResult) {
 		if(this.d_gamePhase.getGamePhase() == GamePhase.MAPEDITOR)
 			return false;
 		
@@ -375,9 +375,11 @@ public class GameEngine implements Serializable {
 				l_protentialWinner = l_player;
 				l_alivePlayers ++;
 			}
+			else
+				l_player.setIsAlive(false);
 		}
 		if(l_alivePlayers <= 1){
-			if(isShowResult) {
+			if(p_isShowResult) {
 				GenericView.println("-------------------- Game End");
 				if(l_alivePlayers == 1) {
 					
@@ -459,7 +461,7 @@ public class GameEngine implements Serializable {
 
 		//local list of player
 		List<Player> l_playersList = new ArrayList<>();
-		d_gameContext.getPlayers().forEach((l_k, l_player) -> {			
+		d_gameContext.getPlayers().forEach((l_k, l_player) -> {
 			if(l_player.getIsAlive()) {
 				l_player.setHasFinisedIssueOrder(false);
 				l_playersList.add(l_player);

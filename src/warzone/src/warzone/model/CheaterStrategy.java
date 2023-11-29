@@ -63,6 +63,10 @@ public class CheaterStrategy extends PlayerStrategy implements Serializable {
 				}
 			}
 		}
+
+		//check if cheater win this game
+		d_gameEngine.isGameEnded(false);
+
 		//set player finish the issue order
 		d_player.setHasFinisedIssueOrder(true);
 		return null;
