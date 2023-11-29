@@ -15,7 +15,11 @@ import org.junit.runners.Suite;
 	CountryTest.class,
 	DeployOrderTest.class,
 	NegotiateOrderTest.class,
-	WarzonePropertiesTest.class	
+	WarzonePropertiesTest.class,
+	AggressiveStrategyTest.class,
+	BenevolentStrategyTest.class,
+	CheaterStrategyTest.class,
+	RandomStrategyTest.class
 	})
 public class ModelTestSuite {
 

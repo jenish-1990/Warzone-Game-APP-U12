@@ -15,7 +15,7 @@ public abstract class PlayerStrategy {
 
 	/**
 	 *  abstract of createOrder
-	 * @return
+	 * @return Order
 	 */
 	public abstract Order createOrder();	
 	
