@@ -5,7 +5,7 @@ import warzone.service.StartupService;
 
 /**
  * This class is the adapter for StartupService by loading maps with 'conquest' format
- * @author zexin
+ * @author ayush
  *
  */
 public class StartupServiceAdapter extends StartupService{

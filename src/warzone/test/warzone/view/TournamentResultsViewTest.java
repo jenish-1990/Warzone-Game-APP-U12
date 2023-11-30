@@ -2,7 +2,7 @@ package warzone.view;
 
 /**
  * test cases for TournamentResultsView
- * @author zexin
+ * @author ayush
  *
  */
 public class TournamentResultsViewTest {

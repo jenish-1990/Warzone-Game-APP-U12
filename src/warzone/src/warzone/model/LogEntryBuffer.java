@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * This class represents the observable in the observer pattern. It is filled
  * with information about effect of the action that players take.
- * @author zexin
+ * @author alay
  *
  */
 public class LogEntryBuffer extends Observable implements Serializable {

@@ -2,7 +2,7 @@ package warzone.model;
 
 /**
  * Map Type
- * @author fzuray
+ * @author ayush
  *
  */
 public enum MapType {

@@ -14,14 +14,8 @@ public class HelpView {
 	 * This method can print welcome page.
 	 */
     public static void printWelcome() {
-    	System.out.println("");
-    	System.out.println("        #    #   ##   #####  ######  ####  #    # ######"); 
-    	System.out.println("        #    #  #  #  #    #     #  #    # ##   # #      ");
-    	System.out.println("        #    # #    # #    #    #   #    # # #  # #####  ");
-    	System.out.println("        # ## # ###### #####    #    #    # #  # # #      ");
-    	System.out.println("        ##  ## #    # #   #   #     #    # #   ## #      ");
-    	System.out.println("        #    # #    # #    # ######  ####  #    # ######  By 6441 Group #22");
-    	System.out.println("");
+    	System.out.println("Welcome to Warzone Risk Game, by U12");
+
     }
 
     
