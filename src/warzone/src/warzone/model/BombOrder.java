@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * This class represents the bomb card in the game.
- * @author zexin
+ * @author shruti
  *
  */
 public class BombOrder extends Order implements Serializable {

@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * test cases for HumanStrategy
- * @author zexin
+ * @author nidhi
  *
  */
 public class HumanStrategyTest {

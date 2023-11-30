@@ -18,7 +18,7 @@ import java.util.Map.Entry;
 
 /**
  * adapter of ConquestMapHandler
- * @author fzuray
+ * @author nidhi
  *
  */
 public class ConquestMapHandlerAdapter extends DominateMapHandler implements Serializable {

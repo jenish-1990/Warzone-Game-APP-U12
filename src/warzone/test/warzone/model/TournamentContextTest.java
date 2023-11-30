@@ -2,7 +2,7 @@ package warzone.model;
 
 /**
  * test cases for TournamentContext
- * @author zexin
+ * @author ayush
  *
  */
 public class TournamentContextTest {

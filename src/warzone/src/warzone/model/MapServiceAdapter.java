@@ -8,7 +8,7 @@ import warzone.service.MapService;
 
 /**
  * This class is the adapter for MapServiceAdapter
- * @author zexin
+ * @author ayush
  *
  */
 public class MapServiceAdapter extends MapService{
