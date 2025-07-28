@@ -147,5 +147,5 @@ Includes tests for:
 ---
 
 > Developed as a group project for COMP 6481 - Software Engineering  
-> Concordia University | Winter 2024  
+> Concordia University | Fall 2023  
 > Authors: [Jenish Akhed, Shruti Pavasiya,  Nidhi Patel, Alay Parikh, Ayush Patel, Sahil Khunt]
